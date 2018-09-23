@@ -33,7 +33,7 @@
       }
 
       .background {
-        background-color: rgba(0, 0, 0, .5);
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .6));
         position: absolute;
         display: -ms-flexbox;
         display: flex;

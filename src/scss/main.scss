@@ -12,7 +12,10 @@ $link: $primary;
 $link-invert: $primary-invert;
 
 $karaoke: royalblue;
-$karaoke-invert: findColorInvert($primary);
+$karaoke-invert: findColorInvert($karaoke);
+
+$filme: #7dad16;
+$filme-invert: findColorInvert($filme);
 
 $twitter: #55acee;
 $twitter-invert: findColorInvert($twitter);
@@ -29,18 +32,27 @@ $github-invert: findColorInvert($github);
 $myanimelist: #2e51a2;
 $myanimelist-invert: findColorInvert($myanimelist);
 
+$mydramalist: #00619d;
+$mydramalist-invert: findColorInvert($mydramalist);
+
 $gplus: #d34836;
 $gplus-invert: findColorInvert($gplus);
+
+$imdb: #f3ce00;
+$imdb-invert: findColorInvert($imdb);
 
 @import "../../node_modules/bulma/sass/utilities/derived-variables";
 $addColors: (
   "karaoke": ($karaoke, $karaoke-invert),
+  "filme": ($filme, $filme-invert),
   "twitter": ($twitter, $twitter-invert),
   "facebook": ($facebook, $facebook-invert),
   "instagram": ($instagram, $instagram-invert),
   "github": ($github, $github-invert),
   "myanimelist": ($myanimelist, $myanimelist-invert),
-  "gplus": ($gplus, $gplus-invert)
+  "mydramalist": ($mydramalist, $mydramalist-invert),
+  "gplus": ($gplus, $gplus-invert),
+  "imdb": ($imdb, $imdb-invert)
 );
 $colors: map-merge($colors, $addColors);
 

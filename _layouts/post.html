@@ -38,9 +38,11 @@ layout: compress
         {% if page.cover %}
         <figure class="grid-ml">
           <img src="{{ page.cover }}" alt="Capa do post">
+          {% if page.cover_caption %}
           <figcaption>
             {{ page.cover_caption }}
           </figcaption>
+          {% endif %}
         </figure>
         {% endif %}
 
@@ -53,6 +55,18 @@ layout: compress
             <a href="{{ link.file }}" class="button is-outlined is-fullwidth is-grey is-small is-rounded download">
               <span class="description has-text-grey">Download</span>
               <span class="link">{{ link.title }}</span>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if page.external %}
+        <div class="columns" style="padding: 3rem 0 0 0;">
+          {% for link in page.external %}
+          <div class="column">
+            <a href="{{ link.url }}" class="button is-fullwidth is-{{ link.type }}">
+              {{ link.title }}
             </a>
           </div>
           {% endfor %}
