@@ -1,0 +1,25 @@
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="navbar-shadow"></div>
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item is-unselectable has-text-primary has-text-weight-bold is-unselectable"
+         href="{{ site.baseurl }}/">
+        Alessandro Jean
+      </a>
+      <div class="navbar-burger burger" data-target="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+      <div class="navbar-end">
+        {% for link in site.links %}
+        <a href="{{ link.url }}" class="navbar-item">
+          {{ link.title }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</nav>

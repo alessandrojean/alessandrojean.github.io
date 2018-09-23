@@ -1,0 +1,72 @@
+# Site settings.
+title: Alessandro Jean
+description: Bem aleatório
+baseurl: "/blog"
+url: "https://alessandrojean.github.io"
+disqus: alessandrojean
+google_analytics: UA-117196425-1
+
+# Jekyll settings.
+version: v1.2.0
+permalink: /:categories/:title/
+
+# User settings.
+username: Alessandro Jean
+user_description: Apenas compartilhando conhecimento
+avatar_url: 'https://avatars0.githubusercontent.com/u/14254807?s=460&v=4'
+instagram_username: alessandrojean
+myanimelist_username: alessandrojean
+github_username: alessandrojean
+twitter_username: alessandrojean_
+
+# Build settings.
+# Jekyll 3 now only supports Kramdown for Markdown.
+kramdown:
+  # Use GitHub flavored markdown, including triple backtick fenced code blocks.
+  input: GFM
+  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting.
+  syntax_highlighter: rouge
+  # syntax_highlighter_opts:
+    # Use existing pygments syntax highlighting css.
+    # css_class: 'highlight'
+
+# SASS settings.
+sass:
+  style: :compressed
+
+# Plugins.
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+# HTML minify.
+compress_html:
+  clippings: all
+  comments: all
+  endings: []
+  profile: false
+
+# Links to include in menu navigation
+# For external links add external: true
+links:
+  - title: Tags
+    url: /tags
+  - title: Sobre mim
+    url: /sobre
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
+  - src
+  - gulpfile.js
+  - README.md
+  - LICENSE
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

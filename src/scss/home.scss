@@ -1,0 +1,152 @@
+.posts article.card {
+  opacity: 0;
+  will-change: transform;
+
+  &:hover {
+    .card-image .image img,
+    .card-image .image .card-header {
+      transform: scale(1.3);
+      filter: blur(2px);
+    }
+  }
+
+  &.shown {
+    opacity: 1;
+  }
+
+  &.animate {
+    transform: translateY(200px);
+    animation: moveUp .65s ease forwards;
+  }
+
+  .card-image {
+    overflow: hidden;
+
+    .image {
+      overflow: hidden;
+
+      img, .card-header {
+        object-fit: cover;
+        transform: scale(1.2);
+        will-change: filter, transform;
+        transition: filter .2s ease-in-out, transform .2s ease-in-out;
+      }
+
+      .background {
+        background-color: rgba(0, 0, 0, .5);
+        position: absolute;
+        display: -ms-flexbox;
+        display: flex;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.is-shady {
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, .1) 0 1px 0;
+  border-radius: 4px;
+  transition: all .2s ease-in-out;
+  will-change: box-shadow;
+  border: 1px solid rgba(0, 0, 0, .1);
+
+  &:hover {
+    box-shadow: 0 10px 16px rgba(0, 0, 0, .13), 0 6px 6px rgba(0, 0, 0, .19);
+  }
+}
+
+.is-shady .card-image .image img,
+.posts .card-image .image .background,
+.is-shady .card-image {
+  border-radius: 4px 4px 0 0;
+}
+
+.card .card-ribbon {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px;
+  height: 75px;
+  text-align: right;
+
+  span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: $primary-invert;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 100px;
+    display: block;
+    background: $primary;
+    position: absolute;
+    top: 19px;
+    right: -21px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 100%;
+      z-index: -1;
+      border-left: 3px solid darken($primary, 10%);
+      border-right: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-top: 3px solid darken($primary, 10%);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 100%;
+      z-index: -1;
+      border-left: 3px solid transparent;
+      border-right: 3px solid darken($primary, 10%);
+      border-bottom: 3px solid transparent;
+      border-top: 3px solid darken($primary, 10%);
+    }
+  }
+
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+
+    &.is-#{$name} {
+      span {
+        background: $color;
+        color: $color-invert;
+
+        &:before {
+          border-left: 3px solid darken($color, 10%);
+          border-top: 3px solid darken($color, 10%);
+        }
+    
+        &:after {
+          border-right: 3px solid darken($color, 10%);
+          border-top: 3px solid darken($color, 10%);
+        }
+      }
+    }
+  }
+}
+
+.date + a .title {
+  margin-top: .25rem;
+}
+
+.tags {
+  padding-top: 1rem;
+}
+
+.tag-title {
+  padding-top: 2.5rem;
+}

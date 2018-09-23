@@ -1,0 +1,67 @@
+@import "../../node_modules/bulma/sass/utilities/initial-variables";
+@import "../../node_modules/bulma/sass/utilities/functions";
+
+$family-sans-serif: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$family-monospace: 'Fira Mono', monospace;
+
+/* Colors. */
+$primary: #e81c4f;
+$primary-invert: findColorInvert($primary);
+
+$link: $primary;
+$link-invert: $primary-invert;
+
+$karaoke: royalblue;
+$karaoke-invert: findColorInvert($primary);
+
+$twitter: #55acee;
+$twitter-invert: findColorInvert($twitter);
+
+$facebook: #3b5998;
+$facebook-invert: findColorInvert($facebook);
+
+$instagram: #517fa6;
+$instagram-invert: findColorInvert($instagram);
+
+$github: #333;
+$github-invert: findColorInvert($github);
+
+$myanimelist: #2e51a2;
+$myanimelist-invert: findColorInvert($myanimelist);
+
+$gplus: #d34836;
+$gplus-invert: findColorInvert($gplus);
+
+@import "../../node_modules/bulma/sass/utilities/derived-variables";
+$addColors: (
+  "karaoke": ($karaoke, $karaoke-invert),
+  "twitter": ($twitter, $twitter-invert),
+  "facebook": ($facebook, $facebook-invert),
+  "instagram": ($instagram, $instagram-invert),
+  "github": ($github, $github-invert),
+  "myanimelist": ($myanimelist, $myanimelist-invert),
+  "gplus": ($gplus, $gplus-invert)
+);
+$colors: map-merge($colors, $addColors);
+
+$footer-background-color: #f2f2f2;
+
+@import "../../node_modules/bulma/bulma";
+
+@import "post";
+@import "home";
+@import "animations";
+@import "navbar";
+@import "tags";
+@import "highlight-style";
+
+
+::-moz-selection {
+  color: $primary-invert;
+  background: $primary;
+}
+
+::selection {
+  color: $primary-invert;
+  background: $primary;
+}

@@ -1,0 +1,24 @@
+ul.post-list {
+  list-style-type: none;
+  margin-left: 0;
+
+  li:not(:last-of-type) {
+    border-bottom: 1px solid $grey-lighter;
+  }
+
+  a {
+    display: block;
+    padding: 0.5rem 0;
+    font-size: $size-5;
+
+    .post-date {
+      float: right;
+      font-weight: $weight-light;
+      color: $grey;
+
+      @include mobile() {
+        display: none;
+      }
+    }
+  }
+}

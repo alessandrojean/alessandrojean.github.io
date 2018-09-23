@@ -1,0 +1,74 @@
+---
+layout: compress
+---
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top" lang="en" itemscope itemtype="http://schema.org/BlogPosting">
+  {% include head.html %}
+  <body>
+    {% include navbar.html %}
+    {% include svg-icons.html %}
+    
+    <article role="post" itemprop="articleBody" class="section is-paddingless">
+      <div class="container grid">    
+        <div class="section is-paddingless-horizontal">
+          <p itemprop="post-info" class="post-info">
+            {% if page.date %}
+            <span class="icon">
+              <i class="far fa-calendar-alt"></i>
+            </span>
+            <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
+              {% include post_date.html date=page.date %}
+            </time>
+            {% endif %}
+            <span class="icon">
+              <i class="far fa-clock"></i>
+            </span>
+            <span title="Tempo estimado de leitura">
+              {% include read_time.html %}
+            </span>
+          </p>
+          <h1 itemprop="name" class="title is-2">{{ page.title }}</h1>
+          {% if page.description %}
+          <h2 itemprop="description" class="subtitle is-4 has-text-grey">{{ page.description }}</h2>
+          {% endif %}
+        </div>
+      </div>
+    
+      <div class="grid content is-medium">
+        {% if page.cover %}
+        <figure class="grid-ml">
+          <img src="{{ page.cover }}" alt="Capa do post">
+          <figcaption>
+            {{ page.cover_caption }}
+          </figcaption>
+        </figure>
+        {% endif %}
+
+        {{ content }}
+
+        {% if page.download %}
+        <div class="columns" style="padding: 3rem 0 0 0;">
+          {% for link in page.download %}
+          <div class="column">
+            <a href="{{ link.file }}" class="button is-outlined is-fullwidth is-grey is-small is-rounded download">
+              <span class="description has-text-grey">Download</span>
+              <span class="link">{{ link.title }}</span>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </article>
+
+    {% include share.html %}
+
+    {% include author.html %}
+    
+    {% include disqus.html %}
+
+    {% include footer.html %}
+
+    {% include analytics.html %}
+  </body>
+</html>

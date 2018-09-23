@@ -1,0 +1,27 @@
+.navbar {
+  .navbar-brand {
+    font-variant: small-caps;
+    font-size: 1.3em;
+    
+    .navbar-item {
+      text-transform: none;
+    }
+  }
+
+  .navbar-item {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.8em;
+    font-weight: 700;
+  }
+
+  .navbar-shadow {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.1)), to(transparent));
+    background-image: linear-gradient(rgba(0,0,0,.1), transparent);
+    height: 8px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+  }
+}

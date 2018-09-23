@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<main class="section posts" role="main" itemscope itemtype="http://schema.org/Blog" itemprop="mainContentOfPage">
+  <div class="container">
+    <div class="columns is-mobile is-multiline" id="posts">
+      {% for post in site.posts %}
+        {% if post.category == page.category %}
+        <div class="column is-full-mobile is-one-third-tablet">
+          <article itemscope itemtype="http://schema.org/BlogPosting" itemprop="blogPost" class="card is-fullheight is-shady">
+            <span class="card-ribbon is-{{ post.category }}">
+              <a href="{{ site.baseurl }}/category/{{ post.category }}">
+                <span>{{ post.category }}</span>
+              </a>
+            </span>
+            
+            <div class="card-image">
+              <figure class="image is-2by1">
+                {% if post.cover %}
+                <img src="{{ post.cover }}" alt="Capa do post">
+                <div class="background"></div>
+                {% else %}
+                <div class="card-header is-{{ post.category }}">
+                  <span>{{ post.category }}</span>
+                </div>
+                {% endif %}
+              </figure>
+            </div>
+            
+            <div class="card-content">
+              <a href="{{ site.baseurl }}{{ post.url }}">
+                <p itemprop="name" class="title is-5 has-text-{{ post.type }}">{{ post.title }}</p>
+                <p class="subtitle is-6">{{ post.description }}</p>
+              </a>
+              <meta itemprop="datePublished" content="{{ post.date | date_to_xmlschema }}">
+              <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}" class="has-text-grey is-size-7">
+                {{ post.date | date: "%d/%m/%Y" }}
+              </time>
+              <div class="field is-grouped tags">
+                {% for tag in post.tags %}
+                <p class="control">
+                  <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" class="button is-{{ post.categories }} is-outlined">
+                    {{ tag }}
+                  </a>
+                </p>
+                {% endfor %}
+              </div>
+            </div>
+          </article>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</main>

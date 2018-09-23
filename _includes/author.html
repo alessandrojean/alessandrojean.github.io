@@ -1,0 +1,48 @@
+<section itemprop="author" class="section is-paddingless-horizontal" style="padding-top: 0;">
+  <div class="hero is-small is-light author">
+    <div class="container grid">
+      <div itemscope itemtype="http://schema.org/Person" class="columns is-vcentered is-mobile is-multiline">
+        <div class="column is-4-mobile is-2-tablet is-offset-4-mobile has-text-centered">
+          <figure class="image avatar">
+            <img itemprop="image" src="{{ site.avatar_url }}" alt="Foto de perfil">
+          </figure>
+        </div>
+        <div class="column is-10-tablet is-full-mobile has-text-centered-mobile has-text-left-tablet">
+          <p class="has-text-grey">Autor</p>
+          <h3 itemprop="name" class="title is-marginless">{{ site.username }}</h3>
+          <p>{{ site.user_description }}</p>
+          <div class="social-medias">
+            {% if site.github_username %}
+            <a itemprop="github" href="https://github.com/{{ site.github_username }}" class="has-text-github" title="GitHub">
+              <span class="icon">
+                <i class="fab fa-github fa-lg"></i>
+              </span>
+            </a>
+            {% endif %}
+            {% if site.twitter_username %}
+            <a itemprop="twitter" href="https://twitter.com/{{ site.twitter_username }}" class="has-text-twitter" title="Twitter">
+              <span class="icon">
+                <i class="fab fa-twitter fa-lg"></i>
+              </span>
+            </a>
+            {% endif %}
+            {% if site.instagram_username %}
+            <a itemprop="instagram" href="https://instagram.com/{{ site.instagram_username }}" class="has-text-instagram" title="Instagram">
+              <span class="icon">
+                <i class="fab fa-instagram fa-lg"></i>
+              </span>
+            </a>
+            {% endif %}
+            {% if site.myanimelist_username %}
+            <a itemprop="myanimelist" href="https://myanimelist.net/{{ site.myanimelist_username }}" class="has-text-myanimelist" title="MyAnimeList">
+              <span class="icon">
+                <svg class="icon lg mal"><use xlink:href="#icon-mal"></use></svg>
+              </span>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

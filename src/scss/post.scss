@@ -1,0 +1,265 @@
+
+
+.content.is-medium {
+  font-size: 1.125rem;
+
+  h1 {
+    font-size: 1.75em;
+  }
+
+  h2 {
+    font-size: 1.53125em;
+  }
+
+  h3 {
+    font-size: 1.3125em;
+  }
+
+  h4 {
+    font-size: 1.09375em;
+  }
+
+  h5 {
+    font-size: 0.984375em;
+  }
+
+  h6 {
+    font-size: 0.875em;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: [xl-start] 1fr [ml-start] 2rem [md-start] minmax(0, 45rem) [md-end] 2rem [ml-end] 1fr [xl-end];
+}
+
+.grid * {
+  grid-column: md;
+}
+
+.grid .highlighter-rouge {
+  grid-column: xl;
+
+  div.highlight {
+    display: grid;
+    grid-template-columns: 1fr [mp-start] 2rem minmax(0, 45rem) 2rem [mp-end] 1fr;
+
+    pre {
+      grid-column: mp;
+      padding: 2.5rem 2rem;
+
+      font-size: 0.815em;
+    }
+  }
+}
+
+.grid .grid-ml {
+  grid-column: ml;
+  margin-bottom: 1em;
+}
+
+.grid .grid-xl {
+  grid-column: xl;
+  margin-bottom: 1em;
+}
+
+.image.avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0;
+}
+
+.image.avatar img {
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.video-container-16by9 {
+  position: relative;
+  padding-bottom: 56.25%; /*16:9*/
+  height: 0; 
+  overflow: hidden;
+  margin-bottom: 1em;
+}
+ 
+.video-container-16by9 iframe,
+.video-container-16by9 object,
+.video-container-16by9 embed,
+.video-container-16by9 video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content .highlighter-rouge:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+.content .highlighter-rouge:not(:first-child) {
+  margin-top: 2em;
+}
+
+/* Utils */
+
+.center {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+	-webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.is-paddingless-horizontal {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* VideoContainer */
+.video-player {
+  position: relative;
+  width: 100%;
+  height: 0;
+}
+
+.video-player video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-player .video-control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: all ease .3s;
+  transition: all ease .3s;
+  background-size: 100% 100%;
+}
+
+.video-player .video-control .button {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.6em;
+}
+
+.video-player.is-playing .video-control {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-player .video-position {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: $grey-lighter;
+  height: 2px;
+  width: 100%;
+  -webkit-transition: all ease .3s;
+  transition: all ease .3s;
+}
+
+.video-position .video-bar {
+  height: 100%;
+  -webkit-transition: all ease .3s;
+  transition: all ease .3s;
+  background-color: $primary;
+}
+
+/* Post */
+
+.content figure.grid-ml,
+.content figure.grid-xl {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.content figure figcaption {
+  color: $grey;
+  font-size: 0.875em;
+  font-style: normal;
+  margin-top: 1em;
+}
+
+.button.download {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-weight: 700;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.button.download .link {
+  font-size: 1.2em;
+}
+
+.button.download .description {
+  display: block;
+  font-size: 0.7em;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.author {
+  padding: 2rem 0;
+
+  .social-medias {
+    padding-top: 1em;
+  }
+}
+
+svg.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  position: relative;
+  top: -.05em;
+  vertical-align: middle;
+  fill: currentColor;
+
+  &.lg {
+    width: 1.5em;
+    height: 1.5em;
+    top: .2em;
+  }
+
+  &.mal {
+    transform: scale(1.05);
+    top: .25em;
+  }
+}
+
+.post-info {
+  margin-bottom: .25em;
+  color: $grey;
+
+  .icon:not(:first-of-type) {
+    margin-left: 1em;
+
+    @include mobile() {
+      margin-left: 0;
+    }
+  }
+}
