@@ -10,6 +10,10 @@
   .highlighter-rouge:not(:first-child) {
     margin-top: 2em;
   }
+
+  figure.grid-ml figcaption {
+    padding: 0 2rem;
+  }
 }
 
 .content.is-medium {
