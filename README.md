@@ -2,19 +2,37 @@
 
 Files to my personal blog available at https://alessandrojean.github.io/blog/
 
-The theme is based on the [willianjusten/cards-jekyll-template], but unlike
-the original, I prefer to keep using SASS, and use Bulma as the base of the style.
+The theme is based on the [willianjusten/cards-jekyll-template]
+and [thiagorossener/jekflix-template], but unlike the original, 
+I prefer to keep using SASS, and use Bulma as the base of the style.
 
 [willianjusten/cards-jekyll-template]: https://github.com/willianjusten/cards-jekyll-template
+[thiagorossener/jekflix-template]: https://github.com/thiagorossener/jekflix-template
 
-## How to build
+## Running local
 
-```bash
-# Install dependencies.
-npm install
-# Run with hot reloading.
-gulp
-```
+To compile the assets and run Jekyll on local you
+need to follow those steps:
+
+- Install last version of [NodeJS];
+- Open `_config.yml` and change:
+
+  ```
+  baseurl: ""
+  url: ""
+  ```
+- Run above commands:
+
+  ```bash
+  # Install dependencies.
+  npm install
+  # Install gulp global.
+  npm install -g gulp gulp-cli
+  # Run with hot reloading.
+  gulp
+  ```
+
+[NodeJS]: https://nodejs.org/
 
 ## License
 
