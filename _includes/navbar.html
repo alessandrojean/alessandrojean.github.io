@@ -15,7 +15,7 @@
     <div class="navbar-menu" id="navMenu">
       <div class="navbar-end">
         {% for link in site.links %}
-        <a href="{{ site.baseurl }}/{{ link.url }}" class="navbar-item">
+        <a href="{{ site.baseurl }}{{ link.url }}" class="navbar-item">
           {{ link.title }}
         </a>
         {% endfor %}
