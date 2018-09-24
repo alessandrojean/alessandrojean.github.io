@@ -8,7 +8,7 @@ google_analytics: UA-117196425-1
 
 # Jekyll settings.
 version: v1.2.0
-permalink: /:categories/:title/
+permalink: /:title/
 
 # User settings.
 username: Alessandro Jean
@@ -53,6 +53,9 @@ links:
   - title: Tags
     url: /tags
     icon: "fas fa-tag"
+  - title: Séries
+    url: /series
+    icon: "fas fa-th-list"
   - title: Sobre mim
     url: /sobre
     icon: "fas fa-user"

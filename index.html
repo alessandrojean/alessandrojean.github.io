@@ -8,9 +8,9 @@ layout: default
       {% for post in site.posts %}
       <div class="column is-full-mobile is-one-third-tablet">
         <article itemscope itemtype="http://schema.org/BlogPosting" itemprop="blogPost" class="card is-fullheight is-shady">
-          <span class="card-ribbon is-{{ post.category }}">
-            <a href="{{ site.baseurl }}/category/{{ post.category }}">
-              <span>{{ post.category }}</span>
+          <span class="card-ribbon is-{{ post.main_category }}">
+            <a href="{{ site.baseurl }}/category/{{ post.main_category }}">
+              <span>{{ post.main_category }}</span>
             </a>
           </span>
           
@@ -43,7 +43,7 @@ layout: default
             <div class="field is-grouped tags">
               {% for tag in post.tags %}
               <p class="control">
-                <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" class="button is-{{ post.categories }} is-outlined">
+                <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" class="button is-{{ post.main_category }} is-outlined">
                   {{ tag }}
                 </a>
               </p>

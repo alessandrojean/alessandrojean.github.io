@@ -2,12 +2,15 @@
 layout: post
 title: 'O que Fune wo Amu nos ensina'
 description: 'Uma breve análise de uma de suas mensagens'
-category: filme
+main_category: filme
 cover: 'https://i.imgur.com/gxHQlUr.png'
 
 tags:
   - j-movie
   - anime
+
+categories:
+  - "Análises de Filmes"
 
 external:
   - title: MyDramaList
