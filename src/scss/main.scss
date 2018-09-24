@@ -35,11 +35,23 @@ $myanimelist-invert: findColorInvert($myanimelist);
 $mydramalist: #00619d;
 $mydramalist-invert: findColorInvert($mydramalist);
 
+$kitsu: #f75239;
+$kitsu-invert: findColorInvert($kitsu);
+
 $gplus: #d34836;
 $gplus-invert: findColorInvert($gplus);
 
 $imdb: #f3ce00;
 $imdb-invert: findColorInvert($imdb);
+
+$whatsapp: #25d366;
+$whatsapp-invert: findColorInvert($whatsapp);
+
+$telegram: #0088cc;
+$telegram-invert: findColorInvert($telegram);
+
+$messenger: #0084ff;
+$messenger-invert: findColorInvert($messenger);
 
 @import "../../node_modules/bulma/sass/utilities/derived-variables";
 $addColors: (
@@ -49,8 +61,12 @@ $addColors: (
   "facebook": ($facebook, $facebook-invert),
   "instagram": ($instagram, $instagram-invert),
   "github": ($github, $github-invert),
+  "whatsapp": ($whatsapp, $whatsapp-invert),
+  "telegram": ($telegram, $telegram-invert),
+  "messenger": ($messenger, $messenger-invert),
   "myanimelist": ($myanimelist, $myanimelist-invert),
   "mydramalist": ($mydramalist, $mydramalist-invert),
+  "kitsu": ($kitsu, $kitsu-invert),
   "gplus": ($gplus, $gplus-invert),
   "imdb": ($imdb, $imdb-invert)
 );
@@ -60,6 +76,7 @@ $footer-background-color: #f2f2f2;
 
 @import "../../node_modules/bulma/bulma";
 
+@import "functions";
 @import "post";
 @import "home";
 @import "animations";

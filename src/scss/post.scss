@@ -248,9 +248,9 @@ svg.icon {
   fill: currentColor;
 
   &.lg {
-    width: 1.5em;
-    height: 1.5em;
-    top: .2em;
+    font-size: em(21);
+    line-height: .75em;
+    vertical-align: -.225em;
   }
 
   &.mal {

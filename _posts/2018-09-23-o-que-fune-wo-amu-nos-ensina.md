@@ -19,11 +19,14 @@ external:
   - title: MyAnimeList
     type: myanimelist
     url: https://myanimelist.net/anime/32948/Fune_wo_Amu
+  - title: Kitsu
+    type: kitsu
+    url: https://kitsu.io/anime/fune-wo-amu
 ---
 
 <div class="notification is-warning">
   <div class="media center">
-    <div class="media-left">
+    <div class="media-left is-hidden-mobile">
       <span class="icon is-large">
         <i class="fa fa-exclamation-triangle fa-2x"></i>
       </span>

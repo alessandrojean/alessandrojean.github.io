@@ -4,22 +4,34 @@
       <div class="container">
         <h3 class="title is-5">Compartilhe</h3>
         <div class="social-medias is-paddingless">
-          <a aria-label="Compartilhar no Twitter" href="https://twitter.com/intent/tweet?text=&quot;{{ page.title | replace: "#", "%23" }}&quot;%20{{ site.url }}{{ page.url }}%20via%20&#64;{{ site.twitter_username }}&hashtags={% for tag in page.tags %}{{ tag }},{% endfor %}"
+          <a aria-label="Compartilhar no Twitter" href="https://twitter.com/intent/tweet?text=&quot;{{ page.title | replace: "#", "%23" }}&quot;%20{{ site.url }}{{ site.baseurl }}{{ page.url }}%20via%20&#64;{{ site.twitter_username }}&hashtags={% for tag in page.tags %}{{ tag }},{% endfor %}"
             class="has-text-twitter" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235'); return false;" title="Compartilhar no Twitter">
             <span class="icon is-medium">
-              <i class="fab fa-twitter fa-2x"></i>
+              <i class="fab fa-twitter fa-2x" data-fa-transform="shrink-6.5" data-fa-mask="fas fa-circle"></i>
             </span>
           </a>
-          <a aria-label="Compartilhar no Facebook" href="https://facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}"
+          <a aria-label="Compartilhar no Facebook" href="https://facebook.com/sharer/sharer.php?u={{ site.url }}{{ site.baseurl }}{{ page.url }}"
             class="has-text-facebook" onclick="window.open(this.href, 'facebook-share', 'width=580,height=296'); return false;" title="Compartilhar no Facebook">
             <span class="icon is-medium">
-              <i class="fab fa-facebook-f fa-2x"></i>
+              <i class="fab fa-facebook-f fa-2x" data-fa-transform="shrink-3.5 down-1.6 right-1.25" data-fa-mask="fas fa-circle"></i>
             </span>
           </a>
-          <a aria-label="Compartilhar no Google Plus" href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}"
-            class="has-text-gplus" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530'); return false" title="Compartilhar no Google Plus">
+          <a aria-label="Compartilhar no WhatsApp" href="https://wa.me/?text={{ site.url }}{{ site.baseurl }}{{ page.url }}"
+            class="has-text-whatsapp" title="Compartilhar no WhatsApp">
             <span class="icon is-medium">
-              <i class="fab fa-google-plus fa-2x"></i>
+              <i class="fab fa-whatsapp fa-2x" data-fa-transform="shrink-5" data-fa-mask="fas fa-circle"></i>
+            </span>
+          </a>
+          <a aria-label="Compartilhar no Telegram" href="https://telegram.me/share/url?url={{ site.url }}{{ site.baseurl }}{{ page.url }}"
+            class="has-text-telegram" title="Compartilhar no Telegram">
+            <span class="icon is-medium">
+              <i class="fab fa-telegram fa-2x"></i>
+            </span>
+          </a>
+          <a aria-label="Compartilhar no Messenger" href="fb-messenger://share/?link={{ page.url | prepend: site.baseurl | prepend: site.url | url_encode }}"
+            class="has-text-messenger is-hidden-tablet" title="Compartilhar no Messenger">
+            <span class="icon is-medium">
+              <i class="fab fa-facebook-messenger fa-2x" data-fa-transform="shrink-4.5" data-fa-mask="fas fa-circle"></i>
             </span>
           </a>
         </div>
