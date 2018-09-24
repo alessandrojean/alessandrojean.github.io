@@ -13,6 +13,8 @@
   <meta name="twitter:description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   {% if page.cover %}
   <meta property="twitter:image:src" content="{{ page.cover }}">
+  {% else %}
+  <meta property="og:image" content="{{ '/assets/img/logo-header.png' | prepend: site.baseurl | prepend: site.url }}">
   {% endif %}
 
   <!-- Social: Facebook/ Open Graph -->
@@ -21,6 +23,8 @@
   <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.username }}{% else %}{{ site.title }}{% endif %}">
   {% if page.cover %}
   <meta property="og:image" content="{{ page.cover }}">
+  {% else %}
+  <meta property="og:image" content="{{ '/assets/img/logo-header.png' | prepend: site.baseurl | prepend: site.url }}">
   {% endif %}
   <meta property="og:description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <meta property="og:site_name" content="{{ site.title }}">
@@ -42,6 +46,8 @@
   <meta itemprop="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   {% if page.cover %}
   <meta itemprop="image" content="{{ page.cover }}"/>
+  {% else %}
+  <meta property="og:image" content="{{ '/assets/img/logo-header.png' | prepend: site.baseurl | prepend: site.url }}">
   {% endif %}
 
   <!-- Favicon -->
