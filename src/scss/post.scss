@@ -3,12 +3,14 @@
     margin-bottom: 2em;
   }
 
-  .highlighter-rouge:not(:last-child) {
-    margin-bottom: 2em;
-  }
-  
-  .highlighter-rouge:not(:first-child) {
-    margin-top: 2em;
+  .highlighter-rouge {
+    &:not(:first-child) {
+      margin-top: 2em;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 2em;
+    }
   }
 
   figure.grid-ml figcaption {
