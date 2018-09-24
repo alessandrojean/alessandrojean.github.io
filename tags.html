@@ -21,18 +21,33 @@ description: "Procure por sua #tag favorita."
 
 {% for tag in site.tags %}
 <span class="title is-3 tag-title has-text-weight-light" id="{{ tag[0] | slugify }}">{{ tag[0] }}</span>
-<ul class="post-list">
+<ul class="post-list" itemscope itemtype="http://schema.org/Blog">
   {% assign pages_list = tag[1] %}
   {% for post in pages_list reversed %}
     {% if post.title != null %}
       {% if group == null or group == post.group %}
-      <li>
-        <a href="{{ site.baseurl }}{{ post.url }}">
+      <li itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+        <a href="{{ site.baseurl }}{{ post.url }}" itemprop="mainEntityofPage">
           {{ post.title }}
           <span class="post-date">
             <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%d/%m/%Y" }}</time>
           </span>
         </a>
+        {% if post.cover %}
+        <meta itemprop="image" content="{{ post.cover }}">
+        {% else %}
+        <meta itemprop="image" content="{{ '/assets/img/logo-header.png' | prepend: site.baseurl | prepend: site.url }}">
+        {% endif %}
+        <meta itemprop="headline" content="{{ post.title }}">
+        <meta itemprop="dateModified" content="{{ post.date | date_to_xmlschema }}">
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <meta itemprop="name" content="{{ site.username }}">
+          <meta itemprop="sameAs" content="{{ site.baseurl | prepend: site.url }}">
+        </span>
+        <span itemprop="publisher" itemscope itemtype="http://schema.org/Person">
+          <meta itemprop="name" content="{{ site.username }}">
+          <meta itemprop="sameAs" content="{{ site.baseurl | prepend: site.url }}">
+        </span>
       </li>
       {% endif %}
     {% endif %}
