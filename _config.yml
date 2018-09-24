@@ -1,7 +1,7 @@
 # Site settings.
 title: Alessandro Jean
 description: Bem aleatório
-baseurl: "blog/"
+baseurl: "/blog"
 url: "https://alessandrojean.github.io"
 disqus: alessandrojean
 google_analytics: UA-117196425-1
