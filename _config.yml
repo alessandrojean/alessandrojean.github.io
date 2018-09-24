@@ -1,7 +1,7 @@
 # Site settings.
 title: Alessandro Jean
 description: Bem aleatório
-baseurl: "/blog"
+baseurl: "blog/"
 url: "https://alessandrojean.github.io"
 disqus: alessandrojean
 google_analytics: UA-117196425-1
@@ -16,6 +16,7 @@ user_description: Apenas compartilhando conhecimento
 avatar_url: 'https://avatars0.githubusercontent.com/u/14254807?s=460&v=4'
 instagram_username: alessandrojean
 myanimelist_username: alessandrojean
+mydramalist_username: alessandrojean
 github_username: alessandrojean
 twitter_username: alessandrojean_
 
@@ -51,8 +52,10 @@ compress_html:
 links:
   - title: Tags
     url: /tags
+    icon: "fas fa-tag"
   - title: Sobre mim
     url: /sobre
+    icon: "fas fa-user"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
