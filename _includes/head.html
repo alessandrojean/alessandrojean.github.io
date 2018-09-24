@@ -26,9 +26,7 @@
   <meta property="og:site_name" content="{{ site.title }}">
   {% if page.layout == 'post' %}
   <meta property="og:type" content="article">
-  {% assign name = site.username | split: " " %}
-  <meta property="article:author:first_name" content="{{ name[0] }}">
-  <meta property="article:author:last_name" content="{{ name[1] }}">
+  <meta property="article:author" content="{{ '/sobre' | prepend: site.baseurl | prepend: site.url }}">
   <meta property="article:section" content="{{ page.category }}">
   {% for tag in page.tags %}
   <meta property="article:tag" content="{{ tag }}">
