@@ -2,9 +2,9 @@
 layout: default
 ---
 
-<main class="section posts" role="main" itemscope itemtype="http://schema.org/Blog" itemprop="mainContentOfPage">
-  <div class="container">
-    <div class="columns is-mobile is-multiline" id="posts">
+<main class="section posts" role="main" itemprop="mainContentOfPage">
+  <div class="container" itemscope itemtype="http://schema.org/Blog">
+    <div class="columns is-mobile is-multiline" id="posts" itemprop="mainEntityOfPage">
       {% for post in site.posts %}
       <div class="column is-full-mobile is-one-third-tablet">
         <article itemscope itemtype="http://schema.org/BlogPosting" itemprop="blogPost" class="card is-fullheight is-shady">
@@ -15,6 +15,11 @@ layout: default
           </span>
           
           <div class="card-image">
+            {% if post.cover %}
+            <meta itemprop="image" content="{{ post.cover }}">
+            {% else %}
+            <meta itemprop="image" content="{{ '/assets/img/logo-header.png' | prepend: site.baseurl | prepend: site.url }}">
+            {% endif %}
             <figure class="image is-2by1">
               {% if post.cover %}
               <img src="{{ post.cover }}" alt="Capa do post">
@@ -27,7 +32,7 @@ layout: default
             </figure>
           </div>
           
-          <div class="card-content">
+          <div class="card-content" itemprop="mainEntityOfPage">
             <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}" class="has-text-grey is-size-7 date">
               {% include post_date.html date=post.date %}
             </time>
@@ -35,7 +40,6 @@ layout: default
               <p itemprop="name" class="title is-5 has-text-{{ post.type }}">{{ post.title }}</p>
               <p class="subtitle is-6">{{ post.description }}</p>
             </a>
-            <meta itemprop="datePublished" content="{{ post.date | date_to_xmlschema }}">
             <div class="field is-grouped tags">
               {% for tag in post.tags %}
               <p class="control">
@@ -46,6 +50,17 @@ layout: default
               {% endfor %}
             </div>
           </div>
+
+          <meta itemprop="headline" content="{{ post.title }}">
+          <meta itemprop="dateModified" content="{{ post.date | date_to_xmlschema }}">
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="name" content="{{ site.username }}">
+            <meta itemprop="sameAs" content="{{ site.baseurl | prepend: site.url }}">
+          </span>
+          <span itemprop="publisher" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="name" content="{{ site.username }}">
+            <meta itemprop="sameAs" content="{{ site.baseurl | prepend: site.url }}">
+          </span>
         </article>
       </div>
       {% endfor %}
