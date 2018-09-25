@@ -17,6 +17,9 @@ $karaoke-invert: findColorInvert($karaoke);
 $filme: #7dad16;
 $filme-invert: findColorInvert($filme);
 
+$ed: #ccba18;
+$ed-invert: findColorInvert($ed);
+
 $twitter: #55acee;
 $twitter-invert: findColorInvert($twitter);
 
@@ -57,6 +60,7 @@ $messenger-invert: findColorInvert($messenger);
 $addColors: (
   "karaoke": ($karaoke, $karaoke-invert),
   "filme": ($filme, $filme-invert),
+  "ed": ($ed, $ed-invert),
   "twitter": ($twitter, $twitter-invert),
   "facebook": ($facebook, $facebook-invert),
   "instagram": ($instagram, $instagram-invert),
