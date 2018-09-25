@@ -952,7 +952,8 @@ se você está desenvolvendo uma aplicação, são raros
 os casos em que precisamos implementar nossa
 versão de alguma estrutura mais comum, geralmente
 é mais fácil não reinventar a roda e utilizar
-as prontas da linguagem
+as prontas da linguagem, como `GList` para C
+e `LinkedList<>` para Java, por exemplo.
 
 ## Bibliografia
 
