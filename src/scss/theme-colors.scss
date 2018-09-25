@@ -1,0 +1,75 @@
+html {
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+
+    &.is-#{$name} {
+      ::-moz-selection {
+        color: $color-invert;
+        background: $color;
+      }
+      
+      ::selection {
+        color: $color-invert;
+        background: $color;
+      }
+
+      a:not(.button):not(.navbar-item) {
+        color: $color;
+
+        &:hover {
+          color: $dark;
+        }
+      }
+
+      .notification a:not(.button) {
+        color: currentColor;
+      }
+
+      .navbar {
+        .navbar-brand {
+          a.navbar-item,
+          a.navbar-item:hover {
+            color: $color;
+          }
+        }
+
+        a.navbar-item:hover {
+          color: $color;
+        }
+      }
+
+      code {
+        color: $color;
+      }
+
+      .video-player {
+        .video-control .button.play {
+          color: $color;
+          background-color: transparent;
+          border-color: $color;
+
+          &:hover {
+            color: $color-invert;
+            background-color: $color;
+          }
+
+          &:focus,
+          &.is-focused{
+            background-color: $color;
+            border-color: $color;
+            color: $color-invert;
+
+            &:not(:active) {
+              box-shadow: $button-focus-box-shadow-size rgba($color, 0.25);
+            }
+          }
+        }
+
+        .video-position .video-bar {
+          background-color: $color;
+        }
+      }
+    }
+  }
+}

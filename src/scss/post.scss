@@ -65,8 +65,19 @@
     pre {
       grid-column: mp;
       padding: 2.5rem 2rem;
-
       font-size: 0.815em;
+
+      code, code span {
+        &::-moz-selection {
+          background: rgba(#3e4451, 0.99);
+          color: currentColor;
+        }
+        
+        &::selection {
+          background: rgba(#3e4451, 0.99);
+          color: currentColor;
+        }
+      }
     }
   }
 }

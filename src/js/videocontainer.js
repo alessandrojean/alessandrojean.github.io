@@ -13,7 +13,7 @@ const VideoContainer = {
     videoHolder.appendChild(videoControl);
 
     let videoControlButton = document.createElement('button');
-    videoControlButton.classList.add('button', 'is-small', 'is-rounded', 'is-outlined', 'is-primary');
+    videoControlButton.classList.add('button', 'is-small', 'is-rounded', 'is-outlined', 'play');
     videoControlButton.innerHTML = `
       <span class="icon is-small">
         <i class="fas fa-play"></i>

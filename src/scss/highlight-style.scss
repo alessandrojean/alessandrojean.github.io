@@ -1,5 +1,5 @@
 .highlight,
-pre.highlight {
+pre.highlight, {
   background: #282c34;
   color: #abb2bf;
 }
@@ -7,6 +7,10 @@ pre.highlight {
 .highlight {
   pre {
     background: #282c34;
+
+    &.highlight code {
+      color: #abb2bf;
+    }
   }
 
   .hll {
