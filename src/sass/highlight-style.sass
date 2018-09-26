@@ -7,9 +7,6 @@
 
     pre.highlight
       grid-column: mp;
-      
-      code
-        color: #ABB2BF;
 
   &:not(:first-child)
     margin-top: 1em;
@@ -145,11 +142,19 @@ pre[class*="language-"],
   vertical-align: inherit;
 
 /* Aegisub Style */
-.highlighter-rouge.language-ass
-  background: #f2f2f2;
-  pre
-    background: #f2f2f2;
+.content .highlighter-rouge
+  pre code
+    color: #ABB2BF;
 
+  &.language-text,
+  &.language-ass
+    background: #f5f5f5;
+    pre
+      background: #f5f5f5;
+      code
+        color: #4a4a4a;
+
+.highlighter-rouge.language-ass
   .token.punctuation
     color: rgb(255, 0, 200);
   .token.brackets.punctuation
