@@ -20,3 +20,17 @@ Prism.languages.ass = {
     alias: 'punctuation'
   }
 };
+
+Prism.languages.insertBefore('c', 'macro', {
+  'builtin': {
+    pattern: /\b(?:printf|malloc|free|calloc|realloc|strcpy|strlen|strcmp|srand|clock|time|exit)(?=\()/,
+  },
+  'libs-constants': {
+    pattern: /\b(?:CLOCKS_PER_SEC|RAND_MAX|EXIT_SUCCESS|EXIT_FAILURE)\b/i,
+    alias: 'constant'
+  },
+  'support-type': {
+    pattern: /\b(?:clock_t|time_t)\b/i,
+    alias: 'type'
+  }
+});
