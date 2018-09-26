@@ -54,23 +54,8 @@ $messenger: #0084ff;
 $messenger-invert: findColorInvert($messenger);
 
 @import "../../node_modules/bulma/sass/utilities/derived-variables";
-$addColors: (
-  "karaoke": ($karaoke, $karaoke-invert),
-  "filme": ($filme, $filme-invert),
-  "ed": ($ed, $ed-invert),
-  "twitter": ($twitter, $twitter-invert),
-  "facebook": ($facebook, $facebook-invert),
-  "instagram": ($instagram, $instagram-invert),
-  "github": ($github, $github-invert),
-  "whatsapp": ($whatsapp, $whatsapp-invert),
-  "telegram": ($telegram, $telegram-invert),
-  "messenger": ($messenger, $messenger-invert),
-  "myanimelist": ($myanimelist, $myanimelist-invert),
-  "mydramalist": ($mydramalist, $mydramalist-invert),
-  "kitsu": ($kitsu, $kitsu-invert),
-  "gplus": ($gplus, $gplus-invert),
-  "imdb": ($imdb, $imdb-invert)
-);
+
+$addColors: ("karaoke": ($karaoke, $karaoke-invert), "filme": ($filme, $filme-invert), "ed": ($ed, $ed-invert), "twitter": ($twitter, $twitter-invert), "facebook": ($facebook, $facebook-invert), "instagram": ($instagram, $instagram-invert), "github": ($github, $github-invert), "whatsapp": ($whatsapp, $whatsapp-invert), "telegram": ($telegram, $telegram-invert), "messenger": ($messenger, $messenger-invert), "myanimelist": ($myanimelist, $myanimelist-invert), "mydramalist": ($mydramalist, $mydramalist-invert), "kitsu": ($kitsu, $kitsu-invert), "gplus": ($gplus, $gplus-invert), "imdb": ($imdb, $imdb-invert));
 $colors: map-merge($colors, $addColors);
 
 $footer-background-color: #f2f2f2;

@@ -1,38 +1,33 @@
-.posts article.card {
+.posts article.card
   opacity: 0;
   will-change: transform;
 
-  &:hover {
+  &:hover
     .card-image .image img,
-    .card-image .image .card-header {
+    .card-image .image .card-header
       transform: scale(1.3);
       filter: blur(2px);
-    }
-  }
 
-  &.shown {
+  &.shown
     opacity: 1;
-  }
 
-  &.animate {
+  &.animate
     transform: translateY(200px);
     animation: moveUp .65s ease forwards;
-  }
 
-  .card-image {
+  .card-image
     overflow: hidden;
 
-    .image {
+    .image
       overflow: hidden;
 
-      img, .card-header {
+      img, .card-header
         object-fit: cover;
         transform: scale(1.2);
         will-change: filter, transform;
         transition: filter .2s ease-in-out, transform .2s ease-in-out;
-      }
 
-      .background {
+      .background
         background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .3) 100%);
         position: absolute;
         display: -ms-flexbox;
@@ -41,12 +36,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-      }
-    }
-  }
-}
 
-.is-shady {
+.is-shady
   background: #fff;
   box-shadow: rgba(0, 0, 0, .1) 0 1px 0;
   border-radius: 4px;
@@ -54,18 +45,15 @@
   will-change: box-shadow;
   border: 1px solid rgba(0, 0, 0, .1);
 
-  &:hover {
+  &:hover
     box-shadow: 0 10px 16px rgba(0, 0, 0, .13), 0 6px 6px rgba(0, 0, 0, .19);
-  }
-}
 
 .is-shady .card-image .image img,
 .posts .card-image .image .background,
-.is-shady .card-image {
+.is-shady .card-image
   border-radius: 4px 4px 0 0;
-}
 
-.card .card-ribbon {
+.card .card-ribbon
   position: absolute;
   right: -5px;
   top: -5px;
@@ -75,7 +63,7 @@
   height: 75px;
   text-align: right;
 
-  span {
+  span
     font-size: 0.7rem;
     font-weight: 700;
     color: $primary-invert;
@@ -91,7 +79,7 @@
     top: 19px;
     right: -21px;
 
-    &::before {
+    &::before
       content: "";
       position: absolute;
       left: 0;
@@ -101,9 +89,8 @@
       border-right: 3px solid transparent;
       border-bottom: 3px solid transparent;
       border-top: 3px solid darken($primary, 10%);
-    }
 
-    &::after {
+    &::after
       content: "";
       position: absolute;
       right: 0;
@@ -113,40 +100,29 @@
       border-right: 3px solid darken($primary, 10%);
       border-bottom: 3px solid transparent;
       border-top: 3px solid darken($primary, 10%);
-    }
-  }
 
-  @each $name, $pair in $colors {
+  @each $name, $pair in $colors
     $color: nth($pair, 1);
     $color-invert: nth($pair, 2);
 
-    &.is-#{$name} {
-      span {
+    &.is-#{$name}
+      span
         background: $color;
         color: $color-invert;
 
-        &:before {
+        &:before
           border-left: 3px solid darken($color, 10%);
           border-top: 3px solid darken($color, 10%);
-        }
     
-        &:after {
+        &:after
           border-right: 3px solid darken($color, 10%);
           border-top: 3px solid darken($color, 10%);
-        }
-      }
-    }
-  }
-}
 
-.date + a .title {
+.date + a .title
   margin-top: .25rem;
-}
 
-.tags {
+.tags
   padding-top: 1rem;
-}
 
-.tag-title {
+.tag-title
   padding-top: 2.5rem;
-}

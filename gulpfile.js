@@ -59,7 +59,7 @@ gulp.task('js', () => {
  * SASS task.
  */
 gulp.task('sass', () => {
-  gulp.src('src/scss/main.scss')
+  gulp.src('src/sass/main.sass')
     .pipe(plumber())
     .pipe(sass({ outputStyle: 'compressed' }))
     .pipe(gulp.dest('_site/assets/css'))
@@ -81,7 +81,7 @@ gulp.task('image', () => {
  */
 gulp.task('watch', () => {
   gulp.watch('src/js/**/*.js', ['js']);
-  gulp.watch('src/scss/**/*.scss', ['sass']);
+  gulp.watch('src/sass/**/*.sass', ['sass']);
   gulp.watch('src/img/**/*.{jpg,png,gif,svg,webp}', ['image']);
   gulp.watch([
     '*.{html,md}',

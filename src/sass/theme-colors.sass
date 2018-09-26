@@ -1,75 +1,56 @@
-html {
-  @each $name, $pair in $colors {
+html
+  @each $name, $pair in $colors
     $color: nth($pair, 1);
     $color-invert: nth($pair, 2);
 
-    &.is-#{$name} {
-      ::-moz-selection {
+    &.is-#{$name}
+      ::-moz-selection
         color: $color-invert;
         background: $color;
-      }
       
-      ::selection {
+      ::selection
         color: $color-invert;
         background: $color;
-      }
 
-      a:not(.button):not(.navbar-item) {
+      a:not(.button):not(.navbar-item)
         color: $color;
 
-        &:hover {
+        &:hover
           color: $dark;
-        }
-      }
 
-      .notification a:not(.button) {
+      .notification a:not(.button)
         color: currentColor;
-      }
 
-      .navbar {
-        .navbar-brand {
+      .navbar
+        .navbar-brand
           a.navbar-item,
-          a.navbar-item:hover {
+          a.navbar-item:hover
             color: $color;
-          }
-        }
 
-        a.navbar-item:hover {
+        a.navbar-item:hover
           color: $color;
-        }
-      }
 
-      code {
+      code
         color: $color;
-      }
 
-      .video-player {
-        .video-control .button.play {
+      .video-player
+        .video-control .button.play
           color: $color;
           background-color: transparent;
           border-color: $color;
 
-          &:hover {
+          &:hover
             color: $color-invert;
             background-color: $color;
-          }
 
           &:focus,
-          &.is-focused{
+          &.is-focused
             background-color: $color;
             border-color: $color;
             color: $color-invert;
 
-            &:not(:active) {
+            &:not(:active)
               box-shadow: $button-focus-box-shadow-size rgba($color, 0.25);
-            }
-          }
-        }
 
-        .video-position .video-bar {
+        .video-position .video-bar
           background-color: $color;
-        }
-      }
-    }
-  }
-}
