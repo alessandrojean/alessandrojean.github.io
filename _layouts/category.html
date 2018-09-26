@@ -7,7 +7,7 @@ layout: default
       <div class="columns is-mobile is-multiline" id="posts" itemprop="mainEntityOfPage">
         {% for post in site.posts %}
           {% if post.main_category == page.category %}
-          <div class="column is-full-mobile is-one-third-tablet">
+          <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
             <article itemscope itemtype="http://schema.org/BlogPosting" itemprop="blogPost" class="card is-fullheight is-shady">
               <span class="card-ribbon is-{{ post.main_category }}">
                 <a href="{{ site.baseurl }}/category/{{ post.main_category }}">
