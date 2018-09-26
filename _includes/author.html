@@ -12,39 +12,39 @@
           <meta itemprop="sameAs" content="{{ site.baseurl | prepend: site.url }}">
           <h3 itemprop="name" class="title is-marginless">{{ site.username }}</h3>
           <p>{{ site.user_description }}</p>
-          <div class="social-medias">
+          <div class="social-medias is-size-7">
             {% if site.github_username %}
             <a href="https://github.com/{{ site.github_username }}" class="has-text-github" title="GitHub">
               <span class="icon">
-                <i class="fab fa-github fa-lg"></i>
+                <i class="fab fa-github fa-2x"></i>
               </span>
             </a>
             {% endif %}
             {% if site.twitter_username %}
             <a href="https://twitter.com/{{ site.twitter_username }}" class="has-text-twitter" title="Twitter">
               <span class="icon">
-                <i class="fab fa-twitter fa-lg" data-fa-transform="shrink-6.5" data-fa-mask="fas fa-circle"></i>
+                <i class="fab fa-twitter fa-2x" data-fa-transform="shrink-6.5" data-fa-mask="fas fa-circle"></i>
               </span>
             </a>
             {% endif %}
             {% if site.instagram_username %}
             <a href="https://instagram.com/{{ site.instagram_username }}" class="has-text-instagram" title="Instagram">
               <span class="icon">
-                <i class="fab fa-instagram fa-lg" data-fa-transform="shrink-6.5" data-fa-mask="fas fa-circle"></i>
+                <i class="fab fa-instagram fa-2x" data-fa-transform="shrink-6.5" data-fa-mask="fas fa-circle"></i>
               </span>
             </a>
             {% endif %}
             {% if site.myanimelist_username %}
             <a href="https://myanimelist.net/profile/{{ site.myanimelist_username }}" class="has-text-myanimelist" title="MyAnimeList">
               <span class="icon">
-                <svg class="icon lg"><use xlink:href="#icon-mal-circle"></use></svg>
+                <svg class="icon i-2x"><use xlink:href="#icon-mal-circle"></use></svg>
               </span>
             </a>
             {% endif %}
             {% if site.mydramalist_username %}
             <a href="https://mydramalist.com/profile/{{ site.myanimelist_username }}" class="has-text-mydramalist" title="MyDramaList">
               <span class="icon">
-                <svg class="icon lg"><use xlink:href="#icon-mdl-circle"></use></svg>
+                <svg class="icon i-2x"><use xlink:href="#icon-mdl-circle"></use></svg>
               </span>
             </a>
             {% endif %}
