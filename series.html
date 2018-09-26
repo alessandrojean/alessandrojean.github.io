@@ -6,7 +6,7 @@ description: "Séries que abordam algum assunto específico"
 ---
 
 {% for tag in site.categories %}
-<span class="title is-3 tag-title has-text-weight-light" id="{{ tag[0] | slugify }}">{{ tag[0] }}</span>
+<h2 class="tag-title has-text-weight-light" id="{{ tag[0] | slugify }}">{{ tag[0] }}</h2>
 <ul class="post-list" itemscope itemtype="http://schema.org/Blog">
   {% assign pages_list = tag[1] %}
   {% for post in pages_list reversed %}
