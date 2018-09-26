@@ -124,25 +124,25 @@ implementação.
 
 ```c
 /* Métodos de criação */
-LinkedNode * create_node (void * value);
+LinkedNode * create_node(void * value);
 /* Métodos de inserção */
-LinkedNode * insert_at_start (LinkedList * head, void * value);
-LinkedNode * insert_at_end (LinkedList * head, void * value);
-LinkedNode * insert_before (LinkedList * head, LinkedNode * node, void * value);
-LinkedNode * insert_after (LinkedNode * node, void * value);
+LinkedNode * insert_at_start(LinkedList * head, void * value);
+LinkedNode * insert_at_end(LinkedList * head, void * value);
+LinkedNode * insert_before(LinkedList * head, LinkedNode * node, void * value);
+LinkedNode * insert_after(LinkedNode * node, void * value);
 /* Métodos de busca */
-LinkedNode * get_first_occurrence (LinkedList * head, void * key, 
+LinkedNode * get_first_occurrence(LinkedList * head, void * key, 
   int (* compare)(const void *, const void *));
-LinkedNode * get_element_at (LinkedList * head, int i);
+LinkedNode * get_element_at(LinkedList * head, int i);
 /* Métodos de remoção */
-LinkedList * remove_first_occurrence (LinkedList * head, void *key, 
+LinkedList * remove_first_occurrence(LinkedList * head, void *key, 
   int (* compare)(const void *, const void *));
-LinkedList * remove_element_at (LinkedList * head, int i);
+LinkedList * remove_element_at(LinkedList * head, int i);
 /* Métodos de manipulação */
-LinkedList * reverse_list (LinkedList * head);
+LinkedList * reverse_list(LinkedList * head);
 /* Outros métodos */
-void print_list (LinkedList * head, void (* print_element)(const void *));
-void free_list (LinkedList * head);
+void print_list(LinkedList * head, void (* print_element)(const void *));
+void free_list(LinkedList * head);
 ```
 
 Conforme cada método for desenvolvido, explicarei
@@ -173,7 +173,7 @@ utilizamos o `malloc`, que alocará na memória
 um espaço com o tamanho de `LinkedNode`.
 
 ```c
-LinkedNode * create_node (void * value) {
+LinkedNode * create_node(void * value) {
   // Tenta alocar dinamicamente um nó.
   LinkedNode * newNode = malloc(sizeof(LinkedNode));
 
@@ -230,7 +230,7 @@ criar um novo nó e fazer com que seu próximo item, `newNode->next`,
 aponte para o início de nossa lista.
 
 ```c
-LinkedNode * insert_at_start (LinkedList * head, void * value) {
+LinkedNode * insert_at_start(LinkedList * head, void * value) {
   // Alocamos um novo nó.
   LinkedNode * newNode = create_node(value);
 
@@ -313,7 +313,7 @@ tratar este caso antes de começar a iterar pela lista.
 Sabendo disto, podemos implementar nosso método:
 
 ```c
-LinkedNode * insert_at_end (LinkedList * head, void * value) {
+LinkedNode * insert_at_end(LinkedList * head, void * value) {
   LinkedNode * newNode = create_node(value), * last = NULL;
 
   // Se a lista está vazia, ou não conseguimos
@@ -367,7 +367,7 @@ dois casos:
    nó criado.
 
 ```c
-LinkedNode * insert_after (LinkedNode * node, void * value) {
+LinkedNode * insert_after(LinkedNode * node, void * value) {
   LinkedNode * newNode = create_node(value);
   // Primeiro caso: o nó passado está nulo.
   if (node == NULL)
@@ -478,13 +478,13 @@ JavaScript seria escrito em C assim:
 // estão dentro do main().
 
 // Função que modifica um vetor com dada função.
-void aplicar_funcao (int * vetor, int n,
+void aplicar_funcao(int * vetor, int n,
     int (* funcao)(int)) {
   for (int i = 0; i < n; i++)
     vetor[i] = funcao(vetor[i]);
 }
 // Função que recebe um salário e o aumenta em 10%.
-int aumentar_salario (int salario) {
+int aumentar_salario(int salario) {
   return salario * 1.1;
 }
 // Vetor de salários.
@@ -502,7 +502,7 @@ usando uma lista de `int`, precisariamos passar
 uma função com essa definição:
 
 ```c
-int comparar_inteiros (const void * a, const void * b) {
+int comparar_inteiros(const void * a, const void * b) {
   // Precisamos pegar os valores de a e b,
   // como inteiros, para isto, o casting.
   int * valorA = (int *) a, * valorB = (int *) b;
@@ -519,7 +519,7 @@ para uma função que retorna `int` e tem como parâmetro
 dois ponteiros para `void`, `a` e `b`.
 
 ```c
-LinkedNode * get_first_occurrence (LinkedList * head, void * key, 
+LinkedNode * get_first_occurrence(LinkedList * head, void * key, 
     int (* compare)(const void *, const void *)) {
   // Nó resultado da busca.
   LinkedNode * element = NULL;
@@ -567,7 +567,7 @@ o item. Senão, a lista tem menos elementos
 que o índice `i`.
 
 ```c
-LinkedNode * get_element_at (LinkedList * head, int i) {
+LinkedNode * get_element_at(LinkedList * head, int i) {
   // Se a lista está vazia ou o 
   // índice é inválido, retorne NULL.
   if (head == NULL || i < 0)
@@ -595,7 +595,7 @@ item anterior a ocorrência, se existente, e, após removê-la,
 fazer com que o item anterior aponte para o próximo da ocorrência.
 
 ```c
-LinkedList * remove_first_occurrence (LinkedList * head, void * key, 
+LinkedList * remove_first_occurrence(LinkedList * head, void * key, 
     int (* compare_equal)(const void *, const void *)) {
   // Caso único: o elemento é o primeiro da lista.
   if (head != NULL && (*compare)(key, head->value) == 0) {
@@ -673,7 +673,7 @@ o elemento e devemos parar o laço. De resto, é exatamente
 a mesma lógica de `remove_first_occurrence`.
 
 ```c
-LinkedList * remove_element_at (LinkedList * head, int i) {
+LinkedList * remove_element_at(LinkedList * head, int i) {
   // Se a lista está vazia ou o 
   // índice é inválido, retorne a lista.
   if (head == NULL || i < 0)
@@ -736,7 +736,7 @@ o próximo elemento, para podemos continuar
 iterando corretamente. 
 
 ```c
-LinkedList * reverse_list (LinkedList * head) {
+LinkedList * reverse_list(LinkedList * head) {
   LinkedNode * actual, * prev = NULL, * next = NULL;
   // Itere por todos os itens.
   for (actual = head; actual != NULL; actual = next) {
@@ -766,7 +766,7 @@ função passada como ponteiro que imprimirá
 cada elemento da forma apropriada.
 
 ```c
-void print_list (LinkedList * head, void (* print_element)(const void *)) {
+void print_list(LinkedList * head, void (* print_element)(const void *)) {
   printf("[");
   for (LinkedNode * i = head; i != NULL; i = i->next) {
     (*print_element)(i->value);
@@ -788,7 +788,7 @@ os nós. Se liberássemos apenas o primeiro,
 perderíamos a referência para o resto da lista.
 
 ```c
-void free_list (LinkedList * head) {
+void free_list(LinkedList * head) {
   LinkedNode * actual, * next = NULL;
   // Para cada item.
   for (actual = head; actual != NULL; actual = next) {
@@ -834,19 +834,19 @@ trabalhar com nosso novo tipo de dados:
 
 ```c
 // Função de comparação pelo ID do MyAnimeList.
-int compare_animes_mal (const void * a, const void * b) {
+int compare_animes_mal(const void * a, const void * b) {
   Anime * animeA = (Anime *) a, * animeB = (Anime *) b;
   return animeA->myAnimeList - animeB->myAnimeList;
 }
 
 // Função de impressão do tipo Anime.
-void print_anime (const void * anime) {
+void print_anime(const void * anime) {
   Anime * animePointer = (Anime *) anime;
   printf("%s", animePointer->title);
 }
 
 // Função de criação de um Anime.
-void * create_anime (int mal, char * title, int eps) {
+void * create_anime(int mal, char * title, int eps) {
   Anime * anime = malloc(sizeof(Anime));
 
   if (anime == NULL)
@@ -873,7 +873,7 @@ removemos algum e, ao fim, liberamos
 a lista.
 
 ```c
-int main (int argc, char ** argv) {
+int main(int argc, char ** argv) {
   // Vetor com nossos animes.
   void * animes = {
     create_anime(9253, "Steins;Gate", 24),

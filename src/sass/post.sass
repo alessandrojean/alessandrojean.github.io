@@ -2,13 +2,6 @@
   .notification:not(:last-child)
     margin-bottom: 2em;
 
-  .highlighter-rouge
-    &:not(:first-child)
-      margin-top: 1em;
-
-    &:not(:last-child)
-      margin-bottom: 2em;
-
   figure.grid-ml figcaption
     padding: 0 2rem;
 
@@ -47,28 +40,6 @@
   .grid-xl
     grid-column: xl;
     margin-bottom: 1em;
-
-  .highlighter-rouge
-    grid-column: xl;
-
-    div.highlight
-      display: grid;
-      grid-template-columns: 1fr [mp-start] 2rem minmax(0, 45rem) 2rem [mp-end] 1fr;
-
-      pre
-        grid-column: mp;
-        padding: 2.5rem 2rem;
-        font-size: 0.815em;
-
-        code, 
-        code span
-          &::-moz-selection
-            background: rgba(#3e4451, 0.99);
-            color: currentColor;
-          
-          &::selection
-            background: rgba(#3e4451, 0.99);
-            color: currentColor;
 
 .image.avatar
   border-radius: 50%;

@@ -1,116 +1,168 @@
-.highlight
+.content .highlighter-rouge
+  grid-column: xl;
+
+  div.highlight
+    display: grid;
+    grid-template-columns: 1fr [mp-start] 2rem minmax(0, 45rem) 2rem [mp-end] 1fr;
+
+    pre.highlight
+      grid-column: mp;
+      
+      code
+        color: #ABB2BF;
+
+  &:not(:first-child)
+    margin-top: 1em;
+
+  &:not(:last-child)
+    margin-bottom: 2em;
+
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+code.highlight,
 pre.highlight
+  color: #ABB2BF;
+  background: none;
+  font-family: $family-monospace;
+  font-size: 0.815em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+pre.highlight::-moz-selection, pre.highlight ::-moz-selection
+code.highlight::-moz-selection, code.highlight ::-moz-selection
+  text-shadow: none;
+  color: currentColor;
+  background: #383e49;
+
+pre.highlight::selection, pre.highlight ::selection,
+code.highlight::selection, code.highlight ::selection
+  text-shadow: none;
+  color: currentColor;
+  background: #9aa2b1;
+
+/* Code blocks */
+pre.highlight
+  padding: 2.5rem 2rem;
+  overflow: auto;
+
+*:not(pre) > code[class*="language-"],
+pre[class*="language-"],
+.content .highlighter-rouge
   background: #282c34;
+
+/* Inline code */
+*:not(pre) > code[class*="language-"]
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+
+.token.comment
+  font-style: italic;
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata
+  color: #5C6370;
+
+.token.punctuation
   color: #abb2bf;
 
-.highlight
+.token.selector,
+.token.tag
+  color: #e06c75;
+
+.token.property,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.attr-name,
+.token.deleted
+  color: #d19a66;
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.builtin,
+.token.inserted
+  color: #98c379;
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string
+  color: #56b6c2;
+
+.token.atrule,
+.token.keyword
+  color: #c678dd;
+
+.token.function
+  color: #61afef;
+
+.token.regex,
+.token.important,
+.token.variable
+  color: #c678dd;
+
+.token.important,
+.token.bold
+  font-weight: bold;
+
+.token.italic
+  font-style: italic;
+
+.token.entity
+  cursor: help;
+
+/* Reset Bulma style */
+.token.number
+  background: none;
+  border-radius: 0;
+  display: inline-block;
+  font-size: 1em;
+  height: auto;
+  margin-right: 0;
+  min-width: 0;
+  padding: 0;
+  text-align: center;
+  vertical-align: inherit;
+
+/* Aegisub Style */
+.highlighter-rouge.language-ass
+  background: #f2f2f2;
   pre
-    background: #282c34;
+    background: #f2f2f2;
 
-    &.highlight code
-      color: #abb2bf;
-
-  .hll
-    background-color: #282c34;
-
-  .c,     // Comment
-  .cm,    // Comment.Multiline
-  .cp,    // Comment.Preproc
-  .c1,    // Comment.Single
-  .cs     // Comment.Special
-    color: #5c6370;
-    font-style: italic;
-      
-  // Error 
-  .err      
-    color: #960050;
-    background-color: #1e0010;
-
-  .k,     // Keyword
-  .kc,    // Keyword.Constant
-  .kd,    // Keyword.Declaration
-  .kn,    // Keyword.Namespace
-  .kp,    // Keyword.Pseudo
-  .kr,    // Keyword.Reserved
-  .kt     // Keyword.Type
-    color: #c678dd;
-
-  .nb,    // Name.Builtin
-  .nc,    // Name.Class
-  .nd,    // Name.Decorator
-  .ni,    // Name.Entity
-  .ne,    // Name.Exception
-  .nl,    // Name.Label
-  .nv,    // Name.Variable
-  .no,    // Name.Constant
-  .py,    // Name.Property
-  .bp,    // Name.Builtin.Pseudo
-  .vc,    // Name.Variable.Class
-  .vg     // Name.Variable.Global
-    color: #D19A66;
-
-  .nf     // Name.Function
-    color: #61AFEF;
-
-  .nn,    // Name.Namespace
-  .nx     // Name.Other
-    color: #abb2bf;
-
-  .nt,    // Name.Tag
-  .vi     // Name.Variable.Instance
-    color: #e06c75;
-
-  .w      // Text.Whitespace
-    color: #f8f8f2;
-
-  .sr,    // Literal.String.Regex
-  .ss     // Literal.String.Symbol
-    color: #56b6c2;
-
-  .se     // Literal.String.Escape
-    color: #56B6C2;
-    
-  .n,     // Name
-  .p      // Punctuation
-    color: #abb2bf;
-
-  .o      // Operator
-    color: #C678DD;
-
-  .m,     // Literal.Number  
-  .na,    // Name.Attribute
-  .mf,    // Literal.Number.Float
-  .mh,    // Literal.Number.Hex
-  .mi,    // Literal.Number.Integer
-  .mo,    // Literal.Number.Oct
-  .il     // Literal.Number.Integer.Long
-    color: #d19a66;
-
-  .ge     // Generic.Emph
-    font-style: italic;
-
-  .ow,   // Operator.Word
-  .gs    // Generic.Strong
+  .token.punctuation
+    color: rgb(255, 0, 200);
+  .token.brackets.punctuation
+    color: rgb(20, 50, 255);
+  .token.ass-tag.function
+    color: rgb(90, 90, 90);
     font-weight: bold;
-
-  .gu    // Generic.Subheading
-    color: #75715e;
-
-  .gd    // Generic.Deleted
-    color: #f92672;
-
-  .gi    // Generic.Inserted
-    color: #a6e22e
-
-  .l,     // Literal 
-  .ld,    // Literal.Date
-  .s,     // Literal.String
-  .sb,    // Literal.String.Backtick
-  .sc,    // Literal.String.Char
-  .sd,    // Literal.String.Doc
-  .s2,    // Literal.String.Double
-  .sh,    // Literal.String.Heredoc
-  .si,    // Literal.String.Interpol
-  .sx,    // Literal.String.Other  
-  .s1     // Literal.String.Single  
-    color: #98C379;
+  .token.lua-expression.string,
+  .token.variable
+    color: rgb(128, 0, 192);
+    font-weight: bold;
+  .token.number
+    color: rgb(90, 90, 90);
+  .token.ass-special.symbol
+    color: rgb(160, 160, 160);
+    font-weight: bold;

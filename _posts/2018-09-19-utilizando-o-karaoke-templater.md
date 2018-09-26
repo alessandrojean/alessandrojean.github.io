@@ -192,7 +192,7 @@ e escrever um template. A escrita de um template é feita
 através de *tags*, e é escrita no mesmo campo do texto
 da linha. Vamos utilizar um simples inicialmente:
 
-```
+```ass
 {\r\t($start, $mid, \fscx120)}
 {\t($mid, $end, \fscy100)}
 ```
@@ -229,7 +229,7 @@ de seu eixo *y*, que ela mude seu preenchimento
 do padrão, atualmente branco, para um preenchimento
 com a cor preta.
 
-```
+```ass
 {\r\t($start, $end, \1c&H000000&)}
 {\t($start, $mid, \fscy120)}
 {\t($mid, $end, \fscy100)}
@@ -300,7 +300,7 @@ em `$end + 200`, supondo que queremos fazer o
 efeito durante 200ms. Então vamos modificar
 o *template* para tal:
 
-```
+```ass
 {\r\t($start, $end, \1c&H000000&)}
 {\t($start, $mid, \fscy120)}
 {\t($mid, $end, \fscy100)}
@@ -341,7 +341,7 @@ estivesse em sua altura máxima antes, e mais tempo
 fosse usado para diminuir para a altura normal. 
 Agora, com expressões matemáticas, isso pode ser feito.
 
-```
+```ass
 {\r\t($start, $end, \1c&H000000&)}
 {\t($start, !$start + $dur * 0.3!, \fscy120)}
 {\t(!$start + $dur * 0.3!, $end, \fscy100)}
