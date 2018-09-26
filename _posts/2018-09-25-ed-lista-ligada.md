@@ -142,7 +142,7 @@ LinkedList * remove_element_at(LinkedList * head, int i);
 LinkedList * reverse_list(LinkedList * head);
 /* Outros métodos */
 void print_list(LinkedList * head, void (* print_element)(const void *));
-void free_list(LinkedList * head);
+void free_list(LinkedList * head, void (* free_element)(void *));
 ```
 
 Conforme cada método for desenvolvido, explicarei
@@ -787,15 +787,41 @@ iterativamente, pois devemos liberar todos
 os nós. Se liberássemos apenas o primeiro,
 perderíamos a referência para o resto da lista.
 
+Como a lista armazena ponteiros do tipo `void`,
+também precisamos liberá-los da memória antes
+de liberar o nó em si. No entanto, não
+sabemos como liberar o valor. Imagine o seguinte
+caso: a lista armazena valores do tipo
+`struct filme`, mas dentro desta `struct`
+temos ponteiros para outros atributos
+alocados dinamicamente. Se liberássemos
+somente a `struct`, perderíamos a referência
+para estes atributos, e eles ficariam na
+área de "lixo" da memória. Para resolver isto,
+devemos então pedir como parâmetro uma
+função que libere da memória o tipo
+armazenado.
+
+Agora, suponha que queremos liberar a lista,
+mas, por algum motivo, ainda iremos usar
+alguns elementos que buscamos antes. Podemos
+criar uma função personalizada que só libera
+certos elementos e mantém outros, ou, até
+mesmo, passar simplesmente o valor `NULL`
+caso quiséssemos que a lista somente
+libere os nós da memória e mantivesse
+os valores para algum uso futuro.
+
 ```c
-void free_list(LinkedList * head) {
+void free_list(LinkedList * head, void (* free_element)(void *)) {
   LinkedNode * actual, * next = NULL;
   // Para cada item.
   for (actual = head; actual != NULL; actual = next) {
     // Guardamos o próximo, que será perdido.
     next = actual->next;
-    // Liberamos o valor antes do nó.
-    free(actual->value);
+    // Se uma função de liberação foi passada, chame-a.
+    if (free_element != NULL)
+      (*free_element)(actual->value);
     // E agora, podemos liberar o nó.
     free(actual);
   }
@@ -865,6 +891,13 @@ void * create_anime(int mal, char * title, int eps) {
 
   return (void *) anime;
 }
+
+// Função de liberação de um anime da memória.
+void free_anime (void * anime) {
+  Anime * animeValue = (Anime *) anime;
+  free(animeValue->title);
+  free(animeValue);
+}
 ```
 
 Vamos então criar um `main`, onde criaremos
@@ -918,15 +951,8 @@ int main(int argc, char ** argv) {
   // [Steins;Gate, Steins;Gate 0, Neon Genesis Evangelion]
   print_list(list, &print_anime);
 
-  // Liberação de cada string de título para a memória.
-  // Aqui é parte da regra de negócio deste programa,
-  // se chamássemos apenas free_list, ele daria um
-  // free no Anime mas não na string de título,
-  // onde perderíamos a referência para a mesma.
-  for (LinkedNode * i = list; i != NULL; i = i->next)
-    free(((Anime *) i->value)->title);
   // Liberamos os nós, agora é seguro.
-  free_list(list);
+  free_list(list, &free_anime);
 
   return EXIT_SUCCESS;
 }
@@ -949,7 +975,7 @@ $ ./main
 
 O código acima tem a seguinte saída quando executado:
 
-```
+```text
 [Steins;Gate, Steins;Gate 0, Psycho-Pass, Neon Genesis Evangelion]
 Result: Psycho-Pass
 [Steins;Gate, Steins;Gate 0, Neon Genesis Evangelion]
