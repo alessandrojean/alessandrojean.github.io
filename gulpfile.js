@@ -17,7 +17,7 @@ const messages = {
 gulp.task('jekyll-build', done => {
   browserSync.notify(messages.jekyllBuild);
   // If you use a UNIX system, remove the ".bat".
-  return cp.spawn('jekyll.bat', ['build'], { stdio: 'inherit' })
+  return cp.spawn('jekyll.bat', ['build', '--drafts'], { stdio: 'inherit' })
     .on('close', done)
     .on('error', e => console.error(e));
 });
@@ -88,7 +88,8 @@ gulp.task('watch', () => {
     'category/*.html',
     '_includes/*.html',
     '_layouts/*.html',
-    '_posts/*'
+    '_posts/*',
+    '_drafts/*'
   ], ['jekyll-rebuild']);
 });
 
