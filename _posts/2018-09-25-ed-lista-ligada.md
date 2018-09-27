@@ -969,13 +969,9 @@ $ gcc linkedlist.c main.c -o main
 
 Para executá-lo, basta:
 
-```bash
-$ ./main
 ```
+$ ./main
 
-O código acima tem a seguinte saída quando executado:
-
-```text
 [Steins;Gate, Steins;Gate 0, Psycho-Pass, Neon Genesis Evangelion]
 Result: Psycho-Pass
 [Steins;Gate, Steins;Gate 0, Neon Genesis Evangelion]
