@@ -848,7 +848,7 @@ básicos para cada anime.
 ```c
 typedef struct anime Anime;
 
-struct Anime {
+struct anime {
   int myAnimeList;
   char * title;
   int episodeCount;
