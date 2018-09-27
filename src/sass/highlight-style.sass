@@ -139,7 +139,7 @@ pre[class*="language-"],
 .token.number
   background: none;
   border-radius: 0;
-  display: inline-block;
+  display: unset;
   font-size: 1em;
   height: auto;
   margin-right: 0;
@@ -149,6 +149,19 @@ pre[class*="language-"],
   vertical-align: inherit;
 
 /* Aegisub Style */
+
+pre.highlight.language-ass,
+code.highlight.language-ass
+  &::selection,
+  ::selection
+    color: $info-invert;
+    background-color: $info;
+
+  &::moz-selection,
+  ::moz-selection
+    color: $info-invert;
+    background-color: $info;
+
 .content .highlighter-rouge
   pre code
     color: #ABB2BF;
