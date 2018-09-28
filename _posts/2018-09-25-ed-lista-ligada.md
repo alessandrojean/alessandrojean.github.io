@@ -3,7 +3,7 @@ layout: post
 title: 'Implementando uma Lista Simplesmente Ligada'
 description: 'Uma implementação genérica com exemplo'
 main_category: ed
-cover: 'https://i.imgur.com/gokNsMv.png'
+cover: '/blog/assets/img/series/ed/ed-linked-list.png'
 permalink: /ed/estruturas/lista-simplesmente-ligada/
 
 tags:
