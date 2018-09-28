@@ -23,7 +23,7 @@ Prism.languages.ass = {
 
 Prism.languages.insertBefore('c', 'macro', {
   'builtin': {
-    pattern: /\b(?:printf|malloc|free|calloc|realloc|strcpy|strlen|strcmp|srand|clock|time|exit)(?=\()/,
+    pattern: /\b(?:printf|malloc|free|calloc|realloc|strcpy|strlen|strcmp|srand|clock|time|exit|fprintf|fscanf|fopen|fclose)(?=\()/,
   },
   'libs-constants': {
     pattern: /\b(?:CLOCKS_PER_SEC|RAND_MAX|EXIT_SUCCESS|EXIT_FAILURE)\b/i,
