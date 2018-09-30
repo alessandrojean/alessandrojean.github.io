@@ -27,7 +27,7 @@ estrutura, a Pilha, também conhecida como *Stack*.
 ## Definição
 
 A Pilha é uma estrutura que nos permite fazer operações
-em **O(1)** em inserção e remoção. Sua principal característica
+em $O(1)$ em inserção e remoção. Sua principal característica
 é seu comportamento **LIFO**, sigla para ***L**ast **I**n, **F**irst **O**ut*.
 Ou seja, o último elemento inserido sempre vai ficar no topo e,
 quando formos remover algum elemento, este será o resultado.
@@ -59,7 +59,7 @@ e `desempilhar`.
   desempilha o elemento do topo da pilha, retornando-o.
 
 Ambas as operações, como explicado anteriormente,
-tem complexidade de **O(1)**.
+tem complexidade de $O(1)$.
 
 ## Criando nosso arquivo de cabeçalho
 
@@ -266,7 +266,7 @@ int stack_size(Stack * stack) {
 }
 ```
 
-Desta forma, o método tem complexidade **O(n)**. Isto
+Desta forma, o método tem complexidade $O(n)$. Isto
 pode ser evitado se você criar um atributo
 a mais na estrutura da Pilha, digamos `size`.
 Então, cada vez que um elemento for empilhado,

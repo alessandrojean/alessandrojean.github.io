@@ -39,8 +39,8 @@ um ponteiro para o próximo nó.
    description='Representação de uma lista simplesmente ligada.' %}
 
 Em questões de complexidade, com exceção do primeiro e último
-item, não temos um acesso direto como um vetor que é **O(1)**.
-A maioria dos métodos tem complexidade de **O(n)**. No entanto,
+item, não temos um acesso direto como um vetor que é $O(1)$.
+A maioria dos métodos tem complexidade de $O(n)$. No entanto,
 não é o escôpo deste *post* falar sobre complexidade.
 
 ## Sobre o desenvolvimento
@@ -322,8 +322,8 @@ LinkedNode * ultimoNo = insert_at_end(lista, (* void) numero);
 ```
 
 Neste caso, estamos utilizando uma implementação
-que tem custo **O(n)**. Podemos melhorar isto
-para **O(1)** se sempre que inserirmos
+que tem custo $O(n)$. Podemos melhorar isto
+para $O(1)$ se sempre que inserirmos
 um nó novo ao fim de uma lista, guardarmos
 este novo nó e usarmos algum método que insira
 um nó após um nó arbitrário. Para isto desenvolveremos
@@ -388,7 +388,7 @@ for (int i = 1; i <= 10; i++) {
 ```
 
 Agora conseguimos tornar esta operação bem menos
-custosa, com complexidade de **O(1)**, não precisamos
+custosa, com complexidade de $O(1)$, não precisamos
 percorrer sempre a lista toda até o último item
 para inserir após, já que sempre estamos mantendo
 a referência ao último item e podemos inserir
