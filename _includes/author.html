@@ -34,6 +34,13 @@
               </span>
             </a>
             {% endif %}
+            {% if site.spotify_username %}
+            <a href="https://open.spotify.com/user/{{ site.spotify_username }}" class="has-text-spotify" title="Spotify">
+              <span class="icon">
+                <i class="fab fa-spotify fa-2x"></i>
+              </span>
+            </a>
+            {% endif %}
             {% if site.myanimelist_username %}
             <a href="https://myanimelist.net/profile/{{ site.myanimelist_username }}" class="has-text-myanimelist" title="MyAnimeList">
               <span class="icon">

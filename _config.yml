@@ -1,7 +1,7 @@
 # Site settings.
 title: Alessandro Jean
 description: Bem aleatório
-baseurl: "/blog"
+baseurl: ""
 url: "https://alessandrojean.github.io"
 disqus: alessandrojean
 google_analytics: UA-117196425-1
@@ -19,6 +19,7 @@ myanimelist_username: alessandrojean
 mydramalist_username: alessandrojean
 github_username: alessandrojean
 twitter_username: alessandrojean_
+spotify_username: alessandro.jean
 
 # Build settings.
 # Jekyll 3 now only supports Kramdown for Markdown.
