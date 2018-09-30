@@ -19,38 +19,10 @@ vulgo *Linked List*, podemos usá-la para criar uma outra
 estrutura, a Pilha, também conhecida como *Stack*.
 
 ## Conteúdo
+{:.no_toc}
 
-<!-- TOC -->
-
-- [Conteúdo](#conteúdo)
-- [Definição](#definição)
-- [Operações](#operações)
-- [Criando nosso arquivo de cabeçalho](#criando-nosso-arquivo-de-cabeçalho)
-  - [Evitando redefinições](#evitando-redefinições)
-  - [Estrutura da Pilha](#estrutura-da-pilha)
-  - [Métodos da Pilha](#métodos-da-pilha)
-- [Criando nosso arquivo de implementação](#criando-nosso-arquivo-de-implementação)
-  - [Criando uma Pilha](#criando-uma-pilha)
-  - [Verificando se a pilha está vazia](#verificando-se-a-pilha-está-vazia)
-  - [Obtendo a quantidade de itens na pilha](#obtendo-a-quantidade-de-itens-na-pilha)
-  - [Empilhando um elemento](#empilhando-um-elemento)
-  - [Espiando o topo da Pilha](#espiando-o-topo-da-pilha)
-  - [Desempilhando um elemento](#desempilhando-um-elemento)
-  - [Liberando a Pilha da memória](#liberando-a-pilha-da-memória)
-- [Um exemplo simples: expressões pós-fixas](#um-exemplo-simples-expressões-pós-fixas)
-  - [Implementação](#implementação)
-  - [Criar um ponteiro para um inteiro arbitrário](#criar-um-ponteiro-para-um-inteiro-arbitrário)
-  - [Imprimindo erros e finalizando o programa](#imprimindo-erros-e-finalizando-o-programa)
-  - [Calculando uma operação](#calculando-uma-operação)
-  - [Desempilhando números da Pilha](#desempilhando-números-da-pilha)
-  - [Calculando a expressão](#calculando-a-expressão)
-  - [Função principal](#função-principal)
-  - [Compilando](#compilando)
-- [Implementações prontas](#implementações-prontas)
-- [Conclusões](#conclusões)
-- [Bibliografia](#bibliografia)
-
-<!-- /TOC -->
+1. Conteúdo
+{:toc}
 
 ## Definição
 

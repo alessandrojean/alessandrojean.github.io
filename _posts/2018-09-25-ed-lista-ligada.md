@@ -24,32 +24,10 @@ além de eu conseguir passar meu conhecimento adiante, ainda
 acabo aproveitando para estudar para Estruturas de Dados II.
 
 ## Conteúdo
+{:.no_toc}
 
-<!-- TOC -->
-
-- [Conteúdo](#conteúdo)
-- [Definição](#definição)
-- [Sobre o desenvolvimento](#sobre-o-desenvolvimento)
-- [Definindo nosso arquivo de cabeçalho](#definindo-nosso-arquivo-de-cabeçalho)
-- [Estrutura dos nós](#estrutura-dos-nós)
-- [Métodos](#métodos)
-- [Criando nosso arquivo de implementação](#criando-nosso-arquivo-de-implementação)
-  - [Criando um nó](#criando-um-nó)
-  - [Inserindo um nó no início da lista](#inserindo-um-nó-no-início-da-lista)
-  - [Inserindo um nó no fim da lista](#inserindo-um-nó-no-fim-da-lista)
-  - [Inserindo após um nó arbitrário](#inserindo-após-um-nó-arbitrário)
-  - [Buscando pela primeira ocorrência](#buscando-pela-primeira-ocorrência)
-  - [Nó em um índice arbitrário](#nó-em-um-índice-arbitrário)
-  - [Removendo a primeira ocorrência](#removendo-a-primeira-ocorrência)
-  - [Removendo um nó em um índice arbitrário](#removendo-um-nó-em-um-índice-arbitrário)
-  - [Invertendo uma lista](#invertendo-uma-lista)
-  - [Imprimindo uma lista](#imprimindo-uma-lista)
-  - [Liberarando da memória uma lista](#liberarando-da-memória-uma-lista)
-- [Um exemplo simples](#um-exemplo-simples)
-- [Conclusões](#conclusões)
-- [Bibliografia](#bibliografia)
-
-<!-- /TOC -->
+1. Conteúdo
+{:toc}
 
 ## Definição
 
@@ -80,7 +58,7 @@ Por isto, iremos criar um cabeçalho `linkedlist.h` onde
 definiremos inicialmente todas as funções e a `struct`
 que a Lista Ligada irá ter.
 
-## Estrutura dos nós
+### Estrutura dos nós
 
 Para não termos que nos referenciar como `struct linkedNode *`
 toda vez que iremos manipular instâncias de nós da lista,
@@ -112,7 +90,7 @@ struct linkedNode {
 };
 ```
 
-## Métodos
+### Métodos
 
 Minha intenção não é criar todos os métodos possíveis
 e existentes que qualquer implementação pronta de uma
