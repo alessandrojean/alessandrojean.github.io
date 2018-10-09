@@ -61,7 +61,7 @@ body
 .grid
   display: grid;
   grid-template-columns: [xl-start] 1fr [ml-start] 2rem [md-start] minmax(0, 45rem) [md-end] 2rem [ml-end] 1fr [xl-end];
-
+  
   *
     grid-column: md;
 
@@ -82,52 +82,62 @@ body
     -o-object-fit: cover;
     object-fit: cover;
 
-.post-header
-  .post-category
-    font-family: 'Montserrat', sans-serif;
-    font-style: italic;
-    font-size: 0.9em;
-    margin-bottom: 0.3em;
+.post  
+  padding-top: 3em;
 
-  .post-subtitle
-    margin-bottom: 0.5em;
+  .post-header
+    padding-top: 0;
+    padding-bottom: 0;
 
-  .post-metadata
-    font-family: 'Montserrat', sans-serif;
-    color: $grey-light;
-    font-size: 0.8em;
+    .post-category
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: 0.9em;
+      margin-bottom: 0.3em;
 
-    .post-comments
-      color: $grey-light !important;
-      transition: all ease .3s;
+    .post-title
+      margin-top: 0;
 
-      &:hover
-        color: $grey !important;
+    .post-subtitle
+      margin-bottom: 0.5em;
+      font-weight: 400;
 
-    span,
-    a
-      position: relative;
-      display: inline-block;
+    .post-metadata
+      font-family: 'Montserrat', sans-serif;
+      color: $grey-light;
+      font-size: 0.8em;
 
-      svg
-        margin-right: 5px;
+      .post-comments
+        color: $grey-light !important;
+        transition: all ease .3s;
 
-      &:not(:last-child),
-      &:not(:last-child)
-        padding-right: 10px;
-        margin-right: 10px;
+        &:hover
+          color: $grey !important;
+
+      span,
+      a
         position: relative;
-        display: inline-block;      
+        display: inline-block;
 
-        &::after
-          content: "";
-          display: block;
-          position: absolute;
-          background-color: $grey-light;
-          width: 1px;
-          top: 5px;
-          bottom: 5px;
-          right: -1px;
+        svg
+          margin-right: 5px;
+
+        &:not(:last-child),
+        &:not(:last-child)
+          padding-right: 10px;
+          margin-right: 10px;
+          position: relative;
+          display: inline-block;      
+
+          &::after
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: $grey-light;
+            width: 1px;
+            top: 5px;
+            bottom: 5px;
+            right: -1px;
 
 .video-container-16by9
   position: relative;

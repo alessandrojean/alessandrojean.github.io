@@ -1,27 +1,11 @@
-<div class="section is-paddingless-horizontal post-header">
-  <!--<p class="post-info">
-    {% if page.date %}
-    <span class="icon">
-      <i class="far fa-calendar-alt"></i>
-    </span>
-    <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
-      {% include post_date.html date=page.date %}
-    </time>
-    {% endif %}
-    <span class="icon">
-      <i class="far fa-clock"></i>
-    </span>
-    <span title="Tempo estimado de leitura">
-      {% include read_time.html %}
-    </span>
-  </p>-->
+<header class="post-header section is-paddingless-horizontal">
   <div class="post-category">
     <a href="{{ site.baseurl }}/category/{{ page.main_category }}">
       {{ page.categories }}
     </a>
   </div>
   <meta itemprop="headline" content="{{ page.title }}">
-  <h1 itemprop="name" class="title is-size-3-mobile is-size-2">{{ page.title }}</h1>
+  <h1 itemprop="name" class="post-title title is-size-3-mobile is-size-2">{{ page.title }}</h1>
   {% if page.description %}
   <h2 itemprop="description" class="post-subtitle subtitle is-size-5-mobile is-size-4 has-text-grey">{{ page.description }}</h2>
   {% endif %}
@@ -43,4 +27,4 @@
       {% include read_time.html %}
     </span>
   </div>
-</div>
+</header>

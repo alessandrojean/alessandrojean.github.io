@@ -8,12 +8,9 @@ layout: compress
     {% include navbar.html %}
     {% include svg-icons.html %}
     
-    <article role="post" class="section is-paddingless" itemprop="mainEntityOfPage">
-      <div class="container grid">    
-        {% include post_header.html %}
-      </div>
-    
+    <article role="post" class="post section is-paddingless-horizontal" itemprop="mainEntityOfPage">    
       <div class="grid content is-medium" itemprop="articleBody">
+        {% include post_header.html %}
         {% if page.cover %}
         <figure class="grid-ml">
           <img src="{{ page.cover }}" alt="Capa do post">
