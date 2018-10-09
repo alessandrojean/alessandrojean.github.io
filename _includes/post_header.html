@@ -19,7 +19,7 @@
     {% if site.disqus and page.comments != false %}
     <a class="post-comments" href="#comments" title="Comentários">
       <i class="far fa-comment"></i>
-      0
+      <span class="disqus-comment-count" data-disqus-identifier="{{ page.url }}">0</span>
     </a>
     {% endif %}
     <span class="post-reading-time">
