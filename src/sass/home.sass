@@ -1,13 +1,23 @@
 .posts article.card
   opacity: 0;
   height: 100%;
-  will-change: transform;
 
-  &:hover
-    .card-image .image img,
-    .card-image .image .card-header
-      transform: scale(1.3);
-      filter: blur(2px);
+  &:hover 
+    .card-image .image .background
+      opacity: 1;
+
+      span
+        animation: fadein 0.3s ease-in-out forwards;
+        opacity: 0;
+
+      span:nth-child(1)
+        animation-delay: 0.0s;
+      
+      span:nth-child(2)
+        animation-delay: 0.1s;
+
+      span:nth-child(3)
+        animation-delay: 0.2s;
 
   &.shown
     opacity: 1;
@@ -29,14 +39,30 @@
         transition: filter .2s ease-in-out, transform .2s ease-in-out;
 
       .background
-        background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .3) 100%);
+        background: linear-gradient(rgba(47, 47, 47, 0.1), rgba(47, 47, 47, 0.3));
+        opacity: 0;
         position: absolute;
-        display: -ms-flexbox;
         display: flex;
+        align-items: center;
+        justify-content: center;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        transition: all ease .3s;
+
+        span
+          display: inline-block;
+          width: 7px;
+          height: 7px;
+          border-radius: 100%;
+          background-color: #fff;
+          margin: 0px;
+          opacity: 0;
+          transition: all ease .3s;
+
+        span:not(:last-child)
+          margin-right: 3px;
 
 .is-shady
   background: #fff;

@@ -99,42 +99,49 @@ body
       margin-bottom: 0.5em;
       font-weight: 400;
 
-    .post-metadata
-      font-family: 'Montserrat', sans-serif;
-      color: $grey-light;
-      font-size: 0.8em;
+    .post-metadata .post-comments
+      color: $grey-light !important;
+      transition: all ease .3s;
 
-      .post-comments
-        color: $grey-light !important;
-        transition: all ease .3s;
+      &:hover
+        color: $grey !important;
 
-        &:hover
-          color: $grey !important;
+.post-metadata
+  font-family: 'Montserrat', sans-serif;
+  color: $grey-light;
+  font-size: 0.8em;
 
-      span,
-      a
-        position: relative;
-        display: inline-block;
+  .post-comments
+    color: $grey-light !important;
+    transition: all ease .3s;
 
-        svg
-          margin-right: 5px;
+    &:hover
+      color: $grey !important;
 
-        &:not(:last-child),
-        &:not(:last-child)
-          padding-right: 10px;
-          margin-right: 10px;
-          position: relative;
-          display: inline-block;      
+  span,
+  a
+    position: relative;
+    display: inline-block;
 
-          &::after
-            content: "";
-            display: block;
-            position: absolute;
-            background-color: $grey-light;
-            width: 1px;
-            top: 5px;
-            bottom: 5px;
-            right: -1px;
+    svg
+      margin-right: 5px;
+
+    &:not(:last-child),
+    &:not(:last-child)
+      padding-right: 10px;
+      margin-right: 10px;
+      position: relative;
+      display: inline-block;      
+
+      &::after
+        content: "";
+        display: block;
+        position: absolute;
+        background-color: $grey-light;
+        width: 1px;
+        top: 5px;
+        bottom: 5px;
+        right: -1px;
 
 .video-container-16by9
   position: relative;

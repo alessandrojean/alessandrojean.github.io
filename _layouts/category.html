@@ -15,28 +15,31 @@ layout: default
                 </a>
               </span>
               
-              <div class="card-image">
+              <a class="card-image" href="{{ site.baseurl }}{{ post.url }}">
                 {% if post.cover %}
                 <meta itemprop="image" content="{{ post.cover }}">
                 {% else %}
                 <meta itemprop="image" content="{{ '/assets/img/logo-header.png' | prepend: site.baseurl | prepend: site.url }}">
                 {% endif %}
                 <figure class="image is-2by1">
-                  {% if post.cover %}
                   <img src="{{ post.cover }}" alt="Capa do post">
-                  <div class="background"></div>
-                  {% else %}
-                  <div class="card-header is-{{ post.category }}">
-                    <span>{{ post.category }}</span>
+                  <div class="background">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                   </div>
-                  {% endif %}
                 </figure>
-              </div>
+              </a>
               
               <div class="card-content" itemprop="mainEntityOfPage">
-                <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}" class="has-text-grey is-size-7 date">
-                  {% include post_date.html date=post.date %}
-                </time>
+                <div class="post-metadata" style="margin-bottom: 0.3em;">
+                  <span class="post-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}">
+                      {% include post_date.html date=post.date %}
+                    </time>
+                  </span>
+                </div>
                 <a href="{{ site.baseurl }}{{ post.url }}">
                   <p itemprop="name" class="title is-5 has-text-{{ post.type }}">{{ post.title }}</p>
                   <p class="subtitle is-6">{{ post.description }}</p>
@@ -44,7 +47,7 @@ layout: default
                 <div class="field is-grouped tags">
                   {% for tag in post.tags %}
                   <p class="control">
-                    <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" class="button is-{{ post.main_category }} is-outlined">
+                    <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" class="button is-{{ post.main_category }} is-rounded is-small is-outlined">
                       {{ tag }}
                     </a>
                   </p>
