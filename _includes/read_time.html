@@ -1,6 +1,6 @@
 {% assign words = content | number_of_words %}
 {% if words < 360 %}
-  1 min
+  1 min de leitura
 {% else %}
-  {{ words | divided_by: 180 }} min
+  {{ words | divided_by: 180 }} min de leitura
 {% endif %}

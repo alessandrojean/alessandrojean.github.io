@@ -1,3 +1,20 @@
+body
+  color: #616161;
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .title,
+  .subtitle
+    font-family: 'Montserrat', sans-serif;
+
+.title
+  font-weight: 700;
+  color: #2b2b2b;
+  
 .content
   .notification:not(:last-child)
     margin-bottom: 2em;
@@ -5,29 +22,41 @@
   figure.grid-ml figcaption
     padding: 0 2rem;
 
-.content.is-medium
-  font-size: 1.125rem;
-
-  h1
-    font-size: 1.65em;
-
-  h2
-    font-size: 1.4em;
-
-  h3
-    font-size: 1.15em;
-
-  h4
-    font-size: 1.025em;
-
-  h5
-    font-size: 1em;
-
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
   h6
-    font-size: 0.775em;
+    font-weight: 700;
+    color: #2b2b2b;
+  
+  p
+    line-height: 1.8;
 
-  .MathJax
-    font-size: 1rem;
+  &.is-medium
+    font-size: 1.125rem;
+
+    h1
+      font-size: 1.65em;
+
+    h2
+      font-size: 1.4em;
+
+    h3
+      font-size: 1.15em;
+
+    h4
+      font-size: 1.025em;
+
+    h5
+      font-size: 1em;
+
+    h6
+      font-size: 0.775em;
+
+    .MathJax
+      font-size: 1rem;
 
 .grid
   display: grid;
@@ -52,6 +81,53 @@
   img
     -o-object-fit: cover;
     object-fit: cover;
+
+.post-header
+  .post-category
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: 0.3em;
+
+  .post-subtitle
+    margin-bottom: 0.5em;
+
+  .post-metadata
+    font-family: 'Montserrat', sans-serif;
+    color: $grey-light;
+    font-size: 0.8em;
+
+    .post-comments
+      color: $grey-light !important;
+      transition: all ease .3s;
+
+      &:hover
+        color: $grey !important;
+
+    span,
+    a
+      position: relative;
+      display: inline-block;
+
+      svg
+        margin-right: 5px;
+
+      &:not(:last-child),
+      &:not(:last-child)
+        padding-right: 10px;
+        margin-right: 10px;
+        position: relative;
+        display: inline-block;      
+
+        &::after
+          content: "";
+          display: block;
+          position: absolute;
+          background-color: $grey-light;
+          width: 1px;
+          top: 5px;
+          bottom: 5px;
+          right: -1px;
 
 .video-container-16by9
   position: relative;
@@ -146,7 +222,7 @@
 
   figcaption
     color: $grey;
-    font-size: 0.875em;
+    font-size: 0.7em;
     font-style: normal;
     margin-top: 1em;
 

@@ -10,29 +10,7 @@ layout: compress
     
     <article role="post" class="section is-paddingless" itemprop="mainEntityOfPage">
       <div class="container grid">    
-        <div class="section is-paddingless-horizontal">
-          <p class="post-info">
-            {% if page.date %}
-            <span class="icon">
-              <i class="far fa-calendar-alt"></i>
-            </span>
-            <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
-              {% include post_date.html date=page.date %}
-            </time>
-            {% endif %}
-            <span class="icon">
-              <i class="far fa-clock"></i>
-            </span>
-            <span title="Tempo estimado de leitura">
-              {% include read_time.html %}
-            </span>
-          </p>
-          <meta itemprop="headline" content="{{ page.title }}">
-          <h1 itemprop="name" class="title is-size-3-mobile is-size-2">{{ page.title }}</h1>
-          {% if page.description %}
-          <h2 itemprop="description" class="subtitle is-size-5-mobile is-size-4 has-text-grey">{{ page.description }}</h2>
-          {% endif %}
-        </div>
+        {% include post_header.html %}
       </div>
     
       <div class="grid content is-medium" itemprop="articleBody">
@@ -77,7 +55,7 @@ layout: compress
 
       <meta itemprop="dateModified" content="{{ page.date | date_to_xmlschema }}">
       <meta itemprop="genre" content="{{ page.main_category }}">
-      <meta itemprop="keywords" content="{% for tag in page.tags %}{{ tag }}{% unless forloop.last %},{% endunless %}{% endfor %}">
+      <meta itemprop="keywords" content="{{ page.tags | join: ',' }}">
       <meta itemprop="wordCount" content="{{ content | number_of_words }}">
       <span itemprop="publisher" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="{{ site.title }}">
