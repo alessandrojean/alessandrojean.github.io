@@ -12,13 +12,23 @@
 </footer>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
+    "HTML-CSS": {
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50),
+      scale: 90
+    },
+    messageStyle: 'none',
     tex2jax: {
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      inlineMath: [['$','$']]
+      processEscapes: true,
+      inlineMath: [['$', '$']],
+      displayMath: [['$$', '$$']]
     }
   });
 </script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' async></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full' async></script>
 <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
 {% if site.disqus and page.comments != false %}
 <script id="dsq-count-scr" src="//{{ site.disqus }}.disqus.com/count.js" async></script>
