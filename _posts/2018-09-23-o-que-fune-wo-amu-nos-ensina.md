@@ -4,6 +4,7 @@ title: 'O que Fune wo Amu nos ensina'
 description: 'Uma breve análise de uma de suas mensagens'
 main_category: filme
 cover: 'https://i.imgur.com/gxHQlUr.png'
+cover_caption: 'Cena de abertura do filme, uma metáfora com o mar.'
 
 tags:
   - j-movie
