@@ -5,6 +5,8 @@ const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
+const prefix = require('gulp-autoprefixer');
+const cssnano = require('gulp-cssnano');
 const cp = require('child_process');
 
 const messages = {
@@ -61,7 +63,9 @@ gulp.task('js', () => {
 gulp.task('sass', () => {
   gulp.src('src/scss/main.scss')
     .pipe(plumber())
-    .pipe(sass({ outputStyle: 'compressed' }))
+    .pipe(sass({ outputStyle: 'expanded' }))
+    .pipe(prefix({ browsers: ['last 2 versions'] }))
+    .pipe(cssnano())
     .pipe(gulp.dest('_site/assets/css'))
     .pipe(browserSync.reload({ stream: true }))
     .pipe(gulp.dest('assets/css'));
