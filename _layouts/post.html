@@ -35,3 +35,22 @@ layout: default
     </div>
   </article>
 </div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+<script type="text/javascript">
+  window.addEventListener('load', () => {
+    const players = document.querySelectorAll('.video-player');
+    if (players.length) {
+      players.forEach(p => {
+        new Clappr.Player({
+          source: p.dataset.source,
+          parent: p,
+          poster: p.dataset.poster,
+          height: '100%',
+          width: '100%'
+        });
+        p.style.paddingBottom = p.dataset.height / p.dataset.width * 100 + '%';
+      });
+    }
+  });
+</script>
