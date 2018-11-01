@@ -5,49 +5,54 @@ const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
-const prefix = require('gulp-autoprefixer');
-const cssnano = require('gulp-cssnano');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const postcss = require('gulp-postcss');
+const eslint = require('gulp-eslint');
 const cp = require('child_process');
 
-const messages = {
-  jekyllBuild: '<span style="color: grey;">Running</span> $ jekyll build'
-};
-
-/**
- * Builds the Jekyll website.
- */
-gulp.task('jekyll-build', done => {
-  browserSync.notify(messages.jekyllBuild);
-  // If you use a UNIX system, remove the ".bat".
-  return cp.spawn('jekyll', ['build', '--drafts'], { stdio: 'inherit' })
-    .on('close', done)
-    .on('error', e => console.error(e));
-});
-
-/**
- * Rebuild the website and reload the page.
- */
-gulp.task('jekyll-rebuild', ['jekyll-build'], () => {
-  browserSync.reload();
-});
-
-/**
- * Waits until jekyll-build finishes and
- * start the server using _site as root folder.
- */
-gulp.task('browser-sync', ['jekyll-build'], () => {
-  browserSync({
+// BrowserSync.
+const browserSyncInit = (done) => {
+  browserSync.init({
     server: {
       baseDir: '_site'
     }
   });
-});
+  done();
+};
 
-/**
- * JavaScript task.
- */
-gulp.task('js', () => {
-  return gulp.src('src/js/**/*.js')
+// BrowserSync Reload.
+const browserSyncReload = (done) => {
+  browserSync.reload();
+  done();
+};
+
+// CSS task.
+const cssTask = () => {
+  return gulp
+    .src('src/scss/main.scss')
+    .pipe(plumber())
+    .pipe(sass({ outputStyle: 'expanded' }))
+    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(gulp.dest('_site/assets/css'))
+    .pipe(browserSync.stream())
+    .pipe(gulp.dest('assets/css'));
+};
+
+// Lint scripts.
+const scriptsLint = () => {
+  return gulp
+    .src(['src/js/**/*.js', './gulpfile.js'])
+    .pipe(plumber())
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+};
+
+// JS task.
+const jsTask = () => {
+  return gulp
+    .src('src/js/**/*.js')
     .pipe(plumber())
     .pipe(babel({ presets: ['env'] }))
     .pipe(concat('main.js'))
@@ -55,38 +60,26 @@ gulp.task('js', () => {
     .pipe(gulp.dest('_site/assets/js'))
     .pipe(browserSync.reload({ stream: true }))
     .pipe(gulp.dest('assets/js/'));
-});
+};
 
-/**
- * SASS task.
- */
-gulp.task('sass', () => {
-  gulp.src('src/scss/main.scss')
-    .pipe(plumber())
-    .pipe(sass({ outputStyle: 'expanded' }))
-    .pipe(prefix({ browsers: ['last 2 versions'] }))
-    .pipe(cssnano())
-    .pipe(gulp.dest('_site/assets/css'))
-    .pipe(browserSync.reload({ stream: true }))
-    .pipe(gulp.dest('assets/css'));
-});
-
-/**
- * Images task.
- */
-gulp.task('image', () => {
-  return gulp.src('src/img/**/*')
+// Images task.
+const imagesTask = () => {
+  return gulp
+    .src('src/img/**/*')
     .pipe(plumber())
     .pipe(gulp.dest('assets/img/'));
-});
+};
 
-/**
- * Observe the changes and recompile.
- */
-gulp.task('watch', () => {
-  gulp.watch('src/js/**/*.js', ['js']);
-  gulp.watch('src/scss/**/*.scss', ['sass']);
-  gulp.watch('src/img/**/*.{jpg,png,gif,svg,webp}', ['image']);
+// Jekyll.
+const jekyll = () => {
+  return cp.spawn('bundle', ['exec', 'jekyll', 'build', '--drafts'], { stdio: 'inherit' });
+};
+
+// Watch files.
+const watchFiles = () => {
+  gulp.watch('src/scss/**/*.scss', cssTask);
+  gulp.watch('src/js/**/*.js', gulp.series(scriptsLint, jsTask));
+  gulp.watch('src/img/**/*', imagesTask);
   gulp.watch([
     '*.{html,md}',
     'category/*.html',
@@ -95,7 +88,23 @@ gulp.task('watch', () => {
     '_posts/*',
     '_drafts/*',
     '_config.yml'
-  ], ['jekyll-rebuild']);
-});
+  ], gulp.series(jekyll, browserSyncReload));
+};
 
-gulp.task('default', ['js', 'sass', 'browser-sync', 'watch']);
+// Tasks.
+gulp.task('images', imagesTask);
+gulp.task('css', cssTask);
+gulp.task('js', gulp.series(scriptsLint, jsTask));
+gulp.task('jekyll', jekyll);
+
+// Build.
+gulp.task(
+  'build',
+  gulp.parallel(cssTask, imagesTask, jekyll, 'js')
+);
+
+// Watch.
+gulp.task('watch', gulp.parallel(watchFiles, browserSyncInit));
+
+// Default.
+gulp.task('default', gulp.series('build', 'watch'));
