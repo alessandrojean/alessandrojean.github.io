@@ -159,6 +159,19 @@ header {
     a[href] {
       font-size: 1.25rem;
 
+      &::before {
+        content: '{';
+      }
+
+      &::after {
+        content: '}';
+      }
+
+      &::before, &::after {
+        color: $primary;
+        font-weight: 400;
+      }
+
       &:hover {
         text-decoration: none;
         cursor: pointer;
