@@ -3,8 +3,8 @@ layout: post
 title: 'Utilizando o Karaoke Templater'
 description: 'Criando e aplicando um simples template'
 main_category: karaoke
-cover: 'https://i1.wp.com/www.kawaiikakkoiisugoi.com/wp-content/uploads/2015/12/kkwQb.jpg'
-cover_caption: Kawaita kokoro de kakenukeru...
+#cover: 'https://i1.wp.com/www.kawaiikakkoiisugoi.com/wp-content/uploads/2015/12/kkwQb.jpg'
+#cover_caption: Kawaita kokoro de kakenukeru...
 
 tags:
   - aegisub
