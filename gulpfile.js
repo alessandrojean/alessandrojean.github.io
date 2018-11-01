@@ -1,3 +1,5 @@
+// Adapted from: https://gist.github.com/jeromecoupe/0b807b0c1050647eb340360902c3203a
+
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync');
