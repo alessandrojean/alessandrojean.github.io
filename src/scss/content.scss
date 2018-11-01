@@ -140,7 +140,7 @@ div.content {
   }
 
   *:target {
-    outline: 4px solid $primary;
+    outline: 4px solid #fe0;
     animation: outline-fade-out 4500ms 1;
     animation-direction: alternate;
     animation-timing-function: ease-out;
@@ -195,7 +195,7 @@ div.content {
       outline: none;
 
       a.footnote {
-        background-color: $primary;
+        background-color: #fe0;
       }
     }
   }

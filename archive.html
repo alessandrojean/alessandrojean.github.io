@@ -8,6 +8,9 @@ permalink: /archive/
   <div class="control">
     <input type="search" placeholder="Busque entre os posts…" 
       :value="search" @input="update">
+    <span class="icon is-right">
+      <i class="fas fa-search"></i>
+    </span>
   </div>
   <ul class="minimal">
     <li v-for="post of filteredPosts" :key="post.url">
