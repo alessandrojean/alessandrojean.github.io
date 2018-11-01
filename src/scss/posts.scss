@@ -1,0 +1,53 @@
+.posts .end {
+  padding-top: 40px;
+}
+
+.content {
+  display: flex;
+}
+
+a[href].post-excerpt {
+  display: block;
+  color: inherit;
+  background: none;
+  text-shadow: none;
+  padding-bottom: 1px;
+  margin-bottom: 1rem;
+
+  &, a[href] {
+    text-decoration: none;
+  }
+
+  h3 {
+    margin: 0;
+    display: inline-block;
+  }
+
+  &:hover {
+    color: black;
+
+    h3 {
+      background-color: black;
+      color: white;
+    }
+
+    .body {
+      color: inherit;
+    }
+  }
+}
+
+h3.text {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.body > p:first-child {
+  margin-top: 8px;
+}
+
+time {
+  display: inline;
+  color: $post-time-color;
+  white-space: nowrap;
+}

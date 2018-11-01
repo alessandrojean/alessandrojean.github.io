@@ -2,8 +2,13 @@
 layout: default
 ---
 
-<section class="section is-paddingless-horizontal">
-  <div class="grid content is-medium">
-    {{ content }}
+<div class="content">
+  <div class="post single">
+    {% if page.title %}
+    <h1>{{ page.title }}</h1>
+    {% endif %}
+    <div class="body">
+      {{ content }}
+    </div>
   </div>
 </section>

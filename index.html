@@ -2,71 +2,29 @@
 layout: default
 ---
 
-<main class="section posts" role="main" itemprop="mainContentOfPage">
-  <div class="container" itemscope itemtype="http://schema.org/Blog">
-    <div class="columns is-mobile is-multiline" id="posts" itemprop="mainEntityOfPage">
-      {% for post in site.posts %}
-      <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
-        <article itemscope itemtype="http://schema.org/BlogPosting" itemprop="blogPost" class="card is-fullheight is-shady">
-          <span class="card-ribbon is-{{ post.main_category }}">
-            <a href="{{ site.baseurl }}/category/{{ post.main_category }}">
-              <span>{{ post.main_category }}</span>
-            </a>
-          </span>
-          
-          <a class="card-image" href="{{ site.baseurl }}{{ post.url }}">
-            {% if post.cover %}
-            <meta itemprop="image" content="{{ post.cover }}">
-            {% else %}
-            <meta itemprop="image" content="{{ '/assets/img/logo-header.png' | prepend: site.baseurl | prepend: site.url }}">
-            {% endif %}
-            <figure class="image is-2by1">
-              <img src="{{ post.cover }}" alt="Capa do post">
-              <div class="background">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </figure>
-          </a>
-          
-          <div class="card-content" itemprop="mainEntityOfPage">
-            <div class="post-metadata" style="margin-bottom: 0.3em;">
-              <span class="post-date">
-                <i class="far fa-calendar-alt"></i>
-                <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}">
-                  {% include post_date.html date=post.date %}
-                </time>
-              </span>
-            </div>
-            <a href="{{ site.baseurl }}{{ post.url }}">
-              <p itemprop="name" class="title is-5 has-text-{{ post.type }}">{{ post.title }}</p>
-              <p class="subtitle is-6">{{ post.description }}</p>
-            </a>
-            <div class="field is-grouped tags">
-              {% for tag in post.tags %}
-              <p class="control">
-                <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" class="button is-{{ post.main_category }} is-small is-rounded is-outlined">
-                  {{ tag }}
-                </a>
-              </p>
-              {% endfor %}
-            </div>
-          </div>
-
-          <meta itemprop="headline" content="{{ post.title }}">
-          <meta itemprop="dateModified" content="{{ post.date | date_to_xmlschema }}">
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="name" content="{{ site.username }}">
-            <meta itemprop="sameAs" content="{{ site.baseurl | prepend: site.url }}">
-          </span>
-          <span itemprop="publisher" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="name" content="{{ site.username }}">
-            <meta itemprop="sameAs" content="{{ site.baseurl | prepend: site.url }}">
-          </span>
-        </article>
+<main id="main" class="content" itemprop="mainContentOfPage">
+  <div class="posts">
+    {% assign count = 0 %}
+    {% for post in site.posts %}
+    {% assign count = count | plus: 1 %}
+    <a href="{{ post.url | prepend: site.baseurl }}" class="post-excerpt">
+      <div class="post-content">
+        <h3 class="text">{{ post.title }}</h3>
+        <div class="body">
+          <p>
+            {{ post.excerpt | strip_html }}
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {% include post_date.html date=post.date %}
+            </time>
+          </p>
+        </div>
       </div>
-      {% endfor %}
+    </a>
+    {% if count == 10 %}{% break %}{% endif %}
+    {% endfor %}
+    <div class="breaker"></div>
+    <div class="end">
+      <a href="{{ '/archive/' | prepend: site.baseurl }}">Todos os posts…</a>
     </div>
   </div>
 </main>

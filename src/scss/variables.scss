@@ -1,0 +1,64 @@
+$family-sans-serif: 'Inter UI', -system-ui, system-ui, sans-serif;
+$family-monospace: 'SFMono-Regular', Menlo, 'Liberation Mono', Consolas, Courier, monospace;
+
+/* Colors. */
+$dark: #111;
+$primary: #0366d6;
+$link: $primary;
+$karaoke: royalblue;
+$filme: #7dad16;
+$ed: #6a7fa8;
+$twitter: #55acee;
+$facebook: #3b5998;
+$instagram: #517fa6;
+$github: #333;
+$myanimelist: #2e51a2;
+$mydramalist: #00619d;
+$kitsu: #f75239;
+$imdb: #f3ce00;
+$whatsapp: #25d366;
+$telegram: #0088cc;
+$messenger: #0084ff;
+$spotify: #1db954;
+
+$colors: (
+  "dark": ($dark),
+  "karaoke": ($karaoke), 
+  "filme": ($filme), 
+  "ed": ($ed), 
+  "twitter": ($twitter), 
+  "facebook": ($facebook), 
+  "instagram": ($instagram), 
+  "github": ($github), 
+  "whatsapp": ($whatsapp), 
+  "telegram": ($telegram),
+  "messenger": ($messenger), 
+  "myanimelist": ($myanimelist), 
+  "mydramalist": ($mydramalist), 
+  "kitsu": ($kitsu), 
+  "imdb": ($imdb), 
+  "spotify": ($spotify)
+);
+
+// Headings
+$heading-color: #010101;
+
+// Navigation
+$navigation-link-color: #aaa;
+
+// Posts
+$post-time-color: #ddd;
+
+// Content
+$content-blockquote-color: #345;
+$content-blockquote-font: Georgia, serif;
+$content-pre-color: #333;
+$content-center-color: #ccc;
+$content-a-footnote-color: #666;
+$content-a-footnote-hv-background: #eee;
+$content-footnote-p-color: #999;
+$content-footnote-li-target-background: #ffc;
+$content-figcaption-color: #aaa;
+
+// Post
+$post-actions-color: #ccc;

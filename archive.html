@@ -1,0 +1,19 @@
+---
+layout: page
+title: Arquivo
+permalink: /archive/
+---
+
+<ul class="minimal">
+  {% for post in site.posts %}
+  <li>
+    <time class="archive" datetime="{{ post.date | date_to_xmlschema }}">
+      {{ post.date | date: '%d/%m/%Y' }}
+    </time>
+    &mdash;
+    <a href="{{ post.url | prepend: site.baseurl }}">
+      {{ post.title }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>

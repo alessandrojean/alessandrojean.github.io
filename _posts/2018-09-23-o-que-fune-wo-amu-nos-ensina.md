@@ -28,27 +28,6 @@ external:
     url: https://kitsu.io/anime/fune-wo-amu
 ---
 
-<div class="notification is-warning">
-  <div class="media center">
-    <div class="media-left is-hidden-mobile">
-      <span class="icon is-large">
-        <i class="fa fa-exclamation-triangle fa-2x"></i>
-      </span>
-    </div>
-    <div class="media-content">
-      <div class="content">
-        <p>
-          <strong>Alerta de Spoiler</strong><br/>
-          O post contém revelações do enredo do filme
-          <a href="https://mydramalist.com/6615-the-great-passage">The Great Passage</a>
-          e de sua adaptação em anime, 
-          <a href="https://myanimelist.net/anime/32948/Fune_wo_Amu">Fune wo Amu</a>.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
 *The Great Passage* conta a história de Majime, um empregado em uma editora,
 que é transferido para um antigo e, de certa forma, abandonado setor da mesma,
 o setor de criação de dicionários, para ser o substituto de Araki,

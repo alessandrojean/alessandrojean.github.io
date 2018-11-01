@@ -1,0 +1,19 @@
+@keyframes outline-fade-out {
+  0% {
+    background-color: $primary;
+    outline-color: $primary;
+    color: white;
+  }
+
+  90% {
+    background-color: $primary;
+    outline-color: $primary;
+    color: white;
+  }
+
+  100% {
+    background-color: default;
+    outline-color: white;
+    color: default;
+  }
+}

@@ -1,74 +1,49 @@
 ---
-layout: compress
+layout: default
 ---
-<!DOCTYPE html>
-<html class="has-navbar-fixed-top is-{{ page.main_category }}" lang="en" itemscope itemtype="http://schema.org/BlogPosting">
-  {% include head.html %}
-  <body>
-    {% include navbar.html %}
-    {% include svg-icons.html %}
+
+<div class="content">
+  <div class="post single">
+    <h1>{{ page.title }}</h1>
     
-    <article role="post" class="post section is-paddingless-horizontal" itemprop="mainEntityOfPage">    
-      <div class="grid content is-medium" itemprop="articleBody">
-        {% include post_header.html %}
-        {% if page.cover %}
-        <figure class="grid-ml">
-          <img src="{{ page.cover }}" alt="Capa do post">
-          {% if page.cover_caption %}
-          <figcaption>
-            {{ page.cover_caption }}
-          </figcaption>
-          {% endif %}
-        </figure>
-        {% endif %}
-
-        {{ content }}
-
-        {% if page.download %}
-        <div class="columns" style="padding: 3rem 0 0 0;">
-          {% for link in page.download %}
-          <div class="column">
-            <a href="{{ link.file }}" class="button is-outlined is-fullwidth is-grey is-small is-rounded download">
-              <span class="description has-text-grey">Download</span>
-              <span class="link">{{ link.title }}</span>
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-        {% endif %}
-
-        {% if page.external %}
-        <div class="columns" style="padding: 3rem 0 0 0;">
-          {% for link in page.external %}
-          <div class="column">
-            <a href="{{ link.url }}" class="button is-fullwidth is-{{ link.type }}">
-              {{ link.title }}
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-        {% endif %}
+    <div class="meta">
+      <time class="item date" datetime="{{ page.date | date_to_xmlschema }}">
+        <i class="far fa-calendar-alt"></i>
+        {{ page.date | date: '%d/%m/%Y' }}
+      </time>
+      <a title="Comentários" href="#comments" class="item dsq-comment-count">
+        <i class="far fa-comment"></i>
+        <span class="disqus-comment-count" data-disqus-identifier="{{ page.url }}">0</span>
+      </a>
+      <div class="item time">
+        <i class="far fa-clock"></i>
+        {% include read_time.html %}
       </div>
+    </div>
 
-      <meta itemprop="dateModified" content="{{ page.date | date_to_xmlschema }}">
-      <meta itemprop="genre" content="{{ page.main_category }}">
-      <meta itemprop="keywords" content="{{ page.tags | join: ',' }}">
-      <meta itemprop="wordCount" content="{{ content | number_of_words }}">
-      <span itemprop="publisher" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="{{ site.title }}">
-        <meta itemprop="sameAs" content="{{ site.baseurl | prepend: site.url }}">
-      </span>
-      
-    </article>
-
-    {% include share.html %}
-
-    {% include author.html %}
-    
-    {% include disqus.html %}
-
-    {% include footer.html %}
-
-    {% include analytics.html %}
-  </body>
-</html>
+    <div class="body">
+      {% if page.cover %}
+      <figure>
+        <img src="{{ page.cover }}" alt="Capa do post">
+        {% if page.cover_caption %}
+        <figcaption>
+          {{ page.cover_caption }}
+        </figcaption>
+        {% endif %}
+      </figure>
+      {% endif %}
+      {{ content }}
+      <div class="meta">
+        <p class="item">Tags</p>
+        {% for tag in page.tags %}
+        <a href="{{ '/tags' | prepend: site.baseurl }}#{{ tag }}" class="tag">
+          <i class="fas fa-hashtag fa-xs"></i>
+          {{ tag }}
+        </a>
+        {% endfor %}
+      </div>
+      <div class="breaker"></div>
+      {% include disqus.html %}
+    </div>
+  </div>
+</div>

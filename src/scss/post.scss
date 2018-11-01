@@ -1,0 +1,94 @@
+div.post {
+  padding-bottom: 0em;
+  page-break-before: always;
+
+  &.single, &:last-child {
+    border-bottom: none;
+  }
+
+  actions, time, info {
+    color: $post-actions-color;
+  }
+
+  actions {
+    background: blue;
+    float: right;
+  }
+
+  info {
+    display: block;
+  }
+
+  &.photo info, &.photo time {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: block;
+  }
+
+  .comments {
+    margin-top: 1em;
+    border-top: 1px solid $content-a-footnote-hv-background;
+    padding-top: 1em;
+  }
+
+  time.archive {
+    font-feature-settings: "tnum" 1, "calt" 1, "kern" 1, "liga" 1;
+  }
+}
+
+div.post h1 + div.meta {
+  margin-top: 0;
+}
+
+div.meta {
+  margin: 1em 0;
+  display: inline-block;
+
+  p, .item {
+    margin: 0;
+  }
+
+  .item, .tag {
+    color: black;
+    opacity: 0.4;
+    display: block;
+    float: left;
+    margin-left: 2em;
+  }
+
+  .item {
+    &:hover {
+      opacity: 1;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    time {
+      color: inherit;
+    }
+  }
+
+  .item a,
+  a.item,
+  .item a:hover,
+  a.item:hover {
+    color: inherit;
+  }
+
+  .item.tags {
+    padding-left: 0;
+  }
+
+  .tag {
+    margin-left: 1em;
+    margin-right: 0;
+    opacity: 1;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

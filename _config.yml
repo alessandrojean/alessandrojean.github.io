@@ -1,8 +1,8 @@
 # Site settings.
 title: Alessandro Jean
 description: Bem aleatório
-baseurl: "/blog"
-url: "https://alessandrojean.github.io"
+baseurl: ""
+url: ""
 disqus: alessandrojean
 google_analytics: UA-117196425-1
 
@@ -29,11 +29,9 @@ kramdown:
   # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting.
   # syntax_highlighter: rouge
   syntax_highlighter_opts:
-    # Disable highlight to use Prism.
-    span:
-      disable: true
     # Use existing pygments syntax highlighting css.
     css_class: 'highlight'
+
 
 # SASS settings.
 sass:
@@ -55,14 +53,11 @@ compress_html:
 # For external links add external: true
 links:
   - title: Tags
-    url: /tags
-    icon: "fas fa-tag"
+    url: /tags/
   - title: Séries
-    url: /series
-    icon: "fas fa-th-list"
+    url: /series/
   - title: Sobre mim
-    url: /sobre
-    icon: "fas fa-user"
+    url: /sobre/
 
 # Exclude from processing.
 # The following items will not be processed, by default.

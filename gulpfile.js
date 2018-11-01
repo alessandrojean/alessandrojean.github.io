@@ -17,7 +17,7 @@ const messages = {
 gulp.task('jekyll-build', done => {
   browserSync.notify(messages.jekyllBuild);
   // If you use a UNIX system, remove the ".bat".
-  return cp.spawn('jekyll.bat', ['build', '--drafts'], { stdio: 'inherit' })
+  return cp.spawn('jekyll', ['build', '--drafts'], { stdio: 'inherit' })
     .on('close', done)
     .on('error', e => console.error(e));
 });
@@ -59,7 +59,7 @@ gulp.task('js', () => {
  * SASS task.
  */
 gulp.task('sass', () => {
-  gulp.src('src/sass/main.sass')
+  gulp.src('src/scss/main.scss')
     .pipe(plumber())
     .pipe(sass({ outputStyle: 'compressed' }))
     .pipe(gulp.dest('_site/assets/css'))
@@ -81,7 +81,7 @@ gulp.task('image', () => {
  */
 gulp.task('watch', () => {
   gulp.watch('src/js/**/*.js', ['js']);
-  gulp.watch('src/sass/**/*.sass', ['sass']);
+  gulp.watch('src/scss/**/*.scss', ['sass']);
   gulp.watch('src/img/**/*.{jpg,png,gif,svg,webp}', ['image']);
   gulp.watch([
     '*.{html,md}',
@@ -89,7 +89,8 @@ gulp.task('watch', () => {
     '_includes/*.html',
     '_layouts/*.html',
     '_posts/*',
-    '_drafts/*'
+    '_drafts/*',
+    '_config.yml'
   ], ['jekyll-rebuild']);
 });
 
