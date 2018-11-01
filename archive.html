@@ -4,16 +4,68 @@ title: Arquivo
 permalink: /archive/
 ---
 
-<ul class="minimal">
-  {% for post in site.posts %}
-  <li>
-    <time class="archive" datetime="{{ post.date | date_to_xmlschema }}">
-      {{ post.date | date: '%d/%m/%Y' }}
-    </time>
-    &mdash;
-    <a href="{{ post.url | prepend: site.baseurl }}">
-      {{ post.title }}
-    </a>
-  </li>
-  {% endfor %}
-</ul>
+<div id="search">
+  <div class="control">
+    <input type="search" placeholder="Busque entre os posts…" 
+      :value="search" @input="update">
+  </div>
+  <ul class="minimal">
+    <li v-for="post of filteredPosts" :key="post.url">
+      <time class="archive" :datetime="post.dateXml">
+        ${post.date}
+      </time>
+      &mdash;
+      <a :href="post.url">
+        ${post.title}
+      </a>
+    </li>
+  </ul>
+  <p v-if="!filteredPosts.length">
+    Nenhum resultado encontrado, tente outro termo.
+  </p>
+</div>
+
+<script src="https://unpkg.com/vue@2.5.17"></script>
+<script src="https://unpkg.com/lodash@4.16.0"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#search',
+    delimiters: ['${', '}'],
+    data: function () {
+      return {
+        search: '',
+        posts: [
+          {% for post in site.posts %}
+          {
+            date: "{{ post.date | date: '%d/%m/%Y' }}",
+            dateXml: "{{ post.date | date_to_xmlschema }}",
+            title: '{{ post.title }}',
+            url: '{{ post.url | prepend: site.baseurl }}',
+            category: '{{ post.main_category }}'
+          },
+          {% endfor %}
+        ]
+      }
+    },
+    computed: {
+      filteredPosts: function() {
+        if (this.search === '')
+          return this.posts;
+        else
+          return this.posts
+            .filter(x => {
+              const titleLower = x.title.toLowerCase();
+              const categoryLower = x.category.toLowerCase();
+              const searchLower = this.search.toLowerCase();
+              return titleLower.indexOf(searchLower) !== -1 ||
+                categoryLower.indexOf(searchLower) !== -1;
+            });
+      }
+    },
+    methods: {
+      update: _.debounce(function (e) {
+        this.search = e.target.value;
+      }, 300)
+    }
+  });
+</script>

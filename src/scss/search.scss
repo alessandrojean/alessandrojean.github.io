@@ -1,0 +1,22 @@
+div#search .control {
+  display: block;
+  max-width: 300px;
+
+  input {
+    width: 100%;
+    padding: 0.5em 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+    }
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  div#search .control {
+    max-width: 100%;
+  }
+}

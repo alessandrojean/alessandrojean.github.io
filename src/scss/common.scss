@@ -154,10 +154,11 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  
 
     a[href] {
       font-size: 1.25rem;
+      transform: translate3d(0, 0, 0);
+      transition: 160ms transform ease-out;
 
       &::before {
         content: '{';
@@ -173,6 +174,7 @@ header {
       }
 
       &:hover {
+        transform: translate3d(0, 2px, 0);
         text-decoration: none;
         cursor: pointer;
       }
@@ -267,6 +269,10 @@ header {
 
   div.post h1 {
     margin-bottom: 0.7em !important;
+  }
+
+  header ul {
+    opacity: 1;
   }
 }
 
