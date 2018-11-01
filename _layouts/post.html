@@ -3,23 +3,11 @@ layout: default
 ---
 
 <div class="content">
-  <div class="post single">
+  <article class="post single">
     <h1>{{ page.title }}</h1>
-    
-    <div class="meta">
-      <time class="item date" datetime="{{ page.date | date_to_xmlschema }}">
-        <i class="far fa-calendar-alt"></i>
-        {{ page.date | date: '%d/%m/%Y' }}
-      </time>
-      <a title="Comentários" href="#comments" class="item dsq-comment-count">
-        <i class="far fa-comment"></i>
-        <span class="disqus-comment-count" data-disqus-identifier="{{ page.url }}">0</span>
-      </a>
-      <div class="item time">
-        <i class="far fa-clock"></i>
-        {% include read_time.html %}
-      </div>
-    </div>
+    <time datetime="{{ page.date | date_to_xmlschema }}">
+      {% include post_date.html date=page.date %}
+    </time>
 
     <div class="body">
       {% if page.cover %}
@@ -45,5 +33,5 @@ layout: default
       <div class="breaker"></div>
       {% include disqus.html %}
     </div>
-  </div>
+  </article>
 </div>

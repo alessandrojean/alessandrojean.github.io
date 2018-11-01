@@ -6,6 +6,10 @@ div.post {
     border-bottom: none;
   }
 
+  h1 {
+    margin-bottom: 1.4em;
+  }
+
   actions, time, info {
     color: $post-actions-color;
   }

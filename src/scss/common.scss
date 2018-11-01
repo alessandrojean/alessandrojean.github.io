@@ -22,7 +22,7 @@ body {
   max-width: 720px;
   margin: 0 auto;
   font-size: 14px;
-  font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  font-feature-settings: $family-sans-serif-features;
 }
 
 .breaker {
@@ -241,257 +241,10 @@ header {
   margin-bottom: 3em;
 }
 
-
-// Content
-div.content {
-  background: white;
-  margin-top: 0;
-  margin-bottom: 60px;
-  display: block;
-  width: calc(100% - 64px);
-
-  &.photo {
-    padding: 0;
-    margin: 0;
-  }
-
-  &:not(.sub) h1:first-child {
-    margin-top: 0;
-  }
-
-  /*figure,
-  img {
-    display: block;
-    max-width: 100%;
-  }*/
-
-  figure {
-    margin: 3em 0;
-    width: 100%;
-    display: block;
-
-    img {
-      display: block;
-      margin: 0 auto;
-      max-width: 100%;
-    }
-
-    .video-container-16by9 {
-      @include aspect-ratio(16, 9);
-    }
-
-    figcaption {
-      margin-top: 1em;
-      font-size: .75rem;
-      text-align: center;
-      color: $content-figcaption-color;
-    }
-  }
-
-  iframe {
-    border: none;
-  }
-
-  *[align="right"] {
-    margin: 0 0 1em 1.5em;
-  }
-
-  *[align="left"] {
-    margin: 0 1.5em 1em 0;
-  }
-
-  li {
-    margin-left: 2em;
-    margin-bottom: 0.2em;
-  }
-
-  ul {
-    &.minimal {
-      list-style: none;
-
-      & > li {
-        margin-left: 0;
-      }
-    }
-
-    & > li {
-      margin-left: 1.4em;
-    }
-  }
-
-  blockquote {
-    padding: 0.1em 1em;
-    color: $content-blockquote-color;
-    font-style: italic;
-    letter-spacing: $content-blockquote-font;
-    font-size: 1.1em;
-  }
-
-  div.quotation blockquote {
-    margin-left: -30px;
-  }
-
-  pre,
-  code {
-    background-color: rgba(black, .04);
-    border-radius: 3px;
-    font-size: .93em;
-  }
-
-  pre > code {
-    background-color: transparent;
-    border-radius: 0;
-    padding: 0;
-    
-    &::before,
-    &::after {
-      letter-spacing: inherit;
-      content: none;
-    }
-  }
-
-  pre {
-    line-height: 1.25;
-    overflow-x: auto;
-    color: $content-pre-color;
-    padding: 16px;
-    word-wrap: break-word;
-  }
-
-  code {
-    padding: 3px 0;
-
-    &::before,
-    &::after {
-      letter-spacing: -0.2em;
-      content: '\00a0';
-    }
-  }
-
-  div.highlighter-rouge {
-    width: 100%;
-    background-color: rgba(black, .04);    
-
-    .highlight {
-      padding: 16px;
-      
-      pre {
-        background-color: transparent;
-        margin: 0;
-        padding: 0;
-        display: block;
-      }
-    }
-  }
-
-  *:target {
-    outline: 4px solid $primary;
-    animation: outline-fade-out 4500ms 1;
-    animation-direction: alternate;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-    animation-delay: 0;
-  }
-
-  center {
-    margin: 2em 0;
-    user-select: none;
-    cursor: default;
-    color: $content-center-color;
-  }
-
-  a.footnote {
-    display: inline-block;
-    padding: 0 1px;
-    margin: 0 0 0 1px;
-    background: inherit;
-    text-shadow:none;
-    color: $content-a-footnote-color;
-    user-select: none;
-    border-radius: 2px;
-    border-left:1px solid rgba(black, .1);
-    border-right:1px solid rgba(black, .1);
-
-    &:hover {
-      color: black;
-      background: $content-a-footnote-hv-background;
-    }
-
-    &::before {
-      letter-spacing: -0.3em;
-      content: '\00a0';
-    }
-
-    &::after {
-      letter-spacing: -0.3em;
-      content: '\00a0';
-    }
-  }
-
-  sup {
-    vertical-align: super;
-    font-size: 65%;
-    padding: 0;
-    margin: 0;
-
-    &:target {
-      background: none;
-      animation: none;
-      outline: none;
-
-      a.footnote {
-        background-color: $primary;
-      }
-    }
-  }
-
-  div.footnotes {
-    margin-top: 3em;
-    border-top: 1px solid $content-a-footnote-hv-background;
-
-    li {
-      color: $content-footnote-p-color;
-
-      & > p {
-        margin: 0;
-      }
-
-      &:target {
-        background: $content-footnote-li-target-background;
-        color: inherit;
-      }
-    }
-  }
-
-  row {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    overflow-x: auto;
-
-    img {
-      margin: 0;
-    }
-  }
-
-  &.sub {
-    margin-top: -50px;
-    padding-top: 20px;
-  }
-}
-
-body.noheader div.content {
-  margin-top: 3em;
-
-  & > h1:first-child + h2 {
-    margin-top: -1.5em;
-    margin-bottom: 1.5em;
-  }
-}
-
 // Smartphone
 @media only screen and (max-device-width: 480px) {
   h1 {
+    font-size: 40px;
     margin-left: -1px;
   }
 
@@ -511,9 +264,54 @@ body.noheader div.content {
   h6 {
     font-size: 16px;
   }
+
+  div.post h1 {
+    margin-bottom: 0.7em !important;
+  }
 }
 
 // Other
 img.profile-picture {
   border-radius: 50%;
+}
+
+// Colors
+html {
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+
+    &.is-#{$name} {
+      a[href] {
+        color: $color;
+
+        &:hover {
+          text-decoration-color: rgba($color, .6);
+        }
+      }
+
+      header {
+        a[href] {
+          color: inherit;
+        }
+
+        h1 a[href]::before, 
+        h1 a[href]::after {
+          color: $color;
+        }
+
+        ul li a[href] {
+          color: $navigation-link-color;
+
+          &.active, &:hover {
+            color: black;
+          }
+        }
+      }
+
+      div.meta .item,
+      div.meta .tag {
+        color: black;
+      }
+    }
+  }
 }

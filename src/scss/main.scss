@@ -2,10 +2,12 @@
 @import url('https://rsms.me/inter/inter-ui.css');
 
 // Other files
+@import 'functions';
 @import 'variables';
 @import 'mixins';
 @import 'common';
 @import 'posts';
 @import 'post';
+@import 'content';
 @import 'animations';
 @import 'highlight';

@@ -23,6 +23,15 @@ a[href].post-excerpt {
     display: inline-block;
   }
 
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    
+    &.is-#{$name}:hover h3 {
+      background-color: $color;
+      color: findColorInvert($color);
+    }
+  }
+
   &:hover {
     color: black;
 

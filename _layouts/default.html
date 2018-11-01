@@ -2,7 +2,8 @@
 layout: compress
 ---
 <!DOCTYPE html>
-<html lang="pt-br" itemscope itemtype="http://schema.org/WebPage">
+<html lang="pt-br" itemscope itemtype="http://schema.org/WebPage"
+  {% if page.layout == 'post' %}class="is-{{ page.main_category }}"{% endif %}>
   {% include head.html %}
   <body>
     {% include navigation.html %}
