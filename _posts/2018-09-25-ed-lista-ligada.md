@@ -33,6 +33,15 @@ para Estruturas de Dados II.
 
 ## Definição
 
+> Uma **lista ligada** é uma estrutura de dados
+> na qual os objetos são organizados em ordem
+> linear. Diferentemente de um vetor, no entanto,
+> onde a ordem linear é determinada pelos
+> índices do vetor, a ordem da lista ligada é
+> determinada por um ponteiro em cada objeto.
+>
+> &mdash; <cite>CORMEN, T. H et al</cite>
+
 Uma Lista Simplesmente Ligada consiste de vários nós com
 dois atributos: o valor que ele armazena, o item em si, e
 um ponteiro para o próximo nó.

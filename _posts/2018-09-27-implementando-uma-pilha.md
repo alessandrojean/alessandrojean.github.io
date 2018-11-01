@@ -39,6 +39,15 @@ para chegarmos até o último prato, precisamos ir desempilhando
 os pratos até chegarmos no último, que foi o primeiro a
 ser colocado.
 
+> Pilhas são conjuntos dinâmicos onde o elemento
+> removido do conjunto pela operação `delete`
+> é pré-especificado. Em uma **pilha**, o elemento
+> deletado do conjunto é aquele mais recentemente
+> inserido: a pilha implementa uma política
+> last-in, first-out, ou LIFO.
+>
+> &mdash; <cite>CORMEN, T. H et al</cite>
+
 Esta é uma estrutura que tem duas implementações usuais: uma
 com uma Lista Ligada e outra com vetor. Este *post* abordará
 a implementação com *Lista Ligada*. Portanto, iremos
