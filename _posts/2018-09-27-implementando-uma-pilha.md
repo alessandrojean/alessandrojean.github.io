@@ -28,7 +28,7 @@ estrutura, a Pilha, também conhecida como *Stack*.
 
 A Pilha é uma estrutura que nos permite fazer operações
 em $O(1)$ em inserção e remoção. Sua principal característica
-é seu comportamento **LIFO**, sigla para ***L**ast **I**n, **F**irst **O**ut*.
+é seu comportamento LIFO [^lifo].
 Ou seja, o último elemento inserido sempre vai ficar no topo e,
 quando formos remover algum elemento, este será o resultado.
 
@@ -43,6 +43,8 @@ com uma Lista Ligada e outra com vetor. Este *post* abordará
 a implementação com *Lista Ligada*. Portanto, iremos
 utilizar a mesma Lista Simplesmente Ligada desenvolvida
 no primeiro *post* da série.
+
+[^lifo]: Sigla para *Last In, First Out*.
 
 ## Operações
 
