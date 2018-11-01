@@ -1,13 +1,14 @@
 # Personal Blog
 
-Files to my personal blog available at https://alessandrojean.github.io/blog/
+Files to my personal blog available at https://alessandrojean.github.io/
 
-The theme is based on the [willianjusten/cards-jekyll-template]
-and [thiagorossener/jekflix-template], but unlike the original, 
-I prefer to keep using SASS, and use Bulma as the base of the style.
+The theme is initially based on the [willianjusten/cards-jekyll-template]
+and [thiagorossener/jekflix-template]. The actual version is based
+on the [Rasmus Andersson] website, redone with SASS.
 
 [willianjusten/cards-jekyll-template]: https://github.com/willianjusten/cards-jekyll-template
 [thiagorossener/jekflix-template]: https://github.com/thiagorossener/jekflix-template
+[Rasmus Andersson]: https://rsms.me/
 
 ## Running local
 
@@ -26,8 +27,8 @@ need to follow those steps:
   ```bash
   # Install dependencies.
   npm install
-  # Install gulp global.
-  npm install -g gulp gulp-cli
+  # Install gulp v4 global.
+  npm install -g gulp@next gulp-cli
   # Run with hot reloading.
   gulp
   ```
