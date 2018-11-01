@@ -16,12 +16,14 @@ categories:
 
 Bem, estou resolvendo criar esta nova série de Estruturas de Dados
 para implementar algumas das estruturas mais essenciais e básicas
-que são ensinadas normalmente nesta disciplina. Minha intenção
-é ser o mais claro possível e, ao mesmo tempo, conseguir abordar
-alguns temas importantes da linguagem, além de criar estruturas
-genéricas, que servem para qualquer tipo de dados. Desta forma,
-além de eu conseguir passar meu conhecimento adiante, ainda
-acabo aproveitando para estudar para Estruturas de Dados II.
+que são ensinadas normalmente nesta disciplina. 
+
+Minha intenção é ser o mais claro possível e, ao mesmo tempo, 
+conseguir abordar alguns temas importantes da linguagem, 
+além de criar estruturas genéricas, que servem para qualquer 
+tipo de dados. Desta forma, além de eu conseguir passar meu
+conhecimento adiante, ainda acabo aproveitando para estudar 
+para Estruturas de Dados II.
 
 ## Conteúdo
 {:.no_toc}
