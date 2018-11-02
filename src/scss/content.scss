@@ -81,6 +81,11 @@ div.content, main.content {
     color: $content-blockquote-color;
     font-family: $content-blockquote-font;
     font-size: 1.1em;
+    border-left: 4px solid #ddd;
+
+    p {
+      margin: 0;
+    }
   }
 
   div.quotation blockquote {
