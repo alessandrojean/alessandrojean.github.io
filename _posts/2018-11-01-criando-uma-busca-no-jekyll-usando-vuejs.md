@@ -66,7 +66,7 @@ e uma lista que serão os resultados.
 ```
 
 Aqui já vem um grande macete, precisamos trocar o interpolador
-padrão do Vue, o `{{` e `}}` para um outro, pois este é o
+padrão do Vue, o `{% raw %}{{{% endraw %}` e `}}` para um outro, pois este é o
 mesmo utilizado pelo Liquid do Jekyll. Para isto, na
 hora de criar o objeto do Vue, nos o informamos que queremos
 que o interpolador tenha outra forma, digamos `${` e `}` [^interpolador].
