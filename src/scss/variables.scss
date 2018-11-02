@@ -1,6 +1,7 @@
 $family-sans-serif: 'Inter UI', -system-ui, system-ui, sans-serif;
 $family-sans-serif-features: "calt" 1, "kern" 1, "liga" 1;
 $family-monospace: 'SFMono-Regular', Menlo, 'Liberation Mono', Consolas, Courier, monospace;
+$family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
 
 /* Colors. */
 $dark: #111;
@@ -54,7 +55,7 @@ $post-time-color: #bbb;
 
 // Content
 $content-blockquote-color: #345;
-$content-blockquote-font: Georgia, serif;
+$content-blockquote-font: $family-serif;
 $content-pre-color: #333;
 $content-center-color: #ccc;
 $content-a-footnote-color: #666;
