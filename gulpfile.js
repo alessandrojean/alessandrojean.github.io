@@ -11,6 +11,8 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const postcss = require('gulp-postcss');
 const eslint = require('gulp-eslint');
+const newer = require('gulp-newer');
+const imagemin = require('gulp-imagemin');
 const cp = require('child_process');
 
 // BrowserSync.
@@ -69,6 +71,11 @@ const imagesTask = () => {
   return gulp
     .src('src/img/**/*')
     .pipe(plumber())
+    .pipe(newer('assets/img'))
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{ removeViewBox: false }]
+    }))
     .pipe(gulp.dest('assets/img/'));
 };
 
