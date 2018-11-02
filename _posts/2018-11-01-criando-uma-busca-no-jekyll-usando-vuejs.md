@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Busca no Jekyll usando Vue.js"
+title: "Criando uma busca no Jekyll usando Vue.js"
 description: 
 main_category: js
 
