@@ -223,7 +223,7 @@ div.content, main.content {
 
       &:target {
         background: $content-footnote-li-target-background;
-        color: inherit;
+        color: initial;
       }
     }
   }

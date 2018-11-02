@@ -2,16 +2,19 @@
   0% {
     background-color: #fe0;
     outline-color: #fe0;
+    color: findColorInvert(#fe0);
   }
 
   90% {
     background-color: #fe0;
     outline-color: #fe0;
+    color: findColorInvert(#fe0);
   }
 
   100% {
     background-color: default;
     outline-color: transparent;
+    color: initial;
   }
 }
 
