@@ -54,15 +54,17 @@ permalink: /archive/
       filteredPosts: function() {
         if (this.search === '')
           return this.posts;
-        else
-          return this.posts
-            .filter(x => {
-              const titleLower = x.title.toLowerCase();
-              const categoryLower = x.category.toLowerCase();
-              const searchLower = this.search.toLowerCase();
-              return titleLower.indexOf(searchLower) !== -1 ||
-                categoryLower.indexOf(searchLower) !== -1;
-            });
+
+        let titleLower;
+        let categoryLower;
+        const searchLower = this.search.toLowerCase();
+        return this.posts
+          .filter(x => {
+            titleLower = x.title.toLowerCase();
+            categoryLower = x.category.toLowerCase();
+            return titleLower.includes(searchLower) ||
+              categoryLower.includes(searchLower);
+          });
       }
     },
     methods: {
