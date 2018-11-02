@@ -25,6 +25,12 @@ aí que resolvi utilizar meu querido [Vue.js]. Minha intenção
 é fazer com que não seja necessário criar um arquivo JSON,
 para evitar chamadas AJAX para este.
 
+## Conteúdo
+{:.no_toc}
+
+1. Conteúdo
+{:toc}
+
 ## Utilizando a CDN
 
 Para não termos que nos preocupar de usar o `vue-cli` e ter
