@@ -11,11 +11,11 @@ Comecei a ter meus encantos pela área da computação desde
 criança, com meu saudoso PC com Windows 98. Desde lá, 
 nunca mais parei.
 
-Cheguei a concluir um curso técnico de Informática
+Concluí um curso técnico de Informática
 interligado ao meu ensino médio, onde conheci
 essa coisa maravilhosa chamada *programação*.
 
-Atualmente estou cursando o curso de Ciência da Computação
+Atualmente curso Ciência da Computação
 na UFABC, e posso dizer enfaticamente que não me
 arrependo da escolha desta área.
 
