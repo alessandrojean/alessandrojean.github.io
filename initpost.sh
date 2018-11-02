@@ -127,6 +127,7 @@ initpost_file() {
     if [ ! -f "$FILE_NAME" ]; then
         e_header "Creating template..."
         initpost_content > "${DIST_FOLDER}/${FILE_NAME}"
+        mkdir -p src/img/$POST_NAME
         e_success "Initial post successfully created!"
     else
         e_warning "File already exist."
