@@ -117,7 +117,7 @@ posts: [{% raw %}
 ]
 ```
 
-Aqui as coisas começam a ficarem interessantes. O que
+Aqui as coisas começam a ficar interessantes. O que
 acontecerá é que, quando o site for gerado, o Jekyll
 iterará em todos os *posts* e escreverá o arquivo
 `html` final com uma estrutura parecida com esta abaixo.
