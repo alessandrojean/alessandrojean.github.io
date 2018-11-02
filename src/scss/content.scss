@@ -1,9 +1,11 @@
-div.content {
+div.content, main.content {
   background: white;
   margin-top: 0;
   margin-bottom: 60px;
   display: block;
   width: calc(100% - 64px);
+  opacity: 0;
+  animation: 1s ease .3s normal forwards fade-in;
 
   &.photo {
     padding: 0;
