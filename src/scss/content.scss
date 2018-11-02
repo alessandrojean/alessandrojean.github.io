@@ -125,7 +125,11 @@ div.content {
 
   div.highlighter-rouge {
     width: 100%;
-    background-color: rgba(black, .04);    
+    background-color: rgba(black, .04); 
+    
+    a[href] {
+      color: currentColor !important;
+    }
 
     .highlight {
       padding: 16px;
@@ -232,6 +236,14 @@ div.content {
   &.sub {
     margin-top: -50px;
     padding-top: 20px;
+  }
+
+  a[href].vglnk {
+    color: currentColor;
+
+    &:hover {
+      text-decoration-color: currentColor;
+    }
   }
 }
 
