@@ -6,6 +6,10 @@
     border-bottom: none;
   }
 
+  & > p:first-of-type {
+    margin-top: 8px;
+  }
+
   h1 {
     margin-bottom: 1.4em;
   }

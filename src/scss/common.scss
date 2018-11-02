@@ -132,12 +132,12 @@ h6 > a {
   }
 }
 
-header, .content, footer {
+nav, .content, footer {
   margin: 0 32px;
 }
 
 // Navigation
-header {
+nav {
   display: flex;
   justify-content: space-between;
   height: 100px;
@@ -272,7 +272,7 @@ header {
     margin-bottom: 0.7em !important;
   }
 
-  header ul {
+  nav ul {
     opacity: 1;
   }
 }
@@ -296,7 +296,7 @@ html {
         }
       }
 
-      header {
+      nav {
         a[href] {
           color: inherit;
         }

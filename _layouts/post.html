@@ -2,39 +2,39 @@
 layout: default
 ---
 
-<div class="content">
+<main class="content">
   <article class="post single">
-    <h1>{{ page.title }}</h1>
-    <time datetime="{{ page.date | date_to_xmlschema }}">
-      {% include post_date.html date=page.date %}
-    </time>
+    <header>
+      <h1>{{ page.title }}</h1>
+      <time datetime="{{ page.date | date_to_xmlschema }}">
+        {% include post_date.html date=page.date %}
+      </time>
+    </header>
 
-    <div class="body">
-      {% if page.cover %}
-      <figure>
-        <img src="{{ page.cover }}" alt="Capa do post">
-        {% if page.cover_caption %}
-        <figcaption>
-          {{ page.cover_caption }}
-        </figcaption>
-        {% endif %}
-      </figure>
+    {% if page.cover %}
+    <figure>
+      <img src="{{ page.cover }}" alt="Capa do post">
+      {% if page.cover_caption %}
+      <figcaption>
+        {{ page.cover_caption }}
+      </figcaption>
       {% endif %}
-      {{ content }}
-      <div class="meta">
-        <p class="item">Tags</p>
-        {% for tag in page.tags %}
-        <a href="{{ '/tags' | prepend: site.baseurl }}#{{ tag }}" class="tag">
-          <i class="fas fa-hashtag fa-xs"></i>
-          {{ tag }}
-        </a>
-        {% endfor %}
-      </div>
-      <div class="breaker"></div>
-      {% include disqus.html %}
+    </figure>
+    {% endif %}
+    {{ content }}
+    <div class="meta">
+      <p class="item">Tags</p>
+      {% for tag in page.tags %}
+      <a href="{{ '/tags' | prepend: site.baseurl }}#{{ tag }}" class="tag">
+        <i class="fas fa-hashtag fa-xs"></i>
+        {{ tag }}
+      </a>
+      {% endfor %}
     </div>
+    <div class="breaker"></div>
+    {% include disqus.html %}
   </article>
-</div>
+</main>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
 <script type="text/javascript">
