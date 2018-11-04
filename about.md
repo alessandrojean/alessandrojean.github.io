@@ -35,6 +35,8 @@ bem ajudando as pessoas ensinando sobre a área.
 
 Tenho também um *hobby* grande relacionado a *animes* e mangás.
 
+*El Psy Kongroo*.
+
 *[UFABC]: Universidade Federal do ABC
 [programando]: https://github.com/alessandrojean/
 
