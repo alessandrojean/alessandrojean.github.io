@@ -117,6 +117,7 @@ div.content, main.content {
     color: $content-pre-color;
     padding: 16px;
     word-wrap: break-word;
+    background-color: #282a36;
   }
 
   code {
@@ -131,7 +132,8 @@ div.content, main.content {
 
   div.highlighter-rouge {
     width: 100%;
-    background-color: rgba(black, .04); 
+    background-color: #282a36;
+    color: #f8f8f2; 
     
     a[href] {
       color: currentColor !important;

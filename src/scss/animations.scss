@@ -18,6 +18,26 @@
   }
 }
 
+@keyframes outline-fade-out-night {
+  0% {
+    background-color: #2e2d2d;
+    outline-color: #2e2d2d;
+    color: #939393;
+  }
+
+  90% {
+    background-color: #2e2d2d;
+    outline-color: #2e2d2d;
+    color: #939393;
+  }
+
+  100% {
+    background-color: default;
+    outline-color: transparent;
+    color: #939393;
+  }
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;

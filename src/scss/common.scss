@@ -217,6 +217,10 @@ nav {
         padding-right: 0;
       }
 
+      .switch {
+        padding-left: 0.8em;
+      }
+
       a[href] {
         cursor: pointer;
         padding: 0 0.8em;
@@ -235,7 +239,8 @@ nav {
     }
   }
 
-  &.main ul, &:hover ul {
+  &.main ul, &:hover ul,
+  &.main .switch, &:hover .switch {
     opacity: 1;
   }
 }
