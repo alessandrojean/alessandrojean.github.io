@@ -61,8 +61,7 @@ A Pilha possui duas operações que a definem: `empilhar`
 e `desempilhar`.
 
 {% include figure.html src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Lifo_stack.png"
-   description="Representação simples em execução de uma pilha com operações de empilhar e desempilhar.
-                Fonte: Wikipédia." %}
+   description="Representação simples em execução de uma pilha com operações de empilhar e desempilhar. Fonte: Wikipédia." %}
 
 - `empilhar`: também conhecida como *push*, esta operação
   empilha um elemento no topo da pilha;
@@ -90,15 +89,15 @@ uma definição de simbolo e uma diretiva de compilação
 no início e fim do arquivo `stack.h`.
 
 ```c
-#ifndef _H_STACK
-#define _H_STACK
+#ifndef STACK_H_
+#define STACK_H_
 
 // Para a utilização da Lista Ligada.
 #include "linkedlist.h"
 
 // Constantes, estruturas, assinaturas de métodos etc. vão aqui.
 
-#endif
+#endif // STACK_H_
 ```
 
 Em uma explicação simples, o compilador verifica
@@ -117,10 +116,10 @@ apenas uma `struct` que age como um *wrapper*
 para uma Lista Ligada. 
 
 ```c
-typedef struct stack Stack;
+typedef struct stack_t stack_t;
 
-struct stack {
-  LinkedList * elements;
+struct stack_t {
+  linked_list_t* elements;
 };
 ```
 
@@ -141,15 +140,15 @@ as assinaturas dos métodos, está pronto.
 
 ```c
 /* Métodos essenciais. */
-Stack * create_stack();
-int stack_is_empty(Stack * stack);
-int stack_size(Stack * stack);
+stack_t* create_stack();
+int stack_is_empty(stack_t* stack);
+int stack_size(stack_t* stack);
 /* Métodos de manipulação. */
-void push_to_stack(Stack * stack, void * value);
-void * peek_on_stack(Stack * stack);
-void * pop_from_stack(Stack * stack);
+void push_to_stack(stack_t* stack, void* value);
+void* peek_on_stack(stack_t* stack);
+void* pop_from_stack(stack_t* stack);
 /* Métodos de liberação. */
-void free_stack(Stack * stack, void (* free_element)(void *));
+void free_stack(linked_list_t* stack, void (*free_element)(void*));
 ```
 
 ## Criando nosso arquivo de implementação
@@ -180,23 +179,23 @@ os arquivos da Lista Ligada.
 ### Criando uma Pilha
 
 Criar a pilha consiste em alocarmos dinamicamente
-uma `Stack`, que nada mais é do que uma `struct stack`
+uma `stack_t`, que nada mais é do que uma `struct stack`
 e definirmos o seu atributo `elements` para `NULL`,
 para indicar que a pilha não possui nenhum elemento
 e está vazia.
 
 ```c
-Stack * create_stack() {
-  // Alocamos dinamicamente uma Stack.
-  Stack * newStack = malloc(sizeof(Stack));
+stack_t* create_stack() {
+  // Alocamos dinamicamente uma stack_t.
+  stack_t* new_stack = malloc(sizeof(stack_t));
   // Se ocorreu algum erro, por falta
   // de memória ou similares, retornamos NULL.
-  if (newStack == NULL)
+  if (NULL == new_stack)
     return NULL;
   // Definimos que não há elementos.
-  newStack->elements = NULL;
+  new_stack->elements = NULL;
 
-  return newStack;
+  return new_stack;
 }
 ```
 
@@ -212,9 +211,9 @@ tentar criar novamente ou sair do programa.
 
 ```c
 // Tenta criar a pilha.
-Stack * stack = create_stack();
+stack_t* stack = create_stack();
 // Verifica se teve erros.
-if (stack == NULL) {
+if (NULL == stack) {
   // Imprime na saída de erros.
   fprintf(stderr, "Não há memória, erro de alocação.\n");
   // Saímos do programa, indicando que deu erro.
@@ -237,8 +236,8 @@ ou se `elements` é `NULL`, o que indica
 que não há itens na Lista Ligada. 
 
 ```c
-int stack_is_empty(Stack * stack) {
-  return stack == NULL || stack->elements == NULL;
+int stack_is_empty(stack_t* stack) {
+  return NULL == stack || NULL == stack->elements;
 }
 ```
 
@@ -263,7 +262,7 @@ Ligada e ir incrementando uma variável
 contadora.
 
 ```c
-int stack_size(Stack * stack) {
+int stack_size(stack_t* stack) {
   // Se a pilha está vazia, 0 elementos.
   if (stack_is_empty(stack))
     return 0;
@@ -271,7 +270,7 @@ int stack_size(Stack * stack) {
   int size = 0;
   // Para cada nó da lista ligada,
   // incrementaremos size em 1.
-  for (LinkedNode * i = stack->elements; i != NULL; i = i->next, size++);
+  for (linked_node_t* i = stack->elements; i != NULL; i = i->next, size++);
 
   return size;
 }
@@ -305,16 +304,16 @@ da Pilha pelo novo, que agora contém o elemento
 mais recente inserido.
 
 ```c
-void push_to_stack(Stack * stack, void * value) {
+void push_to_stack(stack_t* stack, void* value) {
   // Se a Pilha é nula, nada a se fazer.
-  if (stack == NULL)
+  if (NULL == stack)
     return;
   // Inserimos no início da lista ligada.
-  LinkedNode * newNode = insert_at_start(stack->elements, value);
+  linked_node_t* new_node = insert_at_start(stack->elements, value);
   // Agora pegamos o novo início da lista
   // e redefinimos o início dos elementos
   // na pilha.
-  stack->elements = newNode;
+  stack->elements = new_node;
 }
 ```
 
@@ -332,7 +331,7 @@ da pilha, mas não queremos removê-lo de lá.
 Sua implementação é curta e simples de entender.
 
 ```c
-void * peek_on_stack(Stack * stack) {
+void* peek_on_stack(stack_t* stack) {
   if (stack_is_empty(stack))
     return NULL;
   // Retornamos o conteúdo do topo.
@@ -355,16 +354,16 @@ Então, após pegar seu valor e liberar da memória
 o nó, retornamos ele.
 
 ```c
-void * pop_from_stack(Stack * stack) {
+void* pop_from_stack(stack_t* stack) {
   if (stack_is_empty(stack))
     return NULL;
   // Pegamos o nó do elemento do topo.
-  LinkedNode * top = stack->elements;
+  linked_node_t* top = stack->elements;
   // Removemos ele da lista, definindo
   // o começo dela como o próximo item.
   stack->elements = top->next;
   // Pegamos o valor do item.
-  void * value = top->value;
+  void* value = top->value;
   // Agora podemos liberar o nó da lista.
   free(top);
 
@@ -388,8 +387,8 @@ do tipo de dados que é passada como referência
 e depois liberar a pilha em si.
 
 ```c
-void free_stack(Stack * stack, void (* free_element)(void *)) {
-  if (stack == NULL)
+void free_stack(stack_t* stack, void (*free_element)(void*)) {
+  if (NULL == stack)
     return;
   // Basta liberarmos a lista ligada, com
   // a função respectiva do tipo de dados.
@@ -483,11 +482,11 @@ Vamos também criar algumas funções auxiliares
 para o funcionamento da lógica.
 
 ```c
-void * create_int(int value);
-int * calculate(char * expression);
-void extract_numbers(Stack * stack, int * a, int * b);
-int * do_operation(char operation, int a, int b);
-void print_error(char * message, Stack * stack);
+void* create_int(int value);
+int* calculate(char* expression);
+void extract_numbers(stack_t* stack, int* a, int* b);
+int* do_operation(char operation, int a, int b);
+void print_error(char* message, stack_t* stack);
 ```
 
 Agora podemos desenvolver e dar um foco em
@@ -499,11 +498,11 @@ Essa função ajudará a, dado um valor inteiro
 já existente, criar uma cópia dele e obter o ponteiro.
 
 ```c
-void * create_int(int value) {
-  int * vl = malloc(sizeof(int));
+void* create_int(int value) {
+  int* vl = malloc(sizeof(int));
   *vl = value;
 
-  return (void *) vl;
+  return (void*) vl;
 }
 ```
 
@@ -520,11 +519,11 @@ ser incompleta ou por usar operadores
 inválidos, chamaremos essa função com
 a mensagem que queremos imprimir na saída
 padrão de erros, a `stderr`, junto com
-a `Stack` para ser liberada antes de
+a `stack_t` para ser liberada antes de
 finalizar o programa.
 
 ```c
-void print_error(char * message, Stack * stack) {
+void print_error(char* message, stack_t* stack) {
   fprintf(stderr, message);
   free_stack(stack, &free);
   exit(EXIT_FAILURE);
@@ -544,7 +543,7 @@ de uma das quatro operações elementares
 em dois números `a` e `b`.
 
 ```c
-int * do_operation(char operation, int a, int b) {
+int* do_operation(char operation, int a, int b) {
   switch (operation) {
     case '+':
       return create_int(a + b);
@@ -573,17 +572,17 @@ de uma Pilha vazia, automaticamente a função
 de erro será chamada e o programa finalizado.
 
 ```c
-void extract_numbers(Stack * stack, int * a, int * b) {
+void extract_numbers(stack_t* stack, int* a, int* b) {
   // Temos que desempilhar ao contrário,
   // por causa da propriedade LIFO.
-  int * numB = (int *) pop_from_stack(stack),
-      * numA = (int *) pop_from_stack(stack);
+  int* num_b = (int*) pop_from_stack(stack);
+  int* num_a = (int*) pop_from_stack(stack);
   // Se a pilha estava vazia, deu erro, expressão inválida.
-  if (numA == NULL || numB == NULL)
+  if (NULL == num_a || NULL == num_b)
     print_error(INV_EXP, stack);
   // Defina os valores de a e b.
-  *a = *numA;
-  *b = *numB;
+  *a = *num_a;
+  *b = *num_b;
 }
 ```
 
@@ -603,8 +602,8 @@ expressão é válida. Caso contrário,
 também chama a função de erro.
 
 ```c
-int * calculate(char * expression) {
-  Stack * stack = create_stack();
+int* calculate(char* expression) {
+  stack_t* stack = create_stack();
   char curr;
   int a, b;
   // Para cada caractere na string.
@@ -621,7 +620,7 @@ int * calculate(char * expression) {
       // Desempilha dois números em a e b.
       extract_numbers(stack, &a, &b);
       // Faz a operação encontrada em a e b.
-      int * res = do_operation(curr, a, b);
+      int* res = do_operation(curr, a, b);
       // Empilha de volta na pilha.
       push_to_stack(stack, res);
     } 
@@ -637,7 +636,7 @@ int * calculate(char * expression) {
     print_error(INV_EXP, stack);
   // Desempilha o último elemento,
   // que agora é o resultado.
-  int * result = (int *) pop_from_stack(stack);
+  int* result = (int*) pop_from_stack(stack);
   // Libera a Pilha da memória,
   // mas NÃO os elementos.
   free_stack(stack, NULL);
@@ -659,7 +658,7 @@ a expressão dos parâmetros de chamada, ou seja,
 da variável `argv`.
 
 ```c
-int main (int argc, char **argv) {
+int main(int argc, char** argv) {
   // Verificamos se o usuário passou o
   // parâmetro da expressão, senão
   // imprimimos uma ajuda e finalizamos.
@@ -668,9 +667,9 @@ int main (int argc, char **argv) {
     return EXIT_FAILURE;
   }
   // Obtemos a expressão.
-  char * expression = argv[1];
+  char* expression = argv[1];
   // E calculamos ela, obtendo o possível resultado.
-  int * result = calculate(expression);
+  int* result = calculate(expression);
 
   printf("Resultado: %d\n", *result);  
   // Não vamos mais usar o resultado,
