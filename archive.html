@@ -78,7 +78,7 @@ permalink: /archive/
       fetchFromApi: async function () {
         try {
           const response = await axios.get('/search.json');
-          this.posts = response.data;
+          Vue.set(this, 'posts', response.data);
         } catch (error) { 
           console.error(error);
         }
