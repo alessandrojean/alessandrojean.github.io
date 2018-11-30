@@ -101,11 +101,11 @@ no início e fim do arquivo `stack.h`.
 ```
 
 Em uma explicação simples, o compilador verifica
-se não existe algum simbolo definido com o nome `_H_STACK`.
+se não existe algum simbolo definido com o nome `STACK_H_`.
 Se for o caso, ele o define e utiliza os conteúdos
 do cabeçalho no arquivo final. No entanto, se algum
 outro arquivo já incluiu a `stack.h`, o símbolo
-`_H_STACK` já estará definido, fazendo com que
+`STACK_H_` já estará definido, fazendo com que
 o `#ifndef` retorne falso, assim não colocando
 o conteúdo do arquivo novamente.
 
