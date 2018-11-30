@@ -29,6 +29,7 @@ permalink: /archive/
 </div>
 
 <script src="https://unpkg.com/vue@2.5.17"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/lodash@4.16.0"></script>
 <script type="text/javascript">
   new Vue({
@@ -37,17 +38,7 @@ permalink: /archive/
     data: function () {
       return {
         search: '',
-        posts: [
-          {% for post in site.posts %}
-          {
-            date: "{{ post.date | date: '%d/%m/%Y' }}",
-            dateXml: "{{ post.date | date_to_xmlschema }}",
-            title: '{{ post.title }}',
-            url: '{{ post.url | prepend: site.baseurl }}',
-            category: '{{ post.main_category }}'
-          },
-          {% endfor %}
-        ]
+        posts: []
       }
     },
     computed: {
@@ -83,10 +74,19 @@ permalink: /archive/
           }
         }
         return dft;
+      },
+      fetchFromApi: async function () {
+        try {
+          const response = await axios.get('/search.json');
+          this.posts = response.data;
+        } catch (error) { 
+          console.error(error);
+        }
       }
     },
     mounted: function () {
       this.search = this.getQueryVariable('query', '');
+      this.fetchFromApi();
     }
   });
 </script>
