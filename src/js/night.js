@@ -19,13 +19,15 @@ nightMode.addEventListener('click', () => {
   // Activate the night mode.
   document.documentElement.classList.toggle('is-night');
   // Reload disqus.
-  DISQUS.reset({
-    reload: true,
-    config: function () {
-      this.page.identifier = pageUrl;
-      this.page.url = pageUrl;
-    }
-  });
+  if (typeof DISQUS !== 'undefined') {
+    DISQUS.reset({
+      reload: true,
+      config: function () {
+        this.page.identifier = pageUrl;
+        this.page.url = pageUrl;
+      }
+    });
+  }
   // If have is-night.
   if (document.documentElement.classList.contains('is-night')) {
     // Save the value locally.
