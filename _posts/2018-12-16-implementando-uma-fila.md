@@ -19,7 +19,6 @@ Estruturas de Dados. Dando continuidade, a próxima estrutura
 também será implementada com uma Lista Simplesmente Ligada.
 
 ## Conteúdo
-
 {:.no_toc}
 
 1. Conteúdo
