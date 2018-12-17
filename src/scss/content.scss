@@ -77,11 +77,49 @@ div.content, main.content {
   }
 
   blockquote {
-    padding: 0.1em 1em;
+    padding: 0.1em 2em;
+    margin: 2.5em 0 1em 0;
     color: $content-blockquote-color;
     font-family: $content-blockquote-font;
-    font-size: 1.1em;
-    border-left: 4px solid #ddd;
+    font-size: 1.4em;
+    font-style: italic;
+    position: relative;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: -0.5em;
+      color: #dee9ed;
+      font-family: $content-blockquote-font;
+      font-size: 4.3em;
+    }
+
+    &::before {
+      content: "\201c";
+      left: -7px;
+    }
+
+    &::after {
+      content: "\201d";
+      right: 8px;
+    }
+
+    code {
+      font-style: normal;
+      font-size: 0.7em;
+    }
+
+    cite {
+      display: block;
+      text-align: right;
+      font-size: 0.8em;
+      color: $content-blockquote-cite-color;
+
+      &::before {
+        content: "\2014\00a0";
+        color: #dee9ed;
+      }
+    }
 
     p {
       margin: 0;

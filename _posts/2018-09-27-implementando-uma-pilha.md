@@ -45,7 +45,8 @@ ser colocado.
 > deletado do conjunto é aquele mais recentemente
 > inserido: a pilha implementa uma política
 > last-in, first-out, ou LIFO.
-> &mdash; <cite>CORMEN, T. H et al</cite>
+> 
+> <cite>CORMEN, T. H et al</cite>
 
 Esta é uma estrutura que tem duas implementações usuais: uma
 com uma Lista Ligada e outra com vetor. Este *post* abordará

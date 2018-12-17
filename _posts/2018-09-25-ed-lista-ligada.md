@@ -39,7 +39,8 @@ para Estruturas de Dados II.
 > onde a ordem linear é determinada pelos
 > índices do vetor, a ordem da lista ligada é
 > determinada por um ponteiro em cada objeto.
-> &mdash; <cite>CORMEN, T. H et al</cite>
+> 
+> <cite>CORMEN, T. H et al</cite>
 
 Uma Lista Simplesmente Ligada consiste de vários nós com
 dois atributos: o valor que ele armazena, o item em si, e

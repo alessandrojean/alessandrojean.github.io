@@ -37,7 +37,8 @@ consequentemente o primeiro a sair da fila.
 > Em uma **fila**, o elemento removido é sempre aquele que 
 > está no conjunto há mais tempo: a fila implementa uma 
 > política *first-in, first-out*, ou **FIFO**. 
-> &mdash; <cite>CORMEN, T. H et al</cite>
+>
+> <cite>CORMEN, T. H et al</cite>
 
 Existem algumas implementações usuais: utilizando um vetor 
 sequencial, um vetor circular e a Lista Ligada. Como dito

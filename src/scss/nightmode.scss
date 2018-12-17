@@ -33,6 +33,13 @@ html.is-night {
 
     blockquote {
       color: inherit;
+
+      &::before,
+      &::after,
+      cite,
+      cite::before {
+        color: #494949;
+      }
     }
 
     *:target {

@@ -1,7 +1,6 @@
-$family-sans-serif: 'Roboto', -system-ui, system-ui, sans-serif;
-$family-sans-serif-features: "calt" 1, "kern" 1, "liga" 1;
-$family-monospace: 'Roboto Mono', 'SFMono-Regular', Menlo, 'Liberation Mono', Consolas, Courier, monospace;
-$family-serif: 'Roboto Slab', Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+$family-sans-serif: 'IBM Plex Sans', -system-ui, system-ui, sans-serif;
+$family-monospace: 'IBM Plex Mono', 'SFMono-Regular', Menlo, 'Liberation Mono', Consolas, Courier, monospace;
+$family-serif: 'Crimson Text', Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
 
 /* Colors. */
 $dark: #111;
@@ -56,7 +55,8 @@ $navigation-link-color: #aaa;
 $post-time-color: #bbb;
 
 // Content
-$content-blockquote-color: #345;
+$content-blockquote-color: #5985a6;
+$content-blockquote-cite-color: #7aa0b8;
 $content-blockquote-font: $family-serif;
 $content-pre-color: #f8f8f2;
 $content-center-color: #ccc;
