@@ -45,6 +45,16 @@ $colors: (
   "spotify": ($spotify)
 );
 
+$languages: (
+  "javascript": (#ffe725, #444),
+  "html": (#f26428, #feefe8),
+  "css": (#2caddd, #dcf1f9),
+  "c": (#5c6bc0, #fff),
+  "cpp": (#00589c, #fff),
+  "java": (#5382a1, #fff),
+  "bash": (#363377, #a2a0d6)
+);
+
 // Headings
 $heading-color: #010101;
 

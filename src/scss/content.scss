@@ -171,7 +171,57 @@ div.content, main.content {
   div.highlighter-rouge {
     width: 100%;
     background-color: #282a36;
-    color: #f8f8f2; 
+    color: #f8f8f2;
+    position: relative;
+
+    &[data-language] {
+      padding-top: 1em;
+
+      @each $name, $pair in $languages {
+        $bg-color: nth($pair, 1);
+        $color: nth($pair, 2);
+
+        &.language-#{$name} {
+          &::before {
+            background-color: $bg-color;
+            color: $color;
+          }
+
+          &::after {
+            background-color: $bg-color;
+          }
+        }
+      }
+
+      &::before {
+        content: attr(data-language);
+        display: block;
+        position: absolute;
+        top: 6px;
+        right: 20px;
+        font-family: $family-monospace;
+        font-weight: 700;
+        font-size: 10px;
+        letter-spacing: .8px;
+        text-transform: uppercase;
+        text-align: right;
+        color: #444;
+        background: #ddd;
+        padding: 0 10px 3px;
+        border-radius: 0 0 3px 3px;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        background-color: #ddd;
+        height: 8px;
+      }
+    }
     
     a[href] {
       color: currentColor !important;
