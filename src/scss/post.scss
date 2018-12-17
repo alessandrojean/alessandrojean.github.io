@@ -1,26 +1,10 @@
 .post {
   page-break-before: always;
-  border-bottom: 1px solid $content-a-footnote-hv-background;
-  padding-bottom: 3em;
-  margin-bottom: 3em;
+  padding-bottom: 1em;
   position: relative;
-
-  &::after {
-    display: block;
-    content: "";
-    width: 7px;
-    height: 7px;
-    border: 1px solid $content-a-footnote-hv-background;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    margin-left: -5px;
-    background: #fff;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    border-radius: 100%;
-    box-shadow: #fff 0 0 0 5px;
-  }
+  width: 100%;
+  max-width: 720px - 64px;
+  margin: 0 auto;
 
   & > p:first-of-type {
     margin-top: 8px;

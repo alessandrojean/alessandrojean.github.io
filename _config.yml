@@ -4,7 +4,7 @@ abbr: 'AJ'
 description: Bem aleatório
 baseurl: "/"
 url: "https://alessandrojean.github.io"
-disqus: alessandrojean
+# disqus: alessandrojean
 google_analytics: UA-117196425-1
 
 # Jekyll settings.

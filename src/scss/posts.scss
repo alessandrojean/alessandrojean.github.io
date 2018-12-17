@@ -1,5 +1,11 @@
-.posts .end {
-  padding-top: 40px;
+.posts {
+  width: 100%;
+  max-width: 720px - 64px;
+  margin: 0 auto;
+
+  .end {
+    padding-top: 40px;
+  }
 }
 
 .content {
