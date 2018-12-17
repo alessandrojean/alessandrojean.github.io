@@ -46,13 +46,13 @@ $colors: (
 );
 
 $languages: (
-  "javascript": (#ffe725, #444),
-  "html": (#f26428, #feefe8),
-  "css": (#2caddd, #dcf1f9),
-  "c": (#5c6bc0, #fff),
-  "cpp": (#00589c, #fff),
-  "java": (#5382a1, #fff),
-  "bash": (#363377, #a2a0d6)
+  "javascript": (#f1e05a, findColorInvert(#f1e05a)),
+  "html": (#e34c26, findColorInvert(#e34c26)),
+  "css": (#563d7c, findColorInvert(#563d7c)),
+  "c": (#555555, findColorInvert(#555555)),
+  "cpp": (#f34b7d, findColorInvert(#f34b7d)),
+  "java": (#b07219, findColorInvert(#b07219)),
+  "bash": (#89e051, findColorInvert(#89e051))
 );
 
 // Headings
