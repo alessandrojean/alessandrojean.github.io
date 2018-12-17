@@ -1,9 +1,25 @@
 .post {
-  padding-bottom: 0em;
   page-break-before: always;
+  border-bottom: 1px solid $content-a-footnote-hv-background;
+  padding-bottom: 3em;
+  margin-bottom: 3em;
+  position: relative;
 
-  &.single, &:last-child {
-    border-bottom: none;
+  &::after {
+    display: block;
+    content: "";
+    width: 7px;
+    height: 7px;
+    border: 1px solid $content-a-footnote-hv-background;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    margin-left: -5px;
+    background: #fff;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    box-shadow: #fff 0 0 0 5px;
   }
 
   & > p:first-of-type {
@@ -35,7 +51,7 @@
   }
 
   .comments {
-    margin-top: 1em;
+    margin-top: 3em;
     border-top: 1px solid $content-a-footnote-hv-background;
     padding-top: 1em;
   }

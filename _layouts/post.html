@@ -22,15 +22,6 @@ layout: default
     </figure>
     {% endif %}
     {{ content }}
-    <div class="meta">
-      <p class="item">Tags</p>
-      {% for tag in page.tags %}
-      <a href="{{ '/tags' | prepend: site.baseurl }}#{{ tag }}" class="tag">
-        <i class="fas fa-hashtag fa-xs"></i>
-        {{ tag }}
-      </a>
-      {% endfor %}
-    </div>
     <div class="breaker"></div>
     {% include disqus.html %}
   </article>

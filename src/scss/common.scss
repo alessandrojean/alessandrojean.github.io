@@ -283,6 +283,25 @@ nav {
   }
 }
 
+footer.footer {
+  position: relative;
+  margin-top: 3em;
+  padding: 3em 0;
+  border-top: 1px solid $content-a-footnote-hv-background;
+  font-size: 0.9em;
+  line-height: 1.7;
+  color: #BBC7CC;
+  text-align: center;
+  background: #F7FAFB;
+
+  .inner {
+    position: relative;
+    width: 80%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
 // Other
 img.profile-picture {
   border-radius: 50%;
