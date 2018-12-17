@@ -44,7 +44,7 @@ const convertToKebabCase = (string) =>
       .toLowerCase();
 
 const fileDateFormat = date => 
-  date.toISOString().substring(0, 10);
+    date.toISOString().substring(0, 10);
 
 const fileTimeFormat = date =>
     date.toISOString().substring(11, 19);
