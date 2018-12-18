@@ -20,6 +20,16 @@ html.is-night {
     background-color: #2e2d2d;
     border-top-color: #494949;
     color: #939393;
+
+    .toggle label {
+      background: #2e2d2d;
+      border-color: #494949;
+      color: #d3d3d3;
+
+      &:hover {
+        box-shadow: rgba(255, 255, 255, 0.05) 0 0 0 3px;
+      }
+    }
   }
 
   div.content, 

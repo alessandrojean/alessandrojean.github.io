@@ -290,7 +290,7 @@ footer.footer {
   position: relative;
   margin: 3em 0 0 0;
   padding: 3em 0;
-  border-top: 1px solid $content-a-footnote-hv-background;
+  border-top: 1px solid #EBF2F6;
   font-size: 0.9em;
   line-height: 1.7;
   color: #BBC7CC;
@@ -302,6 +302,82 @@ footer.footer {
     width: 100%;
     max-width: 720px - 64px;
     margin: 0 auto;
+  }
+
+  .toggle {
+    input[type="checkbox"] {
+      display: none;
+
+      &:checked + label {
+        svg[data-prefix="fas"] { display: inline-block; }
+        svg[data-prefix="far"] { display: none; }
+      }
+    }
+
+    label {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      margin-left: -15px;
+      border: 1px solid #EBF2F6;
+      text-align: center;
+      line-height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      transition: box-shadow 0.5s;
+      color: #D2DEE3;
+      cursor: pointer;
+
+      svg[data-prefix="fas"] { display: none; }
+
+      .fa-lightbulb {
+        margin-top: 8px;
+      }
+
+      &:hover {
+        color: #50585D;
+        box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 3px;
+        transition: box-shadow 0.25s;
+  
+        span.tooltip {
+          opacity: 1;
+          top: -40px;
+        }
+      }
+
+      span.tooltip {
+        opacity: 0;
+        display: inline-block;
+        padding: 4px 8px 5px 8px;
+        position: absolute;
+        top: -23px;
+        left: -50%;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.8em;
+        line-height: 1em;
+        text-align: center;
+        background: #50585D;
+        border-radius: 20px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        transition: opacity 0.3s ease, top 0.3s ease;
+  
+        &::after {
+          content: "";
+          border-width: 5px 5px 0 5px;
+          border-style: solid;
+          border-color: #50585D transparent;
+          display: block;
+          position: absolute;
+          bottom: -4px;
+          left: 50%;
+          margin-left: -5px;
+          z-index: 220;
+          width: 0;
+        }
+      }
+    }
   }
 }
 

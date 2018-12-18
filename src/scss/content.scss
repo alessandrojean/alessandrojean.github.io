@@ -115,7 +115,7 @@ div.content, main.content {
       color: $content-blockquote-cite-color;
 
       &::before {
-        content: "\2014\00a0";
+        content: "\2014\00a0\00a0\00a0";
         color: #dee9ed;
       }
     }
