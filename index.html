@@ -12,7 +12,11 @@ layout: default
         <h3 class="text">{{ post.title }}</h3>
         <div class="body">
           <p>
+            {% if post.description != "" %}
+            {{ post.description }}
+            {% else %}
             {{ post.excerpt | strip_html }}
+            {% endif %}
             <time datetime="{{ post.date | date_to_xmlschema }}">
               {% include post_date.html date=post.date %}
             </time>

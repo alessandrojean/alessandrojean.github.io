@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Implementando uma Fila"
-description:
+description: ''
 date: 2018-12-16 22:35:58
 main_category: ed
 permalink: /ed/estruturas/fila/

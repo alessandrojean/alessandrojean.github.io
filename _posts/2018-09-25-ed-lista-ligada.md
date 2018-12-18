@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Implementando uma Lista Simplesmente Ligada'
-description: 'Uma implementação genérica com exemplo'
+description: ''
 main_category: ed
 #cover: '/blog/assets/img/series/ed/ed-linked-list.png'
 #permalink: /ed/estruturas/lista-simplesmente-ligada/

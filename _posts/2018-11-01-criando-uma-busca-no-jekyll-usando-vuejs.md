@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Criando uma busca no Jekyll usando Vue.js"
-description: 
+description: ''
 main_category: js
 
 tags:

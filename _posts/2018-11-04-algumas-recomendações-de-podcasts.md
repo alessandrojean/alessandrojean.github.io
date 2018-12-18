@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Algumas recomendações de podcasts"
-description:
+description: ''
 date: 2018-11-04 17:30:23
 main_category: daily
 

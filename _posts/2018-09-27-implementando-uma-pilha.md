@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Implementando uma Pilha"
-description: 'Implementação utilizando uma Lista Ligada'
+description: ''
 date: 2018-09-27 20:44:54
 main_category: ed
 #cover: '/blog/assets/img/series/ed/ed-stack.png'
