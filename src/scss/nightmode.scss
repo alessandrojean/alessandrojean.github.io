@@ -70,6 +70,12 @@ html.is-night {
     div.footnotes {
       border-top-color: #2e2d2d;
 
+      &::after {
+        border-color: #2e2d2d;
+        background: #1c1b1b;
+        box-shadow: #1c1b1b 0 0 0 5px;
+      }
+
       li:target {
         background: #2e2d2d;
         color: #939393;
