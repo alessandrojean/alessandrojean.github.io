@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'O que Fune wo Amu nos ensina'
-description: 'Uma breve análise de uma de suas mensagens'
+description: 'Uma breve análise de uma de suas principais mensagens'
 main_category: filme
 #cover: 'https://i.imgur.com/gxHQlUr.png'
 #cover_caption: 'Cena de abertura do filme, uma metáfora com o mar.'
