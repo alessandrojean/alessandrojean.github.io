@@ -28,6 +28,8 @@ external:
     url: https://kitsu.io/anime/fune-wo-amu
 ---
 
+<img align="right" src="{{ site.baseurl }}/assets/img/o-que-fune-wo-amu-nos-ensina/book_open_1.png" width="30%">
+
 *The Great Passage* conta a história de Majime, um empregado em uma editora,
 que é transferido para um antigo e, de certa forma, abandonado setor da mesma,
 o setor de criação de dicionários, para ser o substituto de Araki,
