@@ -23,8 +23,12 @@ permalink: /archive/
       </a>
     </li>
   </ul>
-  <p v-if="!filteredPosts.length">
+  <p v-if="!filteredPosts.length && !error">
     Nenhum resultado encontrado, tente outro termo.
+  </p>
+  <p v-if="error">
+    Um erro aconteceu durante a requisição.
+    <a href="#" @click="fetchFromApi">Tentar novamente?</a>
   </p>
 </div>
 
@@ -37,6 +41,7 @@ permalink: /archive/
     delimiters: ['${', '}'],
     data: function () {
       return {
+        error: false,
         search: '',
         posts: []
       }
@@ -46,15 +51,15 @@ permalink: /archive/
         if (this.search === '')
           return this.posts;
 
-        let titleLower;
-        let categoryLower;
+        const fields = ['title', 'category'];
         const searchLower = this.search.toLowerCase();
         return this.posts
           .filter(x => {
-            titleLower = x.title.toLowerCase();
-            categoryLower = x.category.toLowerCase();
-            return titleLower.includes(searchLower) ||
-              categoryLower.includes(searchLower);
+            for (const field of fields)
+              if (x[field].toLowerCase().includes(searchLower))
+                return true;
+
+            return false;
           });
       }
     },
@@ -77,10 +82,11 @@ permalink: /archive/
       },
       fetchFromApi: async function () {
         try {
+          this.error = false;
           const response = await axios.get('/search.json');
           Vue.set(this, 'posts', response.data);
         } catch (error) { 
-          console.error(error);
+          this.error = true;
         }
       }
     },
