@@ -1,0 +1,31 @@
+.container-404 {
+  width: 30%;
+  min-width: 195px;
+}
+
+.img-404 {
+  overflow: hidden;
+  min-width: 200px;
+  width: 100%;
+  height: 0;
+  padding-bottom: 40%;
+  margin-bottom: 1rem;
+}
+
+.img-404 img {
+  object-fit: cover;
+  margin-top: -20%;
+  margin-left: -5%;
+  box-shadow: none;
+}
+
+.header-404 {
+  font-size: 180%;
+}
+
+@media only screen and (max-width: 720px) {
+  .container-404 {
+    margin: 0 auto;
+    width: 50%;
+  }
+}

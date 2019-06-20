@@ -6,6 +6,11 @@
   }
 }
 
+.article a:hover .article-title {
+  background-color: $color-primary;
+  color: white;
+}
+
 .article-header {
   @include small-caps();
 
@@ -18,6 +23,7 @@
 .article-title {
   font-weight: 600;
   margin: 0.2em 0em;
+  display: inline-block;
 }
 
 .article-excerpt {

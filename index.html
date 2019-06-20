@@ -12,8 +12,10 @@ layout: page
         <span class="number">{{ post.date | date: "%d" }}</span>,
         <span class="number">{{ post.date | date: "%Y" }}</span>
         •
-        <span class="number">14</span>
-        min. read
+        <span class="number">
+          {% include read-time.html content=post.content %}
+        </span>
+        min. leitura
       </div>
       <h2 class="article-title">{{ post.title }}</h2>
       <p class="article-excerpt">

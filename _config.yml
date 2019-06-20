@@ -4,6 +4,7 @@ abbr: 'AJ'
 description: Apenas mais um blog hospedado no GitHub Pages.
 baseurl: ''
 url: 'https://alessandrojean.github.io'
+repo: 'https://github.com/alessandrojean/alessandrojean.github.io'
 copyright: © 2019 — Alessandro Jean
 google_analytics: UA-117196425-1
 

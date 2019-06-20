@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "dev": "gulp",
-    "post": "node newpost.js",
+    "create:post": "node new-post.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
