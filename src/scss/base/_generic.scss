@@ -129,7 +129,7 @@ code {
 pre {
   padding: 1em;
   margin: 0.5em 0;
-  overflow: auto;
+  overflow-x: auto;
   border-radius: 0.3em;
 }
 
@@ -139,17 +139,19 @@ div.highlighter-rouge {
   font-size: 90%;
   background-color: $color-hl-bg;
   margin: 1em 0px;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+div.highlighter-rouge > div.highlight {
   padding: 1em;
-  overflow: auto;
 }
 
 div.highlighter-rouge > div > pre {
   background-color: transparent;
-  float: left;
-  min-width: 100%;
   margin: 0px;
   padding: 0px;
-  overflow: initial;
+  overflow-x: auto;
 
   &::selection {
     background: $color-hl-sel;

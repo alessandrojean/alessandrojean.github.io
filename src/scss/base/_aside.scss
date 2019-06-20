@@ -1,8 +1,14 @@
 .aside {
+  min-width: 21rem;
   max-width: 21rem;
   margin-right: 1rem;
   font-size: 80%;
   padding: 1rem 2rem 1rem 1rem;
+}
+
+.aside .post-author-avatar {
+  width: 60px;
+  height: 60px;
 }
 
 .aside-title {
@@ -45,8 +51,56 @@
 
 .aside-social a {
   margin-bottom: 0.5em;
+  border-bottom: 1px solid transparent;
 
   &:hover {
     border-bottom: 1px solid $color-border;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .aside {
+    margin-right: 0px;
+    padding-right: 1rem;
+  }
+
+  .aside a[href='/']:first-of-type {
+    text-align: center;
+  }
+
+  .aside .post-author-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .aside-title {
+    font-size: 150%;
+  }
+
+  .aside-description {
+    display: none;
+  }
+
+  .aside-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .aside-menu li a {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      border-left: none;
+      border-bottom: 2px solid lightgrey;
+    }
+
+    &.active {
+      border-left: none;
+      border-bottom: 2px solid $color-border;
+    }
   }
 }
