@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Criando uma busca no Jekyll usando Vue.js"
+title: 'Criando uma busca no Jekyll usando Vue.js'
 description: ''
 main_category: js
 
@@ -10,14 +10,14 @@ tags:
   - jekyll
 ---
 
-Recentemente, ao construir este *blog*, eu entrei em um grande
+_Recentemente, ao construir este blog, eu entrei em um grande
 dilema: como fazer uma busca, sendo que o [Jekyll] é um
-gerador de sites estáticos?
+gerador de sites estáticos?_
 
 Só existe uma solução: fazê-la usando JavaScript. Existem diversas
-maneiras de implementar isto: usando algum *script* já pronto,
+maneiras de implementar isto: usando algum _script_ já pronto,
 como o [Simple-Jekyll-Search]; fazendo um arquivo JSON simulando
-uma API, mas com todos os *posts* em seu conteúdo etc.
+uma API, mas com todos os _posts_ em seu conteúdo etc.
 
 No entanto, eu queria criar uma solução original e simples,
 em que eu mesmo pudesse desenvolver e mantê-la. Então foi
@@ -48,14 +48,14 @@ sua função de `debounce`, onde explicarei melhor posteriormente.
 
 ## O container
 
-Precisamos delimitar o *container* onde o Vue irá agir,
+Precisamos delimitar o _container_ onde o Vue irá agir,
 criando um elemento e atribuindo um `id` para este.
 A busca será bem simples: consiste de uma caixa de texto
 e uma lista que serão os resultados.
 
 ```html
 <div id="search">
-  <input type="search" :value="search" @input="update">
+  <input type="search" :value="search" @input="update" />
   <ul>
     <li v-for="post of posts" :key="post.url">
       <time :datetime="post.dateXml">${post.date}</time>
@@ -82,10 +82,10 @@ seu construtor e informaremos alguns parâmetros.
   new Vue({
     el: '#search',
     delimiters: ['${', '}'],
-    data: function () {
+    data: function() {
       return {
-        search: '',
-      }
+        search: ''
+      };
     }
   });
 </script>
@@ -98,12 +98,12 @@ que iremos passar e não o padrão.
 Neste momento, se você tentar executar, perceberá que
 talvez o Vue dê um erro em seu `console`. Isto acontece
 porque não definimos o seu atributo `posts` que referenciamos
-no *container* para fazer o *loop*.
+no _container_ para fazer o _loop_.
 
-## Gerando o atributo *posts*
+## Gerando o atributo _posts_
 
 Agora, precisamos utilizar algumas funções do Liquid para
-poder passar todos os *posts* do *blog* para o Vue na
+poder passar todos os _posts_ do _blog_ para o Vue na
 sintaxe do Javascript. Para isto, dentro do atributo
 `data`, logo após `search`, criamos um vetor de objetos
 que será preenchido com o `for` do Liquid.
@@ -125,38 +125,38 @@ posts: [{% raw %}
 
 Aqui as coisas começam a ficar interessantes. O que
 acontecerá é que, quando o site for gerado, o Jekyll
-iterará em todos os *posts* e escreverá o arquivo
+iterará em todos os _posts_ e escreverá o arquivo
 `html` final com uma estrutura parecida com esta abaixo.
 
 ```javascript
 posts: [
   {
-    date: "01/11/2018",
-    dateXml: "2018-11-01T00:00:00-03:00",
+    date: '01/11/2018',
+    dateXml: '2018-11-01T00:00:00-03:00',
     title: 'Busca no Jekyll usando Vue.js',
     url: '/busca-no-jekyll-usando-vuejs/',
     category: ''
   },
   {
-    date: "27/09/2018",
-    dateXml: "2018-09-27T17:44:54-03:00",
+    date: '27/09/2018',
+    dateXml: '2018-09-27T17:44:54-03:00',
     title: 'Implementando uma Pilha',
     url: '/ed/estruturas/pilha/',
     category: ''
-  },
+  }
   // E assim segue com os outros posts...
-]
+];
 ```
 
 Ou seja, agora o atributo `posts` do Vue está preenchido
 com um vetor de objetos, onde cada objeto representa um
-*post* do *blog*, e o mais importante: na sintaxe
+_post_ do _blog_, e o mais importante: na sintaxe
 correta do JavaScript. Agora, se você testar,
 todos os posts são exibidos.
 
 ## Implementando a busca
 
-Até agora, já fizemos com que o Vue exiba todos os *posts*,
+Até agora, já fizemos com que o Vue exiba todos os _posts_,
 no entanto, ainda não podemos filtrar por aqueles que
 contenham um termo digitado no campo de busca.
 
@@ -173,7 +173,7 @@ computed: {
     // Se o termo é vazio, devolva todos os posts.
     if (this.search.length === 0)
       return this.posts;
-    
+
     let titleLower;
     let categoryLower;
     const searchLower = this.search.toLowerCase();
@@ -192,7 +192,7 @@ computed: {
 ```
 
 Precisamos agora trocar a lista no `v-for` da lista
-que exibe os *posts*.
+que exibe os _posts_.
 
 ```html
 <li v-for="post in filteredPosts" :key="post.url">
@@ -203,14 +203,14 @@ que exibe os *posts*.
 ## Um pequeno problema
 
 Aqui nós entramos em um problema. A operação de filtro
-é linear, ou seja, dependendo de quantos *posts* o seu
-*blog* tem, esta pode ser lenta. Caso usássemos a
-implementação natural de *binding* do Vue, através
+é linear, ou seja, dependendo de quantos _posts_ o seu
+_blog_ tem, esta pode ser lenta. Caso usássemos a
+implementação natural de _binding_ do Vue, através
 do `v-model="search"`, sempre que apertarmos
 uma tecla do teclado e alterarmos o conteúdo,
 essa função de filtro será chamada novamente. Precisamos
 evitar que isto seja repetido várias vezes a cada
-tecla que pressionamos. Aí que entra o uso da função 
+tecla que pressionamos. Aí que entra o uso da função
 `debounce` do Lodash.
 
 > Cria uma função de debounce que atrasa a
@@ -219,7 +219,7 @@ tecla que pressionamos. Aí que entra o uso da função
 > última vez que a função de debounce
 > foi chamada. [^debounce]
 
-Ou seja, a função de *debounce* irá atrasar
+Ou seja, a função de _debounce_ irá atrasar
 uma dada função até que um tempo dado tenha
 passado. Mesmo que chamemos inúmeras vezes
 esta mesma função, ela só será executada
@@ -227,20 +227,20 @@ uma vez após este tempo. Para isto que
 aplicaremos ela no método `@input` da
 caixa de busca.
 
-## Aplicando *debounce* na caixa de busca
+## Aplicando _debounce_ na caixa de busca
 
 Precisamos criar um método `update` que será chamado
 sempre que houver alguma modificação na entrada
 da caixa de busca. Neste método, aplicaremos
-o *debounce*: só atualizaremos o valor de `search`
+o _debounce_: só atualizaremos o valor de `search`
 após 300 milisegundos, e, consequentemente,
 o `filteredPosts`.
 
 ```javascript
 methods: {
-  update: _.debounce(function (e) {
+  update: _.debounce(function(e) {
     this.search = e.target.value;
-  }, 300)
+  }, 300);
 }
 ```
 
@@ -266,7 +266,7 @@ conceito.
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 Tente fazer buscas por termos que estão nos títulos dos
-*posts* ou pelo nome das categorias, você verá que
+_posts_ ou pelo nome das categorias, você verá que
 os resultados estão sendo filtrados corretamente.
 
 Até uma próxima!
@@ -275,8 +275,8 @@ Até uma próxima!
 [^debounce]: [Documentação do Lodash].
 
 [aqui]: https://www.rossener.com/fazendo-um-formulario-de-contato-no-jekyll-com-vue.js/
-[Documentação do Lodash]: https://lodash.com/docs/4.17.11#debounce
-[Jekyll]: https://jekyllrb.com/
-[Simple-Jekyll-Search]: https://github.com/christian-fei/Simple-Jekyll-Search
-[Vue.js]: https://vuejs.org/
-[Lodash]: https://lodash.com/
+[documentação do lodash]: https://lodash.com/docs/4.17.11#debounce
+[jekyll]: https://jekyllrb.com/
+[simple-jekyll-search]: https://github.com/christian-fei/Simple-Jekyll-Search
+[vue.js]: https://vuejs.org/
+[lodash]: https://lodash.com/

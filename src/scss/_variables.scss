@@ -1,0 +1,162 @@
+// Typographic
+$typographic-sans-font-family: 'Inter', -system-ui, system-ui, sans-serif;
+$typographic-mono-font-family: Hack, 'SFMono-Regular', Menlo, 'Liberation Mono',
+  Consolas, Courier, monospace;
+
+$typographic-line-height: 1.4;
+$typographic-font-size-df: 18px;
+
+// Colors.
+$color-text: rgb(58, 52, 58);
+$color-text-grey: rgb(216, 222, 233);
+$color-border: rgb(76, 86, 106);
+$color-kbd-bg: rgb(236, 239, 244);
+$color-code-bg: #eceff4;
+$color-code-fg: #2e3440;
+$color-selection: rgb(201, 236, 255);
+
+$color-hl-bg: rgb(46, 52, 64);
+$color-hl-sel: #3b4252;
+
+// Post.
+$post-width: 680px;
+
+// $family-monospace: 'IBM Plex Mono', 'SFMono-Regular', Menlo, 'Liberation Mono',
+//   Consolas, Courier, monospace;
+// $family-serif: 'Crimson Text', Constantia, 'Lucida Bright', Lucidabright,
+//   'Lucida Serif', Lucida, 'DejaVu Serif', 'Bitstream Vera Serif',
+//   'Liberation Serif', Georgia, serif;
+
+// /* Colors. */
+// $dark: #111;
+// $primary: #0366d6;
+// $link: $primary;
+// $karaoke: royalblue;
+// $filme: #7dad16;
+// $ed: #6a7fa8;
+// $js: #d8c20d;
+// $daily: #b31917;
+// $twitter: #55acee;
+// $facebook: #3b5998;
+// $instagram: #517fa6;
+// $github: #333;
+// $myanimelist: #2e51a2;
+// $mydramalist: #00619d;
+// $kitsu: #f75239;
+// $imdb: #f3ce00;
+// $whatsapp: #25d366;
+// $telegram: #0088cc;
+// $messenger: #0084ff;
+// $spotify: #1db954;
+
+// $colors: (
+//   'dark': (
+//     $dark
+//   ),
+//   'karaoke': (
+//     $karaoke
+//   ),
+//   'filme': (
+//     $filme
+//   ),
+//   'ed': (
+//     $ed
+//   ),
+//   'js': (
+//     $js
+//   ),
+//   'daily': (
+//     $daily
+//   ),
+//   'twitter': (
+//     $twitter
+//   ),
+//   'facebook': (
+//     $facebook
+//   ),
+//   'instagram': (
+//     $instagram
+//   ),
+//   'github': (
+//     $github
+//   ),
+//   'whatsapp': (
+//     $whatsapp
+//   ),
+//   'telegram': (
+//     $telegram
+//   ),
+//   'messenger': (
+//     $messenger
+//   ),
+//   'myanimelist': (
+//     $myanimelist
+//   ),
+//   'mydramalist': (
+//     $mydramalist
+//   ),
+//   'kitsu': (
+//     $kitsu
+//   ),
+//   'imdb': (
+//     $imdb
+//   ),
+//   'spotify': (
+//     $spotify
+//   )
+// );
+
+// $languages: (
+//   'javascript': (
+//     #f1e05a,
+//     findColorInvert(#f1e05a)
+//   ),
+//   'html': (
+//     #e34c26,
+//     findColorInvert(#e34c26)
+//   ),
+//   'css': (
+//     #563d7c,
+//     findColorInvert(#563d7c)
+//   ),
+//   'c': (
+//     #555555,
+//     findColorInvert(#555555)
+//   ),
+//   'cpp': (
+//     #f34b7d,
+//     findColorInvert(#f34b7d)
+//   ),
+//   'java': (
+//     #b07219,
+//     findColorInvert(#b07219)
+//   ),
+//   'bash': (
+//     #89e051,
+//     findColorInvert(#89e051)
+//   )
+// );
+
+// // Headings
+// $heading-color: #010101;
+
+// // Navigation
+// $navigation-link-color: #aaa;
+
+// // Posts
+// $post-time-color: #bbb;
+
+// // Content
+// $content-blockquote-color: #5985a6;
+// $content-blockquote-cite-color: #7aa0b8;
+// $content-blockquote-font: $family-serif;
+// $content-pre-color: #f8f8f2;
+// $content-center-color: #ccc;
+// $content-a-footnote-color: #666;
+// $content-a-footnote-hv-background: #eee;
+// $content-footnote-p-color: #999;
+// $content-footnote-li-target-background: #ffc;
+// $content-figcaption-color: #aaa;
+
+// // Post
+// $post-actions-color: #bbb;

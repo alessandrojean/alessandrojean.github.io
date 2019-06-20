@@ -3,11 +3,11 @@
 
   &:before {
     display: block;
-    content: "";
+    content: '';
     width: 100%;
     padding-top: ($height / $width) * 100%;
   }
-  
+
   > iframe {
     position: absolute;
     top: 0;
@@ -15,14 +15,5 @@
     width: 100%;
     height: 100%;
     margin: 0;
-  }
-}
-
-@mixin placeholder {
-  $placeholders: ':-moz' ':-webkit-input' '-moz' '-ms-input';
-  @each $placeholder in $placeholders {
-    &:#{$placeholder}-placeholder {
-      @content
-    }
   }
 }

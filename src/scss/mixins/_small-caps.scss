@@ -1,0 +1,6 @@
+@mixin small-caps {
+  text-transform: lowercase;
+  font-size: 80%;
+  font-weight: 700;
+  font-variant: small-caps;
+}

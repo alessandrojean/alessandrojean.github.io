@@ -43,6 +43,8 @@
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.1",
     "gulp-uglify-es": "^1.0.4",
-    "inquirer": "^6.2.1"
+    "inquirer": "^6.2.1",
+    "nord": "^0.2.1",
+    "normalize-scss": "^7.0.1"
   }
 }

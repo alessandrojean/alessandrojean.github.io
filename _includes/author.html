@@ -1,63 +1,11 @@
-<section itemprop="author" itemscope itemtype="http://schema.org/Person" class="section is-paddingless-horizontal">
-  <div class="hero is-small is-light author">
-    <div class="container grid">
-      <div class="columns is-vcentered is-mobile is-multiline">
-        <div class="column is-4-mobile is-3-tablet is-offset-4-mobile has-text-centered">
-          <figure class="image avatar">
-            <img itemprop="image" src="{{ site.avatar_url }}" alt="Foto de perfil">
-          </figure>
-        </div>
-        <div class="column is-9-tablet is-full-mobile has-text-centered-mobile has-text-left-tablet">
-          <p class="has-text-grey">Autor</p>
-          <meta itemprop="sameAs" content="{{ site.baseurl | prepend: site.url }}">
-          <h3 itemprop="name" class="title is-marginless">{{ site.username }}</h3>
-          <p>{{ site.user_description }}</p>
-          <div class="social-medias is-size-7">
-            {% if site.github_username %}
-            <a href="https://github.com/{{ site.github_username }}" class="has-text-github" title="GitHub">
-              <span class="icon">
-                <i class="fab fa-github fa-2x"></i>
-              </span>
-            </a>
-            {% endif %}
-            {% if site.twitter_username %}
-            <a href="https://twitter.com/{{ site.twitter_username }}" class="has-text-twitter" title="Twitter">
-              <span class="icon">
-                <i class="fab fa-twitter fa-2x" data-fa-transform="shrink-6.5" data-fa-mask="fas fa-circle"></i>
-              </span>
-            </a>
-            {% endif %}
-            {% if site.instagram_username %}
-            <a href="https://instagram.com/{{ site.instagram_username }}" class="has-text-instagram" title="Instagram">
-              <span class="icon">
-                <i class="fab fa-instagram fa-2x" data-fa-transform="shrink-6.5" data-fa-mask="fas fa-circle"></i>
-              </span>
-            </a>
-            {% endif %}
-            {% if site.spotify_username %}
-            <a href="https://open.spotify.com/user/{{ site.spotify_username }}" class="has-text-spotify" title="Spotify">
-              <span class="icon">
-                <i class="fab fa-spotify fa-2x"></i>
-              </span>
-            </a>
-            {% endif %}
-            {% if site.myanimelist_username %}
-            <a href="https://myanimelist.net/profile/{{ site.myanimelist_username }}" class="has-text-myanimelist" title="MyAnimeList">
-              <span class="icon">
-                <svg class="icon i-2x"><use xlink:href="#icon-mal-circle"></use></svg>
-              </span>
-            </a>
-            {% endif %}
-            {% if site.mydramalist_username %}
-            <a href="https://mydramalist.com/profile/{{ site.myanimelist_username }}" class="has-text-mydramalist" title="MyDramaList">
-              <span class="icon">
-                <svg class="icon i-2x"><use xlink:href="#icon-mdl-circle"></use></svg>
-              </span>
-            </a>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
+<section class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+
+  <img alt="me" src="{{ site.avatar_url }}" width="60" height="60" class="post-author-avatar"/>
+
+  <div class="post-author-bio">
+    Escrito por
+    <strong>{{ site.username }}</strong>,
+
+    {{ site.user_bio }}
   </div>
 </section>

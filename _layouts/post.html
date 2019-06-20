@@ -2,46 +2,28 @@
 layout: default
 ---
 
-<main class="content">
-  <article class="post single">
-    <header>
-      <h1>{{ page.title }}</h1>
-      <time datetime="{{ page.date | date_to_xmlschema }}">
-        {% include post_date.html date=page.date %}
-      </time>
-    </header>
+<article class="post">
+  <div class="post-navigation">
+    <a href="/">← Todos os artigos</a>
+    <span>
+      {{ page.date | date: "%b" }}
+      <span class="number">{{ page.date | date: "%d" }}</span>,
+      <span class="number">{{ page.date | date: "%Y" }}</span>
+      •
+      <span class="number">14</span>
+      Min Read
+    </span>
+  </div>
 
-    {% if page.cover %}
-    <figure>
-      <img src="{{ page.cover }}" alt="Capa do post">
-      {% if page.cover_caption %}
-      <figcaption>
-        {{ page.cover_caption }}
-      </figcaption>
-      {% endif %}
-    </figure>
-    {% endif %}
+  <header>
+    <h1 class="post-title">{{ page.title }}</h1>
+  </header>
+
+  <div>
     {{ content }}
-    <div class="breaker"></div>
-    {% include disqus.html %}
-  </article>
-</main>
+  </div>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
-<script type="text/javascript">
-  window.addEventListener('load', () => {
-    const players = document.querySelectorAll('.video-player');
-    if (players.length) {
-      players.forEach(p => {
-        new Clappr.Player({
-          source: p.dataset.source,
-          parent: p,
-          poster: p.dataset.poster,
-          height: '100%',
-          width: '100%'
-        });
-        p.style.paddingBottom = p.dataset.height / p.dataset.width * 100 + '%';
-      });
-    }
-  });
-</script>
+  {% include author.html %}
+
+  {% include post-navigation.html %}
+</article>

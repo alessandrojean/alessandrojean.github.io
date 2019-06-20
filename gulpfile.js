@@ -20,7 +20,8 @@ const browserSyncInit = done => {
   browserSync.init({
     server: {
       baseDir: '_site'
-    }
+    },
+    open: false
   });
   done();
 };
@@ -34,9 +35,17 @@ const browserSyncReload = done => {
 // CSS task.
 const cssTask = () => {
   return gulp
-    .src('src/scss/main.scss')
+    .src('src/scss/init.scss')
     .pipe(plumber())
-    .pipe(sass({ outputStyle: 'expanded' }))
+    .pipe(
+      sass({
+        outputStyle: 'expanded',
+        includePaths: [
+          './node_modules/normalize-scss/sass',
+          './node_modules/nord/src/sass'
+        ]
+      })
+    )
     .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(gulp.dest('_site/assets/css'))
     .pipe(browserSync.stream())
