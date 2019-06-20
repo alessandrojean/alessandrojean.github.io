@@ -1,36 +1,35 @@
 ---
-layout: sidebar
+layout: page
 ---
 
-<!--<main class="content" id="main" itemprop="mainContentOfPage">
-  <div class="posts">
-    {% assign count = 0 %}
-    {% for post in site.posts %}
-      {% assign count = count | plus: 1 %}
-      <a href="{{ post.url | prepend: site.baseurl }}" class="post-excerpt is-{{ post.main_category }}">
-        <div class="post-content">
-          <h3 class="text">{{ post.title }}</h3>
-          <div class="body">
-            <p>
-              {% if post.description != "" %}
-                {{ post.description }}
-              {% else %}
-                {{ post.excerpt | strip_html }}
-              {% endif %}
-              <time datetime="{{ post.date | date_to_xmlschema }}">
-                {% include post_date.html date=post.date %}
-              </time>
-            </p>
-          </div>
-        </div>
-      </a>
-      {% if count == 10 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-    <div class="breaker"></div>
-    <div class="end">
-      <a href="{{ '/archive/' | prepend: site.baseurl }}">Todos os posts…</a>
-    </div>
+{% assign count = 0 %}
+{% for post in site.posts %}
+  {% assign count = count | plus: 1 %}
+  <div class="article">
+    <a href="{{ post.url | prepend: site.baseurl }}">
+      <div class="article-header">
+        {{ post.date | date: "%b" }}
+        <span class="number">{{ post.date | date: "%d" }}</span>,
+        <span class="number">{{ post.date | date: "%Y" }}</span>
+        •
+        <span class="number">14</span>
+        min. read
+      </div>
+      <h2 class="article-title">{{ post.title }}</h2>
+      <p class="article-excerpt">
+        {% if post.description != "" %}
+          {{ post.description }}
+        {% else %}
+          {{ post.excerpt | strip_html }}
+        {% endif %}
+      </p>
+    </a>
   </div>
-</main>-->
+  {% if count == 10 %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+<div class="articles-navigation">
+  <a href="{{ '/archive/' | prepend: site.baseurl }}">Todos os artigos →</a>
+</div>

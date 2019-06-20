@@ -1,0 +1,43 @@
+.article {
+  margin: 2em 0em;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.article-header {
+  @include small-caps();
+
+  span {
+    font-size: 80%;
+    font-weight: 700;
+  }
+}
+
+.article-title {
+  font-weight: 600;
+  margin: 0.2em 0em;
+}
+
+.article-excerpt {
+  font-size: 80%;
+  margin: 0px;
+}
+
+.articles-navigation {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 2em;
+  @include small-caps();
+}
+
+.articles-navigation a {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  text-align: right;
+  padding-left: 1em;
+}
