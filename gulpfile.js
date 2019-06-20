@@ -16,7 +16,7 @@ const imagemin = require('gulp-imagemin');
 const cp = require('child_process');
 
 // BrowserSync.
-const browserSyncInit = (done) => {
+const browserSyncInit = done => {
   browserSync.init({
     server: {
       baseDir: '_site'
@@ -26,7 +26,7 @@ const browserSyncInit = (done) => {
 };
 
 // BrowserSync Reload.
-const browserSyncReload = (done) => {
+const browserSyncReload = done => {
   browserSync.reload();
   done();
 };
@@ -58,7 +58,7 @@ const jsTask = () => {
   return gulp
     .src('src/js/**/*.js')
     .pipe(plumber())
-    .pipe(babel({ presets: ['env'] }))
+    .pipe(babel({ presets: ['@babel/preset-env'] }))
     .pipe(concat('main.js'))
     .pipe(uglify())
     .pipe(gulp.dest('_site/assets/js'))
@@ -72,16 +72,20 @@ const imagesTask = () => {
     .src('src/img/**/*')
     .pipe(plumber())
     .pipe(newer('assets/img'))
-    .pipe(imagemin({
-      progressive: true,
-      svgoPlugins: [{ removeViewBox: false }]
-    }))
+    .pipe(
+      imagemin({
+        progressive: true,
+        svgoPlugins: [{ removeViewBox: false }]
+      })
+    )
     .pipe(gulp.dest('assets/img/'));
 };
 
 // Jekyll.
 const jekyll = () => {
-  return cp.spawn('bundle', ['exec', 'jekyll', 'build', '--drafts'], { stdio: 'inherit' });
+  return cp.spawn('bundle', ['exec', 'jekyll', 'build', '--drafts'], {
+    stdio: 'inherit'
+  });
 };
 
 // Watch files.
@@ -89,15 +93,18 @@ const watchFiles = () => {
   gulp.watch('src/scss/**/*.scss', cssTask);
   gulp.watch('src/js/**/*.js', gulp.series(scriptsLint, jsTask));
   gulp.watch('src/img/**/*', imagesTask);
-  gulp.watch([
-    '*.{html,md}',
-    'category/*.html',
-    '_includes/*.html',
-    '_layouts/*.html',
-    '_posts/*',
-    '_drafts/*',
-    '_config.yml'
-  ], gulp.series(jekyll, browserSyncReload));
+  gulp.watch(
+    [
+      '*.{html,md}',
+      'category/*.html',
+      '_includes/*.html',
+      '_layouts/*.html',
+      '_posts/*',
+      '_drafts/*',
+      '_config.yml'
+    ],
+    gulp.series(jekyll, browserSyncReload)
+  );
 };
 
 // Tasks.
@@ -107,10 +114,7 @@ gulp.task('js', gulp.series(scriptsLint, jsTask));
 gulp.task('jekyll', jekyll);
 
 // Build.
-gulp.task(
-  'build',
-  gulp.parallel(cssTask, imagesTask, jekyll, 'js')
-);
+gulp.task('build', gulp.parallel(cssTask, imagesTask, jekyll, 'js'));
 
 // Watch.
 gulp.task('watch', gulp.parallel(watchFiles, browserSyncInit));

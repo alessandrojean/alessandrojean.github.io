@@ -1,8 +1,8 @@
 # Site settings.
 title: Alessandro Jean
-abbr: 'AJ'
-description: Bem aleatório
-baseurl: "/"
+abbr: "AJ"
+description: Apenas mais um blog hospedado no GitHub Pages.
+baseurl: ""
 url: "https://alessandrojean.github.io"
 # disqus: alessandrojean
 google_analytics: UA-117196425-1
@@ -14,7 +14,7 @@ permalink: /:title/
 # User settings.
 username: Alessandro Jean
 user_description: Apenas compartilhando conhecimento
-avatar_url: 'https://avatars0.githubusercontent.com/u/14254807?s=460&v=4'
+avatar_url: "https://avatars0.githubusercontent.com/u/14254807?s=460&v=4"
 instagram_username: alessandrojean
 myanimelist_username: alessandrojean
 mydramalist_username: alessandrojean
@@ -31,8 +31,7 @@ kramdown:
   # syntax_highlighter: rouge
   syntax_highlighter_opts:
     # Use existing pygments syntax highlighting css.
-    css_class: 'highlight'
-
+    css_class: "highlight"
 
 # SASS settings.
 sass:
