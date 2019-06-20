@@ -1,6 +1,7 @@
 .page-container {
   display: flex;
   flex-wrap: wrap;
+  /* autoprefixer: off */
   -webkit-box-pack: center;
   justify-content: center;
   margin: 3em 1em;
@@ -8,7 +9,9 @@
 
 .page {
   max-width: 680px;
+  /* autoprefixer: off */
   -webkit-box-flex: 1;
   flex-grow: 1;
   padding: 1em;
+  width: 100%;
 }

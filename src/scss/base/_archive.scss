@@ -1,0 +1,51 @@
+#search {
+  display: block;
+}
+
+#search label {
+  margin-top: 1em;
+  display: block;
+  @include small-caps();
+}
+
+#search input {
+  padding: 0.5em;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-image: initial;
+  outline: none;
+  width: 200px;
+  font-size: 70%;
+  line-height: inherit;
+  margin: 0;
+}
+
+#search .search-results {
+  margin-top: 1em;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#search .search-results li {
+  padding-left: 0;
+  margin-bottom: 0.2rem;
+}
+
+#search .search-results li a {
+  border-bottom: none;
+  font-size: 90%;
+
+  &:hover {
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+#search .search-results li a time {
+  color: $color-time;
+  font-feature-settings: 'tnum' 1;
+}
+
+#search p {
+  font-size: 90%;
+}

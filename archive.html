@@ -5,20 +5,17 @@ permalink: /archive/
 ---
 
 <div id="search">
-  <div class="control">
-    <input type="search" placeholder="Busque entre os posts…" 
-      :value="search" @input="update">
-    <span class="icon is-right">
-      <i class="fas fa-search"></i>
-    </span>
+  <div>
+    <label class="search-label" for="search">Busca</label>
+    <input :value="search" @input="update" type="text">
   </div>
-  <ul class="minimal">
-    <li v-for="post of filteredPosts" :key="post.url">
-      <time class="archive" :datetime="post.dateXml">
-        ${post.date}
-      </time>
-      &mdash;
+  <ul class="search-results">
+    <li :key="post.url" v-for="post of filteredPosts">
       <a :href="post.url">
+        <time :datetime="post.dateXml">
+          ${post.date}
+        </time>
+        &mdash;
         ${post.title}
       </a>
     </li>
@@ -28,7 +25,7 @@ permalink: /archive/
   </p>
   <p v-if="error">
     Um erro aconteceu durante a requisição.
-    <a href="#" @click="fetchFromApi">Tentar novamente?</a>
+    <a @click="fetchFromApi" href="#">Tentar novamente?</a>
   </p>
 </div>
 
@@ -38,29 +35,29 @@ permalink: /archive/
 <script type="text/javascript">
   new Vue({
     el: '#search',
-    delimiters: ['${', '}'],
+    delimiters: [
+      '${', '}'
+    ],
     data: function () {
-      return {
-        error: false,
-        search: '',
-        posts: []
-      }
+      return {error: false, search: '', posts: []};
     },
     computed: {
-      filteredPosts: function() {
-        if (this.search === '')
+      filteredPosts: function () {
+        if (this.search === '') {
           return this.posts;
+        }
 
         const fields = ['title', 'category'];
         const searchLower = this.search.toLowerCase();
-        return this.posts
-          .filter(x => {
-            for (const field of fields)
-              if (x[field].toLowerCase().includes(searchLower))
-                return true;
+        return this.posts.filter(x => {
+          for (const field of fields) {
+            if (x[field].toLowerCase().includes(searchLower)) {
+              return true;
+            }
+          }
 
-            return false;
-          });
+          return false;
+        });
       }
     },
     methods: {
@@ -68,10 +65,13 @@ permalink: /archive/
         this.search = e.target.value;
       }, 300),
       getQueryVariable: function (variable, dft) {
-        const query = window.location.search.substring(1);
+        const query = window
+          .location
+          .search
+          .substring(1);
         const vars = query.split('&');
 
-        for (var i = 0; i < vars.length; i++) {
+        for (var i = 0; i < vars.length; i = i + 1) {
           const pair = vars[i].split('=');
 
           if (pair[0] === variable) {
@@ -85,7 +85,7 @@ permalink: /archive/
           this.error = false;
           const response = await axios.get('/search.json');
           Vue.set(this, 'posts', response.data);
-        } catch (error) { 
+        } catch (error) {
           this.error = true;
         }
       }

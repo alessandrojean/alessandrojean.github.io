@@ -53,6 +53,8 @@ compress_html:
 links:
   - title: Artigos
     url: /
+  - title: Arquivo
+    url: /archive/
   - title: Sobre mim
     url: /about/
 
