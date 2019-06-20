@@ -69,14 +69,15 @@
   }
 
   .aside .post-author-avatar {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     margin: 0 auto;
     display: block;
   }
 
   .aside-title {
-    font-size: 150%;
+    font-size: 160%;
+    margin-bottom: 0px;
   }
 
   .aside-description {
@@ -86,12 +87,18 @@
   .aside-menu {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    padding-top: 0.8rem;
+    justify-content: center;
+  }
+
+  .aside-menu li:not(:first-child) {
+    margin-left: 0.3rem;
   }
 
   .aside-menu li a {
     border-left: none;
     border-bottom: 2px solid transparent;
+    font-weight: 600;
 
     &:hover {
       border-left: none;
