@@ -1,9 +1,7 @@
 ---
 layout: page
-permalink: /sobre/
+permalink: /about/
 ---
-
-<img itemprop="image" class="profile-picture" src="{{ site.avatar_url }}" alt="{{ site.username }}" width="128" align="right">
 
 Prazer.
 
@@ -26,12 +24,12 @@ conhecimentos [programando] e criando coisas que são
 Gosto bastante de compartilhar conhecimento, me sinto
 bem ajudando as pessoas ensinando sobre a área.
 
-<row>
+<div class="figure-row">
   <img src="{{ site.baseurl }}/assets/img/about/ig1.jpg" width="160" height="160">
   <img src="{{ site.baseurl }}/assets/img/about/ig2.jpg" width="160" height="160">
   <img src="{{ site.baseurl }}/assets/img/about/ig3.jpg" width="160" height="160">
   <img src="{{ site.baseurl }}/assets/img/about/ig4.jpg" width="160" height="160">
-</row>
+</div>
 
 Tenho também um *hobby* grande relacionado a *animes* e mangás.
 
@@ -39,20 +37,3 @@ Tenho também um *hobby* grande relacionado a *animes* e mangás.
 
 *[UFABC]: Universidade Federal do ABC
 [programando]: https://github.com/alessandrojean/
-
-## social
-
-Você pode me encontrar em algumas redes sociais, onde
-meu usuário é `alessandrojean`.
-
-- [GitHub] &mdash; alguns projetos aleatórios
-- [Twitter] &mdash; tentando usar
-- [Instagram] &mdash; fotos e reviews de mangás
-- [MyAnimeList] &mdash; reviews de *animes*
-- [MyDramaList] &mdash; reviews de *doramas*
-
-[GitHub]: https://github.com/alessandrojean/
-[Twitter]: https://twitter.com/alessandrojean_/
-[Instagram]: https://instagram.com/alessandrojean/
-[MyAnimeList]: https://myanimelist.net/profile/alessandrojean/
-[MyDramaList]: https://mydramalist.com/profile/alessandrojean/

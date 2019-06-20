@@ -1,0 +1,25 @@
+<aside class="aside">
+  <a href="{{ site.baseurl }}/">
+    <img alt="me" src="{{ site.avatar_url }}" width="60" height="60" class="post-author-avatar"/>
+    <div class="aside-title">{{ site.title }}</div>
+  </a>
+  <div>{{ site.description }}</div>
+  <div>
+    <ul class="aside-menu">
+      {% for link in site.links %}
+        <li>
+          <a href="{{ site.baseurl }}{{ link.url }}" {% if page.url == link.url %} class="active" {% endif %}>
+            {{ link.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="aside-social">
+    <a href="https://github.com/{{ site.github_username }}">GitHub</a>
+    <a href="https://twitter.com/{{ site.twitter_username }}">Twitter</a>
+    <a href="https://instagram.com/{{ site.instagram_username }}">Instagram</a>
+    <a href="https://myanimelist.net/profile/{{ site.myanimelist_username }}">MAL</a>
+    <a href="https://mydramalist.com/profile/{{ site.mydramalist_username }}">MDL</a>
+  </div>
+</aside>

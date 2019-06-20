@@ -1,0 +1,52 @@
+.aside {
+  max-width: 21rem;
+  margin-right: 1rem;
+  font-size: 80%;
+  padding: 1rem 2rem 1rem 1rem;
+}
+
+.aside-title {
+  font-weight: 700;
+  margin: 0.5em 0em;
+}
+
+.aside-menu {
+  list-style-type: none;
+  padding: 1em 0em;
+}
+
+.aside-menu li {
+  margin-left: -0.5em;
+  padding-left: 0em;
+}
+
+.aside-menu li a {
+  font-weight: 700;
+  outline: none;
+  border-left: 1px solid transparent;
+  border-bottom: none;
+  padding: 0.5em;
+
+  &:hover {
+    border-left: 1px solid lightgrey;
+  }
+
+  &.active {
+    border-left: 1px solid $color-border;
+  }
+}
+
+.aside-social {
+  opacity: 0.7;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.aside-social a {
+  margin-bottom: 0.5em;
+
+  &:hover {
+    border-bottom: 1px solid $color-border;
+  }
+}

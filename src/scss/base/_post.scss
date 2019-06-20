@@ -94,3 +94,14 @@ ol#markdown-toc {
     padding-left: 0.7em;
   }
 }
+
+.figure-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  overflow-x: auto;
+
+  img {
+    margin: 0;
+  }
+}

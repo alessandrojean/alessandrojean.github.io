@@ -18,10 +18,8 @@ user_description: Apenas compartilhando conhecimento
 avatar_url: 'https://avatars0.githubusercontent.com/u/14254807?s=460&v=4'
 instagram_username: alessandrojean
 myanimelist_username: alessandrojean
-mydramalist_username: alessandrojean
 github_username: alessandrojean
 twitter_username: alessandrojean_
-spotify_username: alessandro.jean
 
 # Build settings.
 # Jekyll 3 now only supports Kramdown for Markdown.
@@ -53,12 +51,10 @@ compress_html:
 # Links to include in menu navigation
 # For external links add external: true
 links:
-  - title: Tags
-    url: /tags/
-  - title: Séries
-    url: /series/
+  - title: Artigos
+    url: /
   - title: Sobre mim
-    url: /sobre/
+    url: /about/
 
 # Exclude from processing.
 # The following items will not be processed, by default.

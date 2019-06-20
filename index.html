@@ -1,34 +1,36 @@
 ---
-layout: default
+layout: sidebar
 ---
 
-<main id="main" class="content" itemprop="mainContentOfPage">
+<!--<main class="content" id="main" itemprop="mainContentOfPage">
   <div class="posts">
     {% assign count = 0 %}
     {% for post in site.posts %}
-    {% assign count = count | plus: 1 %}
-    <a href="{{ post.url | prepend: site.baseurl }}" class="post-excerpt is-{{ post.main_category }}">
-      <div class="post-content">
-        <h3 class="text">{{ post.title }}</h3>
-        <div class="body">
-          <p>
-            {% if post.description != "" %}
-            {{ post.description }}
-            {% else %}
-            {{ post.excerpt | strip_html }}
-            {% endif %}
-            <time datetime="{{ post.date | date_to_xmlschema }}">
-              {% include post_date.html date=post.date %}
-            </time>
-          </p>
+      {% assign count = count | plus: 1 %}
+      <a href="{{ post.url | prepend: site.baseurl }}" class="post-excerpt is-{{ post.main_category }}">
+        <div class="post-content">
+          <h3 class="text">{{ post.title }}</h3>
+          <div class="body">
+            <p>
+              {% if post.description != "" %}
+                {{ post.description }}
+              {% else %}
+                {{ post.excerpt | strip_html }}
+              {% endif %}
+              <time datetime="{{ post.date | date_to_xmlschema }}">
+                {% include post_date.html date=post.date %}
+              </time>
+            </p>
+          </div>
         </div>
-      </div>
-    </a>
-    {% if count == 10 %}{% break %}{% endif %}
+      </a>
+      {% if count == 10 %}
+        {% break %}
+      {% endif %}
     {% endfor %}
     <div class="breaker"></div>
     <div class="end">
       <a href="{{ '/archive/' | prepend: site.baseurl }}">Todos os posts…</a>
     </div>
   </div>
-</main>
+</main>-->
