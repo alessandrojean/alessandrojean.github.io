@@ -4,7 +4,7 @@
     <div class="aside-title">{{ site.title }}</div>
   </a>
   <div class="aside-description">{{ site.description }}</div>
-  <div>
+  <nav>
     <ul class="aside-menu">
       {% for link in site.links %}
         <li {%if link.show_in_mobile == false %}class="is-hidden-mobile"{% endif %}>
@@ -14,7 +14,7 @@
         </li>
       {% endfor %}
     </ul>
-  </div>
+  </nav>
   <div class="aside-social">
     <a href="https://github.com/{{ site.github_username }}">GitHub</a>
     <a href="https://twitter.com/{{ site.twitter_username }}">Twitter</a>
