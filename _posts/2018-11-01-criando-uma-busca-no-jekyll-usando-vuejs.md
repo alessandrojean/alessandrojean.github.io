@@ -269,7 +269,7 @@ Tente fazer buscas por termos que estão nos títulos dos
 _posts_ ou pelo nome das categorias, você verá que
 os resultados estão sendo filtrados corretamente.
 
-Até uma próxima!
+Até uma próxima! :v:
 
 [^interpolador]: Retirado de "Como criar um formulário de contato no Jekyll com Vue.js", disponível [aqui].
 [^debounce]: [Documentação do Lodash].

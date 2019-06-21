@@ -101,6 +101,11 @@ dd {
   padding-left: 1.4rem;
 }
 
+abbr[title] {
+  border-bottom: 1px dotted gray;
+  text-decoration: none;
+}
+
 figure {
   margin: 1em 0px;
   width: 100%;
@@ -119,6 +124,11 @@ figure figcaption {
   padding-left: 4rem;
   padding-right: 4rem;
   opacity: 0.7;
+}
+
+img.emoji {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 figure img,

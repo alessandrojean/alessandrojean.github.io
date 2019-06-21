@@ -35,7 +35,7 @@ animes, mangás, HQs etc.
 
 - [Nerdcast] --- dispensa apresentações.
 - [Matando Robôs Gigantes] --- só por ter o Didi Braguinha
-  já compensa escutar xD.
+  já compensa escutar :satisfied:.
 - [Confins do Universo] --- mais relacionado a HQs e mangás,
   pelo pessoal do Universo HQ.
 - [OPEXCast] --- um *podcast* especializado em One Piece,

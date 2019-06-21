@@ -552,4 +552,4 @@ Aqui deixo algumas referências e *links* que utilizei durante a escrita.
 [Guia original]: https://medium.com/@pedroka196/kindle-e-quadrinhos-uma-uni%C3%A3o-pouco-explorada-69e86562c42b
 [Wiki]: https://github.com/ciromattia/kcc/wiki
 
-Até uma próxima e boa leitura.
+Até uma próxima e boa leitura :grin:.

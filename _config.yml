@@ -42,6 +42,7 @@ sass:
 plugins:
   - jekyll-sitemap
   - jekyll-feed
+  - jemoji
 
 # HTML minify.
 compress_html:
