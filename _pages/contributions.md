@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Contribuições
+description: Contribuições realizadas a projetos.
 ---
 
 Algumas contribuições que eu realizei a projetos.

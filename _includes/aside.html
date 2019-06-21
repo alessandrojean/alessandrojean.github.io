@@ -22,4 +22,20 @@
     <a href="https://myanimelist.net/profile/{{ site.myanimelist_username }}">MAL</a>
     <a href="https://mydramalist.com/profile/{{ site.mydramalist_username }}">MDL</a>
   </div>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {% for link in site.links %}
+        {
+          "@context": "https://schema.org",
+          "@type": "SiteNavigationElement",
+          "@id": "{{ link.url }}",
+          "name": "{{ link.title }}",
+          "url": "{{ site.url }}{{ site.baseurl }}{{ link.url }}"
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+  </script>
 </aside>

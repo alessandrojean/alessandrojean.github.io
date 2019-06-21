@@ -1,6 +1,16 @@
 ---
 layout: page
 title: 'Sobre'
+description: Um pouco sobre a minha pessoa.
+image: /assets/img/avatar.jpg
+seo:
+  type: Person
+  links:
+    - https://twitter.com/alessandrojean_
+    - https://instagram.com/alessandrojean
+    - https://github.com/alessandrojean
+    - https://myanimelist.net/profile/alessandrojean
+    - https://mydramalist.com/profile/alessandrojean
 ---
 
 Prazer.

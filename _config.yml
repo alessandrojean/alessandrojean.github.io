@@ -8,6 +8,23 @@ repo: 'https://github.com/alessandrojean/alessandrojean.github.io'
 copyright: © 2019 — Alessandro Jean
 google_analytics: UA-117196425-1
 
+# SEO
+logo: /assets/img/logo-header.png
+author:
+  name: Alessandro Jean
+  twitter: alessandrojean_
+lang: pt_BR
+twitter:
+  username: alessandrojean_
+  card: summary
+social:
+  name: Alessandro Jean
+defaults:
+  - scope:
+      path: ''
+    values:
+      image: /assets/img/logo-header.png
+
 # Jekyll settings.
 version: v1.2.0
 collections:
@@ -46,6 +63,7 @@ sass:
 plugins:
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-seo-tag
   - jemoji
 
 # HTML minify.
