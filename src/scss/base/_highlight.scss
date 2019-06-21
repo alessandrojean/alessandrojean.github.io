@@ -74,10 +74,10 @@
   color: #00cd00;
 } /* Generic.Inserted */
 .highlight .go {
-  color: #888888;
+  color: $nord4;
 } /* Generic.Output */
 .highlight .gp {
-  color: #000080;
+  color: $nord14;
   font-weight: bold;
 } /* Generic.Prompt */
 .highlight .gs {
@@ -121,7 +121,7 @@
   color: $nord7;
 } /* Name.Attribute */
 .highlight .nb {
-  color: #cd00cd;
+  color: $nord9;
 } /* Name.Builtin */
 .highlight .nc {
   color: #00cdcd;

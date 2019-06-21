@@ -24,12 +24,14 @@ conhecimentos [programando] e criando coisas que são
 Gosto bastante de compartilhar conhecimento, me sinto
 bem ajudando as pessoas ensinando sobre a área.
 
-<div class="figure-row">
-  <img src="{{ site.baseurl }}/assets/img/about/ig1.jpg">
-  <img src="{{ site.baseurl }}/assets/img/about/ig2.jpg">
-  <img src="{{ site.baseurl }}/assets/img/about/ig3.jpg">
-  <img src="{{ site.baseurl }}/assets/img/about/ig4.jpg">
-</div>
+<figure>
+  <div class="figure-row is-spaced">
+    <img src="{{ site.baseurl }}/assets/img/about/ig1.jpg">
+    <img src="{{ site.baseurl }}/assets/img/about/ig2.jpg">
+    <img src="{{ site.baseurl }}/assets/img/about/ig3.jpg">
+    <img src="{{ site.baseurl }}/assets/img/about/ig4.jpg">
+  </div>
+</figure>
 
 Tenho também um *hobby* grande relacionado a *animes* e mangás.
 

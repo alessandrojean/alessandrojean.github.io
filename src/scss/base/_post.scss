@@ -100,8 +100,12 @@ ol#markdown-toc {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  overflow-x: auto;
+  overflow: visible;
   max-width: 100%;
+
+  &.is-spaced img + img {
+    margin-left: 0.5rem;
+  }
 
   img {
     margin: 0;
