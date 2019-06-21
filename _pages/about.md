@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /about/
+title: 'Sobre'
 ---
 
 Prazer.

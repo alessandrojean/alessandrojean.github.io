@@ -10,6 +10,10 @@ google_analytics: UA-117196425-1
 
 # Jekyll settings.
 version: v1.2.0
+collections:
+  pages:
+    output: true
+    permalink: /:path/
 permalink: /posts/:title/
 
 # User settings.

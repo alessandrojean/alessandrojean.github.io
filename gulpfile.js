@@ -109,6 +109,7 @@ const watchFiles = () => {
       '_includes/*.html',
       '_layouts/*.html',
       '_posts/*',
+      '_pages/*',
       '_drafts/*',
       '_config.yml'
     ],
