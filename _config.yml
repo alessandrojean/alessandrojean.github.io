@@ -64,6 +64,7 @@ links:
     url: /archive/
   - title: Contribuições
     url: /contributions/
+    show_in_mobile: false
   - title: Sobre mim
     url: /about/
 

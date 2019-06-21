@@ -7,7 +7,7 @@
   <div>
     <ul class="aside-menu">
       {% for link in site.links %}
-        <li>
+        <li {%if link.show_in_mobile == false %}class="is-hidden-mobile"{% endif %}>
           <a href="{{ site.baseurl }}{{ link.url }}" {% if page.url == link.url %} class="active" {% endif %}>
             {{ link.title }}
           </a>
