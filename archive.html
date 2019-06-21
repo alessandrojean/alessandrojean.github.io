@@ -15,8 +15,10 @@ permalink: /archive/
         <time :datetime="post.dateXml">
           ${post.date}
         </time>
-        &mdash;
-        ${post.title}
+        <p
+          v-html="highlight(post.title)" 
+          :style="{ paddingBottom: titleContainsQuery(post.title) ? '0.3rem' : '0' }"
+        ></p>
       </a>
     </li>
   </ul>
@@ -61,6 +63,21 @@ permalink: /archive/
       }
     },
     methods: {
+      titleContainsQuery: function (title) {
+        if (this.search === '') return false;
+        
+        return title
+          .toLowerCase()
+          .includes(this.search.toLowerCase())
+      },
+      highlight: function (title) {
+        if (this.search === '') return title;
+
+        return title
+          .replace(new RegExp(this.search, 'gi'), match => {
+            return `<span class="search-ocurrence">${match}</span>`;
+          })
+      },
       update: _.debounce(function (e) {
         this.search = e.target.value;
       }, 300),

@@ -25,6 +25,7 @@
   margin-top: 1em;
   list-style-type: none;
   padding-left: 0;
+  font-size: 90%;
 }
 
 #search .search-results li {
@@ -34,18 +35,34 @@
 
 #search .search-results li a {
   border-bottom: none;
-  font-size: 90%;
 
-  &:hover {
+  &:hover p {
     border-bottom: 1px solid $color-border;
   }
 }
 
+#search .search-results li a p {
+  display: table;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid transparent;
+}
+
+#search .search-results li a p .search-ocurrence {
+  background: #ffdc74;
+  color: #212529;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+  font-weight: 700;
+  padding: 0.05em 0.4em;
+  border-radius: 3px;
+}
+
 #search .search-results li a time {
-  color: $color-time;
+  //color: $color-time;
+  @include small-caps();
   font-feature-settings: 'tnum' 1;
 }
 
-#search p {
+#search > p {
   font-size: 90%;
 }
