@@ -57,8 +57,11 @@ dd a {
 
 a {
   color: inherit;
-  outline: none;
   text-decoration: none;
+
+  &:focus {
+    outline-color: $color-primary;
+  }
 }
 
 table {
