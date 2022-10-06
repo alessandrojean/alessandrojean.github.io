@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { title, description, url } = useAppConfig()
+const { title, description, url, socialMedia } = useAppConfig()
 
 function titleTemplate(titleChunk: string | unknown): string {
   return titleChunk ? `${titleChunk} - ${title}` : title
@@ -32,6 +32,15 @@ useHead({ titleTemplate })
       <Meta name="og:image:width" content="1920" />
       <Meta name="og:image:height" content="1080" />
       <Meta name="og:image:alt" content="Uma imagem ilustrativa do site." />
+      <Meta name="twitter:card" content="summary_large_image" />
+      <Meta name="twitter:site" :content="'@' + socialMedia.twitter" />
+      <Meta name="twitter:creator" :content="'@' + socialMedia.twitter" />
+      <Meta name="twitter:title" :content="titleTemplate($route.meta.title)" />
+      <Meta
+        name="twitter:description"
+        :content="$route.meta.description as string | undefined ?? description"
+      />
+      <Meta name="twitter:image" :content="url + '/img/social-media-card.jpg'" />
       <Link rel="preconnect" href="https://rsms.me/" />
       <Link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       <Link rel="icon" href="/img/favicon.ico" sizes="any" />
