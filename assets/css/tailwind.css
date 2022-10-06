@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a {
+    @apply cursor-pointer font-semibold;
+  }
+
+  .font-sans,
+  .font-sans-var {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  .highlight {
+    @apply underline
+      underline-offset-2 dark:underline-offset-[3px]
+      decoration-[3px] dark:decoration-2
+      decoration-primary-500/80 dark:decoration-primary-400/80;
+  }
+
+  .highlight-secondary {
+    @apply decoration-secondary-400/80 dark:decoration-secondary-400/80;
+  }
+}
