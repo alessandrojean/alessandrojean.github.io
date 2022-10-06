@@ -66,7 +66,7 @@ jobs:
       - name: Static HTML export with Nuxt
         run: ${{ steps.detect-package-manager.outputs.manager }} run generate
       - name: Add .nojekyll
-        run: touch ./output/public/.nojekyll
+        run: touch ./.output/public/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
