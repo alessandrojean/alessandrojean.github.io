@@ -10,12 +10,36 @@ module.exports = {
       ...defaultTheme.fontFamily,
       sans: ['Inter', ...defaultTheme.fontFamily.sans],
       'sans-var': ['Inter var', ...defaultTheme.fontFamily.sans],
+      mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono]
     },
     extend: {
       colors: {
         primary: colors.sky,
         secondary: colors.amber,
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            code: {
+              backgroundColor: theme('colors.primary.100'),
+              color: theme('colors.primary.700'),
+              padding: `${theme('padding')['0.5']} ${theme('padding.1')}`,
+              borderRadius: theme('borderRadius.md'),
+              '&::before, &::after': {
+                content: '"" !important'
+              }
+            }
+          }
+        },
+        invert: {
+          css: {
+            code: {
+              backgroundColor: theme('colors.gray.700'),
+              color: theme('colors.gray.200')
+            }
+          }
+        }
+      })
     },
   },
   plugins: [

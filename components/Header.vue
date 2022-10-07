@@ -31,9 +31,9 @@ const route = useRoute()
             :to="link.to"
             class="relative px-3 py-2 block font-medium dark:text-gray-50 hover:text-primary-600 dark:hover:text-primary-400 motion-safe:transition"
           >
-            <span :class="route.path === link.to ? 'text-primary-500 dark:text-primary-400' : ''">{{ link.title }}</span>
+            <span :class="route.path.includes(link.to) ? 'text-primary-500 dark:text-primary-400' : ''">{{ link.title }}</span>
             <div
-              v-if="route.path === link.to"
+              v-if="route.path.includes(link.to)"
               class="absolute -bottom-px inset-x-0 h-px bg-gradient-to-r from-primary-500/0 via-primary-500/40 to-primary-500/0"
             />
           </NuxtLink>

@@ -42,7 +42,10 @@ useHead({ titleTemplate })
       />
       <Meta name="twitter:image" :content="url + '/img/social-media-card.jpg'" />
       <Link rel="preconnect" href="https://rsms.me/" />
+      <Link rel="preconnect" href="https://fonts.googleapis.com" />
+      <Link rel="preconnect" href="https://fonts.gstatic.com" />
       <Link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+      <Link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" />
       <Link rel="icon" href="/img/favicon.ico" sizes="any" />
       <Link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
     </Head>
