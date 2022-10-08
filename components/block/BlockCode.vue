@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getHighlighter, BUNDLED_LANGUAGES } from 'shiki-es'
+import { Highlighter } from 'shiki-es'
 import { NotionBlockProps } from '@/composables/useNotionParser'
 
 interface Props extends NotionBlockProps {
@@ -18,18 +18,16 @@ const props = withDefaults(defineProps<Props>(), {
 const { properties } = useNotionParser(props)
 const lang = computed(() => props.overrideLang ?? properties.value?.language?.[0]?.[0]?.toLowerCase())
 const langClass = computed(() => props.overrideLangClass ?? `language-${lang.value}`)
+
+const highlighter = inject<Highlighter>('highlighter')
 const supported = computed(() => {
-  return BUNDLED_LANGUAGES.find((l) => (
-    l.id === lang.value ||
-      l.aliases?.includes(lang.value)
-  ))
+  return highlighter.getLoadedLanguages().find((l) => l === lang.value)
 })
 
 const shikiResult = ref('')
 
 onMounted(async () => {
   if (props.shiki && supported.value) {
-    const highlighter = await getHighlighter({ theme: 'nord' })
     shikiResult.value = highlighter.codeToHtml(properties.value.title[0][0], { 
       lang: lang.value
     })

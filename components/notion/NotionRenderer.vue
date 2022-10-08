@@ -14,6 +14,8 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
 })
 
 const { pass, value } = useNotionParser(props)
+
+provide('highlighter', await useShiki())
 </script>
 
 <template>
