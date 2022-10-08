@@ -10,10 +10,5 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: ''
   },
-  runtimeConfig: {
-    public: {
-      notionTableId: '25f6b352fc5c4863b9214c7442c7f1b8'
-    }
-  },
   watch: ['./tailwind.config.js']
 })

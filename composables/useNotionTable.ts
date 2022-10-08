@@ -12,7 +12,7 @@ export type ApiNotionPage = Record<string, any>
 
 export default async function useNotionTable(): Promise<NotionPage[]> {
   const { data: table } = await useAsyncData<NotionPage[]>('table', async () => {
-    const { public: { notionTableId } } = useRuntimeConfig()
+    const { notionTableId } = useAppConfig()
     const apiUrl = `https://notion-api.splitbee.io/v1/table/${notionTableId}`
     
     const table = await $fetch<ApiNotionPage[]>(apiUrl)

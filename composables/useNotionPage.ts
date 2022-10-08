@@ -14,7 +14,7 @@ export interface NotionBlock extends Record<string, any> {
 
 export default async function useNotionPage(pageSlug: string): Promise<NotionNodeMap> {
   const { data: nodeMap } = await useAsyncData<NotionNodeMap>(`page-${pageSlug}`, async () => {
-    const { public: { notionTableId } } = useRuntimeConfig()
+    const { notionTableId } = useAppConfig()
     const apiUrl = `https://notion-api.splitbee.io/v1/table/${notionTableId}`
     
     const table = await $fetch<ApiNotionPage[]>(apiUrl)

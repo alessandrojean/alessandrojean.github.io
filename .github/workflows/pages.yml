@@ -23,9 +23,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
-env:
-  NUXT_PUBLIC_NOTION_TABLE_ID: ${{ secrets.NUXT_PUBLIC_NOTION_TABLE_ID }}
-
 jobs:
   # Build job
   build:
