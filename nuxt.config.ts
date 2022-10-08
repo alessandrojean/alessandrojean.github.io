@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      notionTableId: process.env.NUXT_PUBLIC_NOTION_TABLE_ID
+      notionTableId: '25f6b352fc5c4863b9214c7442c7f1b8'
     }
   },
   watch: ['./tailwind.config.js']

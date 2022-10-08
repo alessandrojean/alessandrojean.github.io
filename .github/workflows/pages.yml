@@ -23,6 +23,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+env:
+  NUXT_PUBLIC_NOTION_TABLE_ID: ${{ secrets.NUXT_PUBLIC_NOTION_TABLE_ID }}
+
 jobs:
   # Build job
   build:
@@ -65,8 +68,6 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Static HTML export with Nuxt
         run: ${{ steps.detect-package-manager.outputs.manager }} run generate
-        env:
-          NUXT_PUBLIC_NOTION_TABLE_ID: ${{ secrets.NUXT_PUBLIC_NOTION_TABLE_ID }}
       - name: Add .nojekyll
         run: touch ./.output/public/.nojekyll
       - name: Upload artifact
