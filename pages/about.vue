@@ -4,6 +4,8 @@ import { ConcreteComponent } from 'vue'
 const IconGitHub = resolveComponent('IconGitHub')
 const IconInstagram = resolveComponent('IconInstagram')
 const IconLinkedIn = resolveComponent('IconLinkedIn')
+const IconMyAnimeList = resolveComponent('IconMyAnimeList')
+const IconTrakt = resolveComponent('IconTrakt')
 const IconTwitter = resolveComponent('IconTwitter')
 
 const { socialMedia } = useAppConfig()
@@ -40,6 +42,16 @@ const socialMediaLinks: SocialMediaLink[] = [
     url: `https://www.linkedin.com/in/${socialMedia.linkedIn}`,
     icon: IconLinkedIn
   },
+  {
+    name: 'MyAnimeList',
+    url: `https://myanimelist.com/profile/${socialMedia.myAnimeList}`,
+    icon: IconMyAnimeList
+  },
+  {
+    name: 'Trakt',
+    url: `https://trakt.tv/users/${socialMedia.trakt}`,
+    icon: IconTrakt
+  }
 ]
 </script>
 

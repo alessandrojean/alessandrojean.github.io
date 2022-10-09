@@ -7,7 +7,9 @@ export default defineAppConfig({
     twitter: 'alessandrojean_',
     instagram: 'alessandrojean',
     gitHub: 'alessandrojean',
-    linkedIn: 'alessandrojean'
+    linkedIn: 'alessandrojean',
+    myAnimeList: 'alessandrojean',
+    trakt: 'alessandrojean'
   },
   navLinks: [
     { title: 'Sobre', to: '/about' },
