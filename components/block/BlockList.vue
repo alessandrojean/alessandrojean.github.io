@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { value, type, title, pass, getListNumber } = useNotionParser(props)
+const { value, type, title, pass, properties, getListNumber } = useNotionParser(props)
 
 const start = computed(() => getListNumber(value.value?.id))
 const isTopLevel = computed(() => {
@@ -37,10 +37,37 @@ const isTopLevel = computed(() => {
       <slot />
     </BlockNestedList>
   </ol>
-  <span v-else>
+  <ul
+    v-else-if="isTopLevel && type === 'bulleted_list_group'"
+    class="notion-list notion-list-disc"
+  >
     <li><BlockTextRenderer :text="title" v-bind="pass" /></li>
     <BlockNestedList v-if="value.content" v-bind="pass">
       <slot />
     </BlockNestedList>
-  </span>
+    <template v-for="childId in properties.content" :key="childId">
+      <li>
+        <BlockTextRenderer
+          :text="blockMap[childId].value.properties.title"
+          v-bind="pass"
+        />
+      </li>
+      <ul v-if="blockMap[childId].value.content">
+        <NotionRenderer
+          v-for="(contentId, contentIndex) in blockMap[childId].value.content"
+          v-bind="pass"
+          :key="contentId"
+          :level="level + 1"
+          :content-id="contentId"
+          :content-index="contentIndex"
+        />
+      </ul>
+    </template>
+  </ul>
+  <template v-else>
+    <li><BlockTextRenderer :text="title" v-bind="pass" /></li>
+    <BlockNestedList v-if="value.content" v-bind="pass">
+      <slot />
+    </BlockNestedList>
+  </template>
 </template>

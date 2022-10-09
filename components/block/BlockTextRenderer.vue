@@ -17,12 +17,10 @@ const { pass } = useNotionParser(props)
 </script>
 
 <template>
-  <span>
-    <BlockDecorator
-      v-for="(t, i) in text"
-      :key="i"
-      :content="t"
-      v-bind="pass"
-    />
-  </span>
+  <BlockDecorator
+    v-for="(t, i) in text"
+    :key="i"
+    :content="t"
+    v-bind="pass"
+  />
 </template>

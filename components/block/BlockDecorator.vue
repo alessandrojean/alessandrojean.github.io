@@ -26,7 +26,9 @@ const pageLinkTitle = computed(() => (
 ))
 const isInlinePageLink = computed(() => decoratorValue.value?.[0] === '/')
 const target = computed(() => {
-  return type.value === 'page' ? props.pageLinkTarget : props.textLinkTarget
+  return (type.value === 'page' || isPageLink.value || isInlinePageLink.value)
+     ? props.pageLinkTarget
+     : props.textLinkTarget
 })
 const unappliedDecorators = computed(() => {
   const clonedDecorators = JSON.parse(
@@ -40,22 +42,22 @@ const nextContent = computed(() => [text.value, unappliedDecorators.value])
 </script>
 
 <template>
-  <a
+  <NuxtLink
     v-if="isPageLink"
     class="notion-link"
     :target="pageLinkTarget"
-    :href="mapPageUrl(decoratorValue)"
+    :to="mapPageUrl(decoratorValue)"
   >
     {{ pageLinkTitle }}
-  </a>
-  <a
+  </NuxtLink>
+  <NuxtLink
     v-else-if="decoratorKey === 'a' && isInlinePageLink"
     class="notion-link"
     :target="target"
-    :href="mapPageUrl(decoratorValue.slice(1))"
+    :to="mapPageUrl(decoratorValue.slice(1))"
   >
     <BlockDecorator :content="nextContent" v-bind="pass" />
-  </a>
+  </NuxtLink>
   <a
     v-else-if="decoratorKey === 'a'"
     class="notion-link"
@@ -64,7 +66,7 @@ const nextContent = computed(() => [text.value, unappliedDecorators.value])
   >
     <BlockDecorator :content="nextContent" v-bind="pass" />
   </a>
-  <span v-else-if="decorators.length === 0">{{ text }}</span>
+  <template v-else-if="decorators.length === 0">{{ text }}</template>
   <span
     v-else-if="decoratorKey === 'h'"
     :class="'notion-' + decoratorValue"

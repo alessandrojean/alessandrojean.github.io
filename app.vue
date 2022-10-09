@@ -57,3 +57,15 @@ useHead({ titleTemplate })
     <Footer />
   </div>
 </template>
+
+<style lang="postcss">
+.page-enter-active,
+.page-leave-active {
+  @apply motion-safe:transition-opacity motion-safe:duration-[400ms];
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+</style>

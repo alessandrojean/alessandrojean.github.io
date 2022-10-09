@@ -28,7 +28,7 @@ const { isType, pass } = useNotionParser(props)
   <BlockText v-else-if="isType('text')" v-bind="pass" />
   <BlockQuote v-else-if="isType('quote')" v-bind="pass" />
   <BlockList
-    v-else-if="isType(['bulleted_list', 'numbered_list'])"
+    v-else-if="isType(['bulleted_list', 'numbered_list', 'bulleted_list_group'])"
     v-bind="pass"
   >
     <slot />

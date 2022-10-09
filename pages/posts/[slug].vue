@@ -1,19 +1,23 @@
 <script setup lang="ts">
 const { title, description } = useAppConfig()
 const route = useRoute()
-const nodeMap = await useNotionPage(route.params.slug as string)
+const page = await useNotionPage(route.params.slug as string)
 
-const page = computed(() => Object.values(nodeMap)[0].value)
-const pageTitle = computed(() => page.value.properties.title[0][0])
-const pageDescription = computed(() => page.value.properties['z?a@']?.[0]?.[0])
-const pageDate = computed(() => page.value.properties['c}?R']?.[0]?.[1]?.[0]?.[1]?.start_date)
-const pageTags = computed(() => page.value.properties['{aX^']?.[0]?.[0])
-const pageArea = computed(() => page.value.properties['OHP@']?.[0]?.[0])
+const pageRoot = computed(() => Object.values(page.nodeMap)[0].value)
+const pageTitle = computed(() => pageRoot.value.properties.title[0][0])
+const pageDescription = computed(() => pageRoot.value.properties['z?a@']?.[0]?.[0])
+const pageDate = computed(() => pageRoot.value.properties['c}?R']?.[0]?.[1]?.[0]?.[1]?.start_date)
+const pageTags = computed(() => pageRoot.value.properties['{aX^']?.[0]?.[0])
+const pageArea = computed(() => pageRoot.value.properties['OHP@']?.[0]?.[0])
 const publishedDate = computed(() => pageDate.value ? new Date(pageDate.value).toISOString() : '')
-const modifiedDate = computed(() => new Date(page.value.last_edited_time).toISOString())
+const modifiedDate = computed(() => new Date(pageRoot.value.last_edited_time).toISOString())
 
 function titleTemplate(titleChunk: string | unknown): string {
   return titleChunk ? `${titleChunk} - ${title}` : title
+}
+
+function mapPageUrl(pageId: string) {
+  return '/posts/' + (page.linkMap[pageId] ?? pageId)
 }
 </script>
 
@@ -34,6 +38,11 @@ function titleTemplate(titleChunk: string | unknown): string {
       <Meta name="twitter:description" :content="pageDescription ?? description" />
     </Head>
 
-    <NotionRenderer :block-map="nodeMap" full-page shiki />
+    <NotionRenderer
+      :block-map="page.nodeMap"
+      :map-page-url="mapPageUrl"
+      full-page
+      shiki
+    />
   </div>
 </template>
