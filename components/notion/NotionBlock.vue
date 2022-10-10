@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { isType, pass } = useNotionParser(props)
+const { isType, pass, format } = useNotionParser(props)
 </script>
 
 <template>
@@ -28,6 +28,12 @@ const { isType, pass } = useNotionParser(props)
   <BlockText v-else-if="isType('text')" v-bind="pass" />
   <BlockQuote v-else-if="isType('quote')" v-bind="pass" />
   <BlockTodoList v-else-if="isType(['to_do', 'to_do_group'])" v-bind="pass" />
+  <BlockColumnList v-else-if="isType('column_list')" v-bind="pass">
+    <slot />
+  </BlockColumnList>
+  <BlockColumn v-else-if="isType('column')" :format="format">
+    <slot />
+  </BlockColumn>
   <BlockList
     v-else-if="isType(['bulleted_list', 'numbered_list', 'bulleted_list_group'])"
     v-bind="pass"
@@ -35,7 +41,7 @@ const { isType, pass } = useNotionParser(props)
     <slot />
   </BlockList>
   <BlockFigure
-    v-else-if="isType(['image', 'embed', 'codepen'])"
+    v-else-if="isType(['image', 'embed', 'codepen', 'video'])"
     v-bind="pass"
   />
   <BlockTable v-else-if="isType('table')" v-bind="pass">

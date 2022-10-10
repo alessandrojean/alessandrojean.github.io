@@ -22,9 +22,9 @@ const style = computed<StyleValue>(() => {
 </script>
 
 <template>
-  <div v-if="f.block_aspect_ratio" :style="style" class="rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-900/5">
+  <div v-if="f.block_aspect_ratio" class="w-fit max-w-full mx-auto rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-900/5">
     <img
-      class="notion-image-inset absolute inset-0 m-0"
+      class="notion-image-inset m-0"
       :alt="alt ?? 'Imagem do Notion'"
       :src="src"
       loading="lazy"

@@ -68,7 +68,7 @@ function fixList(nodeMap: NotionNodeMap, types: string[]): NotionNodeMap {
 }
 
 export default async function useNotionPage(pageSlug: string): Promise<NotionPage> {
-  const { data } = await useAsyncData<NotionPage>(`page-${pageSlug}`, async () => {
+  const { data, error } = await useAsyncData<NotionPage>(`page-${pageSlug}`, async () => {
     const { notionTableId } = useAppConfig()
     const apiUrl = `https://notion-api.splitbee.io/v1/table/${notionTableId}`
     
@@ -83,7 +83,7 @@ export default async function useNotionPage(pageSlug: string): Promise<NotionPag
 
     const page = table.find((page) => page.Slug === pageSlug)
 
-    if (!page || !page.Public) {
+    if (!page || (!process.dev && !page.Public)) {
       throw createError({
         statusCode: 404,
         message: 'Página não encontrada'
@@ -99,6 +99,10 @@ export default async function useNotionPage(pageSlug: string): Promise<NotionPag
 
     return { linkMap, nodeMap: fixList(nodeMap, ['bulleted_list', 'to_do']) }
   })
+
+  if (error.value && error.value instanceof Error) {
+    throw error.value
+  }
   
   return data.value
 }

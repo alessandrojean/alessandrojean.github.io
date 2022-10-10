@@ -23,6 +23,10 @@ const headerRow = computed(() => {
   return props.blockMap[value.value.content[0]].value
 })
 
+const isFullWidth = computed(() => {
+  return format.value?.table_block_column_format !== undefined
+})
+
 function header(columnId: string) {
   return headerRow.value?.properties?.[columnId] ?? [[' ', false]]
 }
@@ -30,7 +34,12 @@ function header(columnId: string) {
 
 <template>
   <div class="notion-simple-table-wrapper">
-    <table class="notion-simple-table">
+    <table
+      :class="[
+        'notion-simple-table',
+        !isFullWidth ? 'w-auto mx-auto' : ''
+      ]"
+    >
       <thead v-if="hasHeaderColumn">
         <tr>
           <th

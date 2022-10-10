@@ -17,7 +17,8 @@ const colorMap: Record<string, string[]> = {
   orange_background: ['bg-orange-100', 'text-orange-900', 'border-orange-200'],
   yellow_background: ['bg-yellow-100', 'text-yellow-900', 'border-yellow-300'],
   teal_background: ['bg-emerald-100', 'text-emerald-900', 'border-emerald-200'],
-  purple_background: ['bg-purple-100', 'text-purple-900', 'border-purple-200']
+  purple_background: ['bg-purple-100', 'text-purple-900', 'border-purple-200'],
+  red_background: ['bg-red-100', 'text-red-900', 'border-red-200']
 }
 
 const bgColor = computed(() => {
@@ -51,7 +52,7 @@ const borderColor = computed(() => {
     <div class="shrink-0">
       <BlockIcon v-bind="pass" class="select-none" />
     </div>
-    <div class="notion-callout-text">
+    <div class="notion-callout-text [&>strong]:text-current">
       <BlockTextRenderer :text="title" v-bind="pass" class="block" />
     </div>
   </div>

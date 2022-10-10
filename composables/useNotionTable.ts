@@ -11,7 +11,7 @@ export interface NotionPage {
 export type ApiNotionPage = Record<string, any>
 
 export default async function useNotionTable(): Promise<NotionPage[]> {
-  const { data: table } = await useAsyncData<NotionPage[]>('table', async () => {
+  const { data: table, error } = await useAsyncData<NotionPage[]>('table', async () => {
     const { notionTableId } = useAppConfig()
     const apiUrl = `https://notion-api.splitbee.io/v1/table/${notionTableId}`
     
@@ -34,9 +34,13 @@ export default async function useNotionTable(): Promise<NotionPage[]> {
         title: badFormat.Title,
         description: badFormat.Description
       }))
-      .filter((post) => post.public)
+      .filter((post) => process.dev || post.public)
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
   })
+
+  if (error.value && error.value instanceof Error) {
+    throw error.value
+  }
   
   return table.value
 }
