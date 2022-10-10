@@ -34,6 +34,7 @@ export default async function useNotionTable(): Promise<NotionPage[]> {
         title: badFormat.Title,
         description: badFormat.Description
       }))
+      .filter((post) => post.public)
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
   })
   
