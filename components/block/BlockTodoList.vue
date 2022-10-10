@@ -50,7 +50,7 @@ const todos = computed(() => {
       >
       <span
         aria-hidden="true"
-        class="mr-3 w-[1.4rem] h-[1.4rem] bg-gray-200 dark:bg-gray-800 opacity-70 dark:opacity-100 inline-flex items-center justify-center rounded border-2 border-gray-500 dark:border-gray-600 peer-checked:border-primary-600 peer-checked:bg-primary-600 peer-checked:text-white peer-checked:opacity-100 motion-safe:transition"
+        class="mr-3 w-5 h-5 bg-gray-200 dark:bg-gray-800 opacity-70 dark:opacity-100 inline-flex items-center justify-center rounded border-2 border-gray-500 dark:border-gray-600 peer-checked:border-primary-600 peer-checked:bg-primary-600 peer-checked:text-white peer-checked:opacity-100 motion-safe:transition"
       >
         <CheckIcon v-if="todo.checked" class="w-4 h-4" />
       </span>
