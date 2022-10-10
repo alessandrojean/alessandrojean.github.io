@@ -38,5 +38,9 @@ const { isType, pass } = useNotionParser(props)
     v-else-if="isType(['image', 'embed', 'codepen'])"
     v-bind="pass"
   />
+  <BlockTable v-else-if="isType('table')" v-bind="pass">
+    <slot />
+  </BlockTable>
+  <BlockTableRow v-else-if="isType('table_row')" v-bind="pass" />
   <hr v-else-if="isType('divider')" class="notion-hr" />
 </template>
