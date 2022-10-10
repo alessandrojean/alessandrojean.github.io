@@ -39,6 +39,16 @@ const unappliedDecorators = computed(() => {
   return clonedDecorators
 })
 const nextContent = computed(() => [text.value, unappliedDecorators.value])
+
+const highlight = computed(() => {
+  const common = 'px-1.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-100'
+
+  const classes: Record<string, string> = {
+    yellow_background: 'bg-yellow-100 text-yellow-900'
+  }
+
+  return [common, classes[decoratorValue.value]]
+})
 </script>
 
 <template>
@@ -69,7 +79,7 @@ const nextContent = computed(() => [text.value, unappliedDecorators.value])
   <template v-else-if="decorators.length === 0">{{ text }}</template>
   <span
     v-else-if="decoratorKey === 'h'"
-    :class="'notion-' + decoratorValue"
+    :class="['notion-' + decoratorValue, ...highlight]"
   >
     <BlockDecorator :content="nextContent" v-bind="pass" />
   </span>

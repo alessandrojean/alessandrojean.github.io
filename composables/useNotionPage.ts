@@ -23,44 +23,47 @@ function takeWhile<T>(array: T[], predicate: (item: T, i: number) => boolean): T
   return index >= 0 ? array.slice(0, index) : array;
 }
 
-function fixLists(nodeMap: NotionNodeMap): NotionNodeMap {
+function fixList(nodeMap: NotionNodeMap, types: string[]): NotionNodeMap {
   const root = Object.values(nodeMap)[0]
   const content = root.value.content
   
   let newNodeMap = nodeMap
-  const visited: string[] = []
 
-  for (let [index, id] of content.entries()) {
-    const node = nodeMap[id]
-    const type = node.value.type
+  for (let type of types) {
+    const visited: string[] = []
 
-    if (visited.includes(id) || type !== 'bulleted_list') {
-      continue
-    }
+    for (let [index, id] of content.entries()) {
+      const node = nodeMap[id]
+      const nodeType = node.value.type
 
-    const next = takeWhile(content.slice(index + 1), (id) => {
-      return nodeMap[id].value.type === 'bulleted_list'
-    })
+      if (visited.includes(id) || type !== nodeType) {
+        continue
+      }
 
-    if (next.length === 0) {
-      continue
-    }
+      const next = takeWhile(content.slice(index + 1), (id) => {
+        return nodeMap[id].value.type === type
+      })
 
-    visited.push(...next)
+      if (next.length === 0) {
+        continue
+      }
 
-    newNodeMap[id].value = {
-      ...newNodeMap[id].value,
-      type: 'bulleted_list_group',
-      properties: {
-        ...newNodeMap[id].value.properties,
-        content: next
+      visited.push(...next)
+
+      newNodeMap[id].value = {
+        ...newNodeMap[id].value,
+        type: type + '_group',
+        properties: {
+          ...newNodeMap[id].value.properties,
+          content: next
+        }
       }
     }
-  }
 
-  newNodeMap[root.value.id].value.content = content.filter((contentId) => {
-    return !visited.includes(contentId)
-  })
+    newNodeMap[root.value.id].value.content = content.filter((contentId) => {
+      return !visited.includes(contentId)
+    })
+  }
 
   return newNodeMap
 }
@@ -95,7 +98,7 @@ export default async function useNotionPage(pageSlug: string): Promise<NotionPag
       table.map((page) => [page.id.replace(/-/g, ''), page.Slug])
     )
 
-    return { linkMap, nodeMap: fixLists(nodeMap) }
+    return { linkMap, nodeMap: fixList(nodeMap, ['bulleted_list', 'to_do']) }
   })
   
   return data.value
