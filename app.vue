@@ -19,7 +19,7 @@ useHead({ titleTemplate })
         name="description"
         :content="$route.meta.description as string | undefined ?? description"
       />
-      <Meta name="og:title" :content="titleTemplate($route.meta.title)" />
+      <Meta name="og:title" :content="$route.meta.title as string" />
       <Meta name="og:url" :content="url + $route.fullPath" />
       <Meta name="og:type" content="website" />
       <Meta
@@ -35,7 +35,7 @@ useHead({ titleTemplate })
       <Meta name="twitter:card" content="summary_large_image" />
       <Meta name="twitter:site" :content="'@' + socialMedia.twitter" />
       <Meta name="twitter:creator" :content="'@' + socialMedia.twitter" />
-      <Meta name="twitter:title" :content="titleTemplate($route.meta.title)" />
+      <Meta name="twitter:title" :content="$route.meta.title as string" />
       <Meta
         name="twitter:description"
         :content="$route.meta.description as string | undefined ?? description"
