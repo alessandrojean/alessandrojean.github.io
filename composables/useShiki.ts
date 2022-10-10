@@ -21,6 +21,7 @@ export default async function useShiki(): Promise<Highlighter> {
       'vue-html',
       'bash',
       'c',
+      'cpp',
       'latex',
       'java'
     ]

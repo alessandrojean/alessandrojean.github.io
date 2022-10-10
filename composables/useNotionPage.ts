@@ -24,12 +24,11 @@ function takeWhile<T>(array: T[], predicate: (item: T, i: number) => boolean): T
 }
 
 function fixList(nodeMap: NotionNodeMap, types: string[]): NotionNodeMap {
-  const root = Object.values(nodeMap)[0]
-  const content = root.value.content
-  
   let newNodeMap = nodeMap
 
   for (let type of types) {
+    const root = Object.values(newNodeMap)[0]
+    const content = root.value.content
     const visited: string[] = []
 
     for (let [index, id] of content.entries()) {
