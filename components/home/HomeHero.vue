@@ -39,7 +39,7 @@ const socialMediaLinks: SocialMediaLink[] = [
   },
   {
   name: 'MyAnimeList',
-    url: `https://myanimelist.com/profile/${socialMedia.myAnimeList}`,
+    url: `https://myanimelist.net/profile/${socialMedia.myAnimeList}`,
     icon: IconMyAnimeList
   },
   {
