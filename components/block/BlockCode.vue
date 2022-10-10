@@ -16,7 +16,19 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const { properties } = useNotionParser(props)
-const lang = computed(() => props.overrideLang ?? properties.value?.language?.[0]?.[0]?.toLowerCase())
+
+// Map the Notion language codes to Shiki ones.
+const langMap: Record<string, string> = {
+  'c++': 'cpp'
+}
+
+const lang = computed(() => {
+  const value = props.overrideLang ?? 
+    properties.value?.language?.[0]?.[0]?.toLowerCase()
+
+  return langMap[value] ?? value
+})
+
 const langClass = computed(() => props.overrideLangClass ?? `language-${lang.value}`)
 
 const highlighter = inject<Highlighter>('highlighter')
