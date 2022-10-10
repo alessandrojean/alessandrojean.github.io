@@ -28,6 +28,9 @@ module.exports = {
               '&::before, &::after': {
                 content: '"" !important'
               }
+            },
+            'pre, code': {
+              fontFeatureSettings: "'calt'"
             }
           }
         },
