@@ -9,11 +9,13 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { width, pass, caption, properties, isType } = useNotionParser(props)
+const { width, pass, caption, properties, parent, isType } = useNotionParser(props)
 
 const isSelfHosted = computed(() => {
   return properties.value?.size !== undefined
 })
+
+const isInColumn = computed(() => parent.value.value.type === 'column')
 </script>
 
 <template>
@@ -21,7 +23,7 @@ const isSelfHosted = computed(() => {
     v-if="!isType('video') || !isSelfHosted"
     :class="[
       'notion-asset-wrapper',
-      isType('video') ? 'lg:-mx-16' : ''
+      isType(['video', 'image']) && !isInColumn ? 'lg:-mx-10 lg:my-14' : ''
     ]"
     :style="width"
   >

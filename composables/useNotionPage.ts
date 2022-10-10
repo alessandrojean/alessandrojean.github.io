@@ -12,6 +12,10 @@ export interface NotionBlock extends Record<string, any> {
   type: string;
   content: string[];
   properties?: Record<string, any>;
+  created_time: number;
+  last_edited_time: number;
+  parent_id?: string;
+  parent_table?: string;
 }
 
 export interface NotionPage {

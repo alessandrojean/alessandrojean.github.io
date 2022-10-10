@@ -38,7 +38,7 @@ const isOnlyImages = computed(() => {
     :class="[
       'notion-row grid gap-6',
       columnClasses,
-      isOnlyImages ? 'lg:-mx-16' : ''
+      isOnlyImages ? 'lg:-mx-10' : ''
     ]">
     <slot />
   </div>

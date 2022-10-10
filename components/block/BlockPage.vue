@@ -9,17 +9,25 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { title, pass, properties } = useNotionParser(props)
+const { title, pass, properties, value } = useNotionParser(props)
+
+const formatter = new Intl.DateTimeFormat('pt-BR', {
+  dateStyle: 'long'
+})
+
 const date = computed(() => {
   const iso = Object.values(properties.value)
     .find((p) => p?.[0]?.[0] === '‣' && p?.[0]?.[1]?.[0]?.[0] === 'd')
     ?.[0]?.[1]?.[0]?.[1]?.start_date
 
-  const formatter = new Intl.DateTimeFormat('pt-BR', {
-    dateStyle: 'long'
-  })
+  const updated = new Date(value.value.last_edited_time)
 
-  return { iso, formatted: iso ? formatter.format(new Date(iso)) : null }
+  return {
+    iso,
+    formatted: iso ? formatter.format(new Date(iso)) : null,
+    updatedIso: updated.toISOString(),
+    updatedFormatted: formatter.format(updated)
+  }
 })
 </script>
 

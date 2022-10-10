@@ -15,7 +15,7 @@ const colorMap: Record<string, string[]> = {
   blue_background: ['bg-blue-100', 'text-blue-800', 'border-blue-200'],
   gray_background: ['bg-gray-100', 'text-gray-800', 'border-gray-200'],
   orange_background: ['bg-orange-100', 'text-orange-900', 'border-orange-200'],
-  yellow_background: ['bg-yellow-100', 'text-yellow-900', 'border-yellow-300'],
+  yellow_background: ['bg-yellow-50', 'text-yellow-900', 'border-yellow-300'],
   teal_background: ['bg-emerald-100', 'text-emerald-900', 'border-emerald-200'],
   purple_background: ['bg-purple-100', 'text-purple-900', 'border-purple-200'],
   red_background: ['bg-red-100', 'text-red-900', 'border-red-200']
@@ -40,7 +40,7 @@ const borderColor = computed(() => {
 <template>
   <div
     :class="[
-      'notion-callout dark:bg-gray-800 dark:contrast-more:bg-gray-900 dark:text-gray-300 motion-safe:transition',
+      'notion-callout my-5 dark:bg-gray-800 dark:contrast-more:bg-gray-900 dark:text-gray-300 motion-safe:transition',
       'flex p-6 rounded-xl gap-6 text-sm leading-loose border dark:border-gray-800 dark:contrast-more:border-gray-900',
       bgColor,
       textColor,
@@ -52,8 +52,8 @@ const borderColor = computed(() => {
     <div class="shrink-0">
       <BlockIcon v-bind="pass" class="select-none" />
     </div>
-    <div class="notion-callout-text [&>strong]:text-current">
+    <p class="notion-callout-text [&_strong]:text-current my-0 [&_a]:font-medium [&_a]:!text-current [&_a]:underline [&_a]:!decoration-1 [&_a]:!decoration-current [&_a]:underline-offset-2 [&_a:hover]:decoration-dotted">
       <BlockTextRenderer :text="title" v-bind="pass" class="block" />
-    </div>
+    </p>
   </div>
 </template>
