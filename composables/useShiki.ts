@@ -1,6 +1,17 @@
-import { getHighlighter, Highlighter } from 'shiki-es'
+import { getHighlighter, Highlighter, ILanguageRegistration } from 'shiki-es'
+
+import assGrammar from '@/util/ass.tmLanguage.json'
 
 const highlighter = ref<Highlighter>()
+
+function createAssGrammar(): ILanguageRegistration {
+  return {
+    id: 'ass',
+    scopeName: 'source.ass',
+    grammar: assGrammar,
+    aliases: ['aegisub', 'ssa']
+  }
+}
 
 export default async function useShiki(): Promise<Highlighter> {
   if (highlighter.value) {
@@ -26,6 +37,8 @@ export default async function useShiki(): Promise<Highlighter> {
       'java'
     ]
   })
+
+  await highlighter.value.loadLanguage(createAssGrammar())
 
   return highlighter.value
 }

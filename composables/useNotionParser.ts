@@ -108,6 +108,8 @@ export default function useNotionParser(props: NotionBlockProps) {
     return props.blockMap[value.value?.parent_id];
   })
   const alt = computed(() => caption.value?.[0][0])
+  const page = computed(() => Object.values(props.blockMap)[0].value)
+  const pageProperties = computed(() => page.value.properties)
 
   function isType(t: string | string[]): boolean {
     if (Array.isArray(t)) {
@@ -154,6 +156,8 @@ export default function useNotionParser(props: NotionBlockProps) {
     type,
     visible,
     parent,
+    page,
+    pageProperties,
     isType,
     getTextContent,
     blockColorClass,
