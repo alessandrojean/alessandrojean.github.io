@@ -49,6 +49,17 @@ const highlight = computed(() => {
 
   return [common, classes[decoratorValue.value]]
 })
+
+const { replaceEmoji } = useEmoji()
+
+function replaceEmojis(text: string) {
+  const escapedText = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+
+  return replaceEmoji(escapedText)
+}
 </script>
 
 <template>
@@ -76,7 +87,10 @@ const highlight = computed(() => {
   >
     <BlockDecorator :content="nextContent" v-bind="pass" />
   </a>
-  <template v-else-if="decorators.length === 0">{{ text }}</template>
+  <span
+    v-else-if="decorators.length === 0"
+    v-html="replaceEmojis(text)"
+  />
   <span
     v-else-if="decoratorKey === 'h'"
     :class="['notion-' + decoratorValue, ...highlight]"

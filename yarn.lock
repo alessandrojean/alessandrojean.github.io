@@ -1826,6 +1826,11 @@ electron-to-chromium@^1.4.251:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.273.tgz#2a0276553172874617665807a40bea95711c2b9f"
   integrity sha512-iEx72lv4P85PJ8HA9KEAss4o6ESK+hcxzM1cksZDo0H8KekaI+cloQyxOCASmHQO9ogmGyEELtBzxqqdeNwIgQ==
 
+emoji-regex@10.2.1:
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-10.2.1.tgz#a41c330d957191efd3d9dfe6e1e8e1e9ab048b3f"
+  integrity sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
@@ -4325,7 +4330,7 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
-shiki-es@^0.1.2:
+shiki-es@0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/shiki-es/-/shiki-es-0.1.2.tgz#37176c6ff8d734f95e27560b62e1230c9a90c0cb"
   integrity sha512-eqtfk8idlYlSLAn0gp0Ly2+FbKc2d78IddigHSS4iHAnpXoY2kdRzyFGZOdi6TvemYMnRhZBi1HsSqZc5eNKqg==
@@ -4847,7 +4852,7 @@ vite-plugin-checker@^0.5.1:
     vscode-languageserver-textdocument "^1.0.1"
     vscode-uri "^3.0.2"
 
-vite-plugin-vue-type-imports@^0.2.3:
+vite-plugin-vue-type-imports@0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/vite-plugin-vue-type-imports/-/vite-plugin-vue-type-imports-0.2.3.tgz#5fc69bdbb44c61d14ae6a5f87b59faecd24e5d7e"
   integrity sha512-mTuL1pE3UQyhedf+JylaGpSu3NFIBpqUT9MXV1zfLeg3iBy7Dp7PRonE3VE0Mfq7kMm+zn7k59BuH9VcrUkOrw==
