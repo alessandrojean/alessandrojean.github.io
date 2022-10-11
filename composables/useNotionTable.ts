@@ -1,46 +1,60 @@
+import { Ref } from 'vue'
+import zonedTimeToUtc from 'date-fns-tz/zonedTimeToUtc'
+
 export interface NotionPage {
   id: string;
-  slug: string;
+  slug?: string;
   public: boolean;
-  createdAt: Date;
+  createdAt?: Date;
   tags: string[];
   title: string;
   description: string;
+  area?: string;
+  original: ApiNotionPage
 }
 
 export type ApiNotionPage = Record<string, any>
 
-export default async function useNotionTable(): Promise<NotionPage[]> {
-  const { data: table, error } = await useAsyncData<NotionPage[]>('table', async () => {
-    const { notionTableId } = useAppConfig()
-    const apiUrl = `https://notion-api.splitbee.io/v1/table/${notionTableId}`
+interface UseNotionTableArgs {
+  tableId: string,
+  sort?: (a: NotionPage, b: NotionPage) => number
+}
+
+export default async function useNotionTable({ tableId, sort }: UseNotionTableArgs): Promise<Ref<NotionPage[]>> {
+  const { data: table, error } = await useAsyncData<NotionPage[]>(`table-${tableId}`, async () => {
+    const apiUrl = `https://notion-api.splitbee.io/v1/table/${tableId}`
     
     const table = await $fetch<ApiNotionPage[]>(apiUrl)
 
     if (!table) {
       throw createError({
         statusCode: 500,
-        message: 'Falha ao obter os artigos'
+        message: 'Falha ao obter os itens'
       })
     }
 
-    return table
+    const formatted = table
       .map(badFormat => ({
         id: badFormat.id,
         slug: badFormat.Slug,
         public: badFormat.Public,
-        createdAt: new Date(badFormat['Created at']),
+        createdAt: badFormat['Created at'] 
+          ? zonedTimeToUtc(badFormat['Created at'], 'America/Sao_Paulo')
+          : null,
         tags: badFormat.Tags,
-        title: badFormat.Title,
-        description: badFormat.Description
+        title: badFormat.Name,
+        description: badFormat.Description,
+        area: badFormat.Area ?? badFormat.Category,
+        original: badFormat
       }))
       .filter((post) => process.dev || post.public)
-      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+    
+    return sort ? formatted.sort(sort) : formatted
   })
 
   if (error.value && error.value instanceof Error) {
     throw error.value
   }
   
-  return table.value
+  return table
 }

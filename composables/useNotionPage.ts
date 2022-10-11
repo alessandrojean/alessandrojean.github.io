@@ -1,3 +1,4 @@
+import { Ref } from 'vue'
 import { ApiNotionPage } from '@/composables/useNotionTable'
 
 export type NotionNodeMap = Record<string, NotionNode>
@@ -99,35 +100,46 @@ function fixCode(nodeMap: NotionNodeMap): NotionNodeMap {
   return nodeMap
 }
 
-export default async function useNotionPage(pageSlug: string): Promise<NotionPage> {
-  const { data, error } = await useAsyncData<NotionPage>(`page-${pageSlug}`, async () => {
-    const { notionTableId } = useAppConfig()
-    const apiUrl = `https://notion-api.splitbee.io/v1/table/${notionTableId}`
+interface UseNotionPageArgs {
+  tableId?: string;
+  pageSlug?: string;
+  pageId?: string;
+}
+
+export default async function useNotionPage({ tableId, pageSlug, pageId }: UseNotionPageArgs): Promise<Ref<NotionPage>> {
+  const { data: page, error } = await useAsyncData<NotionPage>(`page-${pageSlug}`, async () => {
+    let pageToFetch = pageId
+    let linkMap: Record<string, string> = {}
+
+    if (tableId && pageSlug) {
+      const apiUrl = `https://notion-api.splitbee.io/v1/table/${tableId}`
+      
+      const table = await $fetch<ApiNotionPage[]>(apiUrl)
+
+      if (!table) {
+        throw createError({
+          statusCode: 500,
+          message: 'Falha ao obter os artigos'
+        })
+      }
     
-    const table = await $fetch<ApiNotionPage[]>(apiUrl)
+      const page = table.find((page) => page.Slug === pageSlug)
 
-    if (!table) {
-      throw createError({
-        statusCode: 500,
-        message: 'Falha ao obter os artigos'
-      })
+      if (!page || (!process.dev && !page.Public)) {
+        throw createError({
+          statusCode: 404,
+          message: 'Página não encontrada'
+        })
+      }
+
+      pageToFetch = page.id
+      linkMap = Object.fromEntries(
+        table.map((page) => [page.id.replace(/-/g, ''), page.Slug])
+      )
     }
 
-    const page = table.find((page) => page.Slug === pageSlug)
-
-    if (!page || (!process.dev && !page.Public)) {
-      throw createError({
-        statusCode: 404,
-        message: 'Página não encontrada'
-      })
-    }
-
-    const pageUrl = `https://notion-api.splitbee.io/v1/page/${page.id}`
+    const pageUrl = `https://notion-api.splitbee.io/v1/page/${pageToFetch}`
     const nodeMap = await $fetch<NotionNodeMap>(pageUrl)
-
-    const linkMap = Object.fromEntries(
-      table.map((page) => [page.id.replace(/-/g, ''), page.Slug])
-    )
 
     return {
       linkMap,
@@ -139,5 +151,5 @@ export default async function useNotionPage(pageSlug: string): Promise<NotionPag
     throw error.value
   }
   
-  return data.value
+  return page
 }

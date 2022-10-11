@@ -2,7 +2,11 @@ export default defineAppConfig({
   title: 'Alessandro Jean',
   description: 'Apenas mais um site hospedado no GitHub Pages.',
   url: 'https://alessandrojean.github.io',
-  notionTableId: '25f6b352fc5c4863b9214c7442c7f1b8',
+  notion: {
+    postsTableId: '820ac763104542a0a0868955acd53d4a',
+    projectsTableId: '6481387f6ac04dfe9be644327c5d834e',
+    aboutPageId: '400a5da984d04cba97e4233f7d6ce244'
+  },
   socialMedia: {
     twitter: 'alessandrojean_',
     instagram: 'alessandrojean',

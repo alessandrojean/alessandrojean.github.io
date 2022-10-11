@@ -53,6 +53,9 @@ const socialMediaLinks: SocialMediaLink[] = [
     icon: IconTrakt
   }
 ]
+
+const { notion: { aboutPageId } } = useAppConfig()
+const page = await useNotionPage({ pageId: aboutPageId })
 </script>
 
 <template>
@@ -69,47 +72,10 @@ const socialMediaLinks: SocialMediaLink[] = [
       </div>
 
       <div class="lg:order-first lg:row-span-2">
-        <h1 class="text-2xl md:text-4xl font-bold dark:text-gray-100 dark:contrast-more:text-white motion-safe:transition">
-          Muito prazer, me chamo Alessandro Jean
-        </h1>
-
-        <article class="prose dark:prose-invert max-w-full mt-10 prose-a:text-primary-600 dark:prose-a:text-primary-500 hover:prose-a:text-primary-700 dark:hover:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline hover:prose-a:underline-offset-2 hover:prose-a:decoration-2 hover:prose-a:decoration-primary-500/80 dark:hover:prose-a:decoration-primary-400/80">
-          <p>
-            Comecei a ter meus encantos pela área da computação por incentivo
-            de familiares e conhecidos desde criança, quando tínhamos um PC antigo
-            com <a href="https://pt.wikipedia.org/wiki/Windows_98" target="_blank">Windows 98</a>
-            em casa. Desde lá, nunca mais parei.
-          </p>
-
-          <p>
-            Concluí um curso técnico de Informática
-            interligado ao meu ensino médio, onde conheci
-            essa coisa maravilhosa chamada <em>programação</em>.
-          </p>
-
-          <p>
-            Atualmente estou cursando o Bacharelado em Ciência da 
-            Computação na <abbr title="Universidade Federal do ABC" class="decoration-gray-500 dark:decoration-gray-300 decoration-1 underline-offset-2">UFABC</abbr>,
-            e posso dizer enfaticamente que não me arrependo da escolha 
-            desta área.
-          </p>
-
-          <p>
-            Em meu tempo livre, costumo sempre exercitar meus
-            conhecimentos programando e criando coisas que são
-            úteis para meu dia-a-dia, além de ler algum mangá
-            ou livro e assistir filmes e séries.
-          </p>
-
-          <p>
-            Gosto bastante de compartilhar conhecimento, me sinto
-            bem ajudando as pessoas ensinando sobre a área.
-          </p>
-
-          <p>
-            <small><em>El Psy Kongroo</em></small>.
-          </p>
-        </article>
+        <NotionRenderer
+          class="max-w-full"
+          :block-map="page.nodeMap"
+        />
       </div>
 
       <div class="lg:pl-20">

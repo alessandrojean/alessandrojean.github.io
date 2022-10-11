@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import formatISO from 'date-fns/formatISO'
+import zonedTimeToUtc from 'date-fns-tz/zonedTimeToUtc'
 import { NotionBlockProps } from '@/composables/useNotionParser'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
@@ -12,7 +14,8 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
 const { title, pass, properties, value } = useNotionParser(props)
 
 const formatter = new Intl.DateTimeFormat('pt-BR', {
-  dateStyle: 'long'
+  dateStyle: 'long',
+  timeZone: 'America/Sao_Paulo'
 })
 
 const date = computed(() => {
@@ -24,8 +27,10 @@ const date = computed(() => {
 
   return {
     iso,
-    formatted: iso ? formatter.format(new Date(iso)) : null,
-    updatedIso: updated.toISOString(),
+    formatted: iso 
+      ? formatter.format(zonedTimeToUtc(iso, 'America/Sao_Paulo'))
+      : null,
+    updatedIso: formatISO(updated),
     updatedFormatted: formatter.format(updated)
   }
 })
@@ -34,7 +39,7 @@ const date = computed(() => {
 <template>
   <article v-if="level === 0 && fullPage" class="notion max-w-2xl mx-auto">
     <div class="flex flex-col">
-      <h1 class="notion-title mt-6 text-4xl font-bold tracking-tight text-gray-800 dark:text-gray-100 sm:text-5xl motion-safe:transition">
+      <h1 class="notion-title mt-6 text-4xl !leading-[3.5rem] font-bold tracking-tight text-gray-800 dark:text-gray-100 sm:text-5xl motion-safe:transition">
         <BlockTextRenderer :text="title" v-bind="pass" />
       </h1>
 
@@ -50,7 +55,7 @@ const date = computed(() => {
       <slot />
     </div>
   </article>
-  <article v-else-if="level === 0" class="notion prose dark:prose-invert motion-safe:transition mx-auto max-w-2xl prose-a:text-primary-600 dark:prose-a:text-primary-500 hover:prose-a:text-primary-700 dark:hover:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline hover:prose-a:underline-offset-2 hover:prose-a:decoration-2 hover:prose-a:decoration-primary-500/80 dark:hover:prose-a:decoration-primary-400/80 dark:[&_pre>code]:bg-inherit">
+  <article v-else-if="level === 0" class="notion prose dark:prose-invert motion-safe:transition mx-auto max-w-2xl prose-a:text-primary-600 dark:prose-a:text-primary-500 hover:prose-a:text-primary-700 dark:hover:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline hover:prose-a:underline-offset-2 hover:prose-a:decoration-2 hover:prose-a:decoration-primary-500/80 dark:hover:prose-a:decoration-primary-400/80 dark:[&_pre>code]:bg-inherit prose-h1:font-bold">
     <slot />
   </article>
 </template>

@@ -36,18 +36,16 @@ const supported = computed(() => {
   return highlighter.getLoadedLanguages().find((l) => l === lang.value)
 })
 
-const shikiResult = ref('')
+const shikiHtml = computed(() => {
+  const code = properties.value.title[0][0]
 
-onMounted(async () => {
-  if (props.shiki && supported.value) {
-    shikiResult.value = highlighter.codeToHtml(properties.value.title[0][0], { 
-      lang: lang.value
-    })
-  }
+  return props.shiki && supported.value
+    ? highlighter.codeToHtml(code, { lang: lang.value })
+    : ''
 })
 </script>
 
 <template>
-  <div v-if="shiki && supported" v-html="shikiResult"></div>
+  <div v-if="shiki && supported" v-html="shikiHtml"></div>
   <pre v-else :class="['notion-code', langClass]"><code :class="langClass">{{ properties.title[0][0] }}</code></pre>
 </template>

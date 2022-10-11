@@ -32,6 +32,7 @@ const isInColumn = computed(() => parent.value.value.type === 'column')
       v-else-if="isType(['embed', 'video', 'figma', 'codepen'])"
       v-bind="pass"
     />
+    <BlockTweet v-else-if="isType('tweet')" v-bind="pass" />
     <figcaption v-if="caption" class="notion-image-caption mt-6 text-center">
       <BlockTextRenderer :text="caption" v-bind="pass" />
     </figcaption>

@@ -1,26 +1,40 @@
 <script setup lang="ts">
+import formatISO from 'date-fns/formatISO'
+import zonedTimeToUtc from 'date-fns-tz/zonedTimeToUtc'
+
 const { title, description } = useAppConfig()
 const route = useRoute()
-const page = await useNotionPage(route.params.slug as string)
 
-const pageRoot = computed(() => Object.values(page.nodeMap)[0].value)
+const { notion: { postsTableId } } = useAppConfig()
+const page = await useNotionPage({
+  tableId: postsTableId,
+  pageSlug: route.params.slug as string
+})
+
+const pageRoot = computed(() => Object.values(page.value.nodeMap)[0].value)
 const pageTitle = computed(() => pageRoot.value.properties.title[0][0])
-const pageDescription = computed(() => pageRoot.value.properties['z?a@']?.[0]?.[0])
-const pageDate = computed(() => pageRoot.value.properties['c}?R']?.[0]?.[1]?.[0]?.[1]?.start_date)
-const pageTags = computed(() => pageRoot.value.properties['{aX^']?.[0]?.[0])
-const pageArea = computed(() => pageRoot.value.properties['OHP@']?.[0]?.[0])
-const publishedDate = computed(() => pageDate.value ? new Date(pageDate.value).toISOString() : '')
-const modifiedDate = computed(() => new Date(pageRoot.value.last_edited_time).toISOString())
+const pageDescription = computed(() => pageRoot.value.properties['tlPg']?.[0]?.[0])
+const pageDate = computed(() => pageRoot.value.properties['kjd\\']?.[0]?.[1]?.[0]?.[1]?.start_date)
+const pageTags = computed(() => pageRoot.value.properties['@xdX']?.[0]?.[0])
+const pageArea = computed(() => pageRoot.value.properties['Ns}A']?.[0]?.[0])
+const publishedDate = computed(() => {
+  return pageDate.value ?
+    formatISO(zonedTimeToUtc(pageDate.value, 'America/Sao_Paulo'))
+    : ''
+})
+const modifiedDate = computed(() => {
+  return formatISO(new Date(pageRoot.value.last_edited_time))
+})
 
 function mapPageUrl(pageId: string) {
-  return '/posts/' + (page.linkMap[pageId] ?? pageId)
+  return '/posts/' + (page.value.linkMap[pageId] ?? pageId)
 }
 </script>
 
 <template>
   <div class="sm:px-8 py-16 lg:py-32">
     <Head>
-      <Title>{{ title }}</Title>
+      <Title>{{ pageTitle }}</Title>
       <Meta name="description" :content="pageDescription ?? description"/>
       <Meta name="og:title" :content="pageTitle" />
       <Meta name="og:type" content="article" />

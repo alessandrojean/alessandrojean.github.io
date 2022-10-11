@@ -30,5 +30,5 @@ const style = computed<StyleValue>(() => {
       loading="lazy"
     >
   </div>
-  <img v-else :alt="alt" :src="src" loading="lazy" class="rounded-xl shadow-lg ring-1 ring-gray-900/5">
+  <img v-else :alt="alt" :src="src" loading="lazy" class="rounded-xl shadow-lg ring-1 ring-gray-900/5 mx-auto">
 </template>

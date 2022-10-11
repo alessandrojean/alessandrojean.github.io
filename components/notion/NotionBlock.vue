@@ -41,7 +41,7 @@ const { isType, pass, format } = useNotionParser(props)
     <slot />
   </BlockList>
   <BlockFigure
-    v-else-if="isType(['image', 'embed', 'codepen', 'video'])"
+    v-else-if="isType(['image', 'embed', 'codepen', 'video', 'tweet'])"
     v-bind="pass"
   />
   <BlockTable v-else-if="isType('table')" v-bind="pass">
