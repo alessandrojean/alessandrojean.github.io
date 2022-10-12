@@ -75,27 +75,39 @@ function fixList(nodeMap: NotionNodeMap, types: string[]): NotionNodeMap {
 }
 
 function fixCode(nodeMap: NotionNodeMap): NotionNodeMap {
-  // Originally from https://github.com/oovm/vscode-subtitles/blob/master/syntax/ass.YAML-tmLanguage
-  const assFn = /(\\)(s|u|i|b|k|K|an|be|bord|blur|fa[xyz]|fs|fsc|fsp|fsv|fscx|fscy|fr[xyz]|fe|shad|ko|kf|[xy]bord|[xy]shad|rnd|rnd[xyz])([0-9+\-.]+)/g
+  const replacements = [
+    {
+      blockLang: ['Plain Text'],
+      match: /(\\)(s|u|i|b|k|K|an|be|bord|blur|fa[xyz]|fs|fsc|fsp|fsv|fscx|fscy|fr[xyz]|fe|shad|ko|kf|[xy]bord|[xy]shad|rnd|rnd[xyz])([0-9+\-.]+)/g,
+      lang: 'ASS'
+    },
+    {
+      blockLang: ['HTML', 'JavaScript'],
+      match: /v-if|v-for|v-bind/,
+      lang: 'Vue-Html'
+    }
+  ]
   
-  Object.values(nodeMap)
-    .filter(({ value: block }) => {
-      return block.type === 'code' &&
-        block.properties?.language?.[0]?.[0] === 'Plain Text' &&
-        assFn.test(block.properties?.title?.[0]?.[0])
-    })
-    .forEach((node) => {
-      nodeMap[node.value.id] = {
-        ...node,
-        value: {
-          ...node.value,
-          properties: {
-            ...node.value.properties,
-            language: [['ASS']]
+  for (let replacement of replacements) {
+    Object.values(nodeMap)
+      .filter(({ value: block }) => {
+        return block.type === 'code' &&
+          replacement.blockLang.includes(block.properties?.language?.[0]?.[0]) &&
+          replacement.match.test(block.properties?.title?.[0]?.[0])
+      })
+      .forEach((node) => {
+        nodeMap[node.value.id] = {
+          ...node,
+          value: {
+            ...node.value,
+            properties: {
+              ...node.value.properties,
+              language: [[replacement.lang]]
+            }
           }
         }
-      }
-    })
+      })
+  }
 
   return nodeMap
 }

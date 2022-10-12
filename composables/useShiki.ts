@@ -22,6 +22,7 @@ export default async function useShiki(): Promise<Highlighter> {
     theme: 'nord',
     langs: [
       'json',
+      'yaml',
       'js',
       'ts',
       'css',
