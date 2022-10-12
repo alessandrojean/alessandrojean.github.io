@@ -10,5 +10,11 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: ''
   },
-  watch: ['./tailwind.config.js']
+  watch: ['./tailwind.config.js'],
+  runtimeConfig: {
+    notionApiKey: '',
+    notionPostsTable: '',
+    notionProjectsTable: '',
+    notionAboutPage: ''
+  }
 })

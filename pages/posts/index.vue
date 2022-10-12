@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import formatISO from 'date-fns/formatISO'
+import parseISO from 'date-fns/parseISO'
 import { ChevronRightIcon } from '@heroicons/vue/20/solid'
 
 definePageMeta({
@@ -7,21 +7,15 @@ definePageMeta({
   description: 'Alguns textos que escrevi desde a criação do site.'
 })
 
-const { notion: { postsTableId } } = useAppConfig()
-const posts = await useNotionTable({
-  tableId: postsTableId,
-  sort: (a, b) => {
-    return b.createdAt.getTime() - a.createdAt.getTime()
-  }
-})
+const { data: posts } = await useFetch('/api/posts')
 
 const formatter = new Intl.DateTimeFormat('pt-BR', {
   dateStyle: 'short',
   timeZone: 'America/Sao_Paulo'
 })
 
-function formatDate(date: Date): string {
-  return formatter.format(date)
+function formatDate(date: string): string {
+  return formatter.format(parseISO(date))
 }
 </script>
 
@@ -51,7 +45,7 @@ function formatDate(date: Date): string {
             </h2>
             <time
               class="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-gray-400 dark:text-gray-400 dark:contrast-more:text-gray-300 pl-3.5 motion-safe:transition"
-              :datetime="formatISO(post.createdAt)"
+              :datetime="post.createdAt"
             >
               <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
                 <span class="h-4 w-0.5 rounded-full bg-gray-200 dark:bg-gray-500 motion-safe:transition" />
@@ -68,7 +62,7 @@ function formatDate(date: Date): string {
           </div>
           <time
             class="mt-1 hidden md:flex relative z-10 order-first mb-3 items-center text-sm text-gray-400 dark:text-gray-400 dark:contrast-more:text-gray-300 motion-safe:transition"
-            :datetime="formatISO(post.createdAt)"
+            :datetime="post.createdAt"
           >
             {{ formatDate(post.createdAt) }}
           </time>
