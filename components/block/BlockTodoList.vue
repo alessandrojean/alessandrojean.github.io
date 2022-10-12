@@ -38,7 +38,7 @@ const todos = computed(() => {
     <li
       v-for="todo of todos"
       :key="todo.id"
-      class="flex items-center"
+      class="flex items-top"
     >
       <input
         type="checkbox"
@@ -50,14 +50,14 @@ const todos = computed(() => {
       >
       <span
         aria-hidden="true"
-        class="mr-3 w-5 h-5 bg-gray-200 dark:bg-gray-800 opacity-70 dark:opacity-100 inline-flex items-center justify-center rounded border-2 border-gray-500 dark:border-gray-600 peer-checked:border-primary-600 peer-checked:bg-primary-600 peer-checked:text-white peer-checked:opacity-100 motion-safe:transition"
+        class="mt-1 mr-3 w-5 h-5 bg-gray-200 dark:bg-gray-800 opacity-70 dark:opacity-100 inline-flex items-center justify-center rounded border-2 border-gray-500 dark:border-gray-600 peer-checked:border-primary-600 peer-checked:bg-primary-600 peer-checked:text-white peer-checked:opacity-100 motion-safe:transition"
       >
         <CheckIcon v-if="todo.checked" class="w-4 h-4" />
       </span>
       <label
         :for="'to-do-' + todo.id"
         :class="[
-          'mb-0',
+          'mb-0 cursor-text',
           todo.checked ? 'line-through text-gray-400 decoration-gray-400' : ''
         ]"
       >
