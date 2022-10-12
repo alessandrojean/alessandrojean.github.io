@@ -17,6 +17,9 @@ module.exports = {
         primary: colors.sky,
         secondary: colors.amber,
       },
+      fontWeight: {
+        inherit: 'inherit'
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {

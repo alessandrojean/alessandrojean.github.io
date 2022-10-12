@@ -9,6 +9,10 @@ import { ChevronDownIcon, XMarkIcon } from '@heroicons/vue/20/solid'
 
 const { navLinks } = useAppConfig()
 const route = useRoute()
+
+function isCurrentPage(link: typeof navLinks[0]) {
+  return link.exact ? route.path === link.to : route.path.includes(link.to)
+}
 </script>
 
 <template>
@@ -30,10 +34,11 @@ const route = useRoute()
           <NuxtLink
             :to="link.to"
             class="relative px-3 py-2 block font-medium dark:text-gray-50 hover:text-primary-600 dark:hover:text-primary-400 motion-safe:transition"
+            aria-current-value="page"
           >
-            <span :class="route.path.includes(link.to) ? 'text-primary-500 dark:text-primary-400' : ''">{{ link.title }}</span>
+            <span :class="isCurrentPage(link) ? 'text-primary-500 dark:text-primary-400' : ''">{{ link.title }}</span>
             <div
-              v-if="route.path.includes(link.to)"
+              v-if="isCurrentPage(link)"
               class="absolute -bottom-px inset-x-0 h-px bg-gradient-to-r from-primary-500/0 via-primary-500/40 to-primary-500/0"
             />
           </NuxtLink>
@@ -41,7 +46,9 @@ const route = useRoute()
       </ul>
     </nav>
 
-    <ThemeToggle class="ml-auto" />
+    <ClientOnly>
+      <ThemeToggle class="ml-auto" />
+    </ClientOnly>
   </header>
 
   <Popover class="md:hidden">
@@ -87,6 +94,7 @@ const route = useRoute()
               v-for="link in navLinks"
               :key="link.to"
               :to="link.to"
+              aria-current-value="page"
               class="py-2.5 block font-normal dark:text-gray-50 motion-safe:transition"
               @click="close"
             >

@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    /* Applying here as it causes issues with Nuxt ColorMode */
+    @apply scroll-smooth;
+  }
+
   a {
     @apply cursor-pointer font-semibold;
   }
