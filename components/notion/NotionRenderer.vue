@@ -13,15 +13,15 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   shiki: false
 })
 
-const { pass, value } = useNotionParser(props)
+const { pass, block } = useNotionParser(props)
 
 provide('highlighter', await useShiki())
 </script>
 
 <template>
-  <NotionBlock v-bind="pass" v-if="blockMap && value">
+  <NotionBlock v-bind="pass" v-if="blockMap && block">
     <NotionRenderer
-      v-for="(contentId, contentIndex) in value.content"
+      v-for="(contentId, contentIndex) in (block['content'] || [])"
       v-bind="pass"
       :key="contentId"
       :level="level + 1"

@@ -11,7 +11,9 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { title, pass, properties, value } = useNotionParser(props)
+const { pass, properties, block } = useNotionParser(props)
+
+const title = computed(() => properties.value['Name'].title)
 
 const formatter = new Intl.DateTimeFormat('pt-BR', {
   dateStyle: 'long',
@@ -19,11 +21,8 @@ const formatter = new Intl.DateTimeFormat('pt-BR', {
 })
 
 const date = computed(() => {
-  const iso = Object.values(properties.value)
-    .find((p) => p?.[0]?.[0] === '‣' && p?.[0]?.[1]?.[0]?.[0] === 'd')
-    ?.[0]?.[1]?.[0]?.[1]?.start_date
-
-  const updated = new Date(value.value.last_edited_time)
+  const iso = properties.value['Created at']?.date?.start
+  const updated = new Date(block.value.last_edited_time)
 
   return {
     iso,

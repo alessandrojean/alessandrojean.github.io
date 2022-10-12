@@ -9,11 +9,12 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { isType, pass, format } = useNotionParser(props)
+const { isType, pass } = useNotionParser(props)
 </script>
 
 <template>
-  <div v-if="isType('page')">
+  <div>Notion</div>
+  <!-- <div v-if="isType('page')">
     <BlockPage v-bind="pass">
       <slot />
     </BlockPage>
@@ -47,5 +48,5 @@ const { isType, pass, format } = useNotionParser(props)
     <slot />
   </BlockTable>
   <BlockTableRow v-else-if="isType('table_row')" v-bind="pass" />
-  <hr v-else-if="isType('divider')" class="notion-hr" />
+  <hr v-else-if="isType('divider')" class="notion-hr" /> -->
 </template>

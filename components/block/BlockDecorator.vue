@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { NotionBlockProps } from '@/composables/useNotionParser'
+import { TextRichTextItemResponse } from '@/lib/notion'
 
 interface Props extends NotionBlockProps {
-  content: any[]
+  content: TextRichTextItemResponse
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -15,8 +16,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { pass, type } = useNotionParser(props)
 
-const text = computed(() => props.content?.[0])
-const isPageLink = computed(() => text.value === '‣')
+const text = computed(() => props.content?.plain_text)
+const isPageLink = computed(() => props.content.href !== null)
 const decorators = computed(() => props.content?.[1] || [])
 const decoratorKey = computed(() => decorators.value?.[0]?.[0])
 const decoratorValue = computed(() => decorators.value?.[0]?.[1])
@@ -64,10 +65,10 @@ function replaceEmojis(text: string) {
 
 <template>
   <NuxtLink
-    v-if="isPageLink"
+    v-if="content.href"
     class="notion-link"
     :target="pageLinkTarget"
-    :to="mapPageUrl(decoratorValue)"
+    :to="mapPageUrl(content.href)"
   >
     {{ pageLinkTitle }}
   </NuxtLink>

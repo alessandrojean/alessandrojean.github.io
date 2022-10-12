@@ -4,6 +4,7 @@ import type {
   PageObjectResponse,
   QueryDatabaseParameters
 } from '@notionhq/client/build/src/api-endpoints'
+export type { TextRichTextItemResponse } from '@notionhq/client/build/src/api-endpoints'
 
 export type { PageObjectResponse, QueryDatabaseParameters }
 

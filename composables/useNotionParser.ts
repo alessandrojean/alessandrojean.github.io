@@ -1,36 +1,41 @@
 import { NotionNode, NotionNodeMap } from '@/composables/useNotionPage'
 
+import { BlockMap, BlockNode, TextRichTextItemResponse } from '@/lib/notion'
+
+export interface MapImageUrlArgs {
+  src: string;
+  block?: BlockNode;
+  blockMap?: BlockMap
+}
+
 export interface NotionBlockProps {
-  blockMap: NotionNodeMap;
+  blockMap: BlockMap;
   contentId?: string;
   contentIndex?: number;
   embedAllow?: string;
   fullPage?: boolean;
   hideList?: any[];
   level?: number;
-  mapImageUrl?: (src: string, block?: NotionNode) => string,
+  mapImageUrl?: (args: MapImageUrlArgs) => string,
   mapPageUrl?: (url: string) => string;
   pageLinkTarget?: string;
   shiki?: boolean;
   textLinkTarget?: string;
 }
 
-export function defaultMapImageUrl(src: string = '', block?: NotionNode): string {
-  const url = new URL(
-    `https://www.notion.so${
-      src.startsWith('/image') ? src : `/image/${encodeURIComponent(src)}`
-    }`
-  )
-
-  if (block && !src.includes('/images/page-cover/')) {
-    const table = block.value.parent_table === 'space' 
-      ? 'block' : block.value.parent_table
-    url.searchParams.set('table', table)
-    url.searchParams.set('id', block.value.id)
-    url.searchParams.set('cache', 'v2')
+export function defaultMapImageUrl({ src, block, blockMap }: MapImageUrlArgs): string {
+  const root = Object.values(blockMap)[0]
+  
+  if (process.dev || root.type !== 'page') {
+    return src
   }
 
-  return url.toString()
+  const slug: string = root.properties['Slug']['rich_text']
+    .reduce((acm, crr) => acm + crr, '')
+  const fileName = new URL(src).pathname.split('/').filter(Boolean).pop()
+  const format = fileName.split('.').filter(Boolean).pop()
+
+  return `/img/${slug}/${block.id}.${format}`
 }
 
 export function defaultMapPageUrl(pageId: string = ''): string {
@@ -82,85 +87,85 @@ export default function useNotionParser(props: NotionBlockProps) {
     const id = props.contentId || Object.keys(props.blockMap)[0]
     return props.blockMap[id]
   })
-  const value = computed(() => block.value?.value)
-  const format = computed(() => value.value?.format)
-  const f = computed(() => ({
-    block_aspect_ratio: format.value?.block_aspect_ratio,
-    block_height: format.value?.block_height || 1,
-    block_width: format.value?.block_width || 1,
-    block_color: format.value?.block_color,
-    bookmark_icon: format.value?.bookmark_icon,
-    bookmark_cover: format.value?.bookmark_cover,
-    display_source: format.value?.display_source
-  }))
-  const icon = computed(() => format.value?.page_icon || '')
-  const width = computed(() => format.value?.block_width)
-  const properties = computed(() => value.value?.properties)
-  const caption = computed(() => properties.value?.caption)
-  const description = computed(() => properties.value?.description)
-  const src = computed(() => {
-    return props.mapImageUrl(properties.value?.source[0][0], block.value);
-  })
-  const title = computed(() => properties.value?.title)
-  const type = computed(() => value.value?.type)
-  const visible = computed(() => !props.hideList.includes(type.value))
-  const parent = computed(() => {
-    return props.blockMap[value.value?.parent_id];
-  })
-  const alt = computed(() => caption.value?.[0][0])
-  const page = computed(() => Object.values(props.blockMap)[0].value)
-  const pageProperties = computed(() => page.value.properties)
+  // const value = computed(() => block.value?.value)
+  // const format = computed(() => value.value?.format)
+  // const f = computed(() => ({
+  //   block_aspect_ratio: format.value?.block_aspect_ratio,
+  //   block_height: format.value?.block_height || 1,
+  //   block_width: format.value?.block_width || 1,
+  //   block_color: format.value?.block_color,
+  //   bookmark_icon: format.value?.bookmark_icon,
+  //   bookmark_cover: format.value?.bookmark_cover,
+  //   display_source: format.value?.display_source
+  // }))
+  // const icon = computed(() => format.value?.page_icon || '')
+  // const width = computed(() => format.value?.block_width)
+  const properties = computed(() => block.value?.['properties'])
+  // const caption = computed(() => properties.value?.caption)
+  // const description = computed(() => properties.value?.description)
+  // const src = computed(() => {
+  //   return props.mapImageUrl(properties.value?.source[0][0], block.value);
+  // })
+  // const title = computed(() => properties.value?.title)
+  const type = computed(() => block.value?.type)
+  // const visible = computed(() => !props.hideList.includes(type.value))
+  // const parent = computed(() => {
+  //   return props.blockMap[value.value?.parent_id];
+  // })
+  // const alt = computed(() => caption.value?.[0][0])
+  // const page = computed(() => Object.values(props.blockMap)[0].value)
+  // const pageProperties = computed(() => page.value.properties)
 
   function isType(t: string | string[]): boolean {
     if (Array.isArray(t)) {
-      return visible.value && t.includes(type.value)
+      return t.includes(type.value)
     }
 
-    return visible.value && type.value === t
+    return type.value === t
   }
 
-  function getTextContent(text: (string | any)[]): string {
-    return text.reduce((prev, current) => prev + current[0], '')
+  function getTextContent(text: TextRichTextItemResponse[]): string {
+    return text.reduce((prev, current) => prev + current.plain_text, '')
   }
 
-  function blockColorClass(suffix: string = ''): string | undefined {
-    const blockColor = format.value?.block_color
-    return blockColor ? `notion-${blockColor}${suffix}` : undefined
-  }
+  // function blockColorClass(suffix: string = ''): string | undefined {
+  //   const blockColor = format.value?.block_color
+  //   return blockColor ? `notion-${blockColor}${suffix}` : undefined
+  // }
 
-  function getListNumber(blockId: string): number | undefined {
-    const groups = groupBlockContent(props.blockMap)
-    const group = groups.find((g) => g.includes(blockId));
+  // function getListNumber(blockId: string): number | undefined {
+  //   const groups = groupBlockContent(props.blockMap)
+  //   const group = groups.find((g) => g.includes(blockId));
 
-    if (!group) {
-      return
-    }
+  //   if (!group) {
+  //     return
+  //   }
 
-    return group.indexOf(blockId) + 1;
-  }
+  //   return group.indexOf(blockId) + 1;
+  // }
 
   return {
     pass,
-    alt,
+    // alt,
     block,
-    value,
-    format,
-    f,
-    icon,
-    width,
+    // value,
+    // format,
+    // f,
+    // icon,
+    // width,
     properties,
-    caption,
-    description,
-    src,
-    title,
+    // caption,
+    // description,
+    // src,
+    // title,
     type,
-    visible,
-    parent,
-    page,
-    pageProperties,
+    // visible,
+    // parent,
+    // page,
+    // pageProperties,
     isType,
     getTextContent,
-    blockColorClass,
-    getListNumber
+    // blockColorClass,
+    // getListNumber
   }
 }

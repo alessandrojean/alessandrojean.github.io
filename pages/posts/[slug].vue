@@ -2,13 +2,16 @@
 const { title: author, description } = useAppConfig()
 const route = useRoute()
 
+const { data: linkMap } = await useFetch('/api/posts', {
+  transform: (posts) => Object.fromEntries(posts.map((p) => [p.id, p.slug]))
+})
 const { data: post } = await useFetch(`/api/posts/${route.params.slug}`)
 
 const postTags = computed(() => post.value.tags.join(', '))
 
-// function mapPageUrl(pageId: string) {
-//   return '/posts/' + (page.value.linkMap[pageId] ?? pageId)
-// }
+function mapPageUrl(pageId: string) {
+  return '/posts/' + (linkMap.value[pageId] ?? pageId)
+}
 </script>
 
 <template>
@@ -28,11 +31,11 @@ const postTags = computed(() => post.value.tags.join(', '))
       <Meta name="twitter:description" :content="post.description ?? description" />
     </Head>
 
-    <!-- <NotionRenderer
-      :block-map="page.nodeMap"
+    <NotionRenderer
+      :block-map="post.blocks"
       :map-page-url="mapPageUrl"
       full-page
       shiki
-    /> -->
+    />
   </div>
 </template>
