@@ -27,14 +27,14 @@ const socialMediaLinks = useSocialMedia()
         <a
           v-for="socialMediaLink in socialMediaLinks"
           :key="socialMediaLink.url"
-          class="group p-1 -m-1"
+          class="group p-1 -m-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 dark:focus-visible:ring-offset-gray-900 dark:contrast-more:focus-visible:ring-offset-black rounded motion-safe:transition"
           :href="socialMediaLink.url"
           :title="`Siga-me no ${socialMediaLink.name}`"
           target="_blank"
         >
           <component
             :is="socialMediaLink.icon"
-            class="h-6 w-6 fill-gray-500 motion-safe:transition group-hover:fill-gray-600 dark:fill-gray-400 dark:contrast-more:fill-gray-300 dark:group-hover:fill-gray-300 dark:contrast-more:group-hover:fill-gray-200"
+            class="h-6 w-6 fill-gray-500 motion-safe:transition group-hover:fill-gray-600 group-focus-visible:fill-gray-600 dark:fill-gray-400 dark:contrast-more:fill-gray-300 dark:group-hover:fill-gray-300 dark:group-focus-visible:fill-gray-300 dark:contrast-more:group-hover:fill-gray-200 dark:contrast-more:group-focus-visible:fill-gray-200"
           />
         </a>
       </div>

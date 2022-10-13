@@ -21,13 +21,13 @@ const dateFormatted = computed(() => {
   <article class="md:grid md:grid-cols-4 md:items-baseline">
     <div class="md:col-span-3 group relative flex flex-col items-start">
       <h2 class="text-base font-semibold tracking-tight text-gray-800 dark:text-gray-100 motion-safe:transition">
-        <div class="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-gray-50 opacity-0 motion-safe:transition group-hover:scale-100 group-hover:opacity-100 dark:bg-gray-800 sm:-inset-x-6 sm:rounded-2xl"></div>
-        <NuxtLink :to="'/posts/' + post.slug">
+        <NuxtLink :to="'/posts/' + post.slug" class="peer focus:outline-none">
           <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
           <span class="relative z-10">
             {{ post.title }}
           </span>
         </NuxtLink>
+        <div class="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-gray-50 opacity-0 motion-safe:transition group-hover:scale-100 group-hover:opacity-100 dark:bg-gray-800 sm:-inset-x-6 sm:rounded-2xl peer-focus-visible:scale-100 peer-focus-visible:opacity-100 peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-primary-600 dark:peer-focus-visible:ring-offset-gray-900 dark:contrast-more:peer-focus-visible:ring-offset-black" />
       </h2>
       <time
         class="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-gray-400 dark:text-gray-400 dark:contrast-more:text-gray-300 pl-3.5 motion-safe:transition"

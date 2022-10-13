@@ -37,11 +37,11 @@ const { data: page } = await useFetch('/api/about')
             class="flex"
           >
             <a
-              class="group flex items-center lg:text-sm font-medium text-gray-800 motion-safe:transition hover:text-primary-600 dark:text-gray-200 dark:hover:text-primary-500"
+              class="group flex items-center lg:text-sm font-medium text-gray-800 motion-safe:transition hover:text-primary-600 focus-visible:text-primary-600 dark:text-gray-200 dark:hover:text-primary-500 dark:focus-visible:text-primary-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 dark:focus-visible:ring-offset-gray-900 dark:contrast-more:focus-visible:ring-offset-black rounded"
               :href="socialMedia.url"
               target="_blank"
             >
-              <component :is="socialMedia.icon" aria-hidden="true" class="h-6 w-6 flex-none fill-gray-500 transition group-hover:fill-primary-600 dark:group-hover:fill-primary-500 motion-safe:transition" />
+              <component :is="socialMedia.icon" aria-hidden="true" class="h-6 w-6 flex-none fill-gray-500 transition group-hover:fill-primary-600 group-focus-visible:fill-primary-600 dark:group-hover:fill-primary-500 dark:group-focus-visible:fill-primary-500 motion-safe:transition" />
               <span class="ml-4">
                 Siga-me no {{ socialMedia.name }}
               </span>

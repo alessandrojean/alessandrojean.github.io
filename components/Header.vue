@@ -17,7 +17,7 @@ function isCurrentPage(link: typeof navLinks[0]) {
 
 <template>
   <header class="sticky top-0 w-full flex gap-4 md:gap-10 items-center z-20 px-4 md:px-10 py-6 bg-white dark:bg-gray-900 dark:contrast-more:bg-black supports-backdrop-blur:bg-white/80 dark:supports-backdrop-blur:bg-gray-900/90 dark:contrast-more:supports-backdrop-blur:bg-black/90 backdrop-blur motion-safe:transition">
-    <NuxtLink to="/" class="shrink-0">
+    <NuxtLink to="/" class="shrink-0 motion-safe:transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 dark:focus-visible:ring-offset-gray-900 dark:contrast-more:focus-visible:ring-offset-black rounded-full">
       <img
         src="/img/avatar-okabe.png"
         class="w-10 h-10 rounded-full border border-gray-200 dark:border-transparent shadow-sm"
@@ -33,7 +33,7 @@ function isCurrentPage(link: typeof navLinks[0]) {
         >
           <NuxtLink
             :to="link.to"
-            class="relative px-3 py-2 block font-medium dark:text-gray-50 hover:text-primary-600 dark:hover:text-primary-400 motion-safe:transition"
+            class="relative px-3 py-2 block font-medium dark:text-gray-50 hover:text-primary-600 focus-visible:text-primary-600 dark:hover:text-primary-400 dark:focus-visible:text-primary-400 motion-safe:transition rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 dark:focus-visible:ring-offset-gray-900 dark:contrast-more:focus-visible:ring-offset-black"
             aria-current-value="page"
           >
             <span :class="isCurrentPage(link) ? 'text-primary-500 dark:text-primary-400' : ''">{{ link.title }}</span>

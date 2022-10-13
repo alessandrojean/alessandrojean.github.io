@@ -8,6 +8,14 @@
     @apply scroll-smooth;
   }
 
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html.dark iframe {
+    color-scheme: light;
+  }
+
   a {
     @apply cursor-pointer font-semibold;
   }
