@@ -32,6 +32,7 @@ export default defineEventHandler<Post[]>(async () => {
   })
 
   return (posts.results || [])
+    .filter(({ properties }: PageObjectResponse) => properties['Name']['title'].length > 0)
     .map(({ id, properties }: PageObjectResponse) => ({
       id: id,
       title: getTextContent(properties['Name']['title']),
