@@ -51,7 +51,8 @@ useHead({ titleTemplate })
     </Head>
 
     <Header />
-    <main class="px-4 md:px-10">
+    <main class="px-4 md:px-10 relative">
+      <NuxtLoadingIndicator color="#0ea5e9" :duration="3000" />
       <NuxtPage />
     </main>
     <Footer />

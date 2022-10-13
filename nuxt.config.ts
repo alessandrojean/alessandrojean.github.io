@@ -7,9 +7,8 @@ export default defineNuxtConfig({
     // TODO: Remove when Vue add support to type imports.
     'vite-plugin-vue-type-imports/nuxt'
   ],
-  colorMode: {
-    classSuffix: ''
-  },
+  colorMode: { classSuffix: '' },
+  tailwindcss: { viewer: false },
   watch: ['./tailwind.config.js'],
   runtimeConfig: {
     notionApiKey: '',
