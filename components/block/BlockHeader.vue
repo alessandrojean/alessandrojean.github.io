@@ -18,10 +18,10 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, type, pass, getTextContent } = useNotionParser<HeadingBlock>(props)
+const { block, type, pass, richText, getTextContent } = useNotionParser<HeadingBlock>(props)
 
 const id = computed(() => {
-  return slugify(getTextContent(block.value[type.value].rich_text), {
+  return slugify(getTextContent(richText.value), {
     lower: true,
     locale: 'pt'
   })
@@ -49,14 +49,11 @@ const tagMap: Record<typeof type.value, string> = {
       aria-current-value="page"
       class="peer font-inherit !text-inherit group-hover:decoration-dashed group-hover:underline-offset-[3px]"
     >
-      <BlockTextRenderer
-        :text="block[type].rich_text"
-        v-bind="pass"
-      />
+      <BlockTextRenderer :text="richText" v-bind="pass" />
     </NuxtLink>
     <BlockTextRenderer
       v-else
-      :text="block[type].rich_text"
+      :text="richText"
       v-bind="pass"
     />
 

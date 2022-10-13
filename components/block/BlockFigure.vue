@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type { NotionBlockProps } from '@/composables/useNotionParser'
 import type {
+  CodeBlockObjectResponse,
   EmbedBlockObjectResponse,
   ImageBlockObjectResponse,
   VideoBlockObjectResponse
 } from '@/lib/notion'
 
-type FigureBlock = EmbedBlockObjectResponse | ImageBlockObjectResponse | VideoBlockObjectResponse
+type FigureBlock = CodeBlockObjectResponse | EmbedBlockObjectResponse | ImageBlockObjectResponse | VideoBlockObjectResponse
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -15,11 +16,10 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, type, parent, isType } = useNotionParser<FigureBlock>(props)
+const { block, pass, parent, caption, isType } = useNotionParser<FigureBlock>(props)
 
 const isInColumn = computed(() => parent.value.type === 'column')
 
-const caption = computed(() => block.value[type.value].caption)
 const isTweet = computed(() => {
   return block.value.type === 'embed' && 
     block.value.embed.url.includes('twitter.com')
@@ -36,7 +36,7 @@ const isTweet = computed(() => {
     <BlockImage v-if="isType('image')" v-bind="pass" />
     <BlockTweet v-else-if="isTweet" v-bind="pass" />
     <BlockAsset
-      v-else-if="isType(['embed', 'video', 'codepen'])"
+      v-else-if="isType(['embed', 'video'])"
       v-bind="pass"
     />
     <BlockCode v-else-if="isType('code')" v-bind="pass" />

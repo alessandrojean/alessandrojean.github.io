@@ -1,3 +1,4 @@
+import type { ComputedRef } from 'vue'
 import * as Notion from '@/lib/notion'
 
 export interface MapImageUrlArgs {
@@ -41,7 +42,19 @@ export function defaultMapPageUrl(pageId: string = ''): string {
 }
 
 type PageOnly<T extends Notion.BlockNode> =
-  T extends Notion.BlockPageObject ? Notion.BlockPageObject['properties'] : null
+  T extends Notion.BlockPageObject ? Notion.BlockPageObject['properties'] : never
+
+type RichTextBlock = 'paragraph' | 'heading_1' | 'heading_2' | 'heading_3' |
+  'callout' | 'quote' | 'bulleted_list_item' | 'numbered_list_item' |
+  'to_do' | 'code'
+
+type RichTextOnly<T extends Notion.BlockNode> =
+  T['type'] extends RichTextBlock ? Notion.TextRichTextItemResponse[] : never
+
+type CaptionBlock = 'image' | 'video' | 'code' | 'embed'
+
+type CaptionOnly<T extends Notion.BlockNode> =
+  T['type'] extends CaptionBlock ? Notion.TextRichTextItemResponse[] : never
 
 export default function useNotionParser<Block extends Notion.BlockNode>(props: NotionBlockProps) {
   const pass = computed<NotionBlockProps>(() => ({
@@ -79,7 +92,37 @@ export default function useNotionParser<Block extends Notion.BlockNode>(props: N
 
   const root = computed(() => Object.values(props.blockMap)[0] as Notion.BlockPageObject)
 
-  function isType(t: string | string[]): boolean {
+  const richText = computed(() => {
+    const blockUnref = unref(block)
+
+    switch (blockUnref.type) {
+      case 'paragraph': return blockUnref.paragraph.rich_text
+      case 'heading_1': return blockUnref.heading_1.rich_text
+      case 'heading_2': return blockUnref.heading_2.rich_text
+      case 'heading_3': return blockUnref.heading_3.rich_text
+      case 'callout' : return blockUnref.callout.rich_text
+      case 'quote' : return blockUnref.quote.rich_text
+      case 'bulleted_list_item': return blockUnref.bulleted_list_item.rich_text
+      case 'numbered_list_item': return blockUnref.numbered_list_item.rich_text
+      case 'to_do': return blockUnref.to_do.rich_text
+      case 'code': return blockUnref.code.rich_text
+      default: return undefined
+    }
+  }) as ComputedRef<RichTextOnly<Block>>
+
+  const caption = computed(() => {
+    const blockUnref = unref(block)
+
+    switch (blockUnref.type) {
+      case 'code': return blockUnref.code.caption
+      case 'image': return blockUnref.image.caption
+      case 'video': return blockUnref.video.caption
+      case 'embed': return blockUnref.embed.caption
+      default: return undefined
+    }
+  }) as ComputedRef<CaptionOnly<Block>>
+
+  function isType(t: Block['type'] | Block['type'][]): boolean {
     if (Array.isArray(t)) {
       return t.includes(type.value)
     }
@@ -94,6 +137,8 @@ export default function useNotionParser<Block extends Notion.BlockNode>(props: N
     type,
     parent,
     root,
+    richText,
+    caption,
     isType,
     getTextContent: Notion.getTextContent,
   }

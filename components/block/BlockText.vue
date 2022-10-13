@@ -9,12 +9,12 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass } = useNotionParser<ParagraphBlockObjectResponse>(props)
+const { block, pass, richText } = useNotionParser<ParagraphBlockObjectResponse>(props)
 </script>
 
 <template>
-  <p v-if="block.paragraph.rich_text" :class="['notion-text', block.paragraph.color]">
-    <BlockTextRenderer :text="block.paragraph.rich_text" v-bind="pass" />
+  <p v-if="richText" :class="['notion-text', block.paragraph.color]">
+    <BlockTextRenderer :text="richText" v-bind="pass" />
   </p>
   <div v-else class="notion-blank">&nbsp;</div>
 </template>

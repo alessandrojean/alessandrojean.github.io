@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, getTextContent } = useNotionParser<ImageBlockObjectResponse>(props)
+const { block, caption, getTextContent } = useNotionParser<ImageBlockObjectResponse>(props)
 
 const src = computed(() => {
   return block.value.image.type === 'external'
@@ -20,7 +20,7 @@ const src = computed(() => {
 
 <template>
   <img
-    :alt="getTextContent(block.image.caption)"
+    :alt="getTextContent(caption)"
     :src="src"
     loading="lazy"
     class="rounded-xl shadow-lg ring-1 ring-gray-900/5 mx-auto"

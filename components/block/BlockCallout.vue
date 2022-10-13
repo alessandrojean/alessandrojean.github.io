@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass } = useNotionParser<CalloutBlockObjectResponse>(props)
+const { block, pass, richText } = useNotionParser<CalloutBlockObjectResponse>(props)
 
 const colorMap: Partial<Record<ApiColor, string[]>> = {
   blue_background: ['bg-blue-100', 'text-blue-800', 'border-blue-200'],
@@ -56,7 +56,7 @@ const borderColor = computed(() => {
     </div>
     <div class="prose-p:last-of-type:mb-0 prose-strong:!text-current prose-a:font-medium prose-a:!text-current prose-a:underline prose-a:!decoration-1 prose-a:!decoration-current prose-a:underline-offset-2 hover:prose-a:decoration-dotted">
       <p class="notion-callout-text mt-0">
-        <BlockTextRenderer :text="block.callout.rich_text" v-bind="pass" />
+        <BlockTextRenderer :text="richText" v-bind="pass" />
       </p>
       <slot />
     </div>

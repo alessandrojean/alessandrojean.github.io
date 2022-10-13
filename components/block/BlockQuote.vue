@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, getTextContent } = useNotionParser<QuoteBlockObjectResponse>(props)
+const { block, pass, richText, getTextContent } = useNotionParser<QuoteBlockObjectResponse>(props)
 
 const filteredContent = computed(() => {
   return block.value.content?.filter((id) => {
@@ -34,7 +34,7 @@ const cite = computed(() => {
 
 <template>
   <blockquote class="notion-quote">
-    <p><BlockTextRenderer :text="block.quote.rich_text" v-bind="pass" /></p>
+    <p><BlockTextRenderer :text="richText" v-bind="pass" /></p>
 
     <NotionRenderer
       v-for="(contentId, contentIndex) in (filteredContent || [])"
