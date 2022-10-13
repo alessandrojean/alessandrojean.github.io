@@ -56,7 +56,7 @@ const socialMediaLinks: SocialMediaLink[] = [
       <h1 class="text-2xl md:text-3xl font-semibold dark:text-gray-100 dark:contrast-more:text-white motion-safe:transition">
         <span class="underline underline-offset-4 decoration-primary-500/80 dark:decoration-primary-400/80 decoration-4">Oi, muito prazer!</span>
         <img
-          class="w-8 h-8 ml-3 inline-block motion-safe:animate-wiggle origin-bottom-right"
+          class="w-8 h-8 ml-3 inline-block"
           src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f44b-1f3fb.svg"
           alt="👋🏻"
           aria-label="👋🏻"
