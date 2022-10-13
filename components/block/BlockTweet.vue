@@ -1,21 +1,21 @@
 <script setup lang="ts">
 // Originally from https://github.com/DannyFeliz/vue-tweet/blob/main/src/components/vue-tweet.vue
-import { NotionBlockProps } from '@/composables/useNotionParser'
+import type { NotionBlockProps } from '@/composables/useNotionParser'
+import type { EmbedBlockObjectResponse } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
-  hideList: () => [],
   level: 0,
   pageLinkTarget: '_self',
   textLinkTarget: '_blank'
 })
 
-const { properties } = useNotionParser(props)
+const { block } = useNotionParser<EmbedBlockObjectResponse>(props)
 
 const TWEET_URL_REGEX =
   /^(https?:\/\/)?(www\.)?twitter\.com\/.*\/status(?:es)?\/(?<tweetId>[^\/\?]\d+)$/i;
 
-const tweetUrl = computed<string>(() => properties.value.source?.[0]?.[0])
+const tweetUrl = computed<string>(() => block.value.embed.url)
 const tweetId = computed<string>(() => {
   return tweetUrl.value.trim().match(TWEET_URL_REGEX)?.groups?.tweetId
 })

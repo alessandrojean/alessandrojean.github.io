@@ -3,9 +3,15 @@ const { title: author, description } = useAppConfig()
 const route = useRoute()
 
 const { data: linkMap } = await useFetch('/api/posts', {
-  transform: (posts) => Object.fromEntries(posts.map((p) => [p.id, p.slug]))
+  transform: (posts) => {
+    const entries = posts.map((p) => [p.id.replace(/-/g, ''), p.slug])
+
+    return Object.fromEntries(entries)
+  }
 })
-const { data: post } = await useFetch(`/api/posts/${route.params.slug}`)
+const { data: post } = await useFetch(`/api/posts/${route.params.slug}`, {
+  key: `post-${route.params.slug}`
+})
 
 const postTags = computed(() => post.value.tags.join(', '))
 
@@ -34,6 +40,7 @@ function mapPageUrl(pageId: string) {
     <NotionRenderer
       :block-map="post.blocks"
       :map-page-url="mapPageUrl"
+      header-anchor
       full-page
       shiki
     />

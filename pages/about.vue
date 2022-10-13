@@ -54,8 +54,7 @@ const socialMediaLinks: SocialMediaLink[] = [
   }
 ]
 
-const { notion: { aboutPageId } } = useAppConfig()
-const page = await useNotionPage({ pageId: aboutPageId })
+const { data: page } = await useFetch('/api/about')
 </script>
 
 <template>
@@ -74,7 +73,7 @@ const page = await useNotionPage({ pageId: aboutPageId })
       <div class="lg:order-first lg:row-span-2">
         <NotionRenderer
           class="max-w-full"
-          :block-map="page.nodeMap"
+          :block-map="page"
         />
       </div>
 

@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import { NotionBlockProps } from '@/composables/useNotionParser'
+import type { NotionBlockProps } from '@/composables/useNotionParser'
+import type { EquationBlockObjectResponse } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
-  hideList: () => [],
   level: 0,
   pageLinkTarget: '_self',
   textLinkTarget: '_blank'
 })
 
-const { properties, pass } = useNotionParser(props)
-
-const equation = computed(() => properties.value?.title?.[0]?.[0])
+const { block, pass } = useNotionParser<EquationBlockObjectResponse>(props)
 </script>
 
 <template>

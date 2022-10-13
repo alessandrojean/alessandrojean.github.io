@@ -1,21 +1,13 @@
 <script setup lang="ts">
-import { NotionBlockProps } from '@/composables/useNotionParser'
+import type { CalloutBlockObjectResponse } from '@/lib/notion'
 
-const props = withDefaults(defineProps<NotionBlockProps>(), {
-  contentIndex: 0,
-  hideList: () => [],
-  level: 0,
-  pageLinkTarget: '_self',
-  textLinkTarget: '_blank'
-})
-
-const { icon, format, title, block, getTextContent } = useNotionParser(props)
+const props = defineProps<{ icon: CalloutBlockObjectResponse['callout']['icon'] }>()
 
 const { twemojiUrl } = useEmoji()
 </script>
 
 <template>
-  <img
+  <!-- <img
     v-if="icon.includes('http')"
     :class="[
       format.page_cover && 'notion-page-icon-offset',
@@ -32,16 +24,13 @@ const { twemojiUrl } = useEmoji()
     ]"
     :src="'https://notion.so' + icon"
     :alt="title ? getTextContent(title) : 'Icon'"
-  />
+  /> -->
   <img
-    v-else
-    :class="[
-      format.page_cover && 'notion-page-icon-offset',
-      'notion-page-icon w-5 h-5 m-0 mt-1',
-    ]"
-    :src="twemojiUrl(icon)"
-    :alt="icon"
-    :aria-label="icon"
+    v-if="icon.type === 'emoji'"
+    class="notion-page-icon w-5 h-5 m-0 mt-1"
+    :src="twemojiUrl(icon.emoji)"
+    :alt="icon.emoji"
+    :aria-label="icon.emoji"
   />
   <!-- <span
     v-else-if="icon"

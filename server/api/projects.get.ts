@@ -1,4 +1,4 @@
-import { fetchTable, PageObjectResponse } from '@/lib/notion'
+import { fetchTable, getTextContent, PageObjectResponse } from '@/lib/notion'
 
 export interface ProjectCategory {
   name: string;
@@ -32,12 +32,9 @@ export default defineEventHandler<ProjectCategory[]>(async () => {
   const categories: Record<string, Project[]> = (projects.results || [])
     .map(({ id, properties }: PageObjectResponse) => ({
       id: id,
-      name: properties['Name']['title']
-        .reduce((acm, crr) => acm + crr.plain_text, ''),
-      description: properties['Description']['rich_text']
-        .reduce((acm, crr) => acm + crr.plain_text, ''),
-      slug: properties['Slug']['rich_text']
-        .reduce((acm, crr) => acm + crr.plain_text, ''),
+      name: getTextContent(properties['Name']['title']),
+      description: getTextContent(properties['Description']['rich_text']),
+      slug: getTextContent(properties['Slug']['rich_text']),
       category: properties['Category']['select'].name,
       url: properties['URL']['url'],
       isPublic: properties['Public']['checkbox']

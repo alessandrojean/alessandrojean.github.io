@@ -1,20 +1,18 @@
-import { NotionNode, NotionNodeMap } from '@/composables/useNotionPage'
-
-import { BlockMap, BlockNode, TextRichTextItemResponse } from '@/lib/notion'
+import * as Notion from '@/lib/notion'
 
 export interface MapImageUrlArgs {
   src: string;
-  block?: BlockNode;
-  blockMap?: BlockMap
+  block?: Notion.BlockNode;
+  blockMap?: Notion.BlockMap
 }
 
 export interface NotionBlockProps {
-  blockMap: BlockMap;
+  blockMap: Notion.BlockMap;
   contentId?: string;
   contentIndex?: number;
   embedAllow?: string;
   fullPage?: boolean;
-  hideList?: any[];
+  headerAnchor?: boolean;
   level?: number;
   mapImageUrl?: (args: MapImageUrlArgs) => string,
   mapPageUrl?: (url: string) => string;
@@ -42,39 +40,17 @@ export function defaultMapPageUrl(pageId: string = ''): string {
   return `/${pageId.replace(/-/g, '')}`;
 }
 
-function groupBlockContent(blockMap: NotionNodeMap): string[] {
-  const output = []
+type PageOnly<T extends Notion.BlockNode> =
+  T extends Notion.BlockPageObject ? Notion.BlockPageObject['properties'] : null
 
-  let lastType = undefined
-  let index = -1
-
-  Object.keys(blockMap).forEach((id) => {
-    blockMap[id].value.content?.forEach((blockId) => {
-      const blockType = blockMap[blockId]?.value?.type
-
-      if (blockType && blockType !== lastType) {
-        index++
-        lastType = blockType
-        output[index] = []
-      }
-
-      output[index].push(blockId)
-    })
-
-    lastType = undefined
-  })
-
-  return output
-}
-
-export default function useNotionParser(props: NotionBlockProps) {
+export default function useNotionParser<Block extends Notion.BlockNode>(props: NotionBlockProps) {
   const pass = computed<NotionBlockProps>(() => ({
     blockMap: props.blockMap,
     contentId: props.contentId,
     contentIndex: props.contentIndex,
     embedAllow: props.embedAllow,
     fullPage: props.fullPage,
-    hideList: props.hideList,
+    headerAnchor: props.headerAnchor,
     level: props.level,
     mapImageUrl: props.mapImageUrl,
     mapPageUrl: props.mapPageUrl,
@@ -83,38 +59,25 @@ export default function useNotionParser(props: NotionBlockProps) {
     textLinkTarget: props.textLinkTarget
   }))
 
-  const block = computed(() => {
+  const block = computed<Block & { content: string[] }>(() => {
     const id = props.contentId || Object.keys(props.blockMap)[0]
-    return props.blockMap[id]
+    return props.blockMap[id] as Block & { content: string[] }
   })
-  // const value = computed(() => block.value?.value)
-  // const format = computed(() => value.value?.format)
-  // const f = computed(() => ({
-  //   block_aspect_ratio: format.value?.block_aspect_ratio,
-  //   block_height: format.value?.block_height || 1,
-  //   block_width: format.value?.block_width || 1,
-  //   block_color: format.value?.block_color,
-  //   bookmark_icon: format.value?.bookmark_icon,
-  //   bookmark_cover: format.value?.bookmark_cover,
-  //   display_source: format.value?.display_source
-  // }))
-  // const icon = computed(() => format.value?.page_icon || '')
-  // const width = computed(() => format.value?.block_width)
-  const properties = computed(() => block.value?.['properties'])
-  // const caption = computed(() => properties.value?.caption)
-  // const description = computed(() => properties.value?.description)
-  // const src = computed(() => {
-  //   return props.mapImageUrl(properties.value?.source[0][0], block.value);
-  // })
-  // const title = computed(() => properties.value?.title)
-  const type = computed(() => block.value?.type)
-  // const visible = computed(() => !props.hideList.includes(type.value))
-  // const parent = computed(() => {
-  //   return props.blockMap[value.value?.parent_id];
-  // })
-  // const alt = computed(() => caption.value?.[0][0])
-  // const page = computed(() => Object.values(props.blockMap)[0].value)
-  // const pageProperties = computed(() => page.value.properties)
+  
+  const properties = computed<PageOnly<Block>>(() => {
+    return (block.value.type === 'page'
+      ? block.value.properties : null) as PageOnly<Block>
+  })
+  
+  const type = computed<Block['type']>(() => block.value?.type)
+  
+  const parent = computed(() => {
+    const id = block.value.parent[block.value.parent.type]
+
+    return typeof id === 'string' ? props.blockMap[id] : null;
+  })
+
+  const root = computed(() => Object.values(props.blockMap)[0] as Notion.BlockPageObject)
 
   function isType(t: string | string[]): boolean {
     if (Array.isArray(t)) {
@@ -124,48 +87,14 @@ export default function useNotionParser(props: NotionBlockProps) {
     return type.value === t
   }
 
-  function getTextContent(text: TextRichTextItemResponse[]): string {
-    return text.reduce((prev, current) => prev + current.plain_text, '')
-  }
-
-  // function blockColorClass(suffix: string = ''): string | undefined {
-  //   const blockColor = format.value?.block_color
-  //   return blockColor ? `notion-${blockColor}${suffix}` : undefined
-  // }
-
-  // function getListNumber(blockId: string): number | undefined {
-  //   const groups = groupBlockContent(props.blockMap)
-  //   const group = groups.find((g) => g.includes(blockId));
-
-  //   if (!group) {
-  //     return
-  //   }
-
-  //   return group.indexOf(blockId) + 1;
-  // }
-
   return {
     pass,
-    // alt,
     block,
-    // value,
-    // format,
-    // f,
-    // icon,
-    // width,
     properties,
-    // caption,
-    // description,
-    // src,
-    // title,
     type,
-    // visible,
-    // parent,
-    // page,
-    // pageProperties,
+    parent,
+    root,
     isType,
-    getTextContent,
-    // blockColorClass,
-    // getListNumber
+    getTextContent: Notion.getTextContent,
   }
 }

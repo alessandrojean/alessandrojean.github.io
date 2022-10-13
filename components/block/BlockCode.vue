@@ -1,30 +1,32 @@
 <script setup lang="ts">
-import { Highlighter } from 'shiki-es'
-import { NotionBlockProps } from '@/composables/useNotionParser'
+import type { Highlighter } from 'shiki-es'
+import type { NotionBlockProps } from '@/composables/useNotionParser'
+import type { CodeBlockObjectResponse, EquationBlockObjectResponse, Language } from '@/lib/notion'
+
+type CodeBlock = CodeBlockObjectResponse | EquationBlockObjectResponse
 
 interface Props extends NotionBlockProps {
-  overrideLang?: string;
+  overrideLang?: Language | string;
   overrideLangClass?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   contentIndex: 0,
-  hideList: () => [],
   level: 0,
   pageLinkTarget: '_self',
   textLinkTarget: '_blank'
 })
 
-const { properties } = useNotionParser(props)
+const { block, getTextContent } = useNotionParser<CodeBlock>(props)
 
 // Map the Notion language codes to Shiki ones.
-const langMap: Record<string, string> = {
+const langMap: Partial<Record<Language, string>> = {
   'c++': 'cpp'
 }
 
 const lang = computed(() => {
   const value = props.overrideLang ?? 
-    properties.value?.language?.[0]?.[0]?.toLowerCase()
+    block.value.type === 'equation' ? 'latex' : block.value.code.language
 
   return langMap[value] ?? value
 })
@@ -37,7 +39,9 @@ const supported = computed(() => {
 })
 
 const code = computed(() => {
-  return (properties.value.title?.[0]?.[0] || '').replace(/\t/g, '  ')
+  return block.value.type === 'equation'
+    ? block.value.equation.expression
+    : getTextContent(block.value.code.rich_text).replace(/\t/g, '  ')
 })
 
 const shikiHtml = computed(() => {

@@ -5,7 +5,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
   embedAllow: 'fullscreen',
   fullPage: false,
-  hideList: () => [],
+  headerAnchor: false,
   level: 0,
   mapImageUrl: defaultMapImageUrl,
   mapPageUrl: defaultMapPageUrl,

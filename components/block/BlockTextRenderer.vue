@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { NotionBlockProps } from '@/composables/useNotionParser'
-import { TextRichTextItemResponse } from '@/lib/notion'
+import { RichTextItemResponse, TextRichTextItemResponse } from '@/lib/notion'
 
 interface Props extends NotionBlockProps {
-  text: TextRichTextItemResponse[]
+  text?: (TextRichTextItemResponse | RichTextItemResponse)[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
   contentIndex: 0,
-  hideList: () => [],
   level: 0,
   pageLinkTarget: '_self',
   textLinkTarget: '_blank'
@@ -19,7 +18,7 @@ const { pass } = useNotionParser(props)
 
 <template>
   <BlockDecorator
-    v-for="(t, i) in text"
+    v-for="(t, i) in (text ?? [])"
     :key="i"
     :content="t"
     v-bind="pass"

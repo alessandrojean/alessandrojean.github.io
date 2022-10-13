@@ -2,7 +2,12 @@ import zonedTimeToUtc from 'date-fns-tz/zonedTimeToUtc'
 import formatISO from 'date-fns/formatISO'
 import parseISO from 'date-fns/parseISO'
 
-import { fetchTable, fetchBlocks, PageObjectResponse } from '@/lib/notion'
+import {
+  fetchTable,
+  fetchBlocks,
+  getTextContent,
+  PageObjectResponse
+} from '@/lib/notion'
 
 export default defineEventHandler(async (event) => {
   const { notionPostsTable } = useRuntimeConfig()
@@ -35,12 +40,9 @@ export default defineEventHandler(async (event) => {
 
   return {
     id: post.id,
-    title: post.properties['Name']['title']
-      .reduce((acm, crr) => acm + crr.plain_text, ''),
-    description: post.properties['Description']['rich_text']
-      .reduce((acm, crr) => acm + crr.plain_text, ''),
-    slug: post.properties['Slug']['rich_text']
-      .reduce((acm, crr) => acm + crr.plain_text, ''),
+    title: getTextContent(post.properties['Name']['title']),
+    description: getTextContent(post.properties['Description']['rich_text']),
+    slug: getTextContent(post.properties['Slug']['rich_text']),
     area: post.properties['Area']['select'].name,
     tags: post.properties['Tags']['multi_select'].map((tag) => tag.name),
     createdAt: formatISO(

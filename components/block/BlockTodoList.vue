@@ -1,35 +1,27 @@
 <script setup lang="ts">
 import { CheckIcon } from '@heroicons/vue/20/solid'
-import { NotionBlockProps } from '@/composables/useNotionParser'
+import type { NotionBlockProps } from '@/composables/useNotionParser'
+import type { ToDoGroupBlock, ToDoBlockObjectResponse } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
-  hideList: () => [],
   level: 0,
   pageLinkTarget: '_self',
   textLinkTarget: '_blank'
 })
 
-const { title, properties, pass } = useNotionParser(props)
+const { block, pass, getTextContent } = useNotionParser<ToDoGroupBlock>(props)
 
 const todos = computed(() => {
-  const self = {
-    id: props.contentId,
-    label: title.value,
-    checked: properties.value.checked?.[0]?.[0] === 'Yes'
-  }
-
-  const content = (properties.value.content || []).map((id) => {
-    const block = props.blockMap[id].value
+  return (block.value.content || []).map((id) => {
+    const block = props.blockMap[id] as ToDoBlockObjectResponse
 
     return {
       id,
-      label: block.properties.title,
-      checked: block.properties.checked?.[0]?.[0] === 'Yes'
+      label: block.to_do.rich_text,
+      checked: block.to_do.checked
     }
   })
-
-  return [self, ...content]
 })
 </script>
 
@@ -42,7 +34,7 @@ const todos = computed(() => {
     >
       <input
         type="checkbox"
-        :value="todo.title"
+        :value="getTextContent(todo.label)"
         :checked="todo.checked"
         :id="'to-do-' + todo.id"
         class="sr-only peer"

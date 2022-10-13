@@ -1,34 +1,40 @@
 <script setup lang="ts">
-import { NotionBlockProps } from '@/composables/useNotionParser'
+import type { NotionBlockProps } from '@/composables/useNotionParser'
+import type { QuoteBlockObjectResponse } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
-  hideList: () => [],
   level: 0,
   pageLinkTarget: '_self',
   textLinkTarget: '_blank'
 })
 
-const { properties, title, pass, value } = useNotionParser(props)
+const { block, pass, getTextContent } = useNotionParser<QuoteBlockObjectResponse>(props)
 
 const filteredContent = computed(() => {
-  return value.value.content?.filter((id) => {
-    return props.blockMap[id].value.properties.title[0]?.[0]?.[0] !== '—'
+  return block.value.content?.filter((id) => {
+    const block = props.blockMap[id]
+
+    return block.type !== 'paragraph' ||
+      getTextContent(block.paragraph.rich_text)[0] !== '—'
   })
 })
 
 const cite = computed(() => {
-  const lastIdx = value.value.content?.length ?? 0
-  const last = value.value.content?.[lastIdx - 1]
-  const lastTitle = props.blockMap[last]?.value?.properties?.title
+  const lastIdx = block.value.content?.length ?? 0
+  const last = block.value.content?.[lastIdx - 1]
+  const lastBlock = props.blockMap[last]
+  
+  const isCite = lastBlock?.type === 'paragraph' &&
+    getTextContent(lastBlock.paragraph.rich_text)[0] === '—'
 
-  return lastTitle?.[0]?.[0]?.[0] === '—' ? lastTitle : null
+  return isCite ? lastBlock : null
 })
 </script>
 
 <template>
-  <blockquote v-if="properties" class="notion-quote">
-    <p><BlockTextRenderer :text="title" v-bind="pass" /></p>
+  <blockquote class="notion-quote">
+    <p><BlockTextRenderer :text="block.quote.rich_text" v-bind="pass" /></p>
 
     <NotionRenderer
       v-for="(contentId, contentIndex) in (filteredContent || [])"
@@ -39,7 +45,7 @@ const cite = computed(() => {
       :content-index="contentIndex"
     />
     <cite v-if="cite">
-      <BlockTextRenderer :text="cite" v-bind="pass" />
+      <BlockTextRenderer :text="cite.paragraph.rich_text" v-bind="pass" />
     </cite>
   </blockquote>
 </template>

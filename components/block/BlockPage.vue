@@ -1,19 +1,23 @@
 <script setup lang="ts">
 import formatISO from 'date-fns/formatISO'
 import zonedTimeToUtc from 'date-fns-tz/zonedTimeToUtc'
+
+import { BlockPageObject } from '@/lib/notion'
 import { NotionBlockProps } from '@/composables/useNotionParser'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
-  hideList: () => [],
   level: 0,
   pageLinkTarget: '_self',
   textLinkTarget: '_blank'
 })
 
-const { pass, properties, block } = useNotionParser(props)
+const { pass, properties, block } = useNotionParser<BlockPageObject>(props)
 
-const title = computed(() => properties.value['Name'].title)
+const title = computed(() => {
+  return properties.value['Name'].type === 'title'
+    ? properties.value['Name'].title : []
+})
 
 const formatter = new Intl.DateTimeFormat('pt-BR', {
   dateStyle: 'long',
@@ -21,7 +25,8 @@ const formatter = new Intl.DateTimeFormat('pt-BR', {
 })
 
 const date = computed(() => {
-  const iso = properties.value['Created at']?.date?.start
+  const iso = properties.value['Created at'].type === 'date'
+    ? properties.value['Created at']?.date?.start : null
   const updated = new Date(block.value.last_edited_time)
 
   return {

@@ -1,38 +1,42 @@
 <script setup lang="ts">
 import { NotionBlockProps } from '@/composables/useNotionParser'
+import type { CalloutBlockObjectResponse } from '@/lib/notion'
+
+type ApiColor = CalloutBlockObjectResponse['callout']['color']
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
-  hideList: () => [],
   level: 0,
   pageLinkTarget: '_self',
   textLinkTarget: '_blank'
 })
 
-const { title, pass, format, blockColorClass } = useNotionParser(props)
+const { block, pass } = useNotionParser<CalloutBlockObjectResponse>(props)
 
-const colorMap: Record<string, string[]> = {
+const colorMap: Partial<Record<ApiColor, string[]>> = {
   blue_background: ['bg-blue-100', 'text-blue-800', 'border-blue-200'],
   gray_background: ['bg-gray-100', 'text-gray-800', 'border-gray-200'],
   orange_background: ['bg-orange-100', 'text-orange-900', 'border-orange-200'],
   yellow_background: ['bg-yellow-50', 'text-yellow-900', 'border-yellow-300'],
-  teal_background: ['bg-emerald-100', 'text-emerald-900', 'border-emerald-200'],
+  green_background: ['bg-emerald-100', 'text-emerald-900', 'border-emerald-200'],
   purple_background: ['bg-purple-100', 'text-purple-900', 'border-purple-200'],
   red_background: ['bg-red-100', 'text-red-900', 'border-red-200']
 }
 
+const color = computed(() => block.value.callout.color)
+
 const bgColor = computed(() => {
-  return colorMap[format.value?.block_color]?.[0] 
+  return colorMap[color.value]?.[0] 
     ?? colorMap.gray_background[0]
 })
 
 const textColor = computed(() => {
-  return colorMap[format.value?.block_color]?.[1]
+  return colorMap[color.value]?.[1]
     ?? colorMap.gray_background[1]
 })
 
 const borderColor = computed(() => {
-  return colorMap[format.value?.block_color]?.[2]
+  return colorMap[color.value]?.[2]
     ?? colorMap.gray_background[3]
 })
 </script>
@@ -44,16 +48,18 @@ const borderColor = computed(() => {
       'flex p-6 rounded-xl gap-6 text-sm leading-loose border dark:border-gray-800 dark:contrast-more:border-gray-900',
       bgColor,
       textColor,
-      borderColor,
-      blockColorClass(),
-      blockColorClass('_co')
+      borderColor
     ]"
   >
-    <div class="shrink-0">
-      <BlockIcon v-bind="pass" class="select-none" />
+    <div class="shrink-0" v-if="block.callout.icon">
+      <BlockIcon :icon="block.callout.icon" class="select-none" />
     </div>
-    <p class="notion-callout-text [&_strong]:text-current my-0 [&_a]:font-medium [&_a]:!text-current [&_a]:underline [&_a]:!decoration-1 [&_a]:!decoration-current [&_a]:underline-offset-2 [&_a:hover]:decoration-dotted">
-      <BlockTextRenderer :text="title" v-bind="pass" class="block" />
-    </p>
+    <div class="prose-p:last-of-type:mb-0 prose-strong:!text-current prose-a:font-medium prose-a:!text-current prose-a:underline prose-a:!decoration-1 prose-a:!decoration-current prose-a:underline-offset-2 hover:prose-a:decoration-dotted">
+      <p class="notion-callout-text mt-0">
+        <BlockTextRenderer :text="block.callout.rich_text" v-bind="pass" />
+      </p>
+      <slot />
+    </div>
+
   </div>
 </template>

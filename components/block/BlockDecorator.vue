@@ -1,50 +1,65 @@
 <script setup lang="ts">
 import { NotionBlockProps } from '@/composables/useNotionParser'
-import { TextRichTextItemResponse } from '@/lib/notion'
+import { RichTextItemResponse, TextRichTextItemResponse } from '@/lib/notion'
+
+type Decorator = keyof TextRichTextItemResponse['annotations'] | 'link' | 'equation'
+type Color = Exclude<TextRichTextItemResponse['annotations']['color'], 'default'>
 
 interface Props extends NotionBlockProps {
-  content: TextRichTextItemResponse
+  content: TextRichTextItemResponse | RichTextItemResponse
+  decorators?: Decorator[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
   contentIndex: 0,
-  hideList: () => [],
   level: 0,
   pageLinkTarget: '_self',
   textLinkTarget: '_blank'
 })
 
-const { pass, type } = useNotionParser(props)
+const { pass } = useNotionParser(props)
+
+const decorators = computed(() => {
+  if (props.decorators) {
+    return props.decorators
+  }
+
+  const toApply = Object.entries(props.content.annotations)
+    .filter(([_, value]) => value && value !== 'default')
+    .map(([key]) => key as Decorator)
+
+  if (props.content.type === 'equation') {
+    toApply.unshift('equation')
+  }
+
+  if (props.content.href) {
+    toApply.unshift('link')
+  }
+
+  return toApply
+})
+
+const decorator = computed(() => decorators.value[0])
+const decoratorValue = computed(() => props.content.annotations[decorator.value])
+
+const unappliedDecorators = computed(() => {
+  const [_, ...unapplied] = decorators.value
+
+  return unapplied ?? []
+})
 
 const text = computed(() => props.content?.plain_text)
-const isPageLink = computed(() => props.content.href !== null)
-const decorators = computed(() => props.content?.[1] || [])
-const decoratorKey = computed(() => decorators.value?.[0]?.[0])
-const decoratorValue = computed(() => decorators.value?.[0]?.[1])
-const pageLinkTitle = computed(() => (
-  props.blockMap?.[decoratorValue.value]?.value?.properties
-    ?.title?.[0]?.[0] || 'link'
-))
-const isInlinePageLink = computed(() => decoratorValue.value?.[0] === '/')
-const target = computed(() => {
-  return (type.value === 'page' || isPageLink.value || isInlinePageLink.value)
-     ? props.pageLinkTarget
-     : props.textLinkTarget
-})
-const unappliedDecorators = computed(() => {
-  const clonedDecorators = JSON.parse(
-    JSON.stringify(decorators.value || [])
-  )
-  clonedDecorators.shift()
 
-  return clonedDecorators
+const isInnerLink = computed(() => props.content.href?.[0] === '/')
+
+const target = computed(() => {
+  return isInnerLink.value ? props.pageLinkTarget : props.textLinkTarget
 })
-const nextContent = computed(() => [text.value, unappliedDecorators.value])
 
 const highlight = computed(() => {
   const common = 'px-1.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-100'
 
-  const classes: Record<string, string> = {
+  const classes: Partial<Record<Color, string>> = {
     yellow_background: 'bg-yellow-100 text-yellow-900'
   }
 
@@ -65,52 +80,72 @@ function replaceEmojis(text: string) {
 
 <template>
   <NuxtLink
-    v-if="content.href"
-    class="notion-link"
-    :target="pageLinkTarget"
-    :to="mapPageUrl(content.href)"
-  >
-    {{ pageLinkTitle }}
-  </NuxtLink>
-  <NuxtLink
-    v-else-if="decoratorKey === 'a' && isInlinePageLink"
+    v-if="decorator === 'link'"
     class="notion-link"
     :target="target"
-    :to="mapPageUrl(decoratorValue.slice(1))"
+    :external="!isInnerLink"
+    :to="isInnerLink ? mapPageUrl(content.href.slice(1)) : content.href"
   >
-    <BlockDecorator :content="nextContent" v-bind="pass" />
+    <BlockDecorator
+      :content="content"
+      :decorators="unappliedDecorators"
+      v-bind="pass"
+    />
   </NuxtLink>
-  <a
-    v-else-if="decoratorKey === 'a'"
-    class="notion-link"
-    :target="target"
-    :href="decoratorValue"
+  <span
+    v-else-if="decorator === 'color'"
+    :class="['notion-' + decoratorValue, ...highlight]"
   >
-    <BlockDecorator :content="nextContent" v-bind="pass" />
-  </a>
+    <BlockDecorator
+      :content="content"
+      :decorators="unappliedDecorators"
+      v-bind="pass"
+    />
+  </span>
+  <code v-else-if="decorator === 'code'" class="notion-inline-code">
+    <BlockDecorator
+      :content="content"
+      :decorators="unappliedDecorators"
+      v-bind="pass"
+    />
+  </code>
+  <strong v-else-if="decorator === 'bold'">
+    <BlockDecorator
+      :content="content"
+      :decorators="unappliedDecorators"
+      v-bind="pass"
+    />
+  </strong>
+  <em v-else-if="decorator === 'italic'">
+    <BlockDecorator
+      :content="content"
+      :decorators="unappliedDecorators"
+      v-bind="pass"
+    />
+  </em>
+  <s v-else-if="decorator === 'strikethrough'">
+    <BlockDecorator
+      :content="content"
+      :decorators="unappliedDecorators"
+      v-bind="pass"
+    />
+  </s>
+  <span v-else-if="decorator === 'underline'" class="underline">
+    <BlockDecorator
+      :content="content"
+      :decorators="unappliedDecorators"
+      v-bind="pass"
+    />
+  </span>
+  <code v-else-if="decorator === 'equation'">
+    <BlockDecorator
+      :content="content"
+      :decorators="unappliedDecorators"
+      v-bind="pass"
+    />
+  </code>
   <span
     v-else-if="decorators.length === 0"
     v-html="replaceEmojis(text)"
   />
-  <span
-    v-else-if="decoratorKey === 'h'"
-    :class="['notion-' + decoratorValue, ...highlight]"
-  >
-    <BlockDecorator :content="nextContent" v-bind="pass" />
-  </span>
-  <code v-else-if="decoratorKey === 'c'" class="notion-inline-code">
-    <BlockDecorator :content="nextContent" v-bind="pass" />
-  </code>
-  <strong v-else-if="decoratorKey === 'b'">
-    <BlockDecorator :content="nextContent" v-bind="pass" />
-  </strong>
-  <em v-else-if="decoratorKey === 'i'">
-    <BlockDecorator :content="nextContent" v-bind="pass" />
-  </em>
-  <s v-else-if="decoratorKey === 's'">
-    <BlockDecorator :content="nextContent" v-bind="pass" />
-  </s>
-  <code v-else-if="decoratorKey === 'e'">
-    {{ decoratorValue }}
-  </code>
 </template>
