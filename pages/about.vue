@@ -1,58 +1,10 @@
 <script setup lang="ts">
-import { ConcreteComponent } from 'vue'
-
-const IconGitHub = resolveComponent('IconGitHub')
-const IconInstagram = resolveComponent('IconInstagram')
-const IconLinkedIn = resolveComponent('IconLinkedIn')
-const IconMyAnimeList = resolveComponent('IconMyAnimeList')
-const IconTrakt = resolveComponent('IconTrakt')
-const IconTwitter = resolveComponent('IconTwitter')
-
-const { socialMedia } = useAppConfig()
-
 definePageMeta({
   title: 'Sobre',
   description: 'Um pouco mais sobre a minha pessoa.'
 })
 
-interface SocialMediaLink {
-  name: string;
-  url: string;
-  icon: string | ConcreteComponent;
-}
-
-const socialMediaLinks: SocialMediaLink[] = [
-  {
-    name: 'Twitter',
-    url: `https://twitter.com/${socialMedia.twitter}`,
-    icon: IconTwitter
-  },
-  {
-    name: 'Instagram',
-    url: `https://instagram.com/${socialMedia.instagram}`,
-    icon: IconInstagram
-  },
-  {
-    name: 'GitHub',
-    url: `https://github.com/${socialMedia.instagram}`,
-    icon: IconGitHub
-  },
-  {
-    name: 'LinkedIn',
-    url: `https://www.linkedin.com/in/${socialMedia.linkedIn}`,
-    icon: IconLinkedIn
-  },
-  {
-    name: 'MyAnimeList',
-    url: `https://myanimelist.net/profile/${socialMedia.myAnimeList}`,
-    icon: IconMyAnimeList
-  },
-  {
-    name: 'Trakt',
-    url: `https://trakt.tv/users/${socialMedia.trakt}`,
-    icon: IconTrakt
-  }
-]
+const socialMediaLinks = useSocialMedia()
 
 const { data: page } = await useFetch('/api/about')
 </script>
