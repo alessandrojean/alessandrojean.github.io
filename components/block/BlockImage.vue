@@ -12,9 +12,13 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
 const { block, caption, getTextContent } = useNotionParser<ImageBlockObjectResponse>(props)
 
 const src = computed(() => {
-  return block.value.image.type === 'external'
-    ? block.value.image.external.url
-    : block.value.image.file.url
+  return props.mapImageUrl({
+    src: block.value.image.type === 'external'
+      ? block.value.image.external.url
+      : block.value.image.file.url,
+    block: block.value,
+    blockMap: props.blockMap
+  })
 })
 </script>
 

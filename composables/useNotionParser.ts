@@ -3,7 +3,13 @@ import * as Notion from '@/lib/notion'
 
 export interface MapImageUrlArgs {
   src: string;
-  block?: Notion.BlockNode;
+  block?: Extract<Notion.BlockNode, { type: 'image' }>;
+  blockMap?: Notion.BlockMap
+}
+
+export interface MapVideoUrlArgs {
+  src: string;
+  block?: Extract<Notion.BlockNode, { type: 'video' }>;
   blockMap?: Notion.BlockMap
 }
 
@@ -15,30 +21,24 @@ export interface NotionBlockProps {
   fullPage?: boolean;
   headerAnchor?: boolean;
   level?: number;
-  mapImageUrl?: (args: MapImageUrlArgs) => string,
+  mapImageUrl?: (args: MapImageUrlArgs) => string;
   mapPageUrl?: (url: string) => string;
+  mapVideoUrl?: (args: MapVideoUrlArgs) => string;
   pageLinkTarget?: string;
   shiki?: boolean;
   textLinkTarget?: string;
 }
 
-export function defaultMapImageUrl({ src, block, blockMap }: MapImageUrlArgs): string {
-  const root = Object.values(blockMap)[0]
-  
-  if (process.dev || root.type !== 'page') {
-    return src
-  }
-
-  const slug: string = root.properties['Slug']['rich_text']
-    .reduce((acm, crr) => acm + crr, '')
-  const fileName = new URL(src).pathname.split('/').filter(Boolean).pop()
-  const format = fileName.split('.').filter(Boolean).pop()
-
-  return `/img/${slug}/${block.id}.${format}`
+export function defaultMapImageUrl({ src }: MapImageUrlArgs): string {
+  return src
 }
 
 export function defaultMapPageUrl(pageId: string = ''): string {
   return `/${pageId.replace(/-/g, '')}`;
+}
+
+export function defaultMapVideoUrl({ src }: MapVideoUrlArgs): string {
+  return src
 }
 
 type PageOnly<T extends Notion.BlockNode> =
@@ -67,6 +67,7 @@ export default function useNotionParser<Block extends Notion.BlockNode>(props: N
     level: props.level,
     mapImageUrl: props.mapImageUrl,
     mapPageUrl: props.mapPageUrl,
+    mapVideoUrl: props.mapVideoUrl,
     pageLinkTarget: props.pageLinkTarget,
     shiki: props.shiki,
     textLinkTarget: props.textLinkTarget

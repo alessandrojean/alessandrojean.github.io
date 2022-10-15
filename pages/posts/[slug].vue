@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { postMapImageUrl, postMapVideoUrl } from '@/server/api/posts/[slug].get'
+import type { MapImageUrlArgs, MapVideoUrlArgs } from '@/composables/useNotionParser'
+
 const { title: author, description } = useAppConfig()
 const route = useRoute()
 
@@ -17,6 +20,22 @@ const postTags = computed(() => post.value.tags.join(', '))
 
 function mapPageUrl(pageId: string) {
   return '/posts/' + (linkMap.value[pageId] ?? pageId)
+}
+
+function mapImageUrl({ block, src }: MapImageUrlArgs) {
+  if (process.dev || block.image.type === 'external') {
+    return src
+  }
+
+  return `/img/posts/${post.value.slug}/${postMapImageUrl(block)}`
+}
+
+function mapVideoUrl({ block, src }: MapVideoUrlArgs) {
+  if (process.dev || block.video.type === 'external') {
+    return src
+  }
+
+  return `/video/posts/${post.value.slug}/${postMapVideoUrl(block)}`
 }
 </script>
 
@@ -40,6 +59,8 @@ function mapPageUrl(pageId: string) {
     <NotionRenderer
       :block-map="post.blocks"
       :map-page-url="mapPageUrl"
+      :map-image-url="mapImageUrl"
+      :map-video-url="mapVideoUrl"
       header-anchor
       full-page
       shiki

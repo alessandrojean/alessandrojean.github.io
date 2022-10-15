@@ -50,17 +50,20 @@ const isVideo = computed(() => {
 })
 
 const videoSource = computed<SourceHTMLAttributes>(() => {
-  if (!(block.value.type === 'video' && block.value.video.type === 'file')) {
+  if (block.value.type !== 'video' || block.value.video.type !== 'file') {
     return {}
   }
 
-  const videoUrl = new URL(block.value.video.file.url)
-  const fileName = videoUrl.pathname.split('/').filter(Boolean).pop()
-  const extension = fileName.split('.').pop()
+  const videoUrl = block.value.video.file.url
+  const { mimeType } = fileNameFromUrl(videoUrl)
 
   return {
-    src: videoUrl.href,
-    type: `video/${extension}`
+    src: props.mapVideoUrl({
+      src: videoUrl,
+      block: block.value,
+      blockMap: props.blockMap
+    }),
+    type: mimeType
   }
 })
 </script>
@@ -84,6 +87,7 @@ const videoSource = computed<SourceHTMLAttributes>(() => {
     v-else-if="isVideo"
     class="w-full rounded-xl shadow-lg ring-1 ring-gray-900/5"
     controls
+    controlsList="nodownload"
   >
     <source v-bind="videoSource">
   </video>
