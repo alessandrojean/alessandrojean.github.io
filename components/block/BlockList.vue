@@ -33,9 +33,11 @@ const isTopLevel = computed(() => {
         v-bind="pass"
       />
     </li>
-    <BlockNestedList v-if="block.content && block.content.length > 0" v-bind="pass">
-      <slot />
-    </BlockNestedList>
+    <li v-if="block.content && block.content.length > 0" class="list-none">
+      <BlockNestedList v-bind="pass">
+        <slot />
+      </BlockNestedList>
+    </li>
   </ul>
   <ol
     v-else-if="isTopLevel && block.type === 'numbered_list_item'"
@@ -47,9 +49,11 @@ const isTopLevel = computed(() => {
         v-bind="pass"
       />
     </li>
-    <BlockNestedList v-if="block.content && block.content.length > 0" v-bind="pass">
-      <slot />
-    </BlockNestedList>
+    <li v-if="block.content && block.content.length > 0" class="list-none">
+      <BlockNestedList v-bind="pass">
+        <slot />
+      </BlockNestedList>
+    </li>
   </ol>
   <ul
     v-else-if="isTopLevel && block.type === 'bulleted_list_item_group'"
@@ -59,8 +63,10 @@ const isTopLevel = computed(() => {
   </ul>
   <template v-else>
     <li><BlockTextRenderer :text="block[type]?.['rich_text']" v-bind="pass" /></li>
-    <BlockNestedList v-if="block.content && block.content.length > 0" v-bind="pass">
-      <slot />
-    </BlockNestedList>
+    <li v-if="block.content && block.content.length > 0" class="list-none">
+      <BlockNestedList v-bind="pass">
+        <slot />
+      </BlockNestedList>
+    </li>
   </template>
 </template>
