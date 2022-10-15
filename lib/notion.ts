@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid'
 
 import { Client } from '@notionhq/client'
 export * from '@notionhq/client/build/src/api-endpoints'
-import * as NotionApi from '@notionhq/client/build/src/api-endpoints'
+import type * as NotionApi from '@notionhq/client/build/src/api-endpoints'
 
 export interface FetchTableArgs {
   tableId: string;
@@ -143,50 +143,51 @@ export async function fetchBlocks({ page }: FetchBlocksArgs): Promise<BlockMap> 
   const { notionApiKey } = useRuntimeConfig()
   const notion = new Client({ auth: notionApiKey })
 
-  let { results: blocks, next_cursor } = await notion.blocks.children.list({
+  const firstPage = await notion.blocks.children.list({
     block_id: page.id
   })
 
-  while (next_cursor) {
+  const blocks = firstPage.results as BlockWithContent[]
+  let nextCursor = firstPage.next_cursor
+
+  while (nextCursor) {
     const result = await notion.blocks.children.list({
       block_id: page.id,
-      start_cursor: next_cursor
+      start_cursor: nextCursor
     })
 
-    blocks.push(...result.results)
-    next_cursor = result.next_cursor
+    blocks.push(...(result.results as BlockWithContent[]))
+    nextCursor = result.next_cursor
   }
 
   const blocksWithChildren = [...blocks.entries()]
-    .filter(([_, block]) => {
-      return block['has_children'] && (block['content'] || []).length === 0
-    })
+    .filter(([_, block]) => block.has_children)
     .map(([i, block]) => ({ i, id: block.id }))
 
   while (blocksWithChildren.length > 0) {
     const { i, id: current } = blocksWithChildren.shift()
 
-    const { results: children } = await notion.blocks.children.list({
+    const result = await notion.blocks.children.list({
       block_id: current
     })
 
+    const children = result.results as BlockWithContent[]
+
     const toVisit = [...children.entries()]
-      .filter(([_, block]) => {
-        return block['has_children'] && (block['content'] || []).length === 0
-      })
+      .filter(([_, block]) => block.has_children)
       .map(([i, block]) => ({ i: blocks.length + i, id: block.id }))
 
     blocksWithChildren.push(...toVisit)
 
     blocks.push(...children)
-    blocks[i]['content'] = children.map((child) => child.id)
+    blocks[i].content = children.map((child) => child.id)
   }
 
   const pageBlock: BlockPageObject = {
     ...page,
     type: 'page',
     content: blocks
-      .filter((block) => block['parent']?.['type'] === 'page_id')
+      .filter((block) => block.parent.type === 'page_id')
       .map((block) => block.id)
   }
 
