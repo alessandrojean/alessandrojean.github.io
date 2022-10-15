@@ -86,10 +86,9 @@ export function postMapImageUrl(block: ImageBlockObjectResponse) {
     ? block.image.external.url
     : block.image.file.url
 
-  const extension = fileNameFromUrl(url).extension
   const hash = parseISO(block.last_edited_time).getTime().toString(16)
 
-  return `${block.id}-${hash}.${extension}`
+  return `${block.id}-${hash}.webp`
 }
 
 export function postMapVideoUrl(block: VideoBlockObjectResponse) { 

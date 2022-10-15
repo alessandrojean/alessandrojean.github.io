@@ -1,14 +1,13 @@
 import fs from 'node:fs'
 import https from 'node:https'
 import path from 'node:path'
+import { pipeline } from 'node:stream'
+
+import sharp from 'sharp'
 
 import type { Consola } from 'consola'
 import type { ExtractorResult, ModuleOptions } from '../types'
 import { fileNameFromUrl } from './utils'
-
-export function addToQueue(result: ExtractorResult) {
-  (global.mediaExtractorQueue as ExtractorResult[])?.push(result)
-}
 
 interface SaveImagesArgs {
   logger: Consola;
@@ -65,26 +64,34 @@ export async function saveImages(args: SaveImagesArgs): Promise<void> {
     try {
       const filePath = path.join(mediaPath, media.fileName)
       const file = fs.createWriteStream(filePath)
+
       
       // TODO: Replace with fetch when migrating to Node.js v17.
       await new Promise<void>((resolve, reject) => {
         https.get(media.url, (response) => {
-          response.pipe(file)
-  
-          response.on('error', (error) => {
-            file.close()
-            reject(error)
-          })
-  
-          file.on('error', (error) => {
-            file.close()
-            reject(error)
-          })
-  
-          file.on('finish', () => {
-            file.close()
-            resolve()
-          })
+          if (type === 'image') {
+            const imageTransformer = sharp()
+              .setMaxListeners(0)
+              .webp({ quality: 90 })
+
+            pipeline(response, imageTransformer, file, (err) => {
+              if (err) {
+                return reject(err)
+              }
+
+              file.close()
+              resolve()
+            })
+          } else {
+            pipeline(response, file, (err) => {
+              if (err) {
+                return reject(err)
+              }
+
+              file.close()
+              resolve()
+            })
+          }
         })
       })
 
