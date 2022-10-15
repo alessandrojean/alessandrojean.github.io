@@ -2,17 +2,19 @@
 import { ConcreteComponent } from 'vue'
 import { CommandLineIcon } from '@heroicons/vue/24/outline'
 
-const IconAndroid = resolveComponent('IconAndroid')
-const IconJava = resolveComponent('IconJava')
-const IconJavaScript = resolveComponent('IconJavaScript')
-const IconKotlin = resolveComponent('IconKotlin')
-const IconNodeJs = resolveComponent('IconNodeJs')
-const IconReact = resolveComponent('IconReact')
-const IconTailwindCss = resolveComponent('IconTailwindCss')
-const IconTypeScript = resolveComponent('IconTypeScript')
-const IconVueJs = resolveComponent('IconVueJs')
-const IconWooCommerce = resolveComponent('IconWooCommerce')
-const IconWordPress = resolveComponent('IconWordPress')
+import {
+  IconAndroid,
+  IconJava,
+  IconJavaScript,
+  IconKotlin,
+  IconNodeJs,
+  IconReact,
+  IconTailwindCss,
+  IconTypeScript,
+  IconVueJs,
+  IconWooCommerce,
+  IconWordPress,
+} from '#components'
 
 interface Knowledge {
   title: string;
@@ -73,21 +75,22 @@ const knowledges: KnowledgeArea[] = [
       </li>
       <ul class="space-y-3">
         <li
-          class="flex gap-4 items-center w-full"
           v-for="knowledge in area.items"
           :key="knowledge.title"
         >
-          <div class="shrink-0 bg-white dark:bg-gray-800 dark:border-gray-800 shadow-md shadow-gray-800/5 ring-1 dark:ring-0 ring-gray-900/5 dark:border dark:border-gray-700/50 rounded-full flex h-8 w-8 items-center justify-center motion-safe:transition">
-            <component :is="knowledge.icon" class="w-4 h-4 dark:opacity-90" />
+          <div class="flex gap-4 items-center w-full">
+            <div aria-hidden="true" class="shrink-0 bg-white dark:bg-gray-800 dark:border-gray-800 shadow-md shadow-gray-800/5 ring-1 dark:ring-0 ring-gray-900/5 dark:border dark:border-gray-700/50 rounded-full flex h-8 w-8 items-center justify-center motion-safe:transition">
+              <component :is="knowledge.icon" class="w-4 h-4 dark:opacity-90" />
+            </div>
+
+            <span class="motion-safe:transition font-medium text-gray-800 dark:text-gray-200 text-sm grow">
+              {{ knowledge.title }}
+            </span>
+
+            <span class="motion-safe:transition text-xs text-gray-600 dark:text-gray-400 dark:contrast-more:text-gray-300 dark:contrast-more:font-medium shrink-0">
+              {{ knowledge.level }}
+            </span>
           </div>
-
-          <h3 class="motion-safe:transition font-medium text-gray-800 dark:text-gray-200 text-sm grow">
-            {{ knowledge.title }}
-          </h3>
-
-          <p class="motion-safe:transition text-xs text-gray-600 dark:text-gray-400 dark:contrast-more:text-gray-300 dark:contrast-more:font-medium shrink-0">
-            {{ knowledge.level }}
-          </p>
         </li>
       </ul>
     </ul>

@@ -36,7 +36,7 @@ function isCurrentPage(link: typeof navLinks[0]) {
             class="relative px-3 py-2 block font-medium dark:text-gray-50 hover:text-primary-600 focus-visible:text-primary-600 dark:hover:text-primary-400 dark:focus-visible:text-primary-400 motion-safe:transition rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 dark:focus-visible:ring-offset-gray-900 dark:contrast-more:focus-visible:ring-offset-black"
             aria-current-value="page"
           >
-            <span :class="isCurrentPage(link) ? 'text-primary-500 dark:text-primary-400' : ''">{{ link.title }}</span>
+            <span :class="isCurrentPage(link) ? 'text-primary-600 dark:text-primary-400' : ''">{{ link.title }}</span>
             <div
               v-if="isCurrentPage(link)"
               class="absolute -bottom-px inset-x-0 h-px bg-gradient-to-r from-primary-500/0 via-primary-500/40 to-primary-500/0"

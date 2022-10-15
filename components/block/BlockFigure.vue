@@ -40,7 +40,7 @@ const isTweet = computed(() => {
       v-bind="pass"
     />
     <BlockCode v-else-if="isType('code')" v-bind="pass" />
-    <figcaption v-if="caption" class="notion-image-caption mt-6 text-center">
+    <figcaption v-if="caption" class="notion-image-caption mt-6 md:text-center">
       <BlockTextRenderer :text="caption" v-bind="pass" />
     </figcaption>
   </figure>

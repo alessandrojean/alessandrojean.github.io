@@ -1,9 +1,12 @@
-import IconGitHub from '@/components/icon/IconGitHub.vue'
-import IconInstagram from '@/components/icon/IconInstagram.vue'
-import IconLinkedIn from '@/components/icon/IconLinkedIn.vue'
-import IconMyAnimeList from '@/components/icon/IconMyAnimeList.vue'
-import IconTrakt from '@/components/icon/IconTrakt.vue'
-import IconTwitter from '@/components/icon/IconTwitter.vue'
+import {
+  IconGitHub,
+  IconInstagram,
+  IconLinkedIn,
+  IconMyAnimeList,
+  IconTrakt,
+  IconTwitter,
+} from '#components'
+
 
 export interface SocialMediaLink {
   name: string;

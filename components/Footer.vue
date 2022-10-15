@@ -18,6 +18,6 @@ const { navLinks } = useAppConfig()
       </ul>
     </nav>
 
-    <p class="text-gray-400 dark:contrast-more:text-gray-300">&copy; 2022-presente Alessandro Jean.</p>
+    <p class="text-gray-500 dark:text-gray-400 dark:contrast-more:text-gray-300 motion-safe:transition">&copy; 2022-presente Alessandro Jean.</p>
   </footer>
 </template>
