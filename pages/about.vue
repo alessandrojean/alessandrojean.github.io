@@ -15,7 +15,7 @@ const { data: page } = await useFetch('/api/about')
       <div class="lg:pl-20">
         <div class="max-w-xs px-2 5 lg:max-w-none">
           <img
-            src="/img/avatar-okabe.png"
+            src="/img/avatar-okabe-medium.webp"
             alt="Meu avatar pessoal, com o personagem Okabe da franquia Steins;Gate."
             class="aspect-square rotate-3 rounded-2xl bg-gray-100 dark:bg-gray-800 shadow-lg shadow-gray-900/10 ring-1 ring-gray-900/5 dark:opacity-90 dark:hover:opacity-100 motion-safe:transition"
           >

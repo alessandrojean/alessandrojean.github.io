@@ -43,7 +43,7 @@ const socialMediaLinks = useSocialMedia()
     <div class="shrink-0 flex justify-center md:col-span-2">
       <img
         class="w-52 h-52 md:w-64 md:h-64 shadow-lg shadow-gray-900/10 ring-1 ring-gray-900/5 rounded-3xl rotate-12 dark:opacity-90 dark:hover:opacity-100 motion-safe:transition"
-        src="/img/avatar-okabe.png"
+        src="/img/avatar-okabe-medium.webp"
         alt="Imagem de perfil com o personagem Okabe, da franquia Steins;Gate."
       >
     </div>

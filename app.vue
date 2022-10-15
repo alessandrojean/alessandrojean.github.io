@@ -40,7 +40,7 @@ useHead({ titleTemplate })
         name="twitter:description"
         :content="$route.meta.description as string | undefined ?? description"
       />
-      <Meta name="twitter:image" :content="url + '/img/social-media-card.jpg'" />
+      <Meta name="twitter:image" :content="url + '/img/social-media-card.webp'" />
       <Link rel="preconnect" href="https://rsms.me/" />
       <Link rel="preconnect" href="https://fonts.googleapis.com" />
       <Link rel="preconnect" href="https://fonts.gstatic.com" />
