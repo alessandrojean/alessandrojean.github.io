@@ -46,7 +46,7 @@ const borderColor = computed(() => {
   <div
     :class="[
       'notion-callout my-5 dark:bg-gray-800 dark:contrast-more:bg-gray-900 dark:text-gray-300 motion-safe:transition',
-      'flex p-6 rounded-xl gap-6 text-sm leading-loose border dark:border-gray-800 dark:contrast-more:border-gray-900',
+      'flex flex-col md:flex-row p-6 rounded-xl gap-6 text-sm leading-loose border dark:border-gray-800 dark:contrast-more:border-gray-900',
       bgColor,
       textColor,
       borderColor
@@ -55,7 +55,7 @@ const borderColor = computed(() => {
     <div class="shrink-0" v-if="block.callout.icon">
       <BlockIcon :icon="block.callout.icon" class="select-none" />
     </div>
-    <div class="prose-p:last-of-type:mb-0 prose-strong:!text-current prose-a:font-medium prose-a:!text-current prose-a:underline prose-a:!decoration-1 prose-a:!decoration-current prose-a:underline-offset-2 hover:prose-a:decoration-dotted">
+    <div class="prose-p:last-of-type:mb-0 prose-strong:!text-current prose-a:font-medium prose-a:!text-current prose-a:!underline prose-a:!decoration-1 prose-a:!decoration-current prose-a:underline-offset-2 hover:prose-a:decoration-dotted">
       <p class="notion-callout-text mt-0">
         <BlockTextRenderer :text="richText" v-bind="pass" />
       </p>
