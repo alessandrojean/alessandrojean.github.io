@@ -49,12 +49,12 @@ export async function createOgImage(args: CreateOgImageArgs) {
           children: {
             type: 'div',
             props: {
-              tw: 'flex flex-col w-full p-6 border-b-4 border-sky-600',
+              tw: 'flex flex-col w-full py-6 px-14 border-b-4 border-sky-600',
               children: [
                 {
                   type: 'div',
                   props: {
-                    tw: 'flex flex-col pr-12',
+                    tw: 'flex flex-col pr-1',
                     children: [
                       {
                         type: 'div',
