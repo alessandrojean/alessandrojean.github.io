@@ -23,13 +23,14 @@ const tweetId = computed<string>(() => {
 const colorMode = useColorMode()
 const theme = computed(() => colorMode.value)
 
-const tweetContainerRef = ref<HTMLDivElement>()
+const tweetContainerLightRef = ref<HTMLDivElement>()
+const tweetContainerDarkRef = ref<HTMLDivElement>()
 
 const isLoading = ref(true)
 const hasError = ref(false)
 
 onMounted(async () => await renderTweet())
-watch([tweetUrl, theme], async () => await renderTweet())
+watch(tweetUrl, async () => await renderTweet())
 
 async function renderTweet() {
   if (!window['twttr']) {
@@ -41,23 +42,27 @@ async function renderTweet() {
   isLoading.value = true
   hasError.value = false
 
-  if (tweetContainerRef.value) {
-    tweetContainerRef.value.innerHTML = ''
-  }
-
   const tweetOptions = {
     align: 'center',
-    theme: colorMode.value,
     lang: 'pt',
     dnt: true
   }
 
-  const twitterWidgetElement: HTMLDivElement | undefined =
-    await widgets.createTweet(tweetId.value, tweetContainerRef.value, tweetOptions)
+  const twitterWidgetElementLight = await widgets.createTweet(
+    tweetId.value,
+    tweetContainerLightRef.value,
+    { ...tweetOptions, theme: 'light' }
+  ) as HTMLDivElement | undefined
+
+  const twitterWidgetElementDark = await widgets.createTweet(
+    tweetId.value,
+    tweetContainerDarkRef.value,
+    { ...tweetOptions, theme: 'dark' }
+  ) as HTMLDivElement | undefined
   
   await nextTick()
 
-  if (!twitterWidgetElement) {
+  if (!twitterWidgetElementLight || !twitterWidgetElementDark) {
     hasError.value = true
   }
 
@@ -76,7 +81,14 @@ function addScript(src: string): Promise<void> {
 
 <template>
   <ClientOnly>
-    <div ref="tweetContainerRef" class="notion-tweet" />
+    <div
+      ref="tweetContainerLightRef"
+      :class="['notion-tweet motion-safe:transition-opacity', isLoading ? 'opacity-0' : 'dark:hidden']"
+    />
+    <div
+      ref="tweetContainerDarkRef"
+      :class="['notion-tweet motion-safe:transition-opacity', isLoading ? 'opacity-0' : 'hidden dark:block']"
+    />
 
     <template #placeholder>
       <blockquote>Carregando tweet...</blockquote>
