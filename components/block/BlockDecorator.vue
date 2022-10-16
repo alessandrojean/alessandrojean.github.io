@@ -84,7 +84,7 @@ function replaceEmojis(text: string) {
     class="notion-link"
     :target="target"
     :external="!isInnerLink"
-    :to="isInnerLink ? mapPageUrl(content.href.slice(1)) : content.href"
+    :to="isInnerLink ? (mapPageUrl(content.href.slice(1)) ?? '#') : content.href"
   >
     <BlockDecorator
       :content="content"

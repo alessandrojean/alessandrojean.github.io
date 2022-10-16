@@ -22,7 +22,7 @@ export interface NotionBlockProps {
   headerAnchor?: boolean;
   level?: number;
   mapImageUrl?: (args: MapImageUrlArgs) => string;
-  mapPageUrl?: (url: string) => string;
+  mapPageUrl?: (url: string) => string | undefined;
   mapVideoUrl?: (args: MapVideoUrlArgs) => string;
   pageLinkTarget?: string;
   shiki?: boolean;

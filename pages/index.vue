@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+definePageMeta({
+  skipOgImage: true
+})
+</script>
+
 <template>
   <div>
     <HomeHero />

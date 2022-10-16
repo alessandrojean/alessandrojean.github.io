@@ -103,7 +103,7 @@ export async function saveImages(args: SaveImagesArgs): Promise<void> {
       const endTime = process.hrtime(startTime)
       const duration = (endTime[1] / 1_000_000).toFixed(0)
 
-      logger.log(gray(`  ├─ ${logPath} (${duration}ms) (${error.toString()})`))
+      logger.log(yellow(`  ├─ ${logPath} (${duration}ms) (${error.toString()})`))
     }
   }
 }
@@ -111,4 +111,8 @@ export async function saveImages(args: SaveImagesArgs): Promise<void> {
 // Implement the color directly as chalk produces import errors.
 function gray(text: string) {
   return '\u001B[90m' + text + '\u001B[39m'
+}
+
+function yellow(text: string) {
+  return '\u001B[33m' + text + '\u001B[39m'
 }

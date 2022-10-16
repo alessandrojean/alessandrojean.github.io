@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     // TODO: Remove when Vue add support to type imports.
     'vite-plugin-vue-type-imports/nuxt',
-    './modules/media-extractor'
+    './modules/media-extractor',
+    './modules/og-image'
   ],
   colorMode: { classSuffix: '' },
   tailwindcss: { viewer: false },

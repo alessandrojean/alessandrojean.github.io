@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { postMapImageUrl, postMapVideoUrl } from '@/server/api/posts/[slug].get'
 import type { MapImageUrlArgs, MapVideoUrlArgs } from '@/composables/useNotionParser'
+import type { UseOgImageProps } from '#og-image'
 
-const { title: author, description } = useAppConfig()
+const { title: author, description, url } = useAppConfig()
 const route = useRoute()
 
 const { data: linkMap } = await useFetch('/api/posts', {
@@ -19,7 +20,9 @@ const { data: post } = await useFetch(`/api/posts/${route.params.slug}`, {
 const postTags = computed(() => post.value.tags.join(', '))
 
 function mapPageUrl(pageId: string) {
-  return '/posts/' + (linkMap.value[pageId] ?? pageId)
+  const slug = linkMap.value[pageId]
+  
+  return slug ? `/posts/${slug}` : undefined
 }
 
 function mapImageUrl({ block, src }: MapImageUrlArgs) {
@@ -37,6 +40,16 @@ function mapVideoUrl({ block, src }: MapVideoUrlArgs) {
 
   return `/video/posts/${post.value.slug}/${postMapVideoUrl(block)}`
 }
+
+const ogImageOptions = computed<UseOgImageProps>(() => ({
+  origin: url,
+  title: post.value?.title ?? author,
+  description: post.value?.description ?? description,
+  section: post.value?.area,
+  publishedTime: post.value?.createdAt
+}))
+
+const { ogImageUrl, ogImageWidth, ogImageHeight } = useOgImage(ogImageOptions)
 </script>
 
 <template>
@@ -54,6 +67,12 @@ function mapVideoUrl({ block, src }: MapVideoUrlArgs) {
       <Meta name="article:tag" :content="postTags" />
       <Meta name="twitter:title" :content="post.title" />
       <Meta name="twitter:description" :content="post.description ?? description" />
+
+      <Meta name="og:image" :content="ogImageUrl" />
+      <Meta name="og:image:type" content="image/png" />
+      <Meta name="og:image:width" :content="ogImageWidth.toString()" />
+      <Meta name="og:image:height" :content="ogImageHeight.toString()" />
+      <Meta name="twitter:image" :content="ogImageUrl" />
     </Head>
 
     <NotionRenderer
