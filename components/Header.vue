@@ -5,7 +5,8 @@ import {
   PopoverPanel,
   PopoverOverlay
 } from '@headlessui/vue'
-import { ChevronDownIcon, XMarkIcon } from '@heroicons/vue/20/solid'
+import { XMarkIcon } from '@heroicons/vue/20/solid'
+import { Bars3Icon } from '@heroicons/vue/24/outline'
 
 const { navLinks } = useAppConfig()
 const route = useRoute()
@@ -47,14 +48,14 @@ function isCurrentPage(link: typeof navLinks[0]) {
     </nav>
 
     <ClientOnly>
-      <ThemeToggle class="ml-auto" />
+      <ThemeToggle class="ml-auto mr-14 md:mr-0" />
     </ClientOnly>
   </header>
 
   <Popover class="md:hidden">
-    <PopoverButton class="fixed top-6 right-20 z-30 bg-white dark:bg-gray-800 py-2.5 px-4 rounded-full flex items-center shadow-lg shadow-gray-800/5 ring-1 ring-gray-900/5 hover:ring-gray-900/10 dark:ring-gray-700 dark:contrast-more:ring-gray-600 dark:hover:ring-gray-600 dark:contrast-more:hover:ring-gray-500 motion-safe:transition">
-      <span class="text-sm font-medium dark:text-gray-100 motion-safe:transition">Menu</span>
-      <ChevronDownIcon class="w-5 h-5 ml-2 -mr-1.5 ui-open:rotate-180 ui-open:transform text-gray-500 dark:text-gray-400 motion-safe:transition" aria-hidden="true" />
+    <PopoverButton class="fixed top-6 right-4 z-30 bg-white dark:bg-gray-800 p-2 rounded-full flex items-center shadow-lg shadow-gray-800/5 ring-1 ring-gray-900/5 hover:ring-gray-900/10 dark:ring-gray-700 dark:contrast-more:ring-gray-600 dark:hover:ring-gray-600 dark:contrast-more:hover:ring-gray-500 motion-safe:transition focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 dark:focus-visible:ring-primary-600 dark:focus-visible:ring-offset-gray-900 dark:contrast-more:focus-visible:ring-offset-black">
+      <span class="sr-only">Menu</span>
+      <Bars3Icon class="w-6 h-6 text-gray-500 dark:text-gray-400 motion-safe:transition" aria-hidden="true" />
     </PopoverButton>
 
     <div>
