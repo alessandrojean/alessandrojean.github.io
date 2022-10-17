@@ -28,7 +28,7 @@ function isCurrentPage(link: typeof navLinks[0]) {
       <span class="sr-only">Página inicial</span>
     </NuxtLink>
 
-    <nav class="hidden md:block text-sm px-3 motion-safe:transition bg-white dark:bg-gray-800 rounded-full shadow-lg shadow-gray-800/5 ring-1 ring-gray-900/5 dark:ring-gray-700 dark:contrast-more:ring-gray-600">
+    <nav class="hidden md:block text-sm px-3 motion-safe:transition bg-white dark:bg-gray-800 rounded-full shadow-lg shadow-gray-800/5 ring-1 ring-gray-900/5 dark:ring-gray-700 dark:contrast-more:ring-gray-600" aria-label="Menu principal">
       <ul class="flex">
         <li
           v-for="link in navLinks"
@@ -92,7 +92,7 @@ function isCurrentPage(link: typeof navLinks[0]) {
             </button>
           </div>
 
-          <nav class="mt-4">
+          <nav class="mt-4" aria-label="Menu principal">
             <ul class="divide-y dark:divide-gray-600">
               <li
                 v-for="link in navLinks"

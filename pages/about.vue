@@ -4,6 +4,7 @@ definePageMeta({
   description: 'Um pouco mais sobre a minha pessoa.'
 })
 
+const { avatarAlt } = useAppConfig()
 const socialMediaLinks = useSocialMedia()
 
 const { data: page } = await useFetch('/api/about')
@@ -16,7 +17,7 @@ const { data: page } = await useFetch('/api/about')
         <div class="max-w-xs px-2 5 lg:max-w-none">
           <img
             src="/img/avatar-okabe-medium.webp"
-            alt="Meu avatar pessoal, com o personagem Okabe da franquia Steins;Gate."
+            :alt="avatarAlt"
             class="aspect-square rotate-3 rounded-2xl bg-gray-100 dark:bg-gray-800 shadow-lg shadow-gray-900/10 ring-1 ring-gray-900/5 dark:opacity-90 dark:hover:opacity-100 motion-safe:transition"
           >
         </div>
@@ -43,7 +44,7 @@ const { data: page } = await useFetch('/api/about')
             >
               <component :is="socialMedia.icon" aria-hidden="true" class="h-6 w-6 flex-none fill-gray-500 transition group-hover:fill-primary-600 group-focus-visible:fill-primary-600 dark:group-hover:fill-primary-500 dark:group-focus-visible:fill-primary-500 motion-safe:transition" />
               <span class="ml-4">
-                Siga-me no {{ socialMedia.name }}
+                Siga-me no <span lang="en-US">{{ socialMedia.name }}</span>
               </span>
             </a>
           </li>

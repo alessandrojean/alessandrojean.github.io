@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { UseOgImageProps } from '#og-image'
 
-const { title, description, url, socialMedia } = useAppConfig()
+const { title, description, url, socialMedia, lang } = useAppConfig()
 const route = useRoute()
 
 function titleTemplate(titleChunk: string | unknown): string {
@@ -22,7 +22,7 @@ const { ogImageUrl, ogImageWidth, ogImageHeight } = useOgImage(ogImageOptions)
 <template>
   <div class="container max-w-6xl mx-auto bg-white dark:bg-gray-900 dark:contrast-more:bg-black motion-safe:transition min-h-screen shadow-sm border-x border-transparent dark:border-gray-800 dark:contrast-more:border-gray-700">
     <Head>
-      <Html lang="pt-BR" />
+      <Html :lang="lang" />
       <Body class="font-sans supports-var-font:font-sans-var bg-gray-50 dark:bg-black motion-safe:transition" />
       <Link rel="preconnect" href="https://rsms.me/" />
       <Link rel="preconnect" href="https://fonts.googleapis.com" />

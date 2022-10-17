@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { avatarAlt } = useAppConfig()
 const socialMediaLinks = useSocialMedia()
 </script>
 
@@ -34,8 +35,12 @@ const socialMediaLinks = useSocialMedia()
         >
           <component
             :is="socialMediaLink.icon"
+            aria-hidden="true"
             class="h-6 w-6 fill-gray-500 motion-safe:transition group-hover:fill-gray-600 group-focus-visible:fill-gray-600 dark:fill-gray-400 dark:contrast-more:fill-gray-300 dark:group-hover:fill-gray-300 dark:group-focus-visible:fill-gray-300 dark:contrast-more:group-hover:fill-gray-200 dark:contrast-more:group-focus-visible:fill-gray-200"
           />
+          <span class="sr-only">
+            Siga-me no <span lang="en-US">{{ socialMediaLink.name }}</span>
+          </span>
         </a>
       </div>
     </div>
@@ -44,7 +49,7 @@ const socialMediaLinks = useSocialMedia()
       <img
         class="w-52 h-52 md:w-64 md:h-64 shadow-lg shadow-gray-900/10 ring-1 ring-gray-900/5 rounded-3xl rotate-12 dark:opacity-90 dark:hover:opacity-100 motion-safe:transition"
         src="/img/avatar-okabe-medium.webp"
-        alt="Imagem de perfil com o personagem Okabe, da franquia Steins;Gate."
+        :alt="avatarAlt"
       >
     </div>
   </div>
