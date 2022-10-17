@@ -24,12 +24,14 @@ interface Knowledge {
 
 interface KnowledgeArea {
   title: string;
+  titleLang?: string;
   items: Knowledge[];
 }
 
 const knowledges: KnowledgeArea[] = [
   {
     title: 'Frameworks',
+    titleLang: 'en-US',
     items: [
       { title: 'Vue.js', icon: IconVueJs, level: 'Avançado' },
       { title: 'Tailwind CSS', icon: IconTailwindCss, level: 'Avançado' },
@@ -69,7 +71,7 @@ const knowledges: KnowledgeArea[] = [
       :key="area.title"
       class="w-full"
     >
-      <li class="text-sm font-medium mt-6 mb-4 flex items-center gap-4">
+      <li :lang="area.titleLang ?? undefined" class="text-sm font-medium mt-6 mb-4 flex items-center gap-4">
         <span class="shrink-0 dark:text-gray-300 dark:contrast-more:text-gray-200 motion-safe:transition">{{ area.title }}</span>
         <span class="grow h-px block bg-gray-200 dark:bg-gray-700 dark:contrast-more:bg-gray-600 motion-safe:transition"></span>
       </li>
@@ -78,20 +80,19 @@ const knowledges: KnowledgeArea[] = [
           <li
             v-for="knowledge in area.items"
             :key="knowledge.title"
+            class="flex gap-4 items-center w-full"
           >
-            <div class="flex gap-4 items-center w-full">
-              <div aria-hidden="true" class="shrink-0 bg-white dark:bg-gray-800 dark:border-gray-800 shadow-md shadow-gray-800/5 ring-1 dark:ring-0 ring-gray-900/5 dark:border dark:border-gray-700/50 rounded-full flex h-8 w-8 items-center justify-center motion-safe:transition">
-                <component :is="knowledge.icon" class="w-4 h-4 dark:opacity-90" />
-              </div>
-  
-              <span class="motion-safe:transition font-medium text-gray-800 dark:text-gray-200 text-sm grow">
-                {{ knowledge.title }}
-              </span>
-  
-              <span class="motion-safe:transition text-xs text-gray-600 dark:text-gray-400 dark:contrast-more:text-gray-300 dark:contrast-more:font-medium shrink-0">
-                {{ knowledge.level }}
-              </span>
+            <div aria-hidden="true" class="shrink-0 bg-white dark:bg-gray-800 dark:border-gray-800 shadow-md shadow-gray-800/5 ring-1 dark:ring-0 ring-gray-900/5 dark:border dark:border-gray-700/50 rounded-full flex h-8 w-8 items-center justify-center motion-safe:transition">
+              <component :is="knowledge.icon" class="w-4 h-4 dark:opacity-90" />
             </div>
+
+            <span lang="en-US" class="motion-safe:transition font-medium text-gray-800 dark:text-gray-200 text-sm grow">
+              {{ knowledge.title }}
+            </span>
+            <span class="sr-only"> com nível </span>
+            <span class="motion-safe:transition text-xs text-gray-600 dark:text-gray-400 dark:contrast-more:text-gray-300 dark:contrast-more:font-medium shrink-0">
+              {{ knowledge.level }}
+            </span>
           </li>
         </ul>
       </li>

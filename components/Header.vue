@@ -20,10 +20,12 @@ function isCurrentPage(link: typeof navLinks[0]) {
   <header class="sticky top-0 w-full flex gap-4 md:gap-10 items-center z-20 px-4 md:px-10 py-6 bg-white dark:bg-gray-900 dark:contrast-more:bg-black supports-backdrop-blur:bg-white/80 dark:supports-backdrop-blur:bg-gray-900/90 dark:contrast-more:supports-backdrop-blur:bg-black/90 backdrop-blur motion-safe:transition">
     <NuxtLink to="/" class="shrink-0 motion-safe:transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 dark:focus-visible:ring-offset-gray-900 dark:contrast-more:focus-visible:ring-offset-black rounded-full">
       <img
+        aria-hidden="true"
         src="/img/avatar-okabe-small.webp"
         class="w-10 h-10 rounded-full border border-gray-200 dark:border-transparent shadow-sm"
         alt="Meu avatar pessoal"
       >
+      <span class="sr-only">Página inicial</span>
     </NuxtLink>
 
     <nav class="hidden md:block text-sm px-3 motion-safe:transition bg-white dark:bg-gray-800 rounded-full shadow-lg shadow-gray-800/5 ring-1 ring-gray-900/5 dark:ring-gray-700 dark:contrast-more:ring-gray-600">
@@ -83,25 +85,30 @@ function isCurrentPage(link: typeof navLinks[0]) {
           v-slot="{ close }"
         >
           <div class="flex items-center justify-between -mt-2">
-            <p class="font-medium text-sm text-gray-700 dark:text-gray-400 dark:contrast-more:text-gray-300 motion-safe:transition">Navegação</p>
+            <h2 class="font-medium text-sm text-gray-700 dark:text-gray-400 dark:contrast-more:text-gray-300 motion-safe:transition">Navegação</h2>
             <button type="button" @click="close" class="p-2 -mr-3 flex items-center justify-center">
               <XMarkIcon class="w-6 h-6 dark:text-gray-300" aria-hidden="true" />
               <span class="sr-only">Fechar</span>
             </button>
           </div>
 
-          <div class="divide-y dark:divide-gray-600 mt-4">
-            <NuxtLink
-              v-for="link in navLinks"
-              :key="link.to"
-              :to="link.to"
-              aria-current-value="page"
-              class="py-2.5 block font-normal dark:text-gray-50 motion-safe:transition"
-              @click="close"
-            >
-              {{ link.title }}
-            </NuxtLink>
-          </div>
+          <nav class="mt-4">
+            <ul class="divide-y dark:divide-gray-600">
+              <li
+                v-for="link in navLinks"
+                :key="link.to"  
+              >
+                <NuxtLink
+                  :to="link.to"
+                  aria-current-value="page"
+                  class="py-2.5 block font-normal dark:text-gray-50 motion-safe:transition"
+                  @click="close"
+                >
+                  {{ link.title }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </nav>
         </PopoverPanel>
       </transition>
     </div>
