@@ -27,7 +27,7 @@
     "open-graph-scraper": "4.11.1",
     "postcss": "8.4.18",
     "postcss-custom-properties": "12.1.9",
-    "satori": "0.0.41",
+    "satori": "0.0.42",
     "sharp": "0.31.1",
     "shiki-es": "0.1.2",
     "slugify": "1.6.5",

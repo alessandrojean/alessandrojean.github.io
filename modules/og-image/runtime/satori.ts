@@ -16,9 +16,6 @@ export interface CreateOgImageArgs {
 const formatter = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short' })
 
 export async function createOgImage(args: CreateOgImageArgs) {
-  const errorLog = console.log
-  globalThis.console.error = () => null
-
   const options: SatoriOptions = {
     width: args.options.width,
     height: args.options.height,
@@ -150,9 +147,5 @@ export async function createOgImage(args: CreateOgImageArgs) {
     }
   }
 
-  const svg = await satori(element, options)
-
-  globalThis.console.error = errorLog
-
-  return svg
+ return await satori(element, options)
 }
