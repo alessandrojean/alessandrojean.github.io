@@ -88,7 +88,7 @@ function isCurrentPage(link: typeof navLinks[0]) {
             <h2 class="font-medium text-sm text-gray-700 dark:text-gray-400 dark:contrast-more:text-gray-300 motion-safe:transition">Navegação</h2>
             <button type="button" @click="close" class="p-2 -mr-3 flex items-center justify-center">
               <XMarkIcon class="w-6 h-6 dark:text-gray-300" aria-hidden="true" />
-              <span class="sr-only">Fechar</span>
+              <span class="sr-only">Fechar o menu</span>
             </button>
           </div>
 

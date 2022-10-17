@@ -66,7 +66,7 @@ const highlight = computed(() => {
   return [common, classes[decoratorValue.value]]
 })
 
-const { replaceEmoji } = useEmoji()
+const { replaceEmoji, hasEmoji } = useEmoji()
 
 function replaceEmojis(text: string) {
   const escapedText = text
@@ -76,6 +76,8 @@ function replaceEmojis(text: string) {
 
   return replaceEmoji(escapedText)
 }
+
+const hasEmojiInText = computed(() => hasEmoji(text.value))
 </script>
 
 <template>
@@ -145,7 +147,10 @@ function replaceEmojis(text: string) {
     />
   </code>
   <span
-    v-else-if="decorators.length === 0"
+    v-else-if="decorators.length === 0 && hasEmojiInText"
     v-html="replaceEmojis(text)"
   />
+  <template v-else-if="decorators.length === 0">
+    {{ text }}
+  </template>
 </template>

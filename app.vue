@@ -12,8 +12,8 @@ useHead({ titleTemplate })
 
 const ogImageOptions = computed<UseOgImageProps>(() => ({
   origin: url,
-  title: route.meta.title ?? title,
-  description: route.meta.description ?? description,
+  title: route.meta.title as string | undefined ?? title,
+  description: route.meta.description as string | undefined ?? description,
 }))
 
 const { ogImageUrl, ogImageWidth, ogImageHeight } = useOgImage(ogImageOptions)

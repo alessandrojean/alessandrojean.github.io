@@ -19,10 +19,15 @@ function replaceEmoji(text: string) {
   })
 }
 
+function hasEmoji(text: string) {
+  return EMOJI_REGEX.test(text)
+}
+
 export default function useEmoji() {
   return {
     emojiToCode,
     twemojiUrl,
-    replaceEmoji
+    replaceEmoji,
+    hasEmoji
   }
 }
