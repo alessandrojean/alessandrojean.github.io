@@ -13,11 +13,11 @@ const { block } = useNotionParser<ColumnListBlockObjectResponse>(props)
 
 const columnClasses = computed(() => {
   const map = {
-    2: 'grid-cols-2',
-    3: 'grid-cols-3'
+    2: 'md:grid-cols-2',
+    3: 'md:grid-cols-3'
   }
 
-  return map[block.value.content.length] ?? 'grid-cols-1'
+  return map[block.value.content.length] ?? 'md:grid-cols-1'
 })
 
 const isOnlyImages = computed(() => {
@@ -37,7 +37,7 @@ const isOnlyImages = computed(() => {
 <template>
   <div
     :class="[
-      'notion-row grid gap-6',
+      'notion-row md:grid md:gap-6',
       columnClasses,
       isOnlyImages ? 'lg:-mx-10' : ''
     ]">
