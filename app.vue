@@ -86,7 +86,7 @@ const { ogImageUrl, ogImageWidth, ogImageHeight } = useOgImage(ogImageOptions)
     </a>
 
     <Header />
-    <main class="px-4 md:px-10 relative" id="main-content">
+    <main class="px-4 md:px-10 relative selection:bg-primary-200 selection:text-primary-900 dark:selection:bg-primary-800 dark:selection:text-primary-50" id="main-content">
       <NuxtLoadingIndicator color="#0ea5e9" :duration="3000" />
       <NuxtPage />
     </main>
