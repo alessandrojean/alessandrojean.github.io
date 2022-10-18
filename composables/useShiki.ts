@@ -25,6 +25,7 @@ export default async function useShiki(): Promise<Highlighter> {
       'yaml',
       'js',
       'ts',
+      'tsx',
       'css',
       'shell',
       'html',

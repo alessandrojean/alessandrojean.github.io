@@ -137,7 +137,7 @@ export type BlockPageObject = NotionApi.PageObjectResponse & { type: 'page', con
 export type BlockWithContent = (NotionApi.BlockObjectResponse | BulletedListItemGroupBlock | ToDoGroupBlock) & { content?: string[] }
 export type BlockNode = BlockWithContent | BlockPageObject
 
-export type Language = NotionApi.CodeBlockObjectResponse['code']['language'] | 'ass' | 'vue-html'
+export type Language = NotionApi.CodeBlockObjectResponse['code']['language'] | 'ass' | 'vue-html' | 'tsx'
 
 export async function fetchBlocks({ page }: FetchBlocksArgs): Promise<BlockMap> {
   const { notionApiKey } = useRuntimeConfig()
@@ -208,6 +208,11 @@ export async function fetchBlocks({ page }: FetchBlocksArgs): Promise<BlockMap> 
       blockLang: ['html', 'javascript'],
       match: /v-if|v-for|v-bind|v-else|v-else-if/,
       lang: 'vue-html'
+    },
+    {
+      blockLang: ['typescript'],
+      match: /\(\n\s+<div/m,
+      lang: 'tsx'
     }
   ])
 }
