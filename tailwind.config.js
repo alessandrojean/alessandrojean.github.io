@@ -51,7 +51,6 @@ module.exports = {
   plugins: [
     require('@headlessui/tailwindcss'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
     function ({ addVariant }) {
       addVariant(
         'supports-backdrop-blur',

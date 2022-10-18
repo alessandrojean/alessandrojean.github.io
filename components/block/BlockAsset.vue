@@ -42,7 +42,7 @@ const src = computed(() => {
 })
 
 const aspectRatio = computed(() => {
-  return youTubeSrc.value ? 'aspect-w-16 aspect-h-9' : 'aspect-w-4 aspect-h-3'
+  return youTubeSrc.value ? 'aspect-video' : 'aspect-[4/3]'
 })
 
 const isVideo = computed(() => {
@@ -69,20 +69,16 @@ const videoSource = computed<SourceHTMLAttributes>(() => {
 </script>
 
 <template>
-  <div
+  <iframe
     v-if="isIframe"
     :class="[
-      'rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-900/5',
+      'rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-900/5 w-full',
       aspectRatio
     ]"
-  >
-    <iframe
-      class="notion-image-inset absolute inset-0 w-full h-full"
-      :src="src"
-      :allow="embedAllow"
-      loading="lazy"
-    />
-  </div>
+    :src="src"
+    :allow="embedAllow"
+    loading="lazy"
+  />
   <video
     v-else-if="isVideo"
     class="w-full rounded-xl shadow-lg ring-1 ring-gray-900/5"
