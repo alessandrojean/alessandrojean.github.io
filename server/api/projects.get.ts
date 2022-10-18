@@ -26,7 +26,10 @@ export default defineEventHandler<ProjectCategory[]>(async () => {
   const projects = await fetchTable({
     tableId: notionProjectsTable,
     filter: !process.env ? publicFilter : undefined,
-    sorts: [{ property: 'Name', direction: 'ascending' }]
+    sorts: [
+      { property: 'Category', direction: 'ascending' },
+      { property: 'Name', direction: 'ascending' }
+    ]
   })
 
   const categories: Record<string, Project[]> = (projects.results || [])
@@ -51,5 +54,4 @@ export default defineEventHandler<ProjectCategory[]>(async () => {
 
   return Object.entries(categories)
     .map(([category, projects]) => ({ name: category, projects }))
-    .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'))
 })
