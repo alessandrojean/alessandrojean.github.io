@@ -18,6 +18,13 @@ const { navLinks } = useAppConfig()
       </ul>
     </nav>
 
-    <p class="text-gray-500 dark:text-gray-400 dark:contrast-more:text-gray-300 motion-safe:transition">&copy; 2022-presente Alessandro Jean.</p>
+    <div class="text-center md:text-right text-gray-500 dark:text-gray-400 dark:contrast-more:text-gray-300 motion-safe:transition">
+      <p>
+        &copy; 2022-presente Alessandro Jean.
+      </p>
+      <p class="text-xs mt-1">
+        Desenvolvido com NuxtJS e Tailwind CSS. Ícones por Heroicons.
+      </p>
+    </div>
   </footer>
 </template>
