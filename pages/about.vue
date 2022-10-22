@@ -1,11 +1,18 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Sobre',
-  description: 'Um pouco mais sobre a minha pessoa.'
+  title: 'about.title',
+  description: 'about.description'
 })
 
-const { avatarAlt } = useAppConfig()
+defineI18nRoute({
+  paths: {
+    en: '/about',
+    pt: '/sobre'
+  }
+})
+
 const socialMediaLinks = useSocialMedia()
+const { locale } = useI18n({ useScope: 'global' })
 
 const { data: page } = await useFetch('/api/about')
 </script>
@@ -17,7 +24,7 @@ const { data: page } = await useFetch('/api/about')
         <div class="max-w-xs px-2 5 lg:max-w-none">
           <img
             src="/img/avatar-okabe-medium.webp"
-            :alt="avatarAlt"
+            :alt="$t('site.avatarAlt')"
             class="aspect-square rotate-3 rounded-2xl bg-gray-100 dark:bg-gray-800 shadow-lg shadow-gray-900/10 ring-1 ring-gray-900/5 dark:opacity-90 dark:hover:opacity-100 motion-safe:transition"
           >
         </div>
@@ -25,8 +32,14 @@ const { data: page } = await useFetch('/api/about')
 
       <div class="lg:order-first lg:row-span-2">
         <NotionRenderer
+          v-if="locale === 'pt'"
           class="max-w-full"
-          :block-map="page"
+          :block-map="page.pt"
+        />
+        <NotionRenderer
+          v-else
+          class="max-w-full"
+          :block-map="page.en"
         />
       </div>
 
@@ -44,7 +57,7 @@ const { data: page } = await useFetch('/api/about')
             >
               <component :is="socialMedia.icon" aria-hidden="true" class="h-6 w-6 flex-none fill-gray-500 transition group-hover:fill-primary-600 group-focus-visible:fill-primary-600 dark:group-hover:fill-primary-500 dark:group-focus-visible:fill-primary-500 motion-safe:transition" />
               <span class="ml-4">
-                Siga-me no <span lang="en-US">{{ socialMedia.name }}</span>
+                {{ $t('about.followMeOn', { site: socialMedia.name }) }}
               </span>
             </a>
           </li>

@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, parent, caption, isType } = useNotionParser<FigureBlock>(props)
+const { block, pass, parent, caption, isType } = useNotionParser<FigureBlock>(toRefs(props))
 
 const isInColumn = computed(() => parent.value.type === 'column')
 

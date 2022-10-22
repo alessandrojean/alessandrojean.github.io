@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block } = useNotionParser<EmbedBlockObjectResponse>(props)
+const { block } = useNotionParser<EmbedBlockObjectResponse>(toRefs(props))
 
 const TWEET_URL_REGEX =
   /^(https?:\/\/)?(www\.)?twitter\.com\/.*\/status(?:es)?\/(?<tweetId>[^\/\?]\d+)$/i;

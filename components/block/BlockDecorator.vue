@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   textLinkTarget: '_blank'
 })
 
-const { pass } = useNotionParser(props)
+const { pass } = useNotionParser(toRefs(props))
 
 const decorators = computed(() => {
   if (props.decorators) {

@@ -1,0 +1,69 @@
+actions:
+  closeMenu: Fechar o menu
+  changeTheme: Mudar para o tema {theme}
+  followMeOn: Siga-me no {site}!
+
+routes:
+  home: Página inicial
+  about: Sobre
+  articles: Artigos
+  projects: Projetos
+
+theme:
+  light: claro
+  dark: escuro
+
+site:
+  avatarAlt: >
+    Avatar pessoal com desenho do personagem Okabe da franquia "Steins;Gate". 
+    Na imagem, Okabe está posicionado levemente de perfil com um meio sorriso. 
+    Seu cabelo está levemente despenteado e ele está vestindo um jaleco branco.
+ogImageAlt: Uma imagem ilustrativa do site.
+
+header:
+  menu: Menu
+  navigation: Navegação
+
+footer:
+  copyright: © {year}-presente {name}.
+  notes: Desenvolvido com NuxtJS e Tailwind CSS. Ícones por Heroicons.
+
+home:
+  header: Oi, muito prazer!
+  introduction: >
+    Sou o {name}, uma pessoa atenta e curiosa aos mínimos detalhes. Atualmente
+    estou cursando o {computerScienceBachelors}, e no meu tempo livre
+    gosto de ler e contribuir em alguns projetos de {openSource}.
+  computerScienceBachelors: Bacharelado em Ciência da Computação
+  openSource: código aberto
+
+  education: Educação
+  period: '{start} — {finish}'
+  present: Presente
+  ufabc: Universidade Federal do ABC (UFABC)
+  bachelorDescription: Integrado ao Bacharelado de Ciência & Tecnologia
+  itTechnician: Ensino Técnico de Informática Integrado ao Ensino Médio
+  itTechnicianDescription: >
+    TCC: Sistema de gerenciamento escolar através de site e aplicativo.
+  
+  knowledges: Conhecimentos
+  frameworks: Frameworks
+  languages: Linguagens
+  ecosystems: Ecossistemas
+  advanced: Avançado
+  intermediary: Intermediário
+  basic: Básico
+  withLevel: ' com nível '
+
+about:
+  title: Sobre
+  description: Um pouco mais sobre a minha pessoa.
+  followMeOn: Siga-me no {site}
+
+projects:
+  title: Projetos
+  description: Experiências que programei ao longo destes anos.
+
+posts:
+  title: Coleção de artigos
+  description: Alguns textos que escrevi desde a criação do site.

@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   textLinkTarget: '_blank'
 })
 
-const { pass } = useNotionParser(props)
+const { pass } = useNotionParser(toRefs(props))
 </script>
 
 <template>

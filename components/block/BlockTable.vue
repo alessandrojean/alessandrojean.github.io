@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass } = useNotionParser<TableBlockObjectResponse>(props)
+const { block, pass } = useNotionParser<TableBlockObjectResponse>(toRefs(props))
 
 const hasHeaderColumn = computed(() => {
   return block.value?.table.has_column_header

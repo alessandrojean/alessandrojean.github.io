@@ -24,46 +24,48 @@ interface Knowledge {
 
 interface KnowledgeArea {
   title: string;
-  titleLang?: string;
   items: Knowledge[];
 }
 
-const knowledges: KnowledgeArea[] = [
+const { t } = useI18n({ useScope: 'global' })
+
+const knowledges = computed<KnowledgeArea[]>(() => [
   {
-    title: 'Frameworks',
-    titleLang: 'en-US',
+    title: t('home.frameworks'),
     items: [
-      { title: 'Vue.js', icon: IconVueJs, level: 'Avançado' },
-      { title: 'Tailwind CSS', icon: IconTailwindCss, level: 'Avançado' },
-      { title: 'React', icon: IconReact, level: 'Básico' }
+      { title: 'Vue.js', icon: IconVueJs, level: 'advanced' },
+      { title: 'Tailwind CSS', icon: IconTailwindCss, level: 'advanced' },
+      { title: 'React', icon: IconReact, level: 'basic' }
     ]
   },
   {
-    title: 'Linguagens',
+    title: t('home.languages'),
     items: [
-      { title: 'JavaScript', icon: IconJavaScript, level: 'Avançado' },
-      { title: 'Kotlin', icon: IconKotlin, level: 'Avançado' },
-      { title: 'Java', icon: IconJava, level: 'Avançado' },
-      { title: 'TypeScript', icon: IconTypeScript, level: 'Intermediário' },
+      { title: 'JavaScript', icon: IconJavaScript, level: 'advanced' },
+      { title: 'Kotlin', icon: IconKotlin, level: 'advanced' },
+      { title: 'Java', icon: IconJava, level: 'advanced' },
+      { title: 'TypeScript', icon: IconTypeScript, level: 'intermediary' },
     ]
   },
   {
-    title: 'Ecossistemas',
+    title: t('home.ecosystems'),
     items: [
-      { title: 'Node.js', icon: IconNodeJs, level: 'Avançado' },
-      { title: 'WooCommerce', icon: IconWooCommerce, level: 'Intermediário' },
-      { title: 'WordPress', icon: IconWordPress, level: 'Intermediário' },
-      { title: 'Android', icon: IconAndroid, level: 'Básico' },
+      { title: 'Node.js', icon: IconNodeJs, level: 'advanced' },
+      { title: 'WooCommerce', icon: IconWooCommerce, level: 'intermediary' },
+      { title: 'WordPress', icon: IconWordPress, level: 'intermediary' },
+      { title: 'Android', icon: IconAndroid, level: 'basic' },
     ]
   }
-]
+])
 </script>
 
 <template>
   <div class="p-6 rounded-xl border border-gray-100 dark:border-gray-700 dark:contrast-more:border-gray-600 motion-safe:transition">
     <h2 class="flex items-center text-lg font-semibold mb-4 dark:text-gray-200 dark:contrast-more:text-gray-100 motion-safe:transition">
       <CommandLineIcon aria-hidden="true" class="h-6 w-6 text-gray-400 dark:text-gray-500 dark:contrast-more:text-gray-400 motion-safe:transition" />
-      <span class="ml-3">Conhecimentos</span>
+      <span class="ml-3">
+        {{ $t('home.knowledges') }}
+      </span>
     </h2>
 
     <ul
@@ -71,7 +73,7 @@ const knowledges: KnowledgeArea[] = [
       :key="area.title"
       class="w-full"
     >
-      <li :lang="area.titleLang ?? undefined" class="text-sm font-medium mt-6 mb-4 flex items-center gap-4">
+      <li class="text-sm font-medium mt-6 mb-4 flex items-center gap-4">
         <span class="shrink-0 dark:text-gray-300 dark:contrast-more:text-gray-200 motion-safe:transition">{{ area.title }}</span>
         <span class="grow h-px block bg-gray-200 dark:bg-gray-700 dark:contrast-more:bg-gray-600 motion-safe:transition"></span>
       </li>
@@ -89,9 +91,11 @@ const knowledges: KnowledgeArea[] = [
             <span lang="en-US" class="motion-safe:transition font-medium text-gray-800 dark:text-gray-200 text-sm grow">
               {{ knowledge.title }}
             </span>
-            <span class="sr-only"> com nível </span>
+            <span class="sr-only">
+              {{ $t('home.withLevel') }}
+            </span>
             <span class="motion-safe:transition text-xs text-gray-600 dark:text-gray-400 dark:contrast-more:text-gray-300 dark:contrast-more:font-medium shrink-0">
-              {{ knowledge.level }}
+              {{ $t(`home.${knowledge.level}`) }}
             </span>
           </li>
         </ul>

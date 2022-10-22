@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, type, pass, richText, getTextContent } = useNotionParser<HeadingBlock>(props)
+const { block, type, pass, richText, getTextContent } = useNotionParser<HeadingBlock>(toRefs(props))
 
 const id = computed(() => {
   return slugify(getTextContent(richText.value), {

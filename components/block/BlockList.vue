@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, type, pass } = useNotionParser<ListBlock>(props)
+const { block, content, type, pass } = useNotionParser<ListBlock>(toRefs(props))
 
 const isTopLevel = computed(() => {
   return block.value.parent.type === 'page_id'
@@ -33,7 +33,7 @@ const isTopLevel = computed(() => {
         v-bind="pass"
       />
     </li>
-    <li v-if="block.content && block.content.length > 0" class="list-none">
+    <li v-if="content && content.length > 0" class="list-none">
       <BlockNestedList v-bind="pass">
         <slot />
       </BlockNestedList>
@@ -49,7 +49,7 @@ const isTopLevel = computed(() => {
         v-bind="pass"
       />
     </li>
-    <li v-if="block.content && block.content.length > 0" class="list-none">
+    <li v-if="content && content.length > 0" class="list-none">
       <BlockNestedList v-bind="pass">
         <slot />
       </BlockNestedList>
@@ -63,7 +63,7 @@ const isTopLevel = computed(() => {
   </ul>
   <template v-else>
     <li><BlockTextRenderer :text="block[type]?.['rich_text']" v-bind="pass" /></li>
-    <li v-if="block.content && block.content.length > 0" class="list-none">
+    <li v-if="content && content.length > 0" class="list-none">
       <BlockNestedList v-bind="pass">
         <slot />
       </BlockNestedList>

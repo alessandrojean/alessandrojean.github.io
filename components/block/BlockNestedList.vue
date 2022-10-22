@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { type } = useNotionParser<NestedListBlock>(props)
+const { type } = useNotionParser<NestedListBlock>(toRefs(props))
 </script>
 
 <template>

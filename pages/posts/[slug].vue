@@ -3,8 +3,14 @@ import { postMapImageUrl, postMapVideoUrl } from '@/server/api/posts/[slug].get'
 import type { MapImageUrlArgs, MapVideoUrlArgs } from '@/composables/useNotionParser'
 import type { UseOgImageProps } from '#og-image'
 
+defineI18nRoute({
+  locales: ['pt'],
+  paths: { pt: '/posts/:slug' }
+})
+
 const { title: author, description, url } = useAppConfig()
 const route = useRoute()
+const localePath = useLocalePath()
 
 const { data: linkMap } = await useFetch('/api/posts', {
   transform: (posts) => {
@@ -22,7 +28,7 @@ const postTags = computed(() => post.value.tags.join(', '))
 function mapPageUrl(pageId: string) {
   const slug = linkMap.value[pageId]
   
-  return slug ? `/posts/${slug}` : undefined
+  return slug ? localePath({ name: 'posts-slug', params: { slug } }, 'pt') : undefined
 }
 
 function mapImageUrl({ block, src }: MapImageUrlArgs) {

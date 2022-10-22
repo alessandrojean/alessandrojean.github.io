@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, caption, getTextContent } = useNotionParser<ImageBlockObjectResponse>(props)
+const { block, caption, getTextContent } = useNotionParser<ImageBlockObjectResponse>(toRefs(props))
 
 const src = computed(() => {
   return props.mapImageUrl({

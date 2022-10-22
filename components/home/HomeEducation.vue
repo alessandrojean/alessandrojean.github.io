@@ -9,21 +9,23 @@ interface Course {
   finished?: boolean;
 }
 
-const courses: Course[] = [
+const { t } = useI18n({ useScope: 'global' })
+
+const courses = computed<Course[]>(() => [
   {
-    institution: 'Universidade Federal do ABC (UFABC)',
-    period: '2016 — Presente',
-    name: 'Bacharelado em Ciência da Computação',
-    description: 'Integrado ao Bacharelado de Ciência & Tecnologia.'
+    institution: t('home.ufabc'),
+    period: t('home.period', { start: 2016, finish: t('home.present') }),
+    name: t('home.computerScienceBachelors'),
+    description: t('home.bachelorDescription')
   },
   {
     institution: 'Etec Lauro Gomes',
-    period: '2013 — 2015',
-    name: 'Ensino Técnico de Informática Integrado ao Ensino Médio',
-    description: 'TCC: Sistema de gerenciamento escolar através de site e aplicativo.',
+    period: t('home.period', { start: 2013, finish: 2015 }),
+    name: t('home.itTechnician'),
+    description: t('home.itTechnicianDescription'),
     finished: true
   }
-]
+])
 </script>
 
 <template>

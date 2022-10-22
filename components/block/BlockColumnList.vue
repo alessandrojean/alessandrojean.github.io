@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block } = useNotionParser<ColumnListBlockObjectResponse>(props)
+const { block } = useNotionParser<ColumnListBlockObjectResponse>(toRefs(props))
 
 const columnClasses = computed(() => {
   const map = {

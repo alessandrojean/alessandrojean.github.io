@@ -9,16 +9,17 @@ interface Theme {
 
 const colorMode = useColorMode()
 const themes: Record<string, Theme> = {
-  dark: { name: 'escuro', icon: MoonIcon },
-  light: { name: 'claro', icon: SunIcon },
+  dark: { name: 'theme.dark', icon: MoonIcon },
+  light: { name: 'theme.light', icon: SunIcon },
 }
 
 const theme = computed(() => themes[colorMode.value])
+const { t } = useI18n({ useScope: 'global' })
 
 const buttonAction = computed(() => {
-  const nextTheme = colorMode.value === 'dark' ? 'light' : 'dark'
+  const nextTheme = colorMode.value === 'dark' ? 'theme.light' : 'theme.dark'
 
-  return `Mudar para o tema ${themes[nextTheme].name}`
+  return t('actions.changeTheme', { theme: t(nextTheme) })
 })
 
 function changeTheme() {

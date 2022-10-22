@@ -8,15 +8,13 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { isType, pass } = useNotionParser(props)
+const { isType, pass } = useNotionParser(toRefs(props))
 </script>
 
 <template>
-  <div v-if="isType('page')">
-    <BlockPage v-bind="pass">
-      <slot />
-    </BlockPage>
-  </div>
+  <BlockPage v-if="isType('page')" v-bind="pass">
+    <slot />
+  </BlockPage>
   <BlockHeader
     v-else-if="isType(['heading_1', 'heading_2', 'heading_3'])"
     v-bind="pass"

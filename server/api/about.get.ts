@@ -1,10 +1,13 @@
 import { fetchPage, fetchBlocks } from '@/lib/notion'
 
 export default defineEventHandler(async () => {
-  const { notionAboutPage } = useRuntimeConfig()
+  const { notionAboutPage, notionEnglishAboutPage } = useRuntimeConfig()
 
-  const page = await fetchPage({ pageId: notionAboutPage })
-  const blockMap = await fetchBlocks({ page })
+  const pageEn = await fetchPage({ pageId: notionEnglishAboutPage })
+  const blockMapEn = await fetchBlocks({ page: pageEn })
 
-  return blockMap
+  const pagePt = await fetchPage({ pageId: notionAboutPage })
+  const blockMapPt = await fetchBlocks({ page: pagePt })
+
+  return { en: blockMapEn, pt: blockMapPt }
 })

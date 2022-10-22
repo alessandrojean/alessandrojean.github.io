@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, root, pass, getTextContent } = useNotionParser<TableOfContentsBlockObjectResponse>(props)
+const { block, root, pass, getTextContent } = useNotionParser<TableOfContentsBlockObjectResponse>(toRefs(props))
 
 const headers = computed(() => {
   const selfIndex = root.value.content.indexOf(block.value.id)

@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, richText } = useNotionParser<ParagraphBlockObjectResponse>(props)
+const { block, pass, richText } = useNotionParser<ParagraphBlockObjectResponse>(toRefs(props))
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-import type { ComputedRef } from 'vue'
+import type { ComputedRef, ToRefs } from 'vue'
 import * as Notion from '@/lib/notion'
 
 export interface MapImageUrlArgs {
@@ -56,27 +56,34 @@ type CaptionBlock = 'image' | 'video' | 'code' | 'embed'
 type CaptionOnly<T extends Notion.BlockNode> =
   T['type'] extends CaptionBlock ? Notion.TextRichTextItemResponse[] : never
 
-export default function useNotionParser<Block extends Notion.BlockNode>(props: NotionBlockProps) {
+export default function useNotionParser<Block extends Notion.BlockNode>(
+  props: ToRefs<Readonly<NotionBlockProps>>
+) {
   const pass = computed<NotionBlockProps>(() => ({
-    blockMap: props.blockMap,
-    contentId: props.contentId,
-    contentIndex: props.contentIndex,
-    embedAllow: props.embedAllow,
-    fullPage: props.fullPage,
-    headerAnchor: props.headerAnchor,
-    level: props.level,
-    mapImageUrl: props.mapImageUrl,
-    mapPageUrl: props.mapPageUrl,
-    mapVideoUrl: props.mapVideoUrl,
-    pageLinkTarget: props.pageLinkTarget,
-    shiki: props.shiki,
-    textLinkTarget: props.textLinkTarget
+    blockMap: props.blockMap.value,
+    contentId: props.contentId.value,
+    contentIndex: props.contentIndex.value,
+    embedAllow: props.embedAllow.value,
+    fullPage: props.fullPage.value,
+    headerAnchor: props.headerAnchor.value,
+    level: props.level.value,
+    mapImageUrl: props.mapImageUrl.value,
+    mapPageUrl: props.mapPageUrl.value,
+    mapVideoUrl: props.mapVideoUrl.value,
+    pageLinkTarget: props.pageLinkTarget.value,
+    shiki: props.shiki.value,
+    textLinkTarget: props.textLinkTarget.value
   }))
 
   const block = computed<Block & { content: string[] }>(() => {
-    const id = props.contentId || Object.keys(props.blockMap)[0]
-    return props.blockMap[id] as Block & { content: string[] }
+    const id = props.contentId.value || 
+      Object.values(props.blockMap.value)
+        .find((b) => b.type === 'page').id
+
+    return props.blockMap.value[id] as Block & { content: string[] }
   })
+
+  const content = computed(() => block.value.content ?? [])
   
   const properties = computed<PageOnly<Block>>(() => {
     return (block.value.type === 'page'
@@ -88,10 +95,13 @@ export default function useNotionParser<Block extends Notion.BlockNode>(props: N
   const parent = computed(() => {
     const id = block.value.parent[block.value.parent.type]
 
-    return typeof id === 'string' ? props.blockMap[id] : null;
+    return typeof id === 'string' ? props.blockMap.value[id] : null;
   })
 
-  const root = computed(() => Object.values(props.blockMap)[0] as Notion.BlockPageObject)
+  const root = computed(() => {
+    return Object.values(props.blockMap.value)
+      .find((b) => b.type === 'page') as Notion.BlockPageObject
+  })
 
   const richText = computed(() => {
     const blockUnref = unref(block)
@@ -134,6 +144,7 @@ export default function useNotionParser<Block extends Notion.BlockNode>(props: N
   return {
     pass,
     block,
+    content,
     properties,
     type,
     parent,

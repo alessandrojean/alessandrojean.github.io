@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, getTextContent } = useNotionParser<ToDoGroupBlock>(props)
+const { block, pass, getTextContent } = useNotionParser<ToDoGroupBlock>(toRefs(props))
 
 const todos = computed(() => {
   return (block.value.content || []).map((id) => {

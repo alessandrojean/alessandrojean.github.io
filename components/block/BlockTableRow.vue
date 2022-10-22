@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, parent } = useNotionParser<TableRowBlockObjectResponse>(props)
+const { block, pass, parent } = useNotionParser<TableRowBlockObjectResponse>(toRefs(props))
 
 const table = computed(() => {
   return parent.value as TableBlockObjectResponse & { content: string[] }

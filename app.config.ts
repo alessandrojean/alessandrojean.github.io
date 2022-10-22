@@ -13,8 +13,8 @@ export default defineAppConfig({
     trakt: 'alessandrojean'
   },
   navLinks: [
-    { title: 'Sobre', to: '/about' },
-    { title: 'Artigos', to: '/posts', exact: false },
-    { title: 'Projetos', to: '/projects' },
+    { title: 'routes.about', to: '/about' },
+    { title: 'routes.articles', to: '/posts', exact: false, lang: 'pt' },
+    { title: 'routes.projects', to: '/projects' },
   ]
 })

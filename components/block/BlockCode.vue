@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, getTextContent } = useNotionParser<CodeBlock>(props)
+const { block, getTextContent } = useNotionParser<CodeBlock>(toRefs(props))
 
 // Map the Notion language codes to Shiki ones.
 const langMap: Partial<Record<Language, string>> = {

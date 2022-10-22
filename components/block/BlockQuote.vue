@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, richText, getTextContent } = useNotionParser<QuoteBlockObjectResponse>(props)
+const { block, pass, richText, getTextContent } = useNotionParser<QuoteBlockObjectResponse>(toRefs(props))
 
 const filteredContent = computed(() => {
   return block.value.content?.filter((id) => {

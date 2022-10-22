@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, richText } = useNotionParser<CalloutBlockObjectResponse>(props)
+const { block, pass, richText } = useNotionParser<CalloutBlockObjectResponse>(toRefs(props))
 
 const colorMap: Partial<Record<ApiColor, string[]>> = {
   gray_background: ['bg-gray-100', 'text-gray-800', 'border-gray-200'],

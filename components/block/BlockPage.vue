@@ -12,10 +12,10 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { pass, properties, block } = useNotionParser<BlockPageObject>(props)
+const { pass, properties, block } = useNotionParser<BlockPageObject>(toRefs(props))
 
 const title = computed(() => {
-  return properties.value['Name'].type === 'title'
+  return properties.value?.['Name']?.type === 'title'
     ? properties.value['Name'].title : []
 })
 
@@ -25,7 +25,7 @@ const formatter = new Intl.DateTimeFormat('pt-BR', {
 })
 
 const date = computed(() => {
-  const iso = properties.value['Created at'].type === 'date'
+  const iso = properties.value?.['Created at']?.type === 'date'
     ? properties.value['Created at']?.date?.start : null
   const updated = new Date(block.value.last_edited_time)
 
