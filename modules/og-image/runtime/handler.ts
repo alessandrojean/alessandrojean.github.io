@@ -1,14 +1,13 @@
-import { useQuery } from 'h3'
+import { getQuery } from 'h3'
 import sharp from 'sharp'
 import { createOgImage } from './satori'
 
-import type { IncomingMessage, ServerResponse } from 'h3'
+import type { H3Event } from 'h3'
 import type { Resolver } from '@nuxt/kit'
 import type { FontOptions, ModuleOptions } from '../types'
 
 type OgImageEventHandler = { 
-  req: IncomingMessage;
-  res: ServerResponse;
+  event: H3Event;
   fonts: FontOptions[];
   avatar: string;
   options: ModuleOptions;
@@ -16,8 +15,8 @@ type OgImageEventHandler = {
 }
 
 export async function devMiddleware(args: OgImageEventHandler) {
-  const { req, res, fonts, avatar, options, resolver } = args
-  const query = useQuery(req)
+  const { event, fonts, avatar, options } = args
+  const query = getQuery(event)
 
   if (!query.title || !query.description) {
     throw new Error('Missing title or description')
@@ -35,8 +34,8 @@ export async function devMiddleware(args: OgImageEventHandler) {
 
   const webp = await sharp(Buffer.from(svg)).webp({ lossless: true }).toBuffer()
 
-  res.setHeader('Content-Type', 'image/webp')
-  res.write(webp)
+  event.res.setHeader('Content-Type', 'image/webp')
+  event.res.write(webp)
 
-  return res.end()
+  return event.res.end()
 }

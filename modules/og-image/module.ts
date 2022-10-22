@@ -10,6 +10,7 @@ import {
   useLogger,
   useNitro
 } from '@nuxt/kit'
+import { eventHandler } from 'h3'
 
 import type { FontOptions, FontWeight, ModuleOptions } from './types'
 
@@ -78,10 +79,9 @@ export const ogImageOptions = ${JSON.stringify(options, null, 2)}
 
     addDevServerHandler({
       route: '/_og',
-      handler: async (req, res) => {
-        // TODO: Remove when errors fixed on Satori.
-        await devMiddleware({ req, res, fonts, avatar, options, resolver })
-      }
+      handler: eventHandler(async (event) => {
+        await devMiddleware({ event, fonts, avatar, options, resolver })
+      })
     })
 
     if (!nuxt.options.dev) {
