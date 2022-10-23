@@ -56,6 +56,7 @@ jobs:
           NUXT_NOTION_POSTS_TABLE: ${{ secrets.NUXT_NOTION_POSTS_TABLE }}
           NUXT_NOTION_PROJECTS_TABLE: ${{ secrets.NUXT_NOTION_PROJECTS_TABLE }}
           NUXT_NOTION_ABOUT_PAGE: ${{ secrets.NUXT_NOTION_ABOUT_PAGE }}
+          NUXT_NOTION_ENGLISH_ABOUT_PAGE: ${{ secrets.NUXT_NOTION_ENGLISH_ABOUT_PAGE }}
       - name: Add .nojekyll
         run: touch ./.output/public/.nojekyll
       - name: Upload artifact
