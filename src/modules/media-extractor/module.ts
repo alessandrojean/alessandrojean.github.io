@@ -36,7 +36,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir)
 
     const dir = options.dir ?? nuxt.options.dir.public
-    const outputDir = resolver.resolve('..', '..', '.output', dir)
+    const outputDir = resolver.resolve('..', '..', '..', '.output', dir)
     
     nuxt.hook('ready', async () => {
       const nitro = useNitro()

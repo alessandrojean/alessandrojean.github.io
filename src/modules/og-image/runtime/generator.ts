@@ -36,7 +36,7 @@ export async function generateOgImage(args: GenerateOgImageArgs) {
   const publicDir = nuxt.options.dir.public
   const ogImageDir = process.dev
     ? resolver.resolve('..', '..', '..', publicDir, options.dir)
-    : resolver.resolve('..', '..', '..', '.output', publicDir, options.dir)
+    : resolver.resolve('..', '..', '..', '..', '.output', publicDir, options.dir)
 
   const fileName = route.route !== '/'
     ? withoutLeadingSlash(route.route).replace(/\//g, '-') + '.png'
