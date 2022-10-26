@@ -19,6 +19,7 @@ export default defineNuxtConfig({
       { code: 'pt', iso: 'pt-BR', file: 'pt-BR.yaml' }
     ],
     detectBrowserLanguage: {
+      alwaysRedirect: true,
       useCookie: false
     },
     lazy: true,
