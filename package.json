@@ -14,7 +14,7 @@
     "@notionhq/client": "2.2.1",
     "@nuxtjs/color-mode": "3.1.8",
     "@nuxtjs/i18n": "8.0.0-beta.1",
-    "@nuxtjs/tailwindcss": "6.1.0",
+    "@nuxtjs/tailwindcss": "6.1.1",
     "@tailwindcss/typography": "0.5.7",
     "@types/open-graph-scraper": "4.8.2",
     "@types/sharp": "0.31.0",
