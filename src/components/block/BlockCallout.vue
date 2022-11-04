@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { NotionBlockProps } from '@/composables/useNotionParser'
-import type { CalloutBlockObjectResponse } from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
-type ApiColor = CalloutBlockObjectResponse['callout']['color']
+type ApiColor = NotionApi.CalloutBlockObjectResponse['callout']['color']
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, richText } = useNotionParser<CalloutBlockObjectResponse>(toRefs(props))
+const { block, pass, richText } = useNotionParser<NotionApi.CalloutBlockObjectResponse>(toRefs(props))
 
 const colorMap: Partial<Record<ApiColor, string[]>> = {
   gray_background: ['bg-gray-100', 'text-gray-800', 'border-gray-200'],

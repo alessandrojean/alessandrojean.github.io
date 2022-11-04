@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { SourceHTMLAttributes } from 'vue'
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { EmbedBlockObjectResponse, VideoBlockObjectResponse } from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
-type AssetBlock = EmbedBlockObjectResponse | VideoBlockObjectResponse
+type AssetBlock = NotionApi.EmbedBlockObjectResponse | NotionApi.VideoBlockObjectResponse
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,

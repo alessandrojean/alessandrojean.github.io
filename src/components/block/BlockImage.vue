@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { ImageBlockObjectResponse } from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, caption, getTextContent } = useNotionParser<ImageBlockObjectResponse>(toRefs(props))
+const { block, caption, getTextContent } = useNotionParser<NotionApi.ImageBlockObjectResponse>(toRefs(props))
 
 const src = computed(() => {
   return props.mapImageUrl({

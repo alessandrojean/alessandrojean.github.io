@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { Highlighter } from 'shiki-es'
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { CodeBlockObjectResponse, EquationBlockObjectResponse, Language } from '@/lib/notion'
+import type { Language, NotionApi } from '@/lib/notion'
 
-type CodeBlock = CodeBlockObjectResponse | EquationBlockObjectResponse
+type CodeBlock = NotionApi.CodeBlockObjectResponse | NotionApi.EquationBlockObjectResponse
 
 interface Props extends NotionBlockProps {
   overrideLang?: Language | string;

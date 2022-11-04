@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NotionBlockProps } from '@/composables/useNotionParser'
-import { ParagraphBlockObjectResponse } from '@/lib/notion'
+import { NotionApi } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, richText } = useNotionParser<ParagraphBlockObjectResponse>(toRefs(props))
+const { block, pass, richText } = useNotionParser<NotionApi.ParagraphBlockObjectResponse>(toRefs(props))
 </script>
 
 <template>

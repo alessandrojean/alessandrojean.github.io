@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { BulletedListItemBlockObjectResponse, NumberedListItemBlockObjectResponse } from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
-type NestedListBlock = BulletedListItemBlockObjectResponse | NumberedListItemBlockObjectResponse
+type NestedListBlock = NotionApi.BulletedListItemBlockObjectResponse
+  | NotionApi.NumberedListItemBlockObjectResponse
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,

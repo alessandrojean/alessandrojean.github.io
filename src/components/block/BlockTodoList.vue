@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CheckIcon } from '@heroicons/vue/20/solid'
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { ToDoGroupBlock, ToDoBlockObjectResponse } from '@/lib/notion'
+import type { ToDoGroupBlock, NotionApi } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -14,7 +14,7 @@ const { block, pass, getTextContent } = useNotionParser<ToDoGroupBlock>(toRefs(p
 
 const todos = computed(() => {
   return (block.value.content || []).map((id) => {
-    const block = props.blockMap[id] as ToDoBlockObjectResponse
+    const block = props.blockMap[id] as NotionApi.ToDoBlockObjectResponse
 
     return {
       id,

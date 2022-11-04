@@ -1,20 +1,27 @@
+import { getTextContent } from '@/lib/notion'
+
 import type { ComputedRef, ToRefs } from 'vue'
-import * as Notion from '@/lib/notion'
+import type { 
+  BlockMap,
+  BlockNode,
+  BlockPageObject,
+  NotionApi
+} from '@/lib/notion'
 
 export interface MapImageUrlArgs {
   src: string;
-  block?: Extract<Notion.BlockNode, { type: 'image' }>;
-  blockMap?: Notion.BlockMap
+  block?: Extract<BlockNode, { type: 'image' }>;
+  blockMap?: BlockMap
 }
 
 export interface MapVideoUrlArgs {
   src: string;
-  block?: Extract<Notion.BlockNode, { type: 'video' }>;
-  blockMap?: Notion.BlockMap
+  block?: Extract<BlockNode, { type: 'video' }>;
+  blockMap?: BlockMap
 }
 
 export interface NotionBlockProps {
-  blockMap: Notion.BlockMap;
+  blockMap: BlockMap;
   contentId?: string;
   contentIndex?: number;
   embedAllow?: string;
@@ -41,22 +48,22 @@ export function defaultMapVideoUrl({ src }: MapVideoUrlArgs): string {
   return src
 }
 
-type PageOnly<T extends Notion.BlockNode> =
-  T extends Notion.BlockPageObject ? Notion.BlockPageObject['properties'] : never
+type PageOnly<T extends BlockNode> =
+  T extends BlockPageObject ? BlockPageObject['properties'] : never
 
 type RichTextBlock = 'paragraph' | 'heading_1' | 'heading_2' | 'heading_3' |
   'callout' | 'quote' | 'bulleted_list_item' | 'numbered_list_item' |
   'to_do' | 'code'
 
-type RichTextOnly<T extends Notion.BlockNode> =
-  T['type'] extends RichTextBlock ? Notion.TextRichTextItemResponse[] : never
+type RichTextOnly<T extends BlockNode> =
+  T['type'] extends RichTextBlock ? NotionApi.TextRichTextItemResponse[] : never
 
 type CaptionBlock = 'image' | 'video' | 'code' | 'embed'
 
-type CaptionOnly<T extends Notion.BlockNode> =
-  T['type'] extends CaptionBlock ? Notion.TextRichTextItemResponse[] : never
+type CaptionOnly<T extends BlockNode> =
+  T['type'] extends CaptionBlock ? NotionApi.TextRichTextItemResponse[] : never
 
-export default function useNotionParser<Block extends Notion.BlockNode>(
+export default function useNotionParser<Block extends BlockNode>(
   props: ToRefs<Readonly<NotionBlockProps>>
 ) {
   const pass = computed<NotionBlockProps>(() => ({
@@ -100,7 +107,7 @@ export default function useNotionParser<Block extends Notion.BlockNode>(
 
   const root = computed(() => {
     return Object.values(props.blockMap.value)
-      .find((b) => b.type === 'page') as Notion.BlockPageObject
+      .find((b) => b.type === 'page') as BlockPageObject
   })
 
   const richText = computed(() => {
@@ -152,6 +159,6 @@ export default function useNotionParser<Block extends Notion.BlockNode>(
     richText,
     caption,
     isType,
-    getTextContent: Notion.getTextContent,
+    getTextContent,
   }
 }

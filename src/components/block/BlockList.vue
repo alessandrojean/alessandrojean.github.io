@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type {
-  BulletedListItemGroupBlock,
-  BulletedListItemBlockObjectResponse,
-  NumberedListItemBlockObjectResponse
-} from '@/lib/notion'
+import type { BulletedListItemGroupBlock, NotionApi } from '@/lib/notion'
 
-type ListBlock = BulletedListItemGroupBlock | BulletedListItemBlockObjectResponse | NumberedListItemBlockObjectResponse
+type ListBlock = BulletedListItemGroupBlock
+  | NotionApi.BulletedListItemBlockObjectResponse
+  | NotionApi.NumberedListItemBlockObjectResponse
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,

@@ -3,13 +3,11 @@ import slugify from 'slugify'
 import { LinkIcon } from '@heroicons/vue/20/solid'
 
 import { NotionBlockProps } from '@/composables/useNotionParser'
-import {
-  Heading1BlockObjectResponse,
-  Heading2BlockObjectResponse,
-  Heading3BlockObjectResponse
-} from '@/lib/notion'
+import { NotionApi } from '@/lib/notion'
 
-type HeadingBlock = Heading1BlockObjectResponse | Heading2BlockObjectResponse | Heading3BlockObjectResponse
+type HeadingBlock = NotionApi.Heading1BlockObjectResponse
+  | NotionApi.Heading2BlockObjectResponse
+  | NotionApi.Heading3BlockObjectResponse
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,

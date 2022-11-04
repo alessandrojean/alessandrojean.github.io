@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { ColumnListBlockObjectResponse } from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block } = useNotionParser<ColumnListBlockObjectResponse>(toRefs(props))
+const { block } = useNotionParser<NotionApi.ColumnListBlockObjectResponse>(toRefs(props))
 
 const columnClasses = computed(() => {
   const map = {

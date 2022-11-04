@@ -2,7 +2,7 @@
 import slugify from 'slugify'
 
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { BlockNode, TableOfContentsBlockObjectResponse } from '@/lib/notion'
+import type { BlockNode, NotionApi } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, root, pass, getTextContent } = useNotionParser<TableOfContentsBlockObjectResponse>(toRefs(props))
+const { block, root, pass, getTextContent } = useNotionParser<NotionApi.TableOfContentsBlockObjectResponse>(toRefs(props))
 
 const headers = computed(() => {
   const selfIndex = root.value.content.indexOf(block.value.id)

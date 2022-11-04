@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type {
-  CodeBlockObjectResponse,
-  EmbedBlockObjectResponse,
-  ImageBlockObjectResponse,
-  VideoBlockObjectResponse
-} from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
-type FigureBlock = CodeBlockObjectResponse | EmbedBlockObjectResponse | ImageBlockObjectResponse | VideoBlockObjectResponse
+type FigureBlock = NotionApi.CodeBlockObjectResponse
+  | NotionApi.EmbedBlockObjectResponse
+  | NotionApi.ImageBlockObjectResponse
+  | NotionApi.VideoBlockObjectResponse
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,

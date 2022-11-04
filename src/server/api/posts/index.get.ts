@@ -1,7 +1,8 @@
 import zonedTimeToUtc from 'date-fns-tz/zonedTimeToUtc'
 import formatISO from 'date-fns/formatISO'
 
-import { fetchTable, getTextContent, PageObjectResponse } from '@/lib/notion'
+import { fetchTable, getTextContent } from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
 export interface Post {
   id: string;
@@ -32,8 +33,8 @@ export default defineEventHandler<Post[]>(async () => {
   })
 
   return (posts.results || [])
-    .filter(({ properties }: PageObjectResponse) => properties['Name']['title'].length > 0)
-    .map(({ id, properties }: PageObjectResponse) => ({
+    .filter(({ properties }: NotionApi.PageObjectResponse) => properties['Name']['title'].length > 0)
+    .map(({ id, properties }: NotionApi.PageObjectResponse) => ({
       id: id,
       title: getTextContent(properties['Name']['title']),
       description: getTextContent(properties['Description']['rich_text']),

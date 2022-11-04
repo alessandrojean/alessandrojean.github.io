@@ -4,14 +4,8 @@ import parseISO from 'date-fns/parseISO'
 
 import { defineExtractorEventHandler, fileNameFromUrl } from '#media-extractor'
 
-import {
-  fetchTable,
-  fetchBlocks,
-  getTextContent,
-  ImageBlockObjectResponse,
-  PageObjectResponse,
-  VideoBlockObjectResponse
-} from '@/lib/notion'
+import { fetchTable, fetchBlocks, getTextContent } from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
 export default defineExtractorEventHandler({
   async handler(event) {
@@ -40,7 +34,7 @@ export default defineExtractorEventHandler({
       })
     }
 
-    const post = table.results[0] as PageObjectResponse
+    const post = table.results[0] as NotionApi.PageObjectResponse
     const blockMap = await fetchBlocks({ page: post })
 
     return {
@@ -63,8 +57,8 @@ export default defineExtractorEventHandler({
   },
 
   async extract({ slug, blocks }) {
-    type HostedImage = ImageBlockObjectResponse & { image: { type: 'file' } }
-    type HostedVideo = VideoBlockObjectResponse & { video: { type: 'file' } }
+    type HostedImage = NotionApi.ImageBlockObjectResponse & { image: { type: 'file' } }
+    type HostedVideo = NotionApi.VideoBlockObjectResponse & { video: { type: 'file' } }
 
     const mediaBlocks = Object.values(blocks).filter((block) => {
       return (block.type === 'image' && block.image.type === 'file') ||
@@ -81,7 +75,7 @@ export default defineExtractorEventHandler({
   }
 })
 
-export function postMapImageUrl(block: ImageBlockObjectResponse) {
+export function postMapImageUrl(block: NotionApi.ImageBlockObjectResponse) {
   const url = block.image.type === 'external'
     ? block.image.external.url
     : block.image.file.url
@@ -91,7 +85,7 @@ export function postMapImageUrl(block: ImageBlockObjectResponse) {
   return `${block.id}-${hash}.webp`
 }
 
-export function postMapVideoUrl(block: VideoBlockObjectResponse) { 
+export function postMapVideoUrl(block: NotionApi.VideoBlockObjectResponse) { 
   const url = block.video.type === 'external'
     ? block.video.external.url
     : block.video.file.url

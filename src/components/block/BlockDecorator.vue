@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { NotionBlockProps } from '@/composables/useNotionParser'
-import { RichTextItemResponse, TextRichTextItemResponse } from '@/lib/notion'
+import { NotionApi } from '@/lib/notion'
 
-type Decorator = keyof TextRichTextItemResponse['annotations'] | 'link' | 'equation'
-type Color = Exclude<TextRichTextItemResponse['annotations']['color'], 'default'>
+type Decorator = keyof NotionApi.TextRichTextItemResponse['annotations'] | 'link' | 'equation'
+type Color = Exclude<NotionApi.TextRichTextItemResponse['annotations']['color'], 'default'>
 
 interface Props extends NotionBlockProps {
-  content: TextRichTextItemResponse | RichTextItemResponse
+  content: NotionApi.TextRichTextItemResponse | NotionApi.RichTextItemResponse
   decorators?: Decorator[];
 }
 

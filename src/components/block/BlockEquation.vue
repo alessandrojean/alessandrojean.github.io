@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { EquationBlockObjectResponse } from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass } = useNotionParser<EquationBlockObjectResponse>(toRefs(props))
+const { block, pass } = useNotionParser<NotionApi.EquationBlockObjectResponse>(toRefs(props))
 </script>
 
 <template>

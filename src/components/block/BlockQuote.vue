@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { QuoteBlockObjectResponse } from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, richText, getTextContent } = useNotionParser<QuoteBlockObjectResponse>(toRefs(props))
+const { block, pass, richText, getTextContent } = useNotionParser<NotionApi.QuoteBlockObjectResponse>(toRefs(props))
 
 const filteredContent = computed(() => {
   return block.value.content?.filter((id) => {

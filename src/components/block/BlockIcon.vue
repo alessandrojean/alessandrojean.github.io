@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { CalloutBlockObjectResponse } from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
-const props = defineProps<{ icon: CalloutBlockObjectResponse['callout']['icon'] }>()
+const props = defineProps<{ icon: NotionApi.CalloutBlockObjectResponse['callout']['icon'] }>()
 
 const { twemojiUrl } = useEmoji()
 </script>

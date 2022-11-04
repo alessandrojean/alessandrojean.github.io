@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { NotionBlockProps } from '@/composables/useNotionParser'
-import { RichTextItemResponse, TextRichTextItemResponse } from '@/lib/notion'
+import { NotionApi } from '@/lib/notion'
 
 interface Props extends NotionBlockProps {
-  text?: (TextRichTextItemResponse | RichTextItemResponse)[]
+  text?: (NotionApi.TextRichTextItemResponse | NotionApi.RichTextItemResponse)[]
 }
 
 const props = withDefaults(defineProps<Props>(), {

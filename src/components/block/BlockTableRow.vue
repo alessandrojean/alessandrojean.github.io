@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type {
-  TableBlockObjectResponse,
-  TableRowBlockObjectResponse
-} from '@/lib/notion'
+import type { NotionApi } from '@/lib/notion'
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -12,10 +9,10 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
   textLinkTarget: '_blank'
 })
 
-const { block, pass, parent } = useNotionParser<TableRowBlockObjectResponse>(toRefs(props))
+const { block, pass, parent } = useNotionParser<NotionApi.TableRowBlockObjectResponse>(toRefs(props))
 
 const table = computed(() => {
-  return parent.value as TableBlockObjectResponse & { content: string[] }
+  return parent.value as NotionApi.TableBlockObjectResponse & { content: string[] }
 })
 
 const hasHeaderColumn = computed(() => {
