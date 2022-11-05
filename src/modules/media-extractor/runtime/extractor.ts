@@ -1,9 +1,8 @@
 import fs from 'node:fs'
-import https from 'node:https'
 import path from 'node:path'
-import { pipeline } from 'node:stream'
 
 import sharp from 'sharp'
+import { fetch } from 'ohmyfetch'
 
 import type { Consola } from 'consola'
 import type { ExtractorResult, ModuleOptions } from '../types'
@@ -63,37 +62,18 @@ export async function saveImages(args: SaveImagesArgs): Promise<void> {
 
     try {
       const filePath = path.join(mediaPath, media.fileName)
-      const file = fs.createWriteStream(filePath)
 
-      
-      // TODO: Replace with fetch when migrating to Node.js v17.
-      await new Promise<void>((resolve, reject) => {
-        https.get(media.url, (response) => {
-          if (type === 'image') {
-            const imageTransformer = sharp()
-              .setMaxListeners(0)
-              .webp({ quality: 90 })
+      const response = await fetch(media.url)
+      const arrayBuffer = await response.arrayBuffer()
 
-            pipeline(response, imageTransformer, file, (err) => {
-              if (err) {
-                return reject(err)
-              }
+      if (type === 'image') {
+        const image = sharp(Buffer.from(arrayBuffer))
+        const avifBuffer = await image.avif({ quality: 90 }).toBuffer()
 
-              file.close()
-              resolve()
-            })
-          } else {
-            pipeline(response, file, (err) => {
-              if (err) {
-                return reject(err)
-              }
-
-              file.close()
-              resolve()
-            })
-          }
-        })
-      })
+        fs.writeFileSync(filePath, avifBuffer)
+      } else {
+        fs.writeFileSync(filePath, Buffer.from(arrayBuffer))
+      }
 
       const endTime = process.hrtime(startTime)
       const duration = (endTime[1] / 1_000_000).toFixed(0)

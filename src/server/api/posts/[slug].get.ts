@@ -76,13 +76,9 @@ export default defineExtractorEventHandler({
 })
 
 export function postMapImageUrl(block: NotionApi.ImageBlockObjectResponse) {
-  const url = block.image.type === 'external'
-    ? block.image.external.url
-    : block.image.file.url
-
   const hash = parseISO(block.last_edited_time).getTime().toString(16)
 
-  return `${block.id}-${hash}.webp`
+  return `${block.id}-${hash}.avif`
 }
 
 export function postMapVideoUrl(block: NotionApi.VideoBlockObjectResponse) { 

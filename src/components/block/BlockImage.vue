@@ -11,11 +11,15 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
 
 const { block, caption, getTextContent } = useNotionParser<NotionApi.ImageBlockObjectResponse>(toRefs(props))
 
+const imageUrl = computed(() => {
+  return block.value.image.type === 'external'
+    ? block.value.image.external.url
+    : block.value.image.file.url
+})
+
 const src = computed(() => {
   return props.mapImageUrl({
-    src: block.value.image.type === 'external'
-      ? block.value.image.external.url
-      : block.value.image.file.url,
+    src: imageUrl.value,
     block: block.value,
     blockMap: props.blockMap
   })
@@ -23,10 +27,10 @@ const src = computed(() => {
 </script>
 
 <template>
-  <img
+  <Image
     :alt="getTextContent(caption)"
     :src="src"
-    loading="lazy"
-    class="rounded-xl shadow-lg ring-1 ring-gray-900/5 mx-auto"
-  >
+    :original-src="imageUrl"
+    class="rounded-xl shadow-lg ring-1 ring-gray-900/5 mx-auto overflow-hidden"
+  />
 </template>
