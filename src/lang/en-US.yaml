@@ -32,9 +32,9 @@ home:
   header: Hi, nice to meet you!
   introduction: >
     I'm {name}, an attentive and curious person even in the smallest details.
-    Currently I'm candidate for the {computerScienceBachelors}, and in my
+    Currently I'm candidate for a {computerScienceBachelors}, and in my
     free time I like to read and contribute in {openSource} projects.
-  computerScienceBachelors: Bachelor of Computer Science
+  computerScienceBachelors: Bachelor's Degree of Computer Science
   openSource: open source
 
   education: Education
