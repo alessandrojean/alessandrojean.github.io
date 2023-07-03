@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { UseOgImageProps } from '#og-image'
-
 const { title, description, url, socialMedia, lang } = useAppConfig()
 const route = useRoute()
 
@@ -18,13 +16,15 @@ const head = useLocaleHead({
 
 const { finalizePendingLocaleChange, t } = useI18n({ useScope: 'global' })
 
-const ogImageOptions = computed<UseOgImageProps>(() => ({
+const ogImageOptions = computed(() => ({
+  component: 'Default',
+  width: 800,
+  height: 400,
   origin: url,
+  alt: t('site.ogImageAlt'),
   title: route.meta.title ? t(route.meta.title as string) : title,
   description: route.meta.description ? t(route.meta.description as string) : description,
 }))
-
-const { ogImageUrl, ogImageWidth, ogImageHeight } = useOgImage(ogImageOptions)
 
 async function onBeforeEnter() {
   await finalizePendingLocaleChange()
@@ -33,6 +33,8 @@ async function onBeforeEnter() {
 
 <template>
   <div class="container max-w-6xl mx-auto bg-white dark:bg-gray-900 dark:contrast-more:bg-black motion-safe:transition min-h-screen shadow-sm border-x border-transparent dark:border-gray-800 dark:contrast-more:border-gray-700">
+    <OgImage v-if="!$route.meta.skipOgImage" v-bind="ogImageOptions" />
+
     <Head>
       <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir" />
       <Body class="font-sans supports-var-font:font-sans-var bg-gray-50 dark:bg-black motion-safe:transition" />
@@ -60,22 +62,30 @@ async function onBeforeEnter() {
         :content="$route.meta.description ? $t($route.meta.description as string) : description"
       />
       <Meta
+        v-if="$route.meta.skipOgImage"
         name="og:image"
-        :content="$route.meta.skipOgImage ? url + '/img/social-media-card.jpg' : ogImageUrl"
+        :content="url + '/img/social-media-card.jpg'"
       />
       <Meta
+        v-if="$route.meta.skipOgImage"
         name="og:image:type"
-        :content="$route.meta.skipOgImage ? 'image/jpeg' : 'image/png'"
+        content="image/jpeg"
       />
       <Meta
+        v-if="$route.meta.skipOgImage"
         name="og:image:width"
-        :content="$route.meta.skipOgImage ? '1920' : ogImageWidth.toString()"
+        content="1920"
       />
       <Meta
+        v-if="$route.meta.skipOgImage"
         name="og:image:height"
-        :content="$route.meta.skipOgImage ? '1080' : ogImageHeight.toString()"
+        content="1080"
       />
-      <Meta name="og:image:alt" :content="$t('site.ogImageAlt')" />
+      <Meta
+        v-if="$route.meta.skipOgImage"
+        name="og:image:alt"
+        :content="$t('site.ogImageAlt')"
+      />
       <Meta name="twitter:card" content="summary_large_image" />
       <Meta name="twitter:site" :content="'@' + socialMedia.twitter" />
       <Meta name="twitter:creator" :content="'@' + socialMedia.twitter" />
@@ -85,10 +95,11 @@ async function onBeforeEnter() {
         :content="$route.meta.description ? $t($route.meta.description as string) : description"
       />
       <Meta
+        v-if="$route.meta.skipOgImage"
         name="twitter:image"
-        :content="$route.meta.skipOgImage ? url + '/img/social-media-card.webp' : ogImageUrl"
+        :content="url + '/img/social-media-card.webp'"
       />
-      <Meta name="twitter:image:alt" :content="$t('site.ogImageAlt')" />
+      <Meta v-if="$route.meta.skipOgImage" name="twitter:image:alt" :content="$t('site.ogImageAlt')" />
 
       <template v-for="meta in head.meta" :key="meta.id">
         <Meta :id="meta.id" :property="meta.property" :content="meta.content" />

@@ -10,7 +10,8 @@ export default defineAppConfig({
     gitHub: 'alessandrojean',
     linkedIn: 'alessandrojean',
     myAnimeList: 'alessandrojean',
-    trakt: 'alessandrojean'
+    trakt: 'alessandrojean',
+    mastodon: 'alessandrojean@mas.to',
   },
   navLinks: [
     { title: 'routes.about', to: '/about' },

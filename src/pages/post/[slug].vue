@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { postMapImageUrl, postMapVideoUrl } from '@/server/api/posts/[slug].get'
 import type { MapImageUrlArgs, MapVideoUrlArgs } from '@/composables/useNotionParser'
-import type { UseOgImageProps } from '#og-image'
 
 defineI18nRoute({
   locales: ['pt'],
-  paths: { pt: '/posts/:slug' }
+  paths: { pt: '/post/:slug' }
 })
 
 const { title: author, description, url } = useAppConfig()
 const route = useRoute()
 const localePath = useLocalePath()
+const { t } = useI18n()
 
 const { data: linkMap } = await useFetch('/api/posts', {
   transform: (posts) => {
@@ -28,7 +28,7 @@ const postTags = computed(() => post.value.tags.join(', '))
 function mapPageUrl(pageId: string) {
   const slug = linkMap.value[pageId]
   
-  return slug ? localePath({ name: 'posts-slug', params: { slug } }, 'pt') : undefined
+  return slug ? localePath({ name: 'post-slug', params: { slug } }, 'pt') : undefined
 }
 
 function mapImageUrl({ block, src }: MapImageUrlArgs) {
@@ -47,19 +47,23 @@ function mapVideoUrl({ block, src }: MapVideoUrlArgs) {
   return `/video/posts/${post.value.slug}/${postMapVideoUrl(block)}`
 }
 
-const ogImageOptions = computed<UseOgImageProps>(() => ({
+const ogImageOptions = computed(() => ({
+  component: 'Default',
+  alt: t('site.ogImageAlt'),
+  width: 800,
+  height: 400,
   origin: url,
   title: post.value?.title ?? author,
   description: post.value?.description ?? description,
   section: post.value?.area,
   publishedTime: post.value?.createdAt
 }))
-
-const { ogImageUrl, ogImageWidth, ogImageHeight } = useOgImage(ogImageOptions)
 </script>
 
 <template>
   <div class="sm:px-8 py-16 lg:py-32">
+    <OgImage v-bind="ogImageOptions" />
+
     <Head>
       <Title>{{ post.title }}</Title>
       <Meta name="description" :content="post.description ?? description"/>
@@ -73,12 +77,6 @@ const { ogImageUrl, ogImageWidth, ogImageHeight } = useOgImage(ogImageOptions)
       <Meta name="article:tag" :content="postTags" />
       <Meta name="twitter:title" :content="post.title" />
       <Meta name="twitter:description" :content="post.description ?? description" />
-
-      <Meta name="og:image" :content="ogImageUrl" />
-      <Meta name="og:image:type" content="image/png" />
-      <Meta name="og:image:width" :content="ogImageWidth.toString()" />
-      <Meta name="og:image:height" :content="ogImageHeight.toString()" />
-      <Meta name="twitter:image" :content="ogImageUrl" />
     </Head>
 
     <NotionRenderer

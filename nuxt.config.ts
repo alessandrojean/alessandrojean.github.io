@@ -1,15 +1,15 @@
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  target: 'static',
+  devtools: { enabled: true },
+  site: { url: 'https://alessandrojean.github.io' },
+  ssr: true,
   srcDir: 'src/',
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
-    // TODO: Remove when Vue add support to type imports.
-    'vite-plugin-vue-type-imports/nuxt',
+    'nuxt-og-image',
     './src/modules/media-extractor',
-    './src/modules/og-image'
   ],
   colorMode: { classSuffix: '' },
   tailwindcss: { viewer: false },
@@ -29,6 +29,13 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default',
     skipSettingLocaleOnNavigate: true
   },
+  ogImage: {
+    fonts: [
+      'Inter:400',
+      'Inter:500',
+      'Inter:700',
+    ]
+  },
   watch: ['./tailwind.config.js'],
   runtimeConfig: {
     notionApiKey: '',
@@ -36,5 +43,10 @@ export default defineNuxtConfig({
     notionProjectsTable: '',
     notionAboutPage: '',
     notionEnglishAboutPage: '',
+  },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+    }
   }
 })

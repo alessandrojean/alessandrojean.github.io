@@ -23,7 +23,7 @@ const localePath = useLocalePath()
   <article class="md:grid md:grid-cols-4 md:items-baseline">
     <div class="md:col-span-3 group relative flex flex-col items-start">
       <h2 class="text-lg font-semibold tracking-tight text-gray-800 dark:text-gray-100 motion-safe:transition">
-        <NuxtLink :to="localePath({ name: 'posts-slug', params: { slug: post.slug } })" class="peer focus:outline-none">
+        <NuxtLink :to="localePath({ name: 'post-slug', params: { slug: post.slug } })" class="peer focus:outline-none">
           <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
           <span class="relative z-10">
             {{ post.title }}

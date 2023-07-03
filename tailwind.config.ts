@@ -1,15 +1,26 @@
-const colors = require('tailwindcss/colors')
-const defaultTheme = require('tailwindcss/defaultTheme')
+import colors from 'tailwindcss/colors'
+import defaultTheme from 'tailwindcss/defaultTheme'
+import plugin from 'tailwindcss/plugin'
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import typographyPlugin from '@tailwindcss/typography'
+import headlessUiPlugin from '@headlessui/tailwindcss'
+
+import type { PluginUtils } from 'tailwindcss/types/config'
+
+export default {
   content: [],
   darkMode: 'class',
   theme: {
     fontFamily: {
       ...defaultTheme.fontFamily,
-      sans: ['Inter', ...defaultTheme.fontFamily.sans],
-      'sans-var': ['Inter var', ...defaultTheme.fontFamily.sans],
+      sans: [
+        ['Inter', ...defaultTheme.fontFamily.sans],
+        { fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"' }
+      ],
+      'sans-var': [
+        ['Inter var', ...defaultTheme.fontFamily.sans],
+        { fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"' }
+      ],
       mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono]
     },
     extend: {
@@ -20,7 +31,7 @@ module.exports = {
       fontWeight: {
         inherit: 'inherit'
       },
-      typography: (theme) => ({
+      typography: ({ theme }: PluginUtils) => ({
         DEFAULT: {
           css: {
             code: {
@@ -49,9 +60,9 @@ module.exports = {
     },
   },
   plugins: [
-    require('@headlessui/tailwindcss'),
-    require('@tailwindcss/typography'),
-    function ({ addVariant }) {
+    headlessUiPlugin,
+    typographyPlugin,
+    plugin(({ addVariant }) => {
       addVariant(
         'supports-backdrop-blur',
         '@supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))'
@@ -60,6 +71,6 @@ module.exports = {
         'supports-var-font',
         '@supports (font-variation-settings: normal)'
       )
-    }
+    }),
   ],
 }

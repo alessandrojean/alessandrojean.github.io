@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { ImgHTMLAttributes } from 'vue'
 
-interface Props extends ImgHTMLAttributes {
+interface Props extends /* @vue-ignore */ ImgHTMLAttributes {
+  src: string
   originalSrc: string
 }
 
@@ -25,8 +26,8 @@ const { data: imageInfo } = await useFetch('/api/blurhash', {
 })
 
 const cssVariables = computed(() => ({
-  '--aspect-ratio': `${imageInfo.value.width} / ${imageInfo.value.height}`,
-  '--width': `${imageInfo.value.width}px`
+  '--aspect-ratio': `${imageInfo.value?.width ?? 1} / ${imageInfo.value?.height ?? 1}`,
+  '--width': `${imageInfo.value?.width ?? 0}px`
 }))
 
 const imgProps = computed<ImgHTMLAttributes>(() => ({
@@ -45,13 +46,17 @@ function handleIntersect(entries: IntersectionObserverEntry[]) {
 
   if (el.isIntersecting) {
     intersected.value = true
-    observer.value.disconnect()
+    observer.value?.disconnect()
   }
 }
 
 const observer = ref<IntersectionObserver>()
 
 function createObserver() {
+  if (!container.value) {
+    return
+  }
+
   observer.value = new IntersectionObserver(handleIntersect, {
     root: null,
     threshold: 0
@@ -71,7 +76,7 @@ onUnmounted(() => destroyObserver())
 <template>
   <div
     :class="[
-      'w-[var(--width)] max-w-full aspect-[var(--aspect-ratio)] relative',
+      'w-[--width] max-w-full aspect-[--aspect-ratio] relative',
       classes
     ]"
     :style="cssVariables"
@@ -96,7 +101,7 @@ onUnmounted(() => destroyObserver())
         v-show="!loaded"
         class="absolute inset-0 w-full h-full m-0"
         aria-hidden="true"
-        :src="imageInfo.dataUrl"
+        :src="imageInfo?.dataUrl"
         key="blur"
       >
     </TransitionGroup>

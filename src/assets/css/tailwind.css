@@ -19,11 +19,6 @@
   a {
     @apply cursor-pointer font-semibold;
   }
-
-  .font-sans,
-  .font-sans-var {
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-  }
 }
 
 @layer components {

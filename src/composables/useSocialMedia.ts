@@ -2,26 +2,36 @@ import {
   IconGitHub,
   IconInstagram,
   IconLinkedIn,
+  IconMastodon,
   IconMyAnimeList,
   IconTrakt,
   IconTwitter,
 } from '#components'
+import { Component } from 'vue';
 
 
 export interface SocialMediaLink {
   name: string;
   url: string;
-  icon: ReturnType<typeof resolveComponent>;
+  icon: Component;
+  rel?: string;
 }
 
 export default function useSocialMedia(): SocialMediaLink[] {
   const { socialMedia } = useAppConfig()
+  const [mastodonUser, mastodonInstance] = socialMedia.mastodon.split('@')
 
   return [
     {
       name: 'Twitter',
       url: `https://twitter.com/${socialMedia.twitter}`,
       icon: IconTwitter
+    },
+    {
+      name: 'Mastodon',
+      url: `https://${mastodonInstance}/@${mastodonUser}`,
+      icon: IconMastodon,
+      rel: 'me',
     },
     {
       name: 'Instagram',

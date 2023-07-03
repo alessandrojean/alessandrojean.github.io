@@ -45,11 +45,12 @@ const socialMediaLinks = useSocialMedia()
           :href="socialMediaLink.url"
           :title="$t('actions.followMeOn', { site: socialMediaLink.name })"
           target="_blank"
+          :rel="socialMediaLink.rel"
         >
           <component
             :is="socialMediaLink.icon"
             aria-hidden="true"
-            class="h-6 w-6 fill-gray-500 motion-safe:transition group-hover:fill-gray-600 group-focus-visible:fill-gray-600 dark:fill-gray-400 dark:contrast-more:fill-gray-300 dark:group-hover:fill-gray-300 dark:group-focus-visible:fill-gray-300 dark:contrast-more:group-hover:fill-gray-200 dark:contrast-more:group-focus-visible:fill-gray-200"
+            class="h-5 w-5 fill-gray-500 motion-safe:transition group-hover:fill-gray-600 group-focus-visible:fill-gray-600 dark:fill-gray-400 dark:contrast-more:fill-gray-300 dark:group-hover:fill-gray-300 dark:group-focus-visible:fill-gray-300 dark:contrast-more:group-hover:fill-gray-200 dark:contrast-more:group-focus-visible:fill-gray-200"
           />
           <span class="sr-only">
             {{ $t('actions.followMeOn', { site: socialMediaLink.name }) }}
