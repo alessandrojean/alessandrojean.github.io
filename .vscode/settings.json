@@ -2,4 +2,7 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
+  "i18n-ally.localesPaths": ["src/lang"],
+  "i18n-ally.sourceLanguage": "en-US",
+  "i18n-ally.keystyle": "nested"
 }
