@@ -2,6 +2,7 @@ actions:
   closeMenu: Fechar o menu
   changeTheme: Mudar para o tema {theme}
   followMeOn: Siga-me no {site}!
+  jumpToMain: Pular para o conteúdo principal
 
 routes:
   home: Página inicial

@@ -116,7 +116,7 @@ async function onBeforeEnter() {
     </Head>
 
     <a href="#main-content" class="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-6 focus-visible:left-6 bg-primary-50 shadow-lg z-50 !px-5 !py-3 rounded-lg font-medium focus:outline-none focus-visible:outline-none ring-2 ring-primary-600 text-primary-700">
-      Pular para o conteúdo principal
+      {{ $t('actions.jumpToMain') }}
     </a>
 
     <Header />
