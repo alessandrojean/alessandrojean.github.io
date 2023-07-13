@@ -36,7 +36,7 @@ async function onBeforeEnter() {
     <OgImage v-if="!$route.meta.skipOgImage" v-bind="ogImageOptions" />
 
     <Head>
-      <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir" />
+      <Html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir" />
       <Body class="font-sans supports-var-font:font-sans-var bg-gray-50 dark:bg-black motion-safe:transition" />
       <Link rel="preconnect" href="https://rsms.me/" />
       <Link rel="preconnect" href="https://fonts.googleapis.com" />
