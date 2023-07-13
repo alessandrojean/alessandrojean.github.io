@@ -71,7 +71,7 @@ const nextLocale = computed(() => ({
         leave-to-class="opacity-0 scale-90"
       >
         <NuxtLink
-          v-if="!$route.path.includes('/posts')"
+          v-if="!$route.path.includes('/post')"
           :to="switchLocalePath(nextLocale.code)"
           :lang="nextLocale.code"
           :title="nextLocale.name"
