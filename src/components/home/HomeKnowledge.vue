@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ConcreteComponent } from 'vue'
+import type { Component } from 'vue'
 import { CommandLineIcon } from '@heroicons/vue/24/outline'
 
 import {
@@ -9,6 +9,7 @@ import {
   IconKotlin,
   IconNodeJs,
   IconReact,
+  IconSpring,
   IconTailwindCss,
   IconTypeScript,
   IconVueJs,
@@ -18,7 +19,7 @@ import {
 
 interface Knowledge {
   title: string;
-  icon: string | ConcreteComponent;
+  icon: string | Component;
   level: string;
 }
 
@@ -51,6 +52,7 @@ const knowledges = computed<KnowledgeArea[]>(() => [
     title: t('home.ecosystems'),
     items: [
       { title: 'Node.js', icon: IconNodeJs, level: 'advanced' },
+      { title: 'Spring', icon: IconSpring, level: 'intermediary' },
       { title: 'WooCommerce', icon: IconWooCommerce, level: 'intermediary' },
       { title: 'WordPress', icon: IconWordPress, level: 'intermediary' },
       { title: 'Android', icon: IconAndroid, level: 'basic' },
