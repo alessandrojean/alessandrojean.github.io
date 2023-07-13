@@ -12,6 +12,7 @@ export default defineAppConfig({
     myAnimeList: 'alessandrojean',
     trakt: 'alessandrojean',
     mastodon: 'alessandrojean@mas.to',
+    threads: 'alessandrojean',
   },
   navLinks: [
     { title: 'routes.about', to: '/about' },

@@ -4,6 +4,7 @@ import {
   IconLinkedIn,
   IconMastodon,
   IconMyAnimeList,
+  IconThreads,
   IconTrakt,
   IconTwitter,
 } from '#components'
@@ -32,6 +33,11 @@ export default function useSocialMedia(): SocialMediaLink[] {
       url: `https://${mastodonInstance}/@${mastodonUser}`,
       icon: IconMastodon,
       rel: 'me',
+    },
+    {
+      name: 'Threads',
+      url: `https://threads.net/@${socialMedia.threads}`,
+      icon: IconThreads,
     },
     {
       name: 'Instagram',
