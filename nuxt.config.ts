@@ -49,4 +49,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
     }
   },
+  experimental: {
+    payloadExtraction: true,
+  }
 })
