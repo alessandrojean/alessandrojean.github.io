@@ -1,23 +1,23 @@
 # alessandrojean.github.io
 
-Files to my personal site.
+Files to my personal site, built with Nuxt v3.
 
 ## Running local
 
-To compile the assets and run Jekyll on local you
-need to follow those steps:
+To run the site locally, follow these instructions:
 
-- Install last version of [Node.js];
+- Install last version of [Node.js] and [pnpm];
 - Run above commands:
 
-  ```bash
+  ```console
   # Install dependencies.
-  $ yarn install
+  $ pnpm install
   # Run with hot reloading.
-  $ yarn dev
+  $ pnpm dev
   ```
 
 [Node.js]: https://nodejs.org/
+[pnpm]: https://pnpm.io/
 
 ## License
 
