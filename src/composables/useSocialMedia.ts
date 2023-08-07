@@ -6,7 +6,7 @@ import {
   IconMyAnimeList,
   IconThreads,
   IconTrakt,
-  IconTwitter,
+  IconX,
 } from '#components'
 import { Component } from 'vue';
 
@@ -24,9 +24,9 @@ export default function useSocialMedia(): SocialMediaLink[] {
 
   return [
     {
-      name: 'Twitter',
-      url: `https://twitter.com/${socialMedia.twitter}`,
-      icon: IconTwitter
+      name: 'X',
+      url: `https://twitter.com/${socialMedia.x}`,
+      icon: IconX,
     },
     {
       name: 'Mastodon',

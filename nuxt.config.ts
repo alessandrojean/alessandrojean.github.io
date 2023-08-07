@@ -19,10 +19,10 @@ export default defineNuxtConfig({
       { code: 'en', iso: 'en-US', file: 'en-US.yaml' },
       { code: 'pt', iso: 'pt-BR', file: 'pt-BR.yaml' }
     ],
-    detectBrowserLanguage: {
-      alwaysRedirect: true,
-      useCookie: false
-    },
+    // detectBrowserLanguage: {
+    //   alwaysRedirect: true,
+    //   useCookie: false
+    // },
     lazy: true,
     langDir: 'lang/',
     defaultLocale: 'en',

@@ -5,7 +5,7 @@ export default defineAppConfig({
   url: 'https://alessandrojean.github.io',
   avatarAlt: 'Avatar pessoal com desenho do personagem Okabe da franquia "Steins;Gate". Na imagem, Okabe está posicionado levemente de perfil com um meio sorriso. Seu cabelo está levemente despenteado e ele está vestindo um jaleco branco.',
   socialMedia: {
-    twitter: 'alessandrojean_',
+    x: 'alessandrojean_',
     instagram: 'alessandrojean',
     gitHub: 'alessandrojean',
     linkedIn: 'alessandrojean',

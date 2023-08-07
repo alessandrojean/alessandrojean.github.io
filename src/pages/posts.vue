@@ -6,7 +6,6 @@ definePageMeta({
 
 defineI18nRoute({
   locales: ['pt'],
-  paths: { pt: '/posts' }
 })
 
 const { data: posts } = await useFetch('/api/posts')
