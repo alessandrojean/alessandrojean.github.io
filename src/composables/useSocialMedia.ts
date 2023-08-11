@@ -15,7 +15,6 @@ export interface SocialMediaLink {
   name: string;
   url: string;
   icon: Component;
-  rel?: string;
 }
 
 export default function useSocialMedia(): SocialMediaLink[] {
@@ -32,7 +31,6 @@ export default function useSocialMedia(): SocialMediaLink[] {
       name: 'Mastodon',
       url: `https://${mastodonInstance}/@${mastodonUser}`,
       icon: IconMastodon,
-      rel: 'me',
     },
     {
       name: 'Threads',

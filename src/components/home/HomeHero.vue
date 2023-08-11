@@ -45,7 +45,7 @@ const socialMediaLinks = useSocialMedia()
           :href="socialMediaLink.url"
           :title="$t('actions.followMeOn', { site: socialMediaLink.name })"
           target="_blank"
-          :rel="socialMediaLink.rel"
+          rel="me"
         >
           <component
             :is="socialMediaLink.icon"
