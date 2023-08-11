@@ -5,7 +5,7 @@ const socialMediaLinks = useSocialMedia()
 <template>
   <div class="flex flex-col-reverse md:grid md:grid-cols-5 gap-10 py-16">
     <div class="md:grow mt-8 md:mt-0 md:col-span-3 md:flex md:flex-col md:justify-center">
-      <h1 class="text-2xl md:text-3xl font-semibold dark:text-gray-100 dark:contrast-more:text-white motion-safe:transition">
+      <h1 class="text-2xl md:text-3xl font-display-safe font-semibold dark:text-gray-100 dark:contrast-more:text-white motion-safe:transition">
         <span class="underline underline-offset-4 decoration-primary-500/80 dark:decoration-primary-400/80 decoration-4">
           {{ $t('home.header') }}
         </span>

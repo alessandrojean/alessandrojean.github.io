@@ -2,7 +2,7 @@
 import parseISO from 'date-fns/parseISO'
 import type { Post } from '@/server/api/posts/index.get'
 
-import { ChevronRightIcon } from '@heroicons/vue/20/solid'
+import { ChevronRightIcon, EyeSlashIcon } from '@heroicons/vue/20/solid'
 
 const props = defineProps<{ post: Post }>()
 const { post } = toRefs(props)
@@ -22,10 +22,11 @@ const localePath = useLocalePath()
 <template>
   <article class="md:grid md:grid-cols-4 md:items-baseline">
     <div class="md:col-span-3 group relative flex flex-col items-start">
-      <h2 class="text-lg font-semibold tracking-tight text-gray-800 dark:text-gray-100 motion-safe:transition">
+      <h2 class="text-lg font-display-safe font-semibold tracking-tight text-gray-800 dark:text-gray-100 motion-safe:transition">
         <NuxtLink :to="localePath({ name: 'post-slug', params: { slug: post.slug } })" class="peer focus:outline-none">
           <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
-          <span class="relative z-10">
+          <span class="relative z-10 flex items-center gap-1.5">
+            <EyeSlashIcon v-if="!post.isPublic" class="w-4 h-4 text-gray-500 dark:text-gray-400" />
             {{ post.title }}
           </span>
         </NuxtLink>

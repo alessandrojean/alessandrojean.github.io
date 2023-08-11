@@ -13,13 +13,14 @@ export default {
   theme: {
     fontFamily: {
       ...defaultTheme.fontFamily,
-      sans: [
-        ['Inter', ...defaultTheme.fontFamily.sans],
-        { fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"' }
-      ],
-      'sans-var': [
-        ['Inter var', ...defaultTheme.fontFamily.sans],
-        { fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"' }
+      sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      'sans-var': ['\'Inter var\'', ...defaultTheme.fontFamily.sans],
+      display: [
+        ['\'Inter var\'', ...defaultTheme.fontFamily.sans],
+        {
+          fontFeatureSettings: '"cv08", "cv11", "ss01"',
+          fontVariationSettings: '"opsz" 32'
+        }
       ],
       mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono]
     },
@@ -67,10 +68,32 @@ export default {
         'supports-backdrop-blur',
         '@supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))'
       )
-      addVariant(
-        'supports-var-font',
-        '@supports (font-variation-settings: normal)'
-      )
     }),
+
+    /** Custom variable font safe utilities. */
+    plugin(({ addUtilities, theme }) => {
+      addUtilities({
+        '.font-sans-safe': {
+          fontFamily: theme('fontFamily.sans'),
+          fontFeatureSettings: 'initial',
+          fontVariationSettings: 'initial',
+          '@supports (font-variation-settings: normal)': {
+            fontFamily: theme('fontFamily.sans-var'),
+            fontFeatureSettings: 'initial',
+            fontVariationSettings: 'initial',
+          }
+        },
+        '.font-display-safe': {
+          'fontFamily': theme('fontFamily.sans'),
+          'fontFeatureSettings': '"cv08", "cv11", "ss01"',
+          'fontVariationSettings': '"opsz" 32',
+          '@supports (font-variation-settings: normal)': {
+            fontFamily: theme('fontFamily.sans-var'),
+            fontFeatureSettings: '"cv08", "cv11", "ss01"',
+            fontVariationSettings: '"opsz" 32',
+          },
+        },
+      })
+    })
   ],
 }

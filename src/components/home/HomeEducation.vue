@@ -30,7 +30,7 @@ const courses = computed<Course[]>(() => [
 
 <template>
   <div class="px-4 md:px-0 py-6">
-    <h2 class="flex items-center text-lg font-semibold mb-6 dark:text-gray-200 dark:contrast-more:text-gray-100 motion-safe:transition -translate-x-3">
+    <h2 class="flex items-center text-lg font-display-safe font-semibold mb-6 dark:text-gray-200 dark:contrast-more:text-gray-100 motion-safe:transition -translate-x-3">
       <AcademicCapIcon aria-hidden="true" class="h-6 w-6 text-gray-400 dark:text-gray-500 dark:contrast-more:text-gray-400 motion-safe:transition" />
       <span class="ml-5">{{ $t('home.education') }}</span>
     </h2>

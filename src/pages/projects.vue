@@ -28,7 +28,7 @@ const { data: projectCategories } = await useFetch('/api/projects')
       :key="category.name.en"
       class="mb-20"
     >
-      <h2 class="text-xl md:text-2xl font-semibold dark:text-gray-200 dark:contrast-more:text-gray-100 motion-safe:transform">
+      <h2 class="text-xl md:text-2xl font-display-safe font-semibold dark:text-gray-200 dark:contrast-more:text-gray-100 motion-safe:transform">
         {{ category.name[locale] ?? category.name.en }}
       </h2>
 

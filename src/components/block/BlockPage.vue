@@ -20,7 +20,7 @@ const title = computed(() => {
 })
 
 const formatter = new Intl.DateTimeFormat('pt-BR', {
-  dateStyle: 'long',
+  dateStyle: 'medium',
   timeZone: 'America/Sao_Paulo'
 })
 
@@ -45,7 +45,7 @@ const date = computed(() => {
 <template>
   <article v-if="level === 0 && fullPage" class="notion max-w-2xl mx-auto">
     <div class="flex flex-col">
-      <h1 class="notion-title mt-6 text-4xl sm:!leading-[3.5rem] font-bold tracking-tight text-gray-800 dark:text-gray-100 sm:text-5xl motion-safe:transition">
+      <h1 class="notion-title mt-6 text-4xl sm:!leading-[3.5rem] font-display-safe font-bold tracking-tight text-gray-800 dark:text-gray-100 sm:text-5xl motion-safe:transition">
         <BlockTextRenderer :text="title" v-bind="pass" />
       </h1>
 

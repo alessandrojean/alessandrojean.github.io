@@ -7,7 +7,7 @@ defineProps<{
 
 <template>
   <div class="py-16 md:py-24 mb-10 max-w-xl">
-    <h1 class="text-3xl md:text-4xl font-bold dark:text-gray-100 dark:contrast-more:text-white motion-safe:transition">
+    <h1 class="text-3xl md:text-4xl font-display-safe font-bold dark:text-gray-100 dark:contrast-more:text-white motion-safe:transition">
       {{ title }}
     </h1>
 

@@ -17,7 +17,7 @@ const { locale } = useI18n({ useScope: 'global' })
       :is="project.url ? 'a' : 'h3'"
       :href="project.url"
       :target="project.url ? '_blank' : null"
-      class="peer font-semibold dark:text-gray-200 dark:group-hover:text-gray-100 dark:contrast-more:text-gray-100 motion-safe:transition focus:outline-none"
+      class="peer font-semibold font-display-safe dark:text-gray-200 dark:group-hover:text-gray-100 dark:contrast-more:text-gray-100 motion-safe:transition focus:outline-none"
       >
       <span class="absolute -inset-4 md:-inset-6 z-20 md:rounded-2xl" />
       <span class="relative z-10">

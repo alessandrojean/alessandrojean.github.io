@@ -38,7 +38,7 @@ const tagMap: Record<typeof type.value, string> = {
   <component
     :is="tagMap[type]"
     :id="id"
-    class="notion-header relative group w-fit scroll-mt-28"
+    class="notion-header font-display-safe relative group w-fit scroll-mt-28"
   >
     <NuxtLink
       v-if="headerAnchor"
