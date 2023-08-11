@@ -68,16 +68,23 @@ const highlight = computed(() => {
 
 const { replaceEmoji, hasEmoji } = useEmoji()
 
-function replaceEmojis(text: string) {
-  const escapedText = text
+function replaceLineBreaks(text: string) {
+  return text
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
+    .replace(/\n/g, '<br/>')
+}
+
+function replaceEmojis(text: string) {
+  const escapedText = replaceLineBreaks(text)
 
   return replaceEmoji(escapedText)
 }
 
 const hasEmojiInText = computed(() => hasEmoji(text.value))
+
+const hasLineBreaks = computed(() => text.value.includes('\n'))
 </script>
 
 <template>
@@ -149,6 +156,10 @@ const hasEmojiInText = computed(() => hasEmoji(text.value))
   <span
     v-else-if="decorators.length === 0 && hasEmojiInText"
     v-html="replaceEmojis(text)"
+  />
+  <span
+    v-else-if="decorators.length === 0 && hasLineBreaks"
+    v-html="replaceLineBreaks(text)"
   />
   <template v-else-if="decorators.length === 0">
     {{ text }}

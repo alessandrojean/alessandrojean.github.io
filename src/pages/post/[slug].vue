@@ -20,7 +20,7 @@ const { data: linkMap } = await useFetch('/api/posts', {
   }
 })
 const { data: post } = await useFetch(`/api/posts/${route.params.slug}`, {
-  key: `post-${route.params.slug}`
+  key: `post-${route.params.slug}`,
 })
 
 const postTags = computed(() => post.value.tags.join(', '))

@@ -68,3 +68,4 @@ projects:
 posts:
   title: Coleção de artigos
   description: Alguns textos que escrevi desde a criação do site.
+  updatedAt: atualizado em {0}

@@ -28,14 +28,16 @@ const date = computed(() => {
   const iso = properties.value?.['Created at']?.type === 'date'
     ? properties.value['Created at']?.date?.start : null
   const updated = new Date(block.value.last_edited_time)
+  const updatedIso = formatISO(updated)
 
   return {
     iso,
     formatted: iso 
       ? formatter.format(zonedTimeToUtc(iso, 'America/Sao_Paulo'))
       : null,
-    updatedIso: formatISO(updated),
-    updatedFormatted: formatter.format(updated)
+    updatedIso,
+    updatedFormatted: formatter.format(updated),
+    wasUpdated: iso !== updatedIso,
   }
 })
 </script>
@@ -47,13 +49,24 @@ const date = computed(() => {
         <BlockTextRenderer :text="title" v-bind="pass" />
       </h1>
 
-      <time
+      <span
         v-if="date.iso"
-        :datetime="date.iso"
         class="order-first text-gray-500 dark:text-gray-300 motion-safe:transform border-l-2 border-gray-300 dark:border-gray-600 pl-3"
       >
-        {{ date.formatted }}
-      </time>
+        <time :datetime="date.iso">{{ date.formatted }}</time>
+        —
+        <template v-if="date.updatedIso && date.wasUpdated">
+          <i18n-t
+            tag="span"
+            keypath="posts.updatedAt"
+          >
+            <time :datetime="date.updatedIso">
+              {{ date.updatedFormatted }}
+            </time>
+          </i18n-t>
+        </template>
+      </span>
+
     </div>
     <div class="mt-12 prose dark:prose-invert motion-safe:transition max-w-none prose-a:text-primary-600 dark:prose-a:text-primary-400 hover:prose-a:text-primary-700 focus-visible:prose-a:text-primary-700 dark:hover:prose-a:text-primary-400 dark:focus-visible:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline hover:prose-a:underline-offset-2 hover:prose-a:decoration-2 hover:prose-a:decoration-primary-500/80 dark:hover:prose-a:decoration-primary-400/80 dark:[&_pre>code]:bg-inherit focus:prose-a:outline-none focus-visible:prose-a:ring-2 focus-visible:prose-a:ring-offset-2 focus-visible:prose-a:ring-primary-600 dark:focus-visible:prose-a:ring-offset-gray-900 dark:contrast-more:focus-visible:prose-a:ring-offset-black prose-a:rounded prose-a:motion-safe:transition">
       <slot />

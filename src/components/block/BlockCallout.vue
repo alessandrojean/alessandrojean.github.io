@@ -40,6 +40,11 @@ const borderColor = computed(() => {
   return colorMap[color.value]?.[2]
     ?? colorMap.gray_background[3]
 })
+
+const isAddress = computed(() => {
+  return block.value.callout.icon?.type === 'emoji'
+    && block.value.callout.icon.emoji === '🗺️'
+})
 </script>
 
 <template>
@@ -55,10 +60,13 @@ const borderColor = computed(() => {
     <div class="shrink-0" v-if="block.callout.icon">
       <BlockIcon :icon="block.callout.icon" class="select-none" />
     </div>
-    <div class="prose-p:last-of-type:mb-0 prose-strong:!text-current prose-a:font-medium prose-a:!text-current prose-a:!underline prose-a:!decoration-1 prose-a:!decoration-current prose-a:underline-offset-2 hover:prose-a:decoration-dotted">
-      <p class="notion-callout-text mt-0">
+    <div class="prose-p:last-of-type:mb-0 prose-strong:!text-current prose-a:font-medium prose-a:!text-current prose-a:!underline prose-a:!decoration-1 prose-a:!decoration-current prose-a:underline-offset-2 hover:prose-a:decoration-dotted [&_address]:not-italic">
+      <Component
+        :is="isAddress ? 'address' : 'p'"
+        class="notion-callout-text mt-0"
+      >
         <BlockTextRenderer :text="richText" v-bind="pass" />
-      </p>
+      </Component>
       <slot />
     </div>
 

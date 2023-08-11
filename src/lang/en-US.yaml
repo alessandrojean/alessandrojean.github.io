@@ -68,3 +68,4 @@ projects:
 posts:
   title: Articles collection
   description: Some texts I wrote since I created this site.
+  updatedAt: updated at {0}
