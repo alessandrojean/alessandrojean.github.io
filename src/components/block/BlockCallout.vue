@@ -50,7 +50,7 @@ const isAddress = computed(() => {
 <template>
   <div
     :class="[
-      'notion-callout my-5 dark:bg-gray-800 dark:contrast-more:bg-gray-900 dark:text-gray-300 motion-safe:transition',
+      'notion-callout my-8 dark:bg-gray-800 dark:contrast-more:bg-gray-900 dark:text-gray-300 motion-safe:transition',
       'flex flex-col md:flex-row p-6 rounded-xl gap-6 text-sm leading-loose border dark:border-gray-800 dark:contrast-more:border-gray-900',
       bgColor,
       textColor,

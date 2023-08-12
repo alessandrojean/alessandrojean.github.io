@@ -37,7 +37,7 @@ async function onBeforeEnter() {
 
     <Head>
       <Html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir" />
-      <Body class="font-sans-safe bg-gray-50 dark:bg-black motion-safe:transition" />
+      <Body class="font-sans-safe bg-gray-50 dark:bg-gray-950 motion-safe:transition" />
       <Link rel="preconnect" href="https://rsms.me/" />
       <Link rel="preconnect" href="https://fonts.googleapis.com" />
       <Link rel="preconnect" href="https://fonts.gstatic.com" />

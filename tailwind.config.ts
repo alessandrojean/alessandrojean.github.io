@@ -11,6 +11,10 @@ export default {
   content: [],
   darkMode: 'class',
   theme: {
+    colors: {
+      ...colors,
+      gray: colors.zinc,
+    },
     fontFamily: {
       ...defaultTheme.fontFamily,
       sans: ['Inter', ...defaultTheme.fontFamily.sans],

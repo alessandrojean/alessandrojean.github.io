@@ -19,6 +19,11 @@ const title = computed(() => {
     ? properties.value['Name'].title : []
 })
 
+const description = computed(() => {
+  return properties.value?.['Description']?.type === 'rich_text'
+    ? properties.value['Description'].rich_text : null
+})
+
 const formatter = new Intl.DateTimeFormat('pt-BR', {
   dateStyle: 'medium',
   timeZone: 'America/Sao_Paulo'
@@ -37,7 +42,7 @@ const date = computed(() => {
       : null,
     updatedIso,
     updatedFormatted: formatter.format(updated),
-    wasUpdated: iso !== updatedIso,
+    wasUpdated: iso !== updatedIso.substring(0, 10),
   }
 })
 </script>
@@ -48,14 +53,19 @@ const date = computed(() => {
       <h1 class="notion-title mt-6 text-4xl sm:!leading-[3.5rem] font-display-safe font-bold tracking-tight text-gray-800 dark:text-gray-100 sm:text-5xl motion-safe:transition">
         <BlockTextRenderer :text="title" v-bind="pass" />
       </h1>
-
+      <div
+        v-if="description"
+        class="mt-4 prose prose-xl prose-p:text-gray-600 dark:prose-p:text-gray-400 dark:prose-invert motion-safe:transition max-w-none"
+      >
+        <p><BlockTextRenderer :text="description" v-bind="pass" /></p>
+      </div>
       <span
         v-if="date.iso"
-        class="order-first text-gray-500 dark:text-gray-300 motion-safe:transform border-l-2 border-gray-300 dark:border-gray-600 pl-3"
+        class="order-first text-gray-500 dark:text-gray-500 motion-safe:transform border-l-2 border-gray-300 dark:border-gray-600 pl-3"
       >
         <time :datetime="date.iso">{{ date.formatted }}</time>
-        —
         <template v-if="date.updatedIso && date.wasUpdated">
+          —
           <i18n-t
             tag="span"
             keypath="posts.updatedAt"
