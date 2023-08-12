@@ -25,7 +25,7 @@ export default defineEventHandler<Post[]>(async () => {
 
   const posts = await fetchTable({
     tableId: notionPostsTable,
-    filter: !process.env ? publicFilter : undefined,
+    filter: process.env.NODE_ENV === 'production' ? publicFilter : undefined,
     sorts: [{
       property: 'Created at',
       direction: 'descending'
