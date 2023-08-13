@@ -13,9 +13,10 @@ function twemojiUrl(emoji: string) {
   return `${TWEMOJI_URL}/${emojiCode}.svg`
 }
 
-function replaceEmoji(text: string) {
+function replaceEmoji(text: string, size: 'small' | 'normal' = 'normal') {
+  const imgSize = size === 'small' ? 'w-4 h-4' : 'w-5 h-5'
   return text.replace(EMOJI_REGEX, (emoji) => {
-    return `<img class="w-5 h-5 m-0 inline-block align-text-bottom" src="${twemojiUrl(emoji)}" alt="${emoji}" aria-label="${emoji}">`
+    return `<img class="${imgSize} m-0 inline-block align-text-bottom" src="${twemojiUrl(emoji)}" alt="${emoji}" aria-label="${emoji}">`
   })
 }
 

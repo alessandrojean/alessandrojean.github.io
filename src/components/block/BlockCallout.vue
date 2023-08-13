@@ -65,7 +65,7 @@ const isAddress = computed(() => {
         :is="isAddress ? 'address' : 'p'"
         class="notion-callout-text mt-0"
       >
-        <BlockTextRenderer :text="richText" v-bind="pass" />
+        <BlockTextRenderer size="small" :text="richText" v-bind="pass" />
       </Component>
       <slot />
     </div>

@@ -8,15 +8,18 @@ type Color = Exclude<NotionApi.TextRichTextItemResponse['annotations']['color'],
 interface Props extends NotionBlockProps {
   content: NotionApi.TextRichTextItemResponse | NotionApi.RichTextItemResponse
   decorators?: Decorator[];
+  size?: 'small' | 'normal';
 }
 
 const props = withDefaults(defineProps<Props>(), {
   contentIndex: 0,
   level: 0,
   pageLinkTarget: '_self',
-  textLinkTarget: '_blank'
+  textLinkTarget: '_blank',
+  size: 'normal',
 })
 
+const { size } = toRefs(props)
 const { pass } = useNotionParser(toRefs(props))
 
 const decorators = computed(() => {
@@ -79,7 +82,7 @@ function replaceLineBreaks(text: string) {
 function replaceEmojis(text: string) {
   const escapedText = replaceLineBreaks(text)
 
-  return replaceEmoji(escapedText)
+  return replaceEmoji(escapedText, size.value)
 }
 
 const hasEmojiInText = computed(() => hasEmoji(text.value))
@@ -98,6 +101,7 @@ const hasLineBreaks = computed(() => text.value.includes('\n'))
     <BlockDecorator
       :content="content"
       :decorators="unappliedDecorators"
+      :size="size"
       v-bind="pass"
     />
   </NuxtLink>
@@ -108,6 +112,7 @@ const hasLineBreaks = computed(() => text.value.includes('\n'))
     <BlockDecorator
       :content="content"
       :decorators="unappliedDecorators"
+      :size="size"
       v-bind="pass"
     />
   </span>
@@ -115,6 +120,7 @@ const hasLineBreaks = computed(() => text.value.includes('\n'))
     <BlockDecorator
       :content="content"
       :decorators="unappliedDecorators"
+      :size="size"
       v-bind="pass"
     />
   </code>
@@ -122,6 +128,7 @@ const hasLineBreaks = computed(() => text.value.includes('\n'))
     <BlockDecorator
       :content="content"
       :decorators="unappliedDecorators"
+      :size="size"
       v-bind="pass"
     />
   </strong>
@@ -129,6 +136,7 @@ const hasLineBreaks = computed(() => text.value.includes('\n'))
     <BlockDecorator
       :content="content"
       :decorators="unappliedDecorators"
+      :size="size"
       v-bind="pass"
     />
   </em>
@@ -136,6 +144,7 @@ const hasLineBreaks = computed(() => text.value.includes('\n'))
     <BlockDecorator
       :content="content"
       :decorators="unappliedDecorators"
+      :size="size"
       v-bind="pass"
     />
   </s>
@@ -143,6 +152,7 @@ const hasLineBreaks = computed(() => text.value.includes('\n'))
     <BlockDecorator
       :content="content"
       :decorators="unappliedDecorators"
+      :size="size"
       v-bind="pass"
     />
   </span>
@@ -150,6 +160,7 @@ const hasLineBreaks = computed(() => text.value.includes('\n'))
     <BlockDecorator
       :content="content"
       :decorators="unappliedDecorators"
+      :size="size"
       v-bind="pass"
     />
   </code>
