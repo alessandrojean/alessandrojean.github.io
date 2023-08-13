@@ -2,10 +2,10 @@ import {
   IconGitHub,
   IconInstagram,
   IconLinkedIn,
-  IconMastodon,
-  IconMyAnimeList,
+  // IconMastodon,
+  // IconMyAnimeList,
   IconThreads,
-  IconTrakt,
+  // IconTrakt,
   IconX,
 } from '#components'
 import { Component } from 'vue';
@@ -19,7 +19,7 @@ export interface SocialMediaLink {
 
 export default function useSocialMedia(): SocialMediaLink[] {
   const { socialMedia } = useAppConfig()
-  const [mastodonUser, mastodonInstance] = socialMedia.mastodon.split('@')
+  // const [mastodonUser, mastodonInstance] = socialMedia.mastodon.split('@')
 
   return [
     {
@@ -27,11 +27,11 @@ export default function useSocialMedia(): SocialMediaLink[] {
       url: `https://twitter.com/${socialMedia.x}`,
       icon: IconX,
     },
-    {
-      name: 'Mastodon',
-      url: `https://${mastodonInstance}/@${mastodonUser}`,
-      icon: IconMastodon,
-    },
+    // {
+    //   name: 'Mastodon',
+    //   url: `https://${mastodonInstance}/@${mastodonUser}`,
+    //   icon: IconMastodon,
+    // },
     {
       name: 'Threads',
       url: `https://threads.net/@${socialMedia.threads}`,
@@ -52,15 +52,15 @@ export default function useSocialMedia(): SocialMediaLink[] {
       url: `https://www.linkedin.com/in/${socialMedia.linkedIn}`,
       icon: IconLinkedIn
     },
-    {
-    name: 'MyAnimeList',
-      url: `https://myanimelist.net/profile/${socialMedia.myAnimeList}`,
-      icon: IconMyAnimeList
-    },
-    {
-      name: 'Trakt',
-      url: `https://trakt.tv/users/${socialMedia.trakt}`,
-      icon: IconTrakt
-    },
+    // {
+    // name: 'MyAnimeList',
+    //   url: `https://myanimelist.net/profile/${socialMedia.myAnimeList}`,
+    //   icon: IconMyAnimeList
+    // },
+    // {
+    //   name: 'Trakt',
+    //   url: `https://trakt.tv/users/${socialMedia.trakt}`,
+    //   icon: IconTrakt
+    // },
   ]
 }
