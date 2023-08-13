@@ -87,8 +87,8 @@ async function onBeforeEnter() {
         :content="$t('site.ogImageAlt')"
       />
       <Meta name="twitter:card" content="summary_large_image" />
-      <Meta name="twitter:site" :content="'@' + socialMedia.twitter" />
-      <Meta name="twitter:creator" :content="'@' + socialMedia.twitter" />
+      <Meta name="twitter:site" :content="'@' + socialMedia.x" />
+      <Meta name="twitter:creator" :content="'@' + socialMedia.x" />
       <Meta name="twitter:title" :content="$route.meta.title as string" />
       <Meta
         name="twitter:description"
