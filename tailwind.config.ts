@@ -11,10 +11,6 @@ export default {
   content: [],
   darkMode: 'class',
   theme: {
-    colors: {
-      ...colors,
-      gray: colors.zinc,
-    },
     fontFamily: {
       ...defaultTheme.fontFamily,
       sans: ['Inter', ...defaultTheme.fontFamily.sans],
@@ -32,6 +28,7 @@ export default {
       colors: {
         primary: colors.sky,
         secondary: colors.amber,
+        gray: colors.zinc,
       },
       fontWeight: {
         inherit: 'inherit'
