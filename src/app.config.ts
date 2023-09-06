@@ -13,6 +13,7 @@ export default defineAppConfig({
     trakt: 'alessandrojean',
     mastodon: 'alessandrojean@mas.to',
     threads: 'alessandrojean',
+    bluesky: 'alessandrojean.bsky.social',
   },
   navLinks: [
     { title: 'routes.about', to: '/about' },

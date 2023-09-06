@@ -1,12 +1,13 @@
 import {
+  IconBluesky,
   IconGitHub,
   IconInstagram,
   IconLinkedIn,
-  // IconMastodon,
+  IconMastodon,
   // IconMyAnimeList,
   IconThreads,
   // IconTrakt,
-  IconX,
+  // IconX,
 } from '#components'
 import { Component } from 'vue';
 
@@ -19,23 +20,28 @@ export interface SocialMediaLink {
 
 export default function useSocialMedia(): SocialMediaLink[] {
   const { socialMedia } = useAppConfig()
-  // const [mastodonUser, mastodonInstance] = socialMedia.mastodon.split('@')
+  const [mastodonUser, mastodonInstance] = socialMedia.mastodon.split('@')
 
   return [
-    {
-      name: 'X',
-      url: `https://twitter.com/${socialMedia.x}`,
-      icon: IconX,
-    },
     // {
-    //   name: 'Mastodon',
-    //   url: `https://${mastodonInstance}/@${mastodonUser}`,
-    //   icon: IconMastodon,
+    //   name: 'X',
+    //   url: `https://twitter.com/${socialMedia.x}`,
+    //   icon: IconX,
     // },
+    {
+      name: 'Mastodon',
+      url: `https://${mastodonInstance}/@${mastodonUser}`,
+      icon: IconMastodon,
+    },
     {
       name: 'Threads',
       url: `https://threads.net/@${socialMedia.threads}`,
       icon: IconThreads,
+    },
+    {
+      name: 'Bluesky',
+      url: `https://bsky.app/profile/${socialMedia.bluesky}`,
+      icon: IconBluesky,
     },
     {
       name: 'Instagram',
