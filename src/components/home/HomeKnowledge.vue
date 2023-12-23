@@ -52,10 +52,10 @@ const knowledges = computed<KnowledgeArea[]>(() => [
     title: t('home.ecosystems'),
     items: [
       { title: 'Node.js', icon: IconNodeJs, level: 'advanced' },
+      { title: 'Android', icon: IconAndroid, level: 'intermediary' },
       { title: 'Spring', icon: IconSpring, level: 'intermediary' },
       { title: 'WooCommerce', icon: IconWooCommerce, level: 'intermediary' },
       { title: 'WordPress', icon: IconWordPress, level: 'intermediary' },
-      { title: 'Android', icon: IconAndroid, level: 'basic' },
     ]
   }
 ])
