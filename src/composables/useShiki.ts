@@ -1,15 +1,15 @@
-import { getHighlighter, Highlighter, ILanguageRegistration } from 'shiki-es'
+import { getHighlighter, Highlighter, LanguageRegistration } from 'shiki'
 
 import assGrammar from '@/util/ass.tmLanguage.json'
 
 const highlighter = ref<Highlighter>()
 
-function createAssGrammar(): ILanguageRegistration {
+function createAssGrammar(): LanguageRegistration {
   return {
-    id: 'ass',
+    ...assGrammar as any as LanguageRegistration,
+    name: 'ass',
     scopeName: 'source.ass',
-    grammar: assGrammar,
-    aliases: ['aegisub', 'ssa']
+    aliases: ['aegisub', 'ssa'],
   }
 }
 
@@ -19,7 +19,7 @@ export default async function useShiki(): Promise<Highlighter> {
   }
 
   highlighter.value = await getHighlighter({
-    theme: 'nord',
+    themes: ['nord'],
     langs: [
       'json',
       'yaml',
@@ -36,11 +36,12 @@ export default async function useShiki(): Promise<Highlighter> {
       'c',
       'cpp',
       'latex',
-      'java'
+      'java',
+      'haskell',
+      'markdown',
+      createAssGrammar()
     ]
   })
-
-  await highlighter.value.loadLanguage(createAssGrammar())
 
   return highlighter.value
 }

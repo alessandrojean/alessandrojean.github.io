@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Highlighter } from 'shiki-es'
-import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { Language, NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type { Language, NotionApi } from '@/lib/notion';
+import type { Highlighter } from 'shiki-es';
 
 type CodeBlock = NotionApi.CodeBlockObjectResponse | NotionApi.EquationBlockObjectResponse
 
@@ -46,7 +46,7 @@ const code = computed(() => {
 
 const shikiHtml = computed(() => {
   return props.shiki && supported.value
-    ? highlighter.codeToHtml(code.value, { lang: lang.value })
+    ? highlighter.codeToHtml(code.value, { lang: lang.value, theme: 'nord' })
     : ''
 })
 </script>

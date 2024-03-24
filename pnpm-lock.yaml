@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 devDependencies:
   '@headlessui/tailwindcss':
     specifier: 0.2.0
@@ -11,8 +15,8 @@ devDependencies:
     specifier: 2.0.18
     version: 2.0.18(vue@3.3.4)
   '@notionhq/client':
-    specifier: 2.2.11
-    version: 2.2.11
+    specifier: 2.2.14
+    version: 2.2.14
   '@nuxt/devtools':
     specifier: 0.8.0
     version: 0.8.0(nuxt@3.6.5)(vite@4.3.9)
@@ -76,9 +80,9 @@ devDependencies:
   sharp:
     specifier: 0.32.5
     version: 0.32.5
-  shiki-es:
-    specifier: 0.14.0
-    version: 0.14.0
+  shiki:
+    specifier: 1.2.0
+    version: 1.2.0
   slugify:
     specifier: 1.6.6
     version: 1.6.6
@@ -985,8 +989,8 @@ packages:
     engines: {node: '>= 16'}
     dev: true
 
-  /@intlify/shared@9.3.0-beta.26:
-    resolution: {integrity: sha512-RpCtfSYIg4tSskrazTr5+WCHyw6qpgwdIxC+x3nCnrPGxyk+en9FoSbadVfx/w7uDTdyhKslEw4d2+qhNc0s4Q==}
+  /@intlify/shared@9.4.1:
+    resolution: {integrity: sha512-A51elBmZWf1FS80inf/32diO9DeXoqg9GR9aUDHFcfHoNDuT46Q+fpPOdj8jiJnSHSBh8E1E+6qWRhAZXdK3Ng==}
     engines: {node: '>= 16'}
     dev: true
 
@@ -1197,8 +1201,8 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@notionhq/client@2.2.11:
-    resolution: {integrity: sha512-yTKeVu0fB9PtlK9eQwN6y+MEq0J0vu1MPP7j5bme9+KTenH4OTcOAx/70+LgvN4Z4RSsymQxdXrtcLHMFN9ZuA==}
+  /@notionhq/client@2.2.14:
+    resolution: {integrity: sha512-oqUefZtCiJPCX+74A1Os9OVTef3fSnVWe2eVQtU1HJSD+nsfxfhwvDKnzJTh2Tw1ZHKLxpieHB/nzGdY+Uo12A==}
     engines: {node: '>=12'}
     dependencies:
       '@types/node-fetch': 2.6.4
@@ -1916,6 +1920,10 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.26.0
+    dev: true
+
+  /@shikijs/core@1.2.0:
+    resolution: {integrity: sha512-OlFvx+nyr5C8zpcMBnSGir0YPD6K11uYhouqhNmm1qLiis4GA7SsGtu07r9gKS9omks8RtQqHrJL4S+lqWK01A==}
     dev: true
 
   /@shuding/opentype.js@1.4.0-beta.0:
@@ -4918,6 +4926,7 @@ packages:
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       safer-buffer: 2.1.2
     dev: true
@@ -7896,8 +7905,10 @@ packages:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
     dev: true
 
-  /shiki-es@0.14.0:
-    resolution: {integrity: sha512-e+/aueHx0YeIEut6RXC6K8gSf0PykwZiHD7q7AHtpTW8Kd8TpFUIWqTwhAnrGjOyOMyrwv+syr5WPagMpDpVYQ==}
+  /shiki@1.2.0:
+    resolution: {integrity: sha512-xLhiTMOIUXCv5DqJ4I70GgQCtdlzsTqFLZWcMHHG3TAieBUbvEGthdrlPDlX4mL/Wszx9C6rEcxU6kMlg4YlxA==}
+    dependencies:
+      '@shikijs/core': 1.2.0
     dev: true
 
   /side-channel@1.0.4:
@@ -9185,7 +9196,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.26
+      '@intlify/shared': 9.4.1
       '@intlify/vue-i18n-bridge': 0.8.0(vue-i18n@9.3.0-beta.24)
       '@intlify/vue-router-bridge': 0.8.0(vue@3.3.4)
       ufo: 1.2.0
