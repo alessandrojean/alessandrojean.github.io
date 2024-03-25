@@ -34,7 +34,7 @@ const { isType, pass } = useNotionParser(toRefs(props))
     <slot />
   </BlockColumn>
   <BlockList
-    v-else-if="isType(['bulleted_list_item', 'numbered_list_item', 'bulleted_list_item_group'])"
+    v-else-if="isType(['bulleted_list_item', 'numbered_list_item', 'bulleted_list_item_group', 'numbered_list_item_group'])"
     v-bind="pass"
   >
     <slot />

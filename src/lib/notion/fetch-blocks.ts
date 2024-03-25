@@ -1,8 +1,8 @@
-import { Client } from '@notionhq/client'
-import type * as NotionApi from '@notionhq/client/build/src/api-endpoints'
-import type { BlockMap, BlockPageObject, BlockWithContent } from './types'
+import { Client } from '@notionhq/client';
+import type * as NotionApi from '@notionhq/client/build/src/api-endpoints';
+import type { BlockMap, BlockPageObject, BlockWithContent } from './types';
 
-import { fixCode, groupItems } from './utils'
+import { fixCode, groupItems } from './utils';
 
 export interface FetchBlocksArgs {
   page: NotionApi.PageObjectResponse;
@@ -66,8 +66,13 @@ export async function fetchBlocks({ page }: FetchBlocksArgs): Promise<BlockMap> 
   ]
 
   const blockMap: BlockMap = Object.fromEntries(allBlocks.map((b) => [b.id, b]))
+  const blocksToGroup: NotionApi.BlockObjectResponse['type'][] = [
+    'bulleted_list_item', 
+    'numbered_list_item',
+    'to_do',
+  ]
 
-  return fixCode(groupItems(blockMap, ['bulleted_list_item', 'to_do']), [
+  return fixCode(groupItems(blockMap, blocksToGroup), [
     {
       blockLang: ['plain text'],
       match: /(\\)(s|u|i|b|k|K|an|be|bord|blur|fa[xyz]|fs|fsc|fsp|fsv|fscx|fscy|fr[xyz]|fe|shad|ko|kf|[xy]bord|[xy]shad|rnd|rnd[xyz])([0-9+\-.]+)/g,

@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { BulletedListItemGroupBlock, NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type {
+BulletedListItemGroupBlock,
+NotionApi,
+NumberedListItemGroupBlock
+} from '@/lib/notion';
 
 type ListBlock = BulletedListItemGroupBlock
+  | NumberedListItemGroupBlock
   | NotionApi.BulletedListItemBlockObjectResponse
   | NotionApi.NumberedListItemBlockObjectResponse
 
@@ -59,6 +64,12 @@ const isTopLevel = computed(() => {
   >
     <slot />
   </ul>
+  <ol
+    v-else-if="isTopLevel && block.type === 'numbered_list_item_group'"
+    class="notion-list notion-list-numbered"
+  >
+    <slot />
+  </ol>
   <template v-else>
     <li><BlockTextRenderer :text="block[type]?.['rich_text']" v-bind="pass" /></li>
     <li v-if="content && content.length > 0" class="list-none">
