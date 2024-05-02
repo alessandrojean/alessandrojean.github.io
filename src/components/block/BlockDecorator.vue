@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { IconGitHub } from '#components';
 import type { NotionBlockProps } from '@/composables/useNotionParser';
 import type { NotionApi } from '@/lib/notion';
 
@@ -19,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'normal',
 })
 
-const { size } = toRefs(props)
+const { size, content } = toRefs(props)
 const { pass } = useNotionParser(toRefs(props))
 
 const decorators = computed(() => {
@@ -88,11 +89,41 @@ function replaceEmojis(text: string) {
 const hasEmojiInText = computed(() => hasEmoji(text.value))
 
 const hasLineBreaks = computed(() => text.value.includes('\n'))
+
+const { socialMedia: { gitHub } } = useAppConfig()
+
+const mentionLink = computed(() => {
+  if (content.value.type !== 'mention' || content.value.mention.type !== 'link_preview') {
+    return null
+  }
+
+  const linkUrl = content.value.mention.link_preview.url
+  const linkUrlParsed = new URL(linkUrl)
+
+  if (linkUrlParsed.host === 'github.com') {
+    const [user, repo] = linkUrlParsed.pathname.substring(1).split('/')
+
+    return {
+      icon: IconGitHub,
+      text: user === gitHub ? repo : `${user}/${repo}`,
+      href: linkUrl,
+    }
+  }
+})
 </script>
 
 <template>
+  <a
+    v-if="mentionLink"
+    :href="mentionLink.href"
+    target="_blank"
+    class="inline-flex items-baseline gap-2"
+  >
+    <component :is="mentionLink.icon" class="size-3.5 self-center text-[--tw-prose-body] fill-current" />
+    <span class="leading-none">{{ mentionLink.text }}</span>
+  </a>
   <NuxtLink
-    v-if="decorator === 'link'"
+    v-else-if="decorator === 'link'"
     class="notion-link"
     :target="target"
     :external="!isInnerLink"
