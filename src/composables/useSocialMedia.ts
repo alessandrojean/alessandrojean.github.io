@@ -6,7 +6,7 @@ import {
   // IconMyAnimeList,
   IconThreads
 } from '#components';
-import { Component } from 'vue';
+import type { Component } from 'vue';
 
 
 export interface SocialMediaLink {

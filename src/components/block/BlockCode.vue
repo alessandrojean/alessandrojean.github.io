@@ -145,7 +145,7 @@ function copyToClipboard() {
         <span class="sr-only">{{ $t('actions.copyToClipboard') }}</span>
       </button>
       <div class="motion-safe:transition-colors not-prose bg-[#EFEFEF] dark:bg-[#292929] w-fit rounded-md px-2 py-1.5 flex items-center gap-2">
-        <NuxtImg v-if="fileIcon" :src="fileIcon" alt="" aria-hidden="true" class="size-3.5" />
+        <NuxtImg v-if="fileIcon" :src="fileIcon" alt="" aria-hidden="true" class="size-4" />
         <span class="sr-only">{{ $t('posts.fileName') }}</span>
         <span class="text-xs select-none file-name">{{ specialFileNames[fileName] ?? fileName }}</span>
       </div>
