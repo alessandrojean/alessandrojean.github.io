@@ -1,5 +1,5 @@
-import { fetchTable, getTextContent } from '@/lib/notion'
-import type { NotionApi } from '@/lib/notion'
+import type { ProjectObjectResponse } from '@/lib/notion';
+import { fetchTable, getTextContent } from '@/lib/notion';
 
 export interface ProjectCategory {
   name: Record<string, string>;
@@ -24,7 +24,7 @@ export default defineEventHandler<ProjectCategory[]>(async () => {
     checkbox: { equals: true }
   }
 
-  const projects = await fetchTable({
+  const response = await fetchTable({
     tableId: notionProjectsTable,
     filter: !process.env ? publicFilter : undefined,
     sorts: [
@@ -33,8 +33,10 @@ export default defineEventHandler<ProjectCategory[]>(async () => {
     ]
   })
 
-  const categories: Record<string, Project[]> = (projects.results || [])
-    .map(({ id, properties }: NotionApi.PageObjectResponse) => ({
+  const projects = response.results as ProjectObjectResponse[]
+
+  const categories: Record<string, Project[]> = projects
+    .map(({ id, properties }) => ({
       id: id,
       name: getTextContent(properties['Name']['title']),
       description: {
@@ -43,12 +45,12 @@ export default defineEventHandler<ProjectCategory[]>(async () => {
       },
       slug: getTextContent(properties['Slug']['rich_text']),
       category: {
-        pt: properties['Category']['select'].name,
-        en: properties['English Category']['select'].name,
+        pt: properties['Category']['select']?.name ?? '',
+        en: properties['English Category']['select']?.name ?? '',
       },
-      url: properties['URL']['url'],
+      url: properties['URL']['url'] ?? '',
       isPublic: properties['Public']['checkbox']
-    }))
+    }) satisfies Project)
     .reduce((acm, crr) => {
       if (acm[crr.category.en]) {
         acm[crr.category.en].push(crr)
@@ -57,7 +59,7 @@ export default defineEventHandler<ProjectCategory[]>(async () => {
       }
 
       return acm
-    }, {})
+    }, {} as Record<string, Project[]>)
 
   return Object.entries(categories)
     .map(([category, projects]) => ({

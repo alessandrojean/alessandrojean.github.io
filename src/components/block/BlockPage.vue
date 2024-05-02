@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import formatISO from 'date-fns/formatISO'
-import zonedTimeToUtc from 'date-fns-tz/zonedTimeToUtc'
+import zonedTimeToUtc from 'date-fns-tz/zonedTimeToUtc';
+import formatISO from 'date-fns/formatISO';
 
-import { BlockPageObject } from '@/lib/notion'
-import { NotionBlockProps } from '@/composables/useNotionParser'
+import { NotionBlockProps } from '@/composables/useNotionParser';
+import { BlockPageObject, PostProperties } from '@/lib/notion';
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -14,14 +14,14 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
 
 const { pass, properties, block } = useNotionParser<BlockPageObject>(toRefs(props))
 
+const postProperties = computed(() => properties.value as any as PostProperties)
+
 const title = computed(() => {
-  return properties.value?.['Name']?.type === 'title'
-    ? properties.value['Name'].title : []
+  return postProperties.value['Name'].title
 })
 
 const description = computed(() => {
-  return properties.value?.['Description']?.type === 'rich_text'
-    ? properties.value['Description'].rich_text : null
+  return postProperties.value['Description'].rich_text
 })
 
 const formatter = new Intl.DateTimeFormat('pt-BR', {
@@ -30,8 +30,7 @@ const formatter = new Intl.DateTimeFormat('pt-BR', {
 })
 
 const date = computed(() => {
-  const iso = properties.value?.['Created at']?.type === 'date'
-    ? properties.value['Created at']?.date?.start : null
+  const iso = postProperties.value['Created at']?.date?.start
   const updated = new Date(block.value.last_edited_time)
   const updatedIso = formatISO(updated)
 

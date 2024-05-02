@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type { NotionApi } from '@/lib/notion';
 
 type FigureBlock = NotionApi.CodeBlockObjectResponse
   | NotionApi.EmbedBlockObjectResponse
@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
 
 const { block, pass, parent, caption, isType } = useNotionParser<FigureBlock>(toRefs(props))
 
-const isInColumn = computed(() => parent.value.type === 'column')
+const isInColumn = computed(() => parent.value?.type === 'column')
 
 const isTweet = computed(() => {
   return block.value.type === 'embed' && 

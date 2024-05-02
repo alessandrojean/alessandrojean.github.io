@@ -1,21 +1,22 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
-import { CommandLineIcon } from '@heroicons/vue/24/outline'
+import { CommandLineIcon } from '@heroicons/vue/24/outline';
+import type { Component } from 'vue';
 
 import {
-  IconAndroid,
-  IconJava,
-  IconJavaScript,
-  IconKotlin,
-  IconNodeJs,
-  IconReact,
-  IconSpring,
-  IconTailwindCss,
-  IconTypeScript,
-  IconVueJs,
-  IconWooCommerce,
-  IconWordPress,
-} from '#components'
+IconAndroid,
+IconHaskell,
+IconJava,
+IconJavaScript,
+IconKotlin,
+IconNodeJs,
+IconReact,
+IconSpring,
+IconTailwindCss,
+IconTypeScript,
+IconVueJs,
+IconWooCommerce,
+IconWordPress,
+} from '#components';
 
 interface Knowledge {
   title: string;
@@ -45,6 +46,7 @@ const knowledges = computed<KnowledgeArea[]>(() => [
       { title: 'JavaScript', icon: IconJavaScript, level: 'advanced' },
       { title: 'Kotlin', icon: IconKotlin, level: 'advanced' },
       { title: 'Java', icon: IconJava, level: 'advanced' },
+      { title: 'Haskell', icon: IconHaskell, level: 'intermediary' },
       { title: 'TypeScript', icon: IconTypeScript, level: 'intermediary' },
     ]
   },

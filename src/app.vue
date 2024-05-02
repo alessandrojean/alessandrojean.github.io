@@ -43,6 +43,7 @@ async function onBeforeEnter() {
       <Link rel="preconnect" href="https://fonts.gstatic.com" />
       <Title>{{ $route.meta.title ? $t($route.meta.title as string) : null }}</Title>
       <Meta name="viewport" content="width=device-width, initial-scale=1" />
+      <Meta name="robots" content="noai, noimageai" />
       <Meta name="darkreader-lock" />
       <Meta
         name="og-image:skip"

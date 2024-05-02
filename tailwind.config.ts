@@ -2,8 +2,8 @@ import colors from 'tailwindcss/colors'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import plugin from 'tailwindcss/plugin'
 
-import typographyPlugin from '@tailwindcss/typography'
 import headlessUiPlugin from '@headlessui/tailwindcss'
+import typographyPlugin from '@tailwindcss/typography'
 
 import type { PluginUtils } from 'tailwindcss/types/config'
 
@@ -16,9 +16,16 @@ export default {
       sans: ['Inter', ...defaultTheme.fontFamily.sans],
       'sans-var': ['\'Inter var\'', ...defaultTheme.fontFamily.sans],
       display: [
+        ['InterDisplay', ...defaultTheme.fontFamily.sans],
+        {
+          fontFeatureSettings: '"cv05", "cv08", "ss01"',
+          fontVariationSettings: '"opsz" 32'
+        }
+      ],
+      'display-var': [
         ['\'Inter var\'', ...defaultTheme.fontFamily.sans],
         {
-          fontFeatureSettings: '"cv08", "cv11", "ss01"',
+          fontFeatureSettings: '"cv05", "cv08", "ss01"',
           fontVariationSettings: '"opsz" 32'
         }
       ],
@@ -85,12 +92,12 @@ export default {
           }
         },
         '.font-display-safe': {
-          'fontFamily': theme('fontFamily.sans'),
-          'fontFeatureSettings': '"cv08", "cv11", "ss01"',
+          'fontFamily': theme('fontFamily.display'),
+          'fontFeatureSettings': '"cv05", "cv08", "ss01"',
           'fontVariationSettings': '"opsz" 32',
           '@supports (font-variation-settings: normal)': {
-            fontFamily: theme('fontFamily.sans-var'),
-            fontFeatureSettings: '"cv08", "cv11", "ss01"',
+            fontFamily: theme('fontFamily.display-var'),
+            fontFeatureSettings: '"cv05", "cv08", "ss01"',
             fontVariationSettings: '"opsz" 32',
           },
         },

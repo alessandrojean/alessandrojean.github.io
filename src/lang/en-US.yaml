@@ -3,6 +3,7 @@ actions:
   changeTheme: Change to {theme} theme
   followMeOn: Follow me on {site}!
   jumpToMain: Jump to the main content
+  copyToClipboard: Copiar
 
 routes:
   home: Home
@@ -27,7 +28,7 @@ header:
 
 footer:
   copyright: © {year}-present {name}.
-  notes: Created with NuxtJS and Tailwind CSS. Icons by Heroicons.
+  notes: Created with NuxtJS and Tailwind CSS. Icons by Heroicons and Material Icon Theme.
 
 home:
   header: Hi, nice to meet you!
@@ -56,6 +57,8 @@ home:
   basic: Basic
   withLevel: '. Level: '
 
+  recentArticles: Recent articles
+
 about:
   title: About
   description: A little more about myself.
@@ -69,3 +72,4 @@ posts:
   title: Articles collection
   description: Some texts I wrote since I created this site.
   updatedAt: updated at {0}
+  fileName: "File name:"

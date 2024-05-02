@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { SourceHTMLAttributes } from 'vue'
-import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type { NotionApi } from '@/lib/notion';
+import type { SourceHTMLAttributes } from 'vue';
 
 type AssetBlock = NotionApi.EmbedBlockObjectResponse | NotionApi.VideoBlockObjectResponse
 

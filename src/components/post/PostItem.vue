@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import parseISO from 'date-fns/parseISO'
-import type { Post } from '@/server/api/posts/index.get'
+import type { Post } from '@/server/api/posts/index.get';
+import parseISO from 'date-fns/parseISO';
 
-import { ChevronRightIcon, EyeSlashIcon } from '@heroicons/vue/20/solid'
+import { ChevronRightIcon, EyeSlashIcon } from '@heroicons/vue/20/solid';
 
 const props = defineProps<{ post: Post }>()
 const { post } = toRefs(props)

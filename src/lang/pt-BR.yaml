@@ -3,6 +3,7 @@ actions:
   changeTheme: Mudar para o tema {theme}
   followMeOn: Siga-me no {site}!
   jumpToMain: Pular para o conteúdo principal
+  copyToClipboard: Copiar
 
 routes:
   home: Página inicial
@@ -27,7 +28,7 @@ header:
 
 footer:
   copyright: © {year}-presente {name}.
-  notes: Desenvolvido com NuxtJS e Tailwind CSS. Ícones por Heroicons.
+  notes: Desenvolvido com NuxtJS e Tailwind CSS. Ícones por Heroicons e Material Icon Theme.
 
 home:
   header: Oi, muito prazer!
@@ -56,6 +57,8 @@ home:
   basic: Básico
   withLevel: ' com nível '
 
+  recentArticles: Artigos recentes
+
 about:
   title: Sobre
   description: Um pouco mais sobre a minha pessoa.
@@ -69,3 +72,5 @@ posts:
   title: Coleção de artigos
   description: Alguns textos que escrevi desde a criação do site.
   updatedAt: atualizado em {0}
+  fileName: "Nome do arquivo:"
+
