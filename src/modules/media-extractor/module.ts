@@ -7,7 +7,7 @@ import {
   useNitro
 } from '@nuxt/kit'
 
-import { saveImages } from './runtime/extractor'
+import { saveMedias } from './runtime/extractor'
 import type { ExtractorResult, ModuleOptions } from './types'
 
 export default defineNuxtModule<ModuleOptions>({
@@ -15,13 +15,12 @@ export default defineNuxtModule<ModuleOptions>({
     name: 'media-extractor',
     configKey: 'mediaExtractor',
     compatibility: {
-      nuxt: '^3.0.0-rc.11'
+      nuxt: '^3.11.2'
     }
   },
 
   defaults: (nuxt) => ({
     dir: nuxt.options.dir.public,
-    imgDir: 'img',
     videoDir: 'video'
   }),
 
@@ -42,7 +41,7 @@ export default defineNuxtModule<ModuleOptions>({
       const nitro = useNitro()
 
       nitro.hooks.hook('prerender:generate', async () => {
-        await saveImages({ logger, outputDir, options })
+        await saveMedias({ logger, outputDir, options })
       })
     })
 

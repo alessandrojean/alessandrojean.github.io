@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NotionBlockProps } from '@/composables/useNotionParser'
-import type { NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type { NotionApi } from '@/lib/notion';
 
 type ApiColor = NotionApi.CalloutBlockObjectResponse['callout']['color']
 
@@ -28,17 +28,17 @@ const color = computed(() => block.value.callout.color)
 
 const bgColor = computed(() => {
   return colorMap[color.value]?.[0] 
-    ?? colorMap.gray_background[0]
+    ?? colorMap.gray_background!![0]
 })
 
 const textColor = computed(() => {
   return colorMap[color.value]?.[1]
-    ?? colorMap.gray_background[1]
+    ?? colorMap.gray_background!![1]
 })
 
 const borderColor = computed(() => {
   return colorMap[color.value]?.[2]
-    ?? colorMap.gray_background[3]
+    ?? colorMap.gray_background!![3]
 })
 
 const isAddress = computed(() => {

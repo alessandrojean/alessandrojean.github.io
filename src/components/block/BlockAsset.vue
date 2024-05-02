@@ -19,14 +19,14 @@ const YOUTUBE_REGEX = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(
 const youTubeSrc = computed(() => {
   const videoId = block.value.type === 'video' &&
     block.value.video.type === 'external' &&
-    block.value.video.external.url.match(YOUTUBE_REGEX)[1]
+    block.value.video.external.url?.match(YOUTUBE_REGEX)?.[1]
 
-  return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : null
+  return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : undefined
 })
 
 const codePenSrc = computed(() => {
-  return block.value.type === 'embed' &&
-    block.value.embed.url.replace('/pen/', '/embed/preview/')
+  return block.value.type === 'embed' ?
+    block.value.embed.url.replace('/pen/', '/embed/preview/') : undefined
 })
 
 const isIframe = computed<boolean>(() => {
@@ -58,7 +58,7 @@ const videoSource = computed<SourceHTMLAttributes>(() => {
   const { mimeType } = fileNameFromUrl(videoUrl)
 
   return {
-    src: props.mapVideoUrl({
+    src: props.mapVideoUrl!!({
       src: videoUrl,
       block: block.value,
       blockMap: props.blockMap

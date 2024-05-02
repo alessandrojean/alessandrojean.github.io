@@ -10,7 +10,7 @@ const socialMediaLinks = useSocialMedia()
           {{ $t('home.header') }}
         </span>
         <img
-          class="w-8 h-8 ml-3 inline-block"
+          class="size-8 ml-3 inline-block"
           src="/img/emoji/waving-hand-light-skin-tone.svg"
           alt="👋🏻"
           aria-label="👋🏻"
@@ -50,7 +50,7 @@ const socialMediaLinks = useSocialMedia()
           <component
             :is="socialMediaLink.icon"
             aria-hidden="true"
-            class="h-5 w-5 fill-gray-500 motion-safe:transition group-hover:fill-gray-600 group-focus-visible:fill-gray-600 dark:fill-gray-400 dark:contrast-more:fill-gray-300 dark:group-hover:fill-gray-300 dark:group-focus-visible:fill-gray-300 dark:contrast-more:group-hover:fill-gray-200 dark:contrast-more:group-focus-visible:fill-gray-200"
+            class="size-5 fill-gray-500 motion-safe:transition group-hover:fill-gray-600 group-focus-visible:fill-gray-600 dark:fill-gray-400 dark:contrast-more:fill-gray-300 dark:group-hover:fill-gray-300 dark:group-focus-visible:fill-gray-300 dark:contrast-more:group-hover:fill-gray-200 dark:contrast-more:group-focus-visible:fill-gray-200"
           />
           <span class="sr-only">
             {{ $t('actions.followMeOn', { site: socialMediaLink.name }) }}
@@ -60,11 +60,13 @@ const socialMediaLinks = useSocialMedia()
     </div>
 
     <div class="shrink-0 flex justify-center md:col-span-2">
-      <img
-        class="w-52 h-52 md:w-64 md:h-64 shadow-lg shadow-gray-900/10 ring-1 ring-gray-900/5 rounded-3xl rotate-12 dark:opacity-90 dark:hover:opacity-100 motion-safe:transition"
+      <NuxtPicture
+        format="avif,webp,jpg"
+        sizes="208px md:256px"
+        class="size-52 md:size-64 shadow-lg shadow-gray-900/10 ring-1 ring-gray-900/5 rounded-3xl overflow-hidden rotate-12 dark:opacity-90 dark:hover:opacity-100 motion-safe:transition"
         src="/img/avatar-okabe-medium.webp"
         :alt="$t('site.avatarAlt')"
-      >
+      />
     </div>
   </div>
 </template>

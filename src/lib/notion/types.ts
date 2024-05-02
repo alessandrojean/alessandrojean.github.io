@@ -31,6 +31,7 @@ export interface PostProperties {
   'Tags': MultiSelectProp;
   'Created at': DateProp;
   'Public': CheckboxProp;
+  'Language': SelectProp;
 }
 
 export type PostObjectResponse = Omit<NotionApi.PageObjectResponse, 'properties'>

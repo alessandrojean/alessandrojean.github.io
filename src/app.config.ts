@@ -17,7 +17,7 @@ export default defineAppConfig({
   },
   navLinks: [
     { title: 'routes.about', to: '/about' },
-    { title: 'routes.articles', to: '/posts', exact: false, lang: 'pt' },
+    { title: 'routes.articles', to: '/posts', exact: false },
     { title: 'routes.projects', to: '/projects' },
   ]
 })

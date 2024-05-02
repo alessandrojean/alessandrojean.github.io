@@ -141,18 +141,18 @@ function copyToClipboard() {
   <div>
     <div v-if="fileName" class="motion-safe:transition-colors bg-[#FAFAFA] dark:bg-[#121212] flex items-center rounded-t-md p-1.5 border border-[#CFCFCF] dark:border-[#333333] gap-1.5">
       <button @click="copyToClipboard" type="button" class="px-1.5 py-1.5 rounded-md flex items-center text-xs gap-1 hover:bg-[#EFEFEF] dark:hover:bg-[#292929] active:opacity-80" :title="$t('actions.copyToClipboard')">
-        <Square2StackIcon class="w-4 h-4 [stroke-width:2]" />
+        <Square2StackIcon class="size-4 [stroke-width:2]" />
         <span class="sr-only">{{ $t('actions.copyToClipboard') }}</span>
       </button>
       <div class="motion-safe:transition-colors not-prose bg-[#EFEFEF] dark:bg-[#292929] w-fit rounded-md px-2 py-1.5 flex items-center gap-2">
-        <img v-if="fileIcon" :src="fileIcon" alt="" aria-hidden="true" class="w-3.5 h-3.5" >
+        <NuxtImg v-if="fileIcon" :src="fileIcon" alt="" aria-hidden="true" class="size-3.5" />
         <span class="sr-only">{{ $t('posts.fileName') }}</span>
-        <span class="text-xs select-none">{{ specialFileNames[fileName] ?? fileName }}</span>
+        <span class="text-xs select-none file-name">{{ specialFileNames[fileName] ?? fileName }}</span>
       </div>
       <div class="ml-auto flex gap-1.5 pe-1" aria-hidden="true">
-        <span class="motion-safe:transition-colors w-3.5 h-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full"></span>
-        <span class="motion-safe:transition-colors w-3.5 h-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full"></span>
-        <span class="motion-safe:transition-colors w-3.5 h-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full"></span>
+        <span class="motion-safe:transition-colors size-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full"></span>
+        <span class="motion-safe:transition-colors size-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full"></span>
+        <span class="motion-safe:transition-colors size-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full"></span>
       </div>
     </div>
     <div v-if="shiki && supported" v-html="shikiHtml"/>
@@ -222,5 +222,9 @@ html.dark .shiki code .diff.remove {
   span {
     @apply !bg-transparent;
   }
+}
+
+.file-name {
+  font-feature-settings: "zero" 1, "ss02" 1
 }
 </style>

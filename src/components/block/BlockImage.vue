@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type { NotionApi } from '@/lib/notion';
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -18,19 +18,22 @@ const imageUrl = computed(() => {
 })
 
 const src = computed(() => {
-  return props.mapImageUrl({
+  return props.mapImageUrl?.({
     src: imageUrl.value,
     block: block.value,
     blockMap: props.blockMap
-  })
+  }) ?? imageUrl.value
 })
 </script>
 
 <template>
-  <Image
+  <NuxtImg
+    class="rounded-xl shadow-lg ring-1 ring-gray-900/5 mx-auto overflow-hidden max-w-full"
     :alt="getTextContent(caption)"
     :src="src"
-    :original-src="imageUrl"
-    class="rounded-xl shadow-lg ring-1 ring-gray-900/5 mx-auto overflow-hidden"
+    quality="90"
+    format="avif"
+    placeholder
+    loading="lazy"
   />
 </template>

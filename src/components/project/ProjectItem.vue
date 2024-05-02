@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { LinkIcon } from '@heroicons/vue/20/solid'
-import type { Project } from '@/server/api/projects.get'
+import type { Project } from '@/server/api/projects.get';
+import { LinkIcon } from '@heroicons/vue/20/solid';
 
 const props = defineProps<{ project: Project }>()
 
@@ -30,7 +30,7 @@ const { locale } = useI18n({ useScope: 'global' })
     </p>
 
     <p v-if="domain" class="relative z-10 mt-6 text-gray-400 dark:text-gray-200 group-hover:text-primary-600 peer-focus-visible:text-primary-600 dark:group-hover:text-primary-500 dark:peer-focus-visible:text-primary-500 flex items-center font-semibold text-sm motion-safe:transition">
-      <LinkIcon class="w-4 h-4" aria-hidden="true" />
+      <LinkIcon class="size-4" aria-hidden="true" />
       <span class="ml-3">{{ domain }}</span>
     </p>
   </div>

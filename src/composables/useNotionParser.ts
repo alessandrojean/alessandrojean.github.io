@@ -1,12 +1,12 @@
-import { getTextContent } from '@/lib/notion'
+import { getTextContent } from '@/lib/notion';
 
-import type { ComputedRef, ToRefs } from 'vue'
-import type { 
+import type {
   BlockMap,
   BlockNode,
   BlockPageObject,
   NotionApi
-} from '@/lib/notion'
+} from '@/lib/notion';
+import type { ComputedRef, ToRefs } from 'vue';
 
 export interface MapImageUrlArgs {
   src: string;

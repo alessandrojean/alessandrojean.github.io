@@ -31,7 +31,7 @@ const courses = computed<Course[]>(() => [
 <template>
   <div class="px-4 md:px-0 pt-6">
     <h2 class="flex items-center text-lg font-display-safe font-semibold mb-6 dark:text-gray-200 dark:contrast-more:text-gray-100 motion-safe:transition -translate-x-3">
-      <AcademicCapIcon aria-hidden="true" class="h-6 w-6 text-gray-400 dark:text-gray-500 dark:contrast-more:text-gray-400 motion-safe:transition" />
+      <AcademicCapIcon aria-hidden="true" class="size-6 text-gray-400 dark:text-gray-500 dark:contrast-more:text-gray-400 motion-safe:transition" />
       <span class="ml-5">{{ $t('home.education') }}</span>
     </h2>
 
@@ -47,7 +47,7 @@ const courses = computed<Course[]>(() => [
           <span
             aria-hidden="true"
             :class="[
-              'absolute left-0 translate-x-[-3px] w-2 h-2 rounded block ring-4 ring-white dark:ring-gray-900 motion-safe:transition',
+              'absolute left-0 translate-x-[-3px] size-2 rounded block ring-4 ring-white dark:ring-gray-900 motion-safe:transition',
               course.finished ? 'bg-green-500' : 'bg-blue-500 motion-safe:animate-pulse'
             ]"
           />

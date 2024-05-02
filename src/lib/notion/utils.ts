@@ -1,7 +1,10 @@
+import { parseISO } from 'date-fns/parseISO'
 import { v4 as uuid } from 'uuid'
 
+import { fileNameFromUrl } from '#media-extractor'
+
 import type * as NotionApi from '@notionhq/client/build/src/api-endpoints'
-import { BlockMap, BlockNode, Language } from './types'
+import type { BlockMap, BlockNode, Language } from './types'
 
 export function getTextContent(text: (NotionApi.TextRichTextItemResponse | NotionApi.RichTextItemResponse)[]): string {
   return text.reduce((prev, current) => prev + current.plain_text, '')
@@ -96,4 +99,15 @@ export function fixCode(blockMap: BlockMap, replacements: CodeReplacement[]): Bl
   }
 
   return blockMap
+}
+
+export function postMapVideoUrl(block: NotionApi.VideoBlockObjectResponse) { 
+  const url = block.video.type === 'external'
+    ? block.video.external.url
+    : block.video.file.url
+
+  const extension = fileNameFromUrl(url).extension
+  const hash = parseISO(block.last_edited_time).getTime().toString(16)
+
+  return `${block.id}-${hash}.${extension}` 
 }

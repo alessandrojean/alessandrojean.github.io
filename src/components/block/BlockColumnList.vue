@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type { NotionApi } from '@/lib/notion';
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
 const { block } = useNotionParser<NotionApi.ColumnListBlockObjectResponse>(toRefs(props))
 
 const columnClasses = computed(() => {
-  const map = {
+  const map: Record<number, string> = {
     2: 'md:grid-cols-2',
     3: 'md:grid-cols-3'
   }
@@ -22,7 +22,7 @@ const columnClasses = computed(() => {
 
 const isOnlyImages = computed(() => {
   const columns = block.value.content.map((contentId) => {
-    return props.blockMap[contentId].content.map((columnId) => {
+    return props.blockMap[contentId].content!!.map((columnId) => {
       return props.blockMap[columnId]
     })
   })

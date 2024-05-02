@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Post } from '@/server/api/posts/index.get';
-import parseISO from 'date-fns/parseISO';
+import { parseISO } from 'date-fns/parseISO';
 
 import { ChevronRightIcon, EyeSlashIcon } from '@heroicons/vue/20/solid';
 
@@ -22,11 +22,11 @@ const localePath = useLocalePath()
 <template>
   <article class="md:grid md:grid-cols-4 md:items-baseline">
     <div class="md:col-span-3 group relative flex flex-col items-start">
-      <h2 class="text-lg font-display-safe font-semibold tracking-tight text-gray-800 dark:text-gray-100 motion-safe:transition">
+      <h2 :lang="post.language" class="text-lg font-display-safe font-semibold tracking-tight text-gray-800 dark:text-gray-100 motion-safe:transition">
         <NuxtLink :to="localePath({ name: 'post-slug', params: { slug: post.slug } })" class="peer focus:outline-none">
           <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
           <span class="relative z-10 flex items-center gap-1.5">
-            <EyeSlashIcon v-if="!post.isPublic" class="w-4 h-4 text-gray-500 dark:text-gray-400" />
+            <EyeSlashIcon v-if="!post.isPublic" class="size-4 text-gray-500 dark:text-gray-400" />
             {{ post.title }}
           </span>
         </NuxtLink>
@@ -41,12 +41,12 @@ const localePath = useLocalePath()
         </span>
         <span>{{ dateFormatted }}</span>
       </time>
-      <p class="relative z-10 mt-2 text-sm text-gray-600 dark:text-gray-300 motion-safe:transition">
+      <p :lang="post.language" class="relative z-10 mt-2 text-sm text-gray-600 dark:text-gray-300 motion-safe:transition">
         {{ post.description }}
       </p>
       <div aria-hidden="true" class="relative z-10 mt-4 flex items-center text-sm font-medium text-primary-600 dark:text-primary-500 motion-safe:transition">
         <span>Ler artigo</span>
-        <ChevronRightIcon aria-hidden="true" class="ml-1 h-4 w-4 stroke-current" />
+        <ChevronRightIcon aria-hidden="true" class="ml-1 size-4 stroke-current" />
       </div>
     </div>
     <time

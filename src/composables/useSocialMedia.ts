@@ -1,14 +1,11 @@
 import {
-  IconBluesky,
   IconGitHub,
   IconInstagram,
   IconLinkedIn,
   IconMastodon,
   // IconMyAnimeList,
-  IconThreads,
-  // IconTrakt,
-  // IconX,
-} from '#components'
+  IconThreads
+} from '#components';
 import { Component } from 'vue';
 
 
@@ -38,11 +35,11 @@ export default function useSocialMedia(): SocialMediaLink[] {
       url: `https://threads.net/@${socialMedia.threads}`,
       icon: IconThreads,
     },
-    {
-      name: 'Bluesky',
-      url: `https://bsky.app/profile/${socialMedia.bluesky}`,
-      icon: IconBluesky,
-    },
+    // {
+    //   name: 'Bluesky',
+    //   url: `https://bsky.app/profile/${socialMedia.bluesky}`,
+    //   icon: IconBluesky,
+    // },
     {
       name: 'Instagram',
       url: `https://instagram.com/${socialMedia.instagram}`,

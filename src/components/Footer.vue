@@ -9,10 +9,10 @@ const { locale } = useI18n({ useScope: 'global' })
     <nav>
       <ul class="flex gap-3 md:-ml-2">
         <template v-for="link in navLinks" :key="link.to">
-          <li v-if="!link.lang || link.lang === locale">
+          <li>
             <NuxtLink
               aria-current-value="page"
-              :to="localePath(link.to, link.lang)"
+              :to="localePath(link.to)"
               class="px-2 py-1 focus:outline-none rounded dark:text-gray-300 dark:contrast-more:text-gray-200 motion-safe:transition hover:text-primary-600 focus-visible:text-primary-600 dark:hover:text-primary-400 dark:focus-visible:text-primary-400 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 dark:focus-visible:ring-offset-gray-900 dark:contrast-more:focus-visible:ring-offset-black"
             >
               {{ $t(link.title) }}

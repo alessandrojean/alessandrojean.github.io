@@ -4,10 +4,6 @@ definePageMeta({
   description: 'posts.description'
 })
 
-defineI18nRoute({
-  locales: ['pt'],
-})
-
 const { data: posts } = await useFetch('/api/posts')
 </script>
 

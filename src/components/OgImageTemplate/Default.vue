@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import parseISO from 'date-fns/parseISO'
-import avatar from '@/assets/img/avatar.jpg'
+import avatar from '@/assets/img/avatar.jpg';
+import { parseISO } from 'date-fns/parseISO';
 
 defineOptions({
   inheritAttrs: false,

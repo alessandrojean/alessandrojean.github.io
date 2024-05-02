@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import slugify from 'slugify'
-import { LinkIcon } from '@heroicons/vue/20/solid'
+import { LinkIcon } from '@heroicons/vue/20/solid';
+import slugify from 'slugify';
 
-import { NotionBlockProps } from '@/composables/useNotionParser'
-import { NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type { NotionApi } from '@/lib/notion';
 
 type HeadingBlock = NotionApi.Heading1BlockObjectResponse
   | NotionApi.Heading2BlockObjectResponse
@@ -58,7 +58,7 @@ const tagMap: Record<typeof type.value, string> = {
     <LinkIcon
       v-if="headerAnchor"
       aria-hidden="true"
-      class="hidden md:block absolute -left-6 top-2 w-4 h-4 text-gray-500 dark:text-gray-400 opacity-0 peer-hover:opacity-100 motion-safe:transition duration-75"
+      class="hidden md:block absolute -left-6 top-2 size-4 text-gray-500 dark:text-gray-400 opacity-0 peer-hover:opacity-100 motion-safe:transition duration-75"
     />
   </component>
 </template>

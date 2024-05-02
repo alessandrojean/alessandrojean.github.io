@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NotionBlockProps } from '@/composables/useNotionParser'
-import { NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type { NotionApi } from '@/lib/notion';
 
 type Decorator = keyof NotionApi.TextRichTextItemResponse['annotations'] | 'link' | 'equation'
 type Color = Exclude<NotionApi.TextRichTextItemResponse['annotations']['color'], 'default'>

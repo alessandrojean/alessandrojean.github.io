@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { postMapImageUrl, postMapVideoUrl } from '@/server/api/posts/[slug].get'
-import type { MapImageUrlArgs, MapVideoUrlArgs } from '@/composables/useNotionParser'
-
-defineI18nRoute({
-  locales: ['pt'],
-  paths: { pt: '/post/:slug' }
-})
+import type { MapVideoUrlArgs } from '@/composables/useNotionParser';
+import { postMapVideoUrl } from '~/lib/notion';
 
 const { title: author, description, url } = useAppConfig()
 const route = useRoute()
 const localePath = useLocalePath()
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 
 const { data: linkMap } = await useFetch('/api/posts', {
   transform: (posts) => {
@@ -19,6 +14,7 @@ const { data: linkMap } = await useFetch('/api/posts', {
     return Object.fromEntries(entries)
   }
 })
+
 const { data: post } = await useFetch(`/api/posts/${route.params.slug}`, {
   key: `post-${route.params.slug}`,
 })
@@ -31,20 +27,12 @@ function mapPageUrl(pageId: string) {
   return slug ? localePath({ name: 'post-slug', params: { slug } }, 'pt') : undefined
 }
 
-function mapImageUrl({ block, src }: MapImageUrlArgs) {
-  if (process.dev || block.image.type === 'external') {
-    return src
-  }
-
-  return `/img/posts/${post.value.slug}/${postMapImageUrl(block)}`
-}
-
 function mapVideoUrl({ block, src }: MapVideoUrlArgs) {
-  if (process.dev || block.video.type === 'external') {
+  if (process.dev || block?.video.type === 'external') {
     return src
   }
 
-  return `/video/posts/${post.value.slug}/${postMapVideoUrl(block)}`
+  return `/video/posts/${post.value?.slug}/${postMapVideoUrl(block!!)}`
 }
 
 const ogImageOptions = computed(() => ({
@@ -58,6 +46,7 @@ const ogImageOptions = computed(() => ({
   section: post.value?.area,
   publishedTime: post.value?.createdAt
 }))
+
 </script>
 
 <template>
@@ -65,6 +54,7 @@ const ogImageOptions = computed(() => ({
     <OgImage v-bind="ogImageOptions" />
 
     <Head>
+      <Html :lang="post.language" />
       <Title>{{ post.title }}</Title>
       <Meta name="description" :content="post.description ?? description"/>
       <Meta name="og:title" :content="post.title" />
@@ -82,7 +72,6 @@ const ogImageOptions = computed(() => ({
     <NotionRenderer
       :block-map="post.blocks"
       :map-page-url="mapPageUrl"
-      :map-image-url="mapImageUrl"
       :map-video-url="mapVideoUrl"
       header-anchor
       full-page

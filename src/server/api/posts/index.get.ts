@@ -1,5 +1,5 @@
-import zonedTimeToUtc from 'date-fns-tz/zonedTimeToUtc';
-import formatISO from 'date-fns/formatISO';
+import { fromZonedTime } from 'date-fns-tz';
+import { formatISO } from 'date-fns/formatISO';
 
 import type { PostObjectResponse } from '@/lib/notion';
 import { fetchTable, getTextContent } from '@/lib/notion';
@@ -13,9 +13,10 @@ export interface Post {
   tags: string[];
   createdAt: string;
   isPublic: boolean;
+  language: string;
 }
 
-export default defineEventHandler<Post[]>(async (event) => {
+export default defineEventHandler<Promise<Post[]>>(async (event) => {
   const { notionPostsTable } = useRuntimeConfig()
   const { per_page } = getQuery(event)
 
@@ -52,11 +53,12 @@ export default defineEventHandler<Post[]>(async (event) => {
       area: properties['Area']['select']?.name ?? '',
       tags: properties['Tags']['multi_select'].map((tag) => tag.name),
       createdAt: formatISO(
-        zonedTimeToUtc(
+        fromZonedTime(
           properties['Created at']['date']!!.start,
           'America/Sao_Paulo'
         )
       ),
-      isPublic: properties['Public']['checkbox']
+      isPublic: properties['Public']['checkbox'],
+      language: properties['Language'].select?.name ?? 'pt-BR'
     }) satisfies Post)
 })

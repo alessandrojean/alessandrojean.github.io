@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NotionBlockProps } from '@/composables/useNotionParser';
+import type { NotionBlockProps } from '@/composables/useNotionParser';
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,

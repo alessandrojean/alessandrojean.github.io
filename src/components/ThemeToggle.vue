@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { FunctionalComponent } from 'vue'
-import { MoonIcon, SunIcon } from '@heroicons/vue/24/outline'
+import { MoonIcon, SunIcon } from '@heroicons/vue/24/outline';
+import type { FunctionalComponent } from 'vue';
 
 interface Theme {
   name: string;
@@ -36,11 +36,11 @@ function changeTheme() {
   >
     <SunIcon
       v-if="colorMode.value === 'light'"
-      class="w-6 h-6 text-cyan-500 group-hover:text-cyan-600 group-focus-visible:text-cyan-600 motion-safe:transition"
+      class="size-6 text-cyan-500 group-hover:text-cyan-600 group-focus-visible:text-cyan-600 motion-safe:transition"
     />
     <MoonIcon
       v-else
-      class="w-6 h-6 text-gray-500 contrast-more:text-gray-300 group-hover:text-gray-400 group-focus-visible:text-gray-400 contrast-more:group-hover:text-gray-100 dark:contrast-more:group-focus-visible:text-gray-100 motion-safe:transition"
+      class="size-6 text-gray-500 contrast-more:text-gray-300 group-hover:text-gray-400 group-focus-visible:text-gray-400 contrast-more:group-hover:text-gray-100 dark:contrast-more:group-focus-visible:text-gray-100 motion-safe:transition"
     />
     <span class="sr-only">
       {{ buttonAction }}

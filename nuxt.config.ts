@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
+    '@nuxt/image',
     'nuxt-og-image',
     './src/modules/media-extractor',
   ],
@@ -36,7 +37,14 @@ export default defineNuxtConfig({
       'Inter:700',
     ]
   },
-  watch: ['./tailwind.config.js'],
+  image: {
+    domains: [
+      'amazonaws.com',
+      'notion-emojis.s3-us-west-2.amazonaws.com',
+      'prod-files-secure.s3.us-west-2.amazonaws.com',
+      'raw.githubusercontent.com'
+    ],
+  },
   runtimeConfig: {
     notionApiKey: '',
     notionPostsTable: '',

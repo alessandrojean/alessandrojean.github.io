@@ -1,14 +1,16 @@
-import type { EventHandler } from 'h3'
+import type { EventHandler, EventHandlerRequest } from 'h3';
 
 export interface ModuleOptions {
   dir: string;
-  imgDir: string;
   videoDir: string;
 }
 
-export interface ExtractorEventHandlerArgs<T> {
-  handler: EventHandler<T>;
-  extract: (response: T) => Promise<ExtractorResult>;
+export interface ExtractorEventHandlerArgs<
+  Req extends EventHandlerRequest = EventHandlerRequest,
+  Res extends unknown = any
+> {
+  handler: EventHandler<Req, Res>;
+  extract: (response: Awaited<Res>) => Promise<ExtractorResult>;
 }
 
 export interface ExtractorResult {
@@ -24,7 +26,7 @@ export interface Media {
 export interface FileProperties {
   extension: string;
   name: string;
-  type: 'video' | 'image' | 'other';
+  type: 'video' | 'other';
   mimeType?: string;
   fileName: string;
 }

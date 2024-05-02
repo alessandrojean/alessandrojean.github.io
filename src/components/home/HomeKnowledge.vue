@@ -66,7 +66,7 @@ const knowledges = computed<KnowledgeArea[]>(() => [
 <template>
   <div class="p-6 rounded-3xl border border-gray-100 dark:border-gray-700 dark:contrast-more:border-gray-600 motion-safe:transition">
     <h2 class="flex items-center text-lg font-display-safe font-semibold mb-4 dark:text-gray-200 dark:contrast-more:text-gray-100 motion-safe:transition">
-      <CommandLineIcon aria-hidden="true" class="h-6 w-6 text-gray-400 dark:text-gray-500 dark:contrast-more:text-gray-400 motion-safe:transition" />
+      <CommandLineIcon aria-hidden="true" class="size-6 text-gray-400 dark:text-gray-500 dark:contrast-more:text-gray-400 motion-safe:transition" />
       <span class="ml-3">
         {{ $t('home.knowledges') }}
       </span>
@@ -88,8 +88,8 @@ const knowledges = computed<KnowledgeArea[]>(() => [
             :key="knowledge.title"
             class="flex gap-4 items-center w-full"
           >
-            <div aria-hidden="true" class="shrink-0 bg-white dark:bg-gray-800 dark:border-gray-800 shadow-md shadow-gray-800/5 ring-1 dark:ring-0 ring-gray-900/5 dark:border dark:border-gray-700/50 rounded-full flex h-8 w-8 items-center justify-center motion-safe:transition">
-              <component :is="knowledge.icon" class="w-4 h-4 dark:opacity-90" />
+            <div aria-hidden="true" class="shrink-0 bg-white dark:bg-gray-800 dark:border-gray-800 shadow-md shadow-gray-800/5 ring-1 dark:ring-0 ring-gray-900/5 dark:border dark:border-gray-700/50 rounded-full flex size-8 items-center justify-center motion-safe:transition">
+              <component :is="knowledge.icon" class="size-4 dark:opacity-90" />
             </div>
 
             <span lang="en-US" class="motion-safe:transition font-medium text-gray-800 dark:text-gray-200 text-sm grow">
