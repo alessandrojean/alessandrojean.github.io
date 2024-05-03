@@ -8,8 +8,8 @@ defineOptions({
 interface Props {
   pageTitle: string
   pageDescription: string
-  section: string | undefined
-  publishedTime: string | undefined
+  section?: string | undefined
+  publishedTime?: string | undefined
 }
 
 const props = withDefaults(defineProps<Props>(), {
