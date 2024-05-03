@@ -31,7 +31,7 @@ const { locale } = useI18n({ useScope: 'global' })
 
     <p v-if="domain" class="relative z-10 mt-6 text-gray-400 dark:text-gray-200 group-hover:text-primary-600 peer-focus-visible:text-primary-600 dark:group-hover:text-primary-500 dark:peer-focus-visible:text-primary-500 flex items-center font-semibold text-sm motion-safe:transition">
       <LinkIcon class="size-4" aria-hidden="true" />
-      <span class="ml-3">{{ domain }}</span>
+      <span class="ml-3 font-medium">{{ domain }}</span>
     </p>
   </div>
 </template>
