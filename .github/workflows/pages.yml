@@ -67,6 +67,8 @@ jobs:
             ${{ runner.os }}-nuxt-build-
       - name: Install dependencies
         run: pnpm install
+      - name: Clean Nuxt cache
+        run: npx nuxi cleanup .
       - name: Static HTML export with Nuxt
         run: pnpm generate
         env:
