@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import avatar from '@/public/img/avatar.jpg';
 import { parseISO } from 'date-fns/parseISO';
 
 defineOptions({
@@ -42,7 +43,7 @@ const date = computed(() => published.value ? formatter.format(published.value) 
         </div>
         <div class="flex flex-row items-center justify-between mt-10 w-full">
           <div class="flex flex-row items-center">
-            <img class="rounded-full border border-gray-200 shadow-sm" src="/img/avatar.jpg" width="40" height="40" alt="">
+            <img class="rounded-full border border-gray-200 shadow-sm" :src="avatar" width="40" height="40" alt="">
             <div class="ml-4 flex flex-col">
               <span class="block font-medium text-sm text-gray-700">
                 Alessandro Jean
@@ -53,25 +54,28 @@ const date = computed(() => published.value ? formatter.format(published.value) 
             </div>
           </div>
           <div 
+            v-if="date || section"
             :class="[
               'flex flex-row items-center',
-              { 'hidden': !date && !section }
+              // { 'hidden': !date && !section }
             ]"
           >
             <time
+              v-if="section"
               :datetime="publishedTime"
               :class="[
                 'block text-sm text-gray-600 mr-4',
-                { 'hidden': !section }
+                // { 'hidden': !section }
               ]"
             >
               Publicado em {{ date ?? '' }}
             </time>
 
             <span
+              v-if="section"
               :class="[
                 'block bg-sky-100 rounded-full text-xs tracking-wide font-medium px-3 py-1 text-sky-800',
-                { 'hidden': !section }
+                // { 'hidden': !section }
               ]"
             >
               {{ section ?? '' }}

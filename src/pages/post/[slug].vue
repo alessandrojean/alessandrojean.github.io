@@ -55,6 +55,7 @@ const ogImageOptions = computed(() => ({
   publishedTime: post.value?.createdAt
 }))
 
+defineOgImageComponent('Default', ogImageOptions)
 </script>
 
 <template>
