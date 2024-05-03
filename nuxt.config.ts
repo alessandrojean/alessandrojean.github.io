@@ -36,7 +36,11 @@ export default defineNuxtConfig({
       'Inter:400',
       'Inter:500',
       'Inter:700',
-    ]
+    ],
+    defaults: {
+      width: 800,
+      height: 400,
+    }
   },
   image: {
     domains: [

@@ -43,25 +43,16 @@ function mapVideoUrl({ block, src }: MapVideoUrlArgs) {
   return `/video/posts/${post.value?.slug}/${postMapVideoUrl(block)}`
 }
 
-const ogImageOptions = computed(() => ({
-  component: 'Default',
-  alt: t('site.ogImageAlt'),
-  width: 800,
-  height: 400,
-  origin: url,
-  title: post.value?.title ?? author,
-  description: post.value?.description ?? description,
-  section: post.value?.area,
-  publishedTime: post.value?.createdAt
-}))
-
-defineOgImageComponent('Default', ogImageOptions)
+defineOgImageComponent('Default', {
+  pageTitle: computed(() => post.value?.title ?? ''),
+  pageDescription: computed(() => post.value?.description ?? ''),
+  section: computed(() => post.value?.area),
+  publishedTime: computed(() => post.value?.createdAt),
+}, { alt: t('site.ogImageAlt') })
 </script>
 
 <template>
   <div class="sm:px-8 py-16 lg:py-32">
-    <OgImage v-bind="ogImageOptions" />
-
     <Head>
       <Html :lang="post?.language" />
       <Title>{{ post?.title }}</Title>

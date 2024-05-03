@@ -6,8 +6,6 @@ import {
   useLogger,
   useNitro
 } from '@nuxt/kit'
-import { rmSync } from 'node:fs'
-import { join } from 'node:path'
 
 import { saveMedias } from './runtime/extractor'
 import type { ExtractorResult, ModuleOptions } from './types'
@@ -53,11 +51,11 @@ export default defineNuxtModule<ModuleOptions>({
         })
       })
 
-      if (!process.env.CI) {
-        nitro.hooks.hook('prerender:done', () => {
-          rmSync(join(tempImgOutputDir, options.imgDir), { recursive: true })
-        })
-      }
+      // if (!process.env.CI) {
+      //   nitro.hooks.hook('prerender:done', () => {
+      //     rmSync(join(tempImgOutputDir, options.imgDir), { recursive: true })
+      //   })
+      // }
     })
 
     addImports({

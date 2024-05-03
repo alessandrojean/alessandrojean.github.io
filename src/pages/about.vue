@@ -12,9 +12,14 @@ defineI18nRoute({
 })
 
 const socialMediaLinks = useSocialMedia()
-const { locale } = useI18n({ useScope: 'global' })
+const { locale, t } = useI18n({ useScope: 'global' })
 
 const { data: page } = await useFetch('/api/about')
+
+defineOgImageComponent('Default', {
+  pageTitle: t('about.title'),
+  pageDescription: t('about.description'),
+}, { alt: t('site.ogImageAlt') })
 </script>
 
 <template>
@@ -30,7 +35,7 @@ const { data: page } = await useFetch('/api/about')
         </div>
       </div>
 
-      <div class="lg:order-first lg:row-span-2">
+      <div class="lg:order-first lg:row-span-2" v-if="page">
         <NotionRenderer
           v-if="locale === 'pt'"
           class="max-w-full"

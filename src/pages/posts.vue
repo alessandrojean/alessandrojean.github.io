@@ -7,7 +7,13 @@ definePageMeta({
 })
 
 const { url } = useAppConfig()
+const { t } = useI18n({ useScope: 'global' })
 const { data: posts } = await useFetch('/api/posts')
+
+defineOgImageComponent('Default', {
+  pageTitle: t('posts.title'),
+  pageDescription: t('posts.description'),
+}, { alt: t('site.ogImageAlt') })
 </script>
 
 <template>

@@ -16,16 +16,6 @@ const head = useLocaleHead({
 
 const { finalizePendingLocaleChange, t } = useI18n({ useScope: 'global' })
 
-const ogImageOptions = computed(() => ({
-  component: 'Default',
-  width: 800,
-  height: 400,
-  origin: url,
-  alt: t('site.ogImageAlt'),
-  title: route.meta.title ? t(route.meta.title as string) : title,
-  description: route.meta.description ? t(route.meta.description as string) : description,
-}))
-
 async function onBeforeEnter() {
   await finalizePendingLocaleChange()
 }
@@ -33,8 +23,6 @@ async function onBeforeEnter() {
 
 <template>
   <div class="container max-w-6xl mx-auto bg-white dark:bg-gray-900 dark:contrast-more:bg-black motion-safe:transition min-h-screen shadow-sm border-x border-transparent dark:border-gray-800 dark:contrast-more:border-gray-700">
-    <OgImage v-if="!$route.meta.skipOgImage" v-bind="ogImageOptions" />
-
     <Head>
       <Html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir" />
       <Body class="font-sans-safe bg-gray-50 dark:bg-gray-950 motion-safe:transition" />

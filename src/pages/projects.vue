@@ -11,8 +11,13 @@ defineI18nRoute({
   }
 })
 
-const { locale } = useI18n({ useScope: 'global' })
+const { locale, t } = useI18n({ useScope: 'global' })
 const { data: projectCategories } = await useFetch('/api/projects')
+
+defineOgImageComponent('Default', {
+  pageTitle: t('projects.title'),
+  pageDescription: t('projects.description'),
+}, { alt: t('site.ogImageAlt') })
 </script>
 
 <template>
