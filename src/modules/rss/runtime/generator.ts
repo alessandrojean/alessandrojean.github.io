@@ -49,7 +49,7 @@ export async function generateFeed(args: GenerateFeedArgs) {
     
     const { result: openGraph } = await ogs({
       html,
-      url: undefined ,
+      url: undefined,
       customMetaTags: [{
         multiple: false,
         property: 'og:slug',
@@ -64,11 +64,10 @@ export async function generateFeed(args: GenerateFeedArgs) {
       ogDescription, 
       articlePublishedTime,
       articleSection,
+      customMetaTags,
     } = openGraph
-    // @ts-ignore
-    const ogSlug: string = openGraph.ogSlug
 
-    if (!success || !ogTitle || !ogLocale || !ogDescription || !articlePublishedTime || !articleSection) {
+    if (!success || !ogTitle || !ogLocale || !ogDescription || !articlePublishedTime || !articleSection || !customMetaTags?.ogSlug) {
       continue
     }
 
@@ -81,8 +80,8 @@ export async function generateFeed(args: GenerateFeedArgs) {
 
     feed.item({
       title: ogTitle,
-      guid: `${url}/pt/post/${ogSlug}`,
-      url: `${url}/pt/post/${ogSlug}`,
+      guid: `${url}/pt/post/${customMetaTags.ogSlug}`,
+      url: `${url}/pt/post/${customMetaTags.ogSlug}`,
       description: ogDescription,
       date: new Date(articlePublishedTime),
       categories: [articleSection],
