@@ -59,7 +59,7 @@ defineOgImageComponent('Default', {
 </script>
 
 <template>
-  <div class="sm:px-8 pt-16 lg:pt-32">
+  <div class="sm:px-8 pt-16 lg:pt-32 w-full">
     <Head>
       <Html :lang="post?.language" />
       <Title>{{ post?.title }}</Title>
