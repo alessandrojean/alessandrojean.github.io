@@ -2,6 +2,7 @@ import type { EventHandler, EventHandlerRequest } from 'h3';
 
 export interface ModuleOptions {
   dir: string;
+  imgDir: string;
   videoDir: string;
 }
 
@@ -26,7 +27,7 @@ export interface Media {
 export interface FileProperties {
   extension: string;
   name: string;
-  type: 'video' | 'other';
+  type: 'image' | 'video' | 'other';
   mimeType?: string;
   fileName: string;
 }

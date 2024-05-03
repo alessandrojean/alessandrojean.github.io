@@ -14,5 +14,7 @@ defineProps<{
     <p class="text-gray-700 dark:text-gray-300 dark:contrast-more:text-gray-200 mt-3 md:text-lg motion-safe:transition">
       {{ description }}
     </p>
+
+    <slot />
   </div>
 </template>

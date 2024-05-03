@@ -111,3 +111,14 @@ export function postMapVideoUrl(block: NotionApi.VideoBlockObjectResponse) {
 
   return `${block.id}-${hash}.${extension}` 
 }
+
+export function postMapImageUrl(block: NotionApi.ImageBlockObjectResponse) {
+  const url = block.image.type === 'external'
+    ? block.image.external.url
+    : block.image.file.url
+
+  const hash = parseISO(block.last_edited_time).getTime().toString(16)
+  const extension = fileNameFromUrl(url).extension
+
+  return `${block.id}-${hash}.${extension}`
+}

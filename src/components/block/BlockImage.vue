@@ -18,11 +18,15 @@ const imageUrl = computed(() => {
 })
 
 const src = computed(() => {
-  return props.mapImageUrl?.({
-    src: imageUrl.value,
-    block: block.value,
-    blockMap: props.blockMap
-  }) ?? imageUrl.value
+  if (props.mapImageUrl) {
+    return props.mapImageUrl({
+      src: imageUrl.value,
+      block: block.value,
+      blockMap: props.blockMap
+    })
+  }
+
+  return imageUrl.value
 })
 </script>
 
@@ -33,7 +37,7 @@ const src = computed(() => {
     :src="src"
     quality="90"
     format="avif"
-    placeholder
+    preload
     loading="lazy"
   />
 </template>

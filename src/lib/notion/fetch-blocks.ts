@@ -8,6 +8,15 @@ export interface FetchBlocksArgs {
   page: NotionApi.PageObjectResponse;
 }
 
+export async function fetchBlock<
+  B extends NotionApi.BlockObjectResponse = NotionApi.BlockObjectResponse
+>(blockId: string): Promise<B> {
+  const { notionApiKey } = useRuntimeConfig()
+  const notion = new Client({ auth: notionApiKey })
+
+  return await notion.blocks.retrieve({ block_id: blockId }) as B
+}
+
 export async function fetchBlocks({ page }: FetchBlocksArgs): Promise<BlockMap> {
   const { notionApiKey } = useRuntimeConfig()
   const notion = new Client({ auth: notionApiKey })

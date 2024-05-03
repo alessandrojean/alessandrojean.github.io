@@ -9,12 +9,13 @@ import { fileNameFromUrl } from './utils'
 
 interface SaveMediasArgs {
   logger: ConsolaInstance;
-  outputDir: string;
+  imgOutputDir: string;
+  videoOutputDir: string;
   options: ModuleOptions
 }
 
 export async function saveMedias(args: SaveMediasArgs): Promise<void> {
-  const { logger, outputDir, options } = args
+  const { logger, imgOutputDir, videoOutputDir, options } = args
   const queue = global.mediaExtractorQueue as ExtractorResult[]
 
   if (queue.length === 0) {
@@ -27,11 +28,20 @@ export async function saveMedias(args: SaveMediasArgs): Promise<void> {
     return
   }
 
-  const videoPath = path.join(outputDir, options.videoDir, result.destination)
+  const imagePath = path.join(imgOutputDir, options.imgDir, result.destination)
+  const videoPath = path.join(videoOutputDir, options.videoDir, result.destination)
+
+  const hasImages = result.medias.find((media) => {
+    return fileNameFromUrl(media.fileName).type === 'image'
+  })
 
   const hasVideos = result.medias.find((media) => {
     return fileNameFromUrl(media.fileName).type === 'video'
   })
+
+  if (hasImages && !fs.existsSync(imagePath)) {
+    fs.mkdirSync(imagePath, { recursive: true })
+  }
 
   if (hasVideos && !fs.existsSync(videoPath)) {
     fs.mkdirSync(videoPath, { recursive: true })
@@ -44,18 +54,19 @@ export async function saveMedias(args: SaveMediasArgs): Promise<void> {
       continue
     }
 
-    const logPath = path.sep + path.join(options.videoDir, result.destination, media.fileName)
+    const mediaDir = type === 'image' ? options.imgDir : options.videoDir
+    const mediaPath = type === 'image' ? imagePath : videoPath
+
+    const logPath = path.sep + path.join(mediaDir, result.destination, media.fileName)
     const startTime = process.hrtime()
 
     try {
-      const filePath = path.join(videoPath, media.fileName)
+      const filePath = path.join(mediaPath, media.fileName)
 
       const response = await fetch(media.url)
       const arrayBuffer = await response.arrayBuffer()
 
-      if (type === 'video') {
-        fs.writeFileSync(filePath, Buffer.from(arrayBuffer))
-      }
+      fs.writeFileSync(filePath, Buffer.from(arrayBuffer))
 
       const endTime = process.hrtime(startTime)
       const duration = (endTime[1] / 1_000_000).toFixed(0)

@@ -17,6 +17,7 @@ export interface Post {
 }
 
 export default defineEventHandler<Promise<Post[]>>(async (event) => {
+  const { app: {  } } = useRuntimeConfig()
   const { notionPostsTable } = useRuntimeConfig()
   const { per_page } = getQuery(event)
 
@@ -29,9 +30,11 @@ export default defineEventHandler<Promise<Post[]>>(async (event) => {
     ? Number.parseInt(per_page, 10) 
     : undefined
 
+  const publicOnly = true // (process.env.CI || process.env.NODE_ENV === 'production')
+
   const response = await fetchTable({
     tableId: notionPostsTable,
-    filter: (process.env.CI || process.env.NODE_ENV === 'production') ? publicFilter : undefined,
+    filter: publicOnly ? publicFilter : undefined,
     sorts: [{
       property: 'Created at',
       direction: 'descending'

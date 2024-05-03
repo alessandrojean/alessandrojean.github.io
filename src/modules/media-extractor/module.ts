@@ -6,6 +6,8 @@ import {
   useLogger,
   useNitro
 } from '@nuxt/kit'
+import { rmSync } from 'node:fs'
+import { join } from 'node:path'
 
 import { saveMedias } from './runtime/extractor'
 import type { ExtractorResult, ModuleOptions } from './types'
@@ -21,6 +23,7 @@ export default defineNuxtModule<ModuleOptions>({
 
   defaults: (nuxt) => ({
     dir: nuxt.options.dir.public,
+    imgDir: 'notion-img',
     videoDir: 'video'
   }),
 
@@ -36,13 +39,25 @@ export default defineNuxtModule<ModuleOptions>({
 
     const dir = options.dir ?? nuxt.options.dir.public
     const outputDir = resolver.resolve('..', '..', '..', '.output', dir)
+    const tempImgOutputDir = resolver.resolve('..', '..', dir)
     
     nuxt.hook('ready', async () => {
       const nitro = useNitro()
 
       nitro.hooks.hook('prerender:generate', async () => {
-        await saveMedias({ logger, outputDir, options })
+        await saveMedias({ 
+          logger, 
+          imgOutputDir: tempImgOutputDir,
+          videoOutputDir: outputDir,
+          options
+        })
       })
+
+      if (!process.env.CI) {
+        nitro.hooks.hook('prerender:done', () => {
+          rmSync(join(tempImgOutputDir, options.imgDir), { recursive: true })
+        })
+      }
     })
 
     addImports({

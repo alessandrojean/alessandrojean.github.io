@@ -8,9 +8,10 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
+    './src/modules/media-extractor',
     '@nuxt/image',
     'nuxt-og-image',
-    './src/modules/media-extractor',
+    './src/modules/rss',
   ],
   colorMode: { classSuffix: '' },
   tailwindcss: { viewer: false },
@@ -44,6 +45,9 @@ export default defineNuxtConfig({
       'prod-files-secure.s3.us-west-2.amazonaws.com',
       'raw.githubusercontent.com'
     ],
+    alias: {
+      twemoji: 'https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter'
+    }
   },
   runtimeConfig: {
     notionApiKey: '',

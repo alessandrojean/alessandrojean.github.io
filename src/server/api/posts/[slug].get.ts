@@ -5,7 +5,7 @@ import { parseISO } from 'date-fns/parseISO'
 import { defineExtractorEventHandler } from '#media-extractor'
 
 import type { NotionApi, PostObjectResponse } from '@/lib/notion'
-import { fetchBlocks, fetchTable, getTextContent, postMapVideoUrl } from '@/lib/notion'
+import { fetchBlocks, fetchTable, getTextContent, postMapImageUrl, postMapVideoUrl } from '@/lib/notion'
 
 export default defineExtractorEventHandler({
   async handler(event) {
@@ -59,18 +59,20 @@ export default defineExtractorEventHandler({
   },
 
   async extract({ slug, blocks }) {
+    type HostedImage = NotionApi.ImageBlockObjectResponse & { image: { type: 'file' } }
     type HostedVideo = NotionApi.VideoBlockObjectResponse & { video: { type: 'file' } }
 
     const mediaBlocks = Object.values(blocks).filter((block) => {
-      return (block.type === 'video' && block.video.type === 'file')
-    }) as HostedVideo[]
+      return (block.type === 'image' && block.image.type === 'file') ||
+        (block.type === 'video' && block.video.type === 'file')
+    }) as (HostedImage | HostedVideo)[]
 
     return {
       destination: `posts/${slug}`,
       medias: mediaBlocks.map((block) => ({ 
-        url: block.video.file.url,
-        fileName: postMapVideoUrl(block)
+        url: block.type === 'image' ? block.image.file.url : block.video.file.url,
+        fileName: block.type === 'image' ? postMapImageUrl(block) : postMapVideoUrl(block)
       }))
-    }    
+    }  
   }
 })
