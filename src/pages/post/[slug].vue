@@ -19,6 +19,13 @@ const { data: post } = await useFetch(`/api/posts/${route.params.slug}`, {
   key: `post-${route.params.slug}`,
 })
 
+if (!post.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found'
+  })
+}
+
 const postTags = computed(() => post.value?.tags.join(', '))
 
 function mapPageUrl(pageId: string) {
@@ -52,7 +59,7 @@ defineOgImageComponent('Default', {
 </script>
 
 <template>
-  <div class="sm:px-8 py-16 lg:py-32">
+  <div class="sm:px-8 pt-16 lg:pt-32">
     <Head>
       <Html :lang="post?.language" />
       <Title>{{ post?.title }}</Title>

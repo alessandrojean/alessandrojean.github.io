@@ -4,6 +4,7 @@ actions:
   followMeOn: Siga-me no {site}!
   jumpToMain: Pular para o conteúdo principal
   copyToClipboard: Copiar
+  goBackHome: Voltar para o início
 
 routes:
   home: Página inicial
@@ -74,3 +75,10 @@ posts:
   updatedAt: atualizado em {0}
   fileName: "Nome do arquivo:"
 
+errors:
+  pageNotFound:
+    title: Página não encontrada
+    description: Não foi possível encontrar a página que você está procurando.
+  serverError:
+    title: Erro fatal
+    description: Infelizmente houve um erro no processamento de sua requisição.

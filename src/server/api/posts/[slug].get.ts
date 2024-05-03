@@ -30,7 +30,6 @@ export default defineExtractorEventHandler({
       throw createError({
         statusCode: 404,
         statusMessage: 'Page Not Found',
-        message: 'Post não encontrado'
       })
     }
 

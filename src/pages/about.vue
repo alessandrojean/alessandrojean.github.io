@@ -24,7 +24,7 @@ defineOgImageComponent('Default', {
 
 <template>
   <div>    
-    <div class="py-16 grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
+    <div class="pt-16 grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
       <div class="lg:pl-20">
         <div class="max-w-xs px-2.5 lg:max-w-none">
           <NuxtImg

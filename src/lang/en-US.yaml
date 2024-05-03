@@ -4,6 +4,7 @@ actions:
   followMeOn: Follow me on {site}!
   jumpToMain: Jump to the main content
   copyToClipboard: Copiar
+  goBackHome: Go back home
 
 routes:
   home: Home
@@ -73,3 +74,11 @@ posts:
   description: Some texts I wrote since I created this site.
   updatedAt: updated at {0}
   fileName: "File name:"
+
+errors:
+  pageNotFound:
+    title: Page not found
+    description: It was not possible to find the page you're looking for.
+  serverError:
+    title: Erro fatal
+    description: There was an error during the processing of your request.

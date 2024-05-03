@@ -5,7 +5,7 @@ const { locale } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
-  <footer class="select-none flex flex-col md:flex-row gap-6 items-center justify-between text-sm w-full px-4 md:px-10 border-t border-gray-200 dark:border-gray-700 dark:contrast-more:border-gray-600 pt-8 pb-10 motion-safe:transition">
+  <footer class="mt-16 lg:mt-32 select-none flex flex-col md:flex-row gap-6 items-center justify-between text-sm w-full px-4 md:px-10 border-t border-gray-200 dark:border-gray-700 dark:contrast-more:border-gray-600 pt-8 pb-10 motion-safe:transition">
     <nav>
       <ul class="flex gap-3 md:-ml-2">
         <template v-for="link in navLinks" :key="link.to">

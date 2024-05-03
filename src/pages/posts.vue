@@ -17,7 +17,7 @@ defineOgImageComponent('Default', {
 </script>
 
 <template>
-  <div class="pb-16 lg:pb-32">
+  <div>
     <Head>
       <Link rel="alternate" type="application/rss+xml" title="Feed" :href="`${url}/feed.xml`" hreflang="pt-BR" />
     </Head>

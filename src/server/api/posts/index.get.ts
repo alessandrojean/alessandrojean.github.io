@@ -30,7 +30,7 @@ export default defineEventHandler<Promise<Post[]>>(async (event) => {
     ? Number.parseInt(per_page, 10) 
     : undefined
 
-  const publicOnly = true // (process.env.CI || process.env.NODE_ENV === 'production')
+  const publicOnly = process.env.CI || !process.dev || process.prerender // (process.env.CI || process.env.NODE_ENV === 'production')
 
   const response = await fetchTable({
     tableId: notionPostsTable,
