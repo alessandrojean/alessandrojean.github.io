@@ -13,15 +13,15 @@ const props = withDefaults(defineProps<NotionBlockProps>(), {
 
 const { block, pass, richText } = useNotionParser<NotionApi.CalloutBlockObjectResponse>(toRefs(props))
 
-const colorMap: Partial<Record<ApiColor, string[]>> = {
-  gray_background: ['bg-gray-100', 'text-gray-800', 'border-gray-200'],
-  orange_background: ['bg-orange-100', 'text-orange-900', 'border-orange-200'],
-  yellow_background: ['bg-yellow-50', 'text-yellow-900', 'border-yellow-300'],
-  green_background: ['bg-emerald-100', 'text-emerald-900', 'border-emerald-200'],
-  blue_background: ['bg-blue-100', 'text-blue-800', 'border-blue-200'],
-  purple_background: ['bg-purple-100', 'text-purple-900', 'border-purple-200'],
-  pink_background: ['bg-pink-100', 'text-pink-900', 'border-pink-200'],
-  red_background: ['bg-red-100', 'text-red-900', 'border-red-200']
+const colorMap: { [key in ApiColor]?: string[] } = {
+  gray_background: ['bg-gray-50', 'text-gray-800', 'border-gray-100'],
+  orange_background: ['bg-orange-50', 'text-orange-900', 'border-orange-100'],
+  yellow_background: ['bg-yellow-50', 'text-yellow-900', 'border-yellow-100'],
+  green_background: ['bg-emerald-50', 'text-emerald-900', 'border-emerald-100'],
+  blue_background: ['bg-blue-50', 'text-blue-800', 'border-blue-100'],
+  purple_background: ['bg-purple-50', 'text-purple-900', 'border-purple-100'],
+  pink_background: ['bg-pink-50', 'text-pink-900', 'border-pink-100'],
+  red_background: ['bg-red-50', 'text-red-900', 'border-red-100']
 }
 
 const color = computed(() => block.value.callout.color)
@@ -51,7 +51,7 @@ const isAddress = computed(() => {
   <div
     :class="[
       'notion-callout my-8 dark:bg-gray-800 dark:contrast-more:bg-gray-900 dark:text-gray-300 motion-safe:transition',
-      'flex flex-col md:flex-row p-6 rounded-xl gap-6 text-sm leading-loose border dark:border-gray-800 dark:contrast-more:border-gray-900',
+      'flex flex-col md:flex-row p-5 rounded-xl gap-5 text-sm leading-loose border dark:border-gray-800 dark:contrast-more:border-gray-900',
       bgColor,
       textColor,
       borderColor

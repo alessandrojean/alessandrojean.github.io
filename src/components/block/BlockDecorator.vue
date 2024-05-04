@@ -65,19 +65,12 @@ const highlight = computed(() => {
   const common = 'px-1.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-100'
 
   const classes: { [key in Color]?: string } = {
-    yellow_background: 'bg-yellow-100 text-yellow-900',
-    blue_background: 'bg-primary-100 text-primary-900'
+    yellow_background: 'bg-yellow-100 dark:bg-yellow-950 text-yellow-900 dark:text-yellow-200',
+    blue_background: 'bg-primary-100 dark:bg-primary-950 text-primary-900 dark:text-primary-200'
   }
 
   return [common, classes[decoratorValue.value as Color]]
 })
-
-function escapeCharacters(text: string) {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-}
 
 const { socialMedia: { gitHub } } = useAppConfig()
 
@@ -101,7 +94,7 @@ const mentionLink = computed(() => {
 })
 
 const interleave = <T, O>(arr: T[], x: O) => arr.flatMap(e => [e, x]).slice(0, -1)
-const renderedText = () => interleave(escapeCharacters(text.value).split('\n'), h('br'))
+const renderedText = () => interleave(text.value.split('\n'), h('br'))
 </script>
 
 <template>
