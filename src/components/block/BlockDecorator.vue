@@ -3,7 +3,8 @@ import { IconGitHub } from '#components';
 import type { NotionBlockProps } from '@/composables/useNotionParser';
 import type { NotionApi } from '@/lib/notion';
 
-type Decorator = keyof NotionApi.TextRichTextItemResponse['annotations'] | 'link' | 'equation'
+type Annotation = keyof NotionApi.TextRichTextItemResponse['annotations']
+type Decorator = Annotation | 'link' | 'equation'
 type Color = Exclude<NotionApi.TextRichTextItemResponse['annotations']['color'], 'default'>
 
 interface Props extends NotionBlockProps {
@@ -44,7 +45,7 @@ const decorators = computed(() => {
 })
 
 const decorator = computed(() => decorators.value[0])
-const decoratorValue = computed(() => props.content.annotations[decorator.value])
+const decoratorValue = computed(() => props.content.annotations[decorator.value as Annotation])
 
 const unappliedDecorators = computed(() => {
   const [_, ...unapplied] = decorators.value
@@ -63,32 +64,19 @@ const target = computed(() => {
 const highlight = computed(() => {
   const common = 'px-1.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-100'
 
-  const classes: Partial<Record<Color, string>> = {
+  const classes: { [key in Color]?: string } = {
     yellow_background: 'bg-yellow-100 text-yellow-900'
   }
 
-  return [common, classes[decoratorValue.value]]
+  return [common, classes[decoratorValue.value as Color]]
 })
 
-const { replaceEmoji, hasEmoji } = useEmoji()
-
-function replaceLineBreaks(text: string) {
+function escapeCharacters(text: string) {
   return text
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/\n/g, '<br/>')
 }
-
-function replaceEmojis(text: string) {
-  const escapedText = replaceLineBreaks(text)
-
-  return replaceEmoji(escapedText, size.value)
-}
-
-const hasEmojiInText = computed(() => hasEmoji(text.value))
-
-const hasLineBreaks = computed(() => text.value.includes('\n'))
 
 const { socialMedia: { gitHub } } = useAppConfig()
 
@@ -110,6 +98,9 @@ const mentionLink = computed(() => {
     }
   }
 })
+
+const interleave = <T, O>(arr: T[], x: O) => arr.flatMap(e => [e, x]).slice(0, -1)
+const renderedText = () => interleave(escapeCharacters(text.value).split('\n'), h('br'))
 </script>
 
 <template>
@@ -127,7 +118,7 @@ const mentionLink = computed(() => {
     class="notion-link"
     :target="target"
     :external="!isInnerLink"
-    :to="isInnerLink ? (mapPageUrl(content.href.slice(1)) ?? '#') : content.href"
+    :to="isInnerLink ? (mapPageUrl!!(content.href!!.slice(1)) ?? '#') : content.href!!"
   >
     <BlockDecorator
       :content="content"
@@ -190,12 +181,13 @@ const mentionLink = computed(() => {
   <code v-else-if="decorator === 'equation'">
     <BlockDecorator
       :content="content"
-      :decorators="unappliedDecorators"
+      :decorators="unappliedDecorators"s
       :size="size"
       v-bind="pass"
     />
   </code>
-  <span
+  <rendered-text v-else-if="decorators.length === 0" />
+  <!-- <span
     v-else-if="decorators.length === 0 && hasEmojiInText"
     v-html="replaceEmojis(text)"
   />
@@ -205,5 +197,5 @@ const mentionLink = computed(() => {
   />
   <template v-else-if="decorators.length === 0">
     {{ text }}
-  </template>
+  </template> -->
 </template>

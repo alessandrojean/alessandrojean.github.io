@@ -29,7 +29,11 @@ export default {
           fontVariationSettings: '"opsz" 32'
         }
       ],
-      mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono]
+      mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
+      emoji: [
+        "'Twemoji Mozilla'", "'Apple Color Emoji'", "'Segoe UI Emoji'", 
+        "'Segoe UI Symbol'", "'Noto Color Emoji'", 'ui-sans-serif',
+      ]
     },
     extend: {
       colors: {

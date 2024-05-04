@@ -9,12 +9,7 @@ const socialMediaLinks = useSocialMedia()
         <span class="underline underline-offset-4 decoration-primary-500/80 dark:decoration-primary-400/80 decoration-4">
           {{ $t('home.header') }}
         </span>
-        <img
-          class="size-8 ml-3 inline-block"
-          src="/img/emoji/waving-hand-light-skin-tone.svg"
-          alt="👋🏻"
-          aria-label="👋🏻"
-        />
+        <span class="select-none ml-3 font-emoji">👋🏻</span>
       </h1>
 
       <i18n-t
