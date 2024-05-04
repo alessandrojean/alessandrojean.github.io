@@ -181,15 +181,4 @@ const renderedText = () => interleave(text.value.split('\n'), h('br'))
     />
   </code>
   <rendered-text v-else-if="decorators.length === 0" />
-  <!-- <span
-    v-else-if="decorators.length === 0 && hasEmojiInText"
-    v-html="replaceEmojis(text)"
-  />
-  <span
-    v-else-if="decorators.length === 0 && hasLineBreaks"
-    v-html="replaceLineBreaks(text)"
-  />
-  <template v-else-if="decorators.length === 0">
-    {{ text }}
-  </template> -->
 </template>
