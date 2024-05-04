@@ -48,10 +48,9 @@ export default {
         DEFAULT: {
           css: {
             code: {
-              display: 'inline-block',
               backgroundColor: theme('colors.primary.50'),
               color: theme('colors.primary.700'),
-              padding: `0 ${theme('padding')['1.5']}`,
+              padding: `${theme('padding')['0.5']} ${theme('padding')['1.5']}`,
               borderRadius: theme('borderRadius.md'),
               fontWeight: 500,
               '&::before, &::after': {
