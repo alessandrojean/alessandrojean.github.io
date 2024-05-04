@@ -65,7 +65,8 @@ const highlight = computed(() => {
   const common = 'px-1.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-100'
 
   const classes: { [key in Color]?: string } = {
-    yellow_background: 'bg-yellow-100 text-yellow-900'
+    yellow_background: 'bg-yellow-100 text-yellow-900',
+    blue_background: 'bg-primary-100 text-primary-900'
   }
 
   return [common, classes[decoratorValue.value as Color]]
