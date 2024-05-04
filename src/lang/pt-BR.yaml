@@ -74,6 +74,7 @@ posts:
   description: Alguns textos que escrevi desde a criação do site.
   updatedAt: atualizado em {0}
   fileName: "Nome do arquivo:"
+  notByAi: Escrito por humano, não por IA
 
 errors:
   pageNotFound:
