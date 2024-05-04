@@ -48,10 +48,12 @@ export default {
         DEFAULT: {
           css: {
             code: {
-              backgroundColor: theme('colors.primary.100'),
+              display: 'inline-block',
+              backgroundColor: theme('colors.primary.50'),
               color: theme('colors.primary.700'),
-              padding: `${theme('padding')['0.5']} ${theme('padding.1')}`,
+              padding: `0 ${theme('padding')['1.5']}`,
               borderRadius: theme('borderRadius.md'),
+              fontWeight: 500,
               '&::before, &::after': {
                 content: '"" !important'
               }
@@ -64,7 +66,7 @@ export default {
         invert: {
           css: {
             code: {
-              backgroundColor: theme('colors.gray.700'),
+              backgroundColor: theme('colors.gray.800'),
               color: theme('colors.gray.200')
             }
           }

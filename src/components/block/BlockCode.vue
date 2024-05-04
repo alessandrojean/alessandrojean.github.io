@@ -110,18 +110,18 @@ const shikiHtml = computed(() => {
             'notion-code', langClass.value,
             'motion-safe:transition-colors',
             'border', 'border-[#CFCFCF]', 'dark:border-[#333333]',
-            'px-0', 'py-4', 'relative'
+            '!px-0', '!py-4', 'relative'
           ])
 
           if (fileName.value) {
             this.addClassToHast(node, [
-              'mt-0', 'rounded-t-none', 'border-t-0',
+              '!mt-0', '!rounded-t-none', '!border-t-0',
             ])
           }
         },
         code(node) {
           this.addClassToHast(node, [
-            langClass.value, 'px-6', 'block', 'w-fit', 'min-w-full'
+            langClass.value, '!px-6', 'block', 'w-fit', 'min-w-full'
           ])
         }
       },
