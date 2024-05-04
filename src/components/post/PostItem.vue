@@ -25,8 +25,8 @@ const localePath = useLocalePath()
       <h2 :lang="post.language" class="text-lg font-display-safe font-semibold tracking-tight text-gray-800 dark:text-gray-100 motion-safe:transition">
         <NuxtLink :to="localePath({ name: 'post-slug', params: { slug: post.slug } })" class="peer focus:outline-none">
           <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
-          <span class="relative z-10 flex items-center gap-1.5">
-            <EyeSlashIcon v-if="!post.isPublic" class="size-4 text-gray-500 dark:text-gray-400" />
+          <span class="relative z-10">
+            <EyeSlashIcon v-if="!post.isPublic" class="size-4 -mb-0.5 text-gray-500 dark:text-gray-400 me-1.5 inline-block align-baseline" />
             {{ post.title }}
           </span>
         </NuxtLink>
