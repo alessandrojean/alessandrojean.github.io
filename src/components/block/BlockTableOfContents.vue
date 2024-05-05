@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import slugify from 'slugify'
+import slugify from 'slugify';
 
-import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { BlockNode, NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type { NotionApi } from '@/lib/notion';
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -18,13 +18,17 @@ const headers = computed(() => {
 
   return root.value.content.slice(selfIndex)
     .map((blockId) => props.blockMap[blockId])
-    .filter((block) => block.type === 'heading_2')
+    .filter((block) => block.type === 'heading_2') as NotionApi.Heading2BlockObjectResponse[]
 })
 
-function hash(block: BlockNode) {
-  const text = getTextContent(block['heading_2'].rich_text)
+function hash(block: NotionApi.Heading2BlockObjectResponse) {
+  const text = getTextContent(block.heading_2.rich_text)
 
-  return '#' + slugify(text, { lower: true })
+  return '#' + slugify(text, { 
+    lower: true, 
+    locale: 'pt',
+    remove: /[*+~.()'"!:@]/g 
+  })
 }
 </script>
 
@@ -40,7 +44,7 @@ function hash(block: BlockNode) {
         aria-current-value="page"
       >
         <BlockTextRenderer
-          :text="header['heading_2'].rich_text"
+          :text="header.heading_2.rich_text"
           v-bind="pass"
         />
       </NuxtLink>

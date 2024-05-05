@@ -21,6 +21,7 @@ const { block, type, pass, richText, getTextContent } = useNotionParser<HeadingB
 const id = computed(() => {
   return slugify(getTextContent(richText.value), {
     lower: true,
+    remove: /[*+~.()'"!:@]/g,
     locale: 'pt'
   })
 })
