@@ -49,7 +49,7 @@ export default {
           css: {
             code: {
               backgroundColor: theme('colors.primary.50'),
-              color: theme('colors.primary.700'),
+              color: `${theme('colors.primary.700')} !important`,
               padding: `${theme('padding')['0.5']} ${theme('padding')['1.5']}`,
               borderRadius: theme('borderRadius.md'),
               fontWeight: 500,
@@ -66,7 +66,7 @@ export default {
           css: {
             code: {
               backgroundColor: theme('colors.gray.800'),
-              color: theme('colors.gray.200')
+              color: `${theme('colors.gray.200')} !important`
             }
           }
         }
