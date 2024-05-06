@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { fromZonedTime } from 'date-fns-tz';
 import { formatISO } from 'date-fns/formatISO';
+import { isAfter } from 'date-fns/isAfter';
 
 import type { NotionBlockProps } from '@/composables/useNotionParser';
 import type { BlockPageObject, PostProperties } from '@/lib/notion';
@@ -32,17 +33,16 @@ const formatter = new Intl.DateTimeFormat('pt-BR', {
 
 const date = computed(() => {
   const iso = postProperties.value['Created at']?.date?.start
+  const createdAt = iso ? fromZonedTime(iso, 'America/Sao_Paulo') : null
   const updated = new Date(block.value.last_edited_time)
   const updatedIso = formatISO(updated)
 
   return {
     iso,
-    formatted: iso 
-      ? formatter.format(fromZonedTime(iso, 'America/Sao_Paulo'))
-      : null,
+    formatted: createdAt ? formatter.format(createdAt) : null,
     updatedIso,
     updatedFormatted: formatter.format(updated),
-    wasUpdated: iso !== updatedIso.substring(0, 10),
+    wasUpdated: createdAt !== null && isAfter(updated, createdAt)
   }
 })
 
