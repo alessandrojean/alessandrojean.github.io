@@ -94,6 +94,6 @@ const language = computed(() => {
 
     <slot />
 
-    <PostNotByAiBadge v-if="level === 0 && fullPage" />
+    <!-- <PostNotByAiBadge v-if="level === 0 && fullPage" /> -->
   </article>
 </template>
