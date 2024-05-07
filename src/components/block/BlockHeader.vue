@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { LinkIcon } from '@heroicons/vue/20/solid';
 import slugify from 'slugify';
 
 import type { NotionBlockProps } from '@/composables/useNotionParser';
@@ -39,27 +38,24 @@ const tagMap: Record<typeof type.value, string> = {
   <component
     :is="tagMap[type]"
     :id="id"
-    class="notion-header font-display-safe relative group w-fit scroll-mt-28"
+    class="notion-header font-display-safe group w-fit scroll-mt-28"
   >
     <NuxtLink
       v-if="headerAnchor"
       :to="{ hash: link }"
       :external="false"
-      aria-current-value="page"
-      class="peer font-inherit !text-inherit group-hover:decoration-dashed group-hover:underline-offset-[3px]"
-    >
-      <BlockTextRenderer :text="richText" v-bind="pass" />
-    </NuxtLink>
+      aria-hidden="true"
+      :class="[
+        'not-prose relative opacity-0 md:group-hover:opacity-100 text',
+        `motion-safe:transition duration-75 before:content-['#'] before:font-medium`,
+        'before:px-3 before:absolute before:right-0 before:inset-y-0 before:text-center',
+        'before:text-gray-400 dark:before:text-gray-500 before:leading-tight',
+        'hover:before:text-gray-600 dark:hover:before:text-gray-400'
+      ]"
+    />
     <BlockTextRenderer
-      v-else
       :text="richText"
       v-bind="pass"
-    />
-
-    <LinkIcon
-      v-if="headerAnchor"
-      aria-hidden="true"
-      class="hidden md:block absolute -left-6 top-2 size-4 text-gray-500 dark:text-gray-400 opacity-0 peer-hover:opacity-100 motion-safe:transition duration-75"
     />
   </component>
 </template>
