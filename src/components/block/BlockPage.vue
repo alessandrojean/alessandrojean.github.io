@@ -57,7 +57,17 @@ const language = computed(() => {
 <template>
   <article
     :lang="language"
-    class="notion prose dark:prose-invert motion-safe:transition max-w-2xl mx-auto prose-h1:font-bold prose-a:text-primary-600 dark:prose-a:text-primary-400 hover:prose-a:text-primary-700 focus-visible:prose-a:text-primary-700 dark:hover:prose-a:text-primary-400 dark:focus-visible:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline hover:prose-a:underline-offset-2 hover:prose-a:decoration-2 hover:prose-a:decoration-primary-500/80 dark:hover:prose-a:decoration-primary-400/80 dark:[&_pre>code]:bg-inherit focus:prose-a:outline-none focus-visible:prose-a:ring-2 focus-visible:prose-a:ring-offset-2 focus-visible:prose-a:ring-primary-600 dark:focus-visible:prose-a:ring-offset-gray-900 dark:contrast-more:focus-visible:prose-a:ring-offset-black prose-a:rounded prose-a:motion-safe:transition"
+    :class="[
+      'notion prose dark:prose-invert motion-safe:transition max-w-2xl mx-auto',
+      'prose-h1:font-bold prose-a:font-normal prose-a:text-primary-600',
+      'dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline',
+      'dark:[&_pre>code]:bg-inherit focus:prose-a:outline-none',
+      'focus-visible:prose-a:ring-2 focus-visible:prose-a:ring-offset-2',
+      'focus-visible:prose-a:ring-primary-600 dark:focus-visible:prose-a:ring-offset-gray-900',
+      'dark:contrast-more:focus-visible:prose-a:ring-offset-black prose-a:rounded',
+      'prose-a:motion-safe:transition prose-blockquote:font-normal',
+      'prose-blockquote:text-gray-600 dark:prose-blockquote:text-gray-400',
+    ]"
   >
     <template v-if="level === 0 && fullPage">
       <div class="flex flex-col">
