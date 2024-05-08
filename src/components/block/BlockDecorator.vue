@@ -102,7 +102,7 @@ const renderedText = () => interleave(text.value.split('\n'), h('br'))
     v-if="mentionLink"
     :href="mentionLink.href"
     target="_blank"
-    class="inline-flex items-baseline gap-2"
+    class="inline-flex items-baseline gap-1.5 ps-0.5"
   >
     <component :is="mentionLink.icon" class="size-3.5 self-center text-[--tw-prose-body] fill-current" />
     <span class="leading-none">{{ mentionLink.text }}</span>
