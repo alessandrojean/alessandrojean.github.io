@@ -10,7 +10,7 @@ defineProps<{ icon: Icon }>()
   <span 
     v-if="icon.type === 'emoji'"
     aria-hidden="true"
-    class="notion-icon size-5 text-xl inline-flex items-center justify-center font-emoji m-0 mt-1 select-none"
+    class="notion-icon size-4 text-base inline-flex items-center justify-center font-emoji m-0 mt-1 select-none"
   >
     {{ icon.emoji }}
   </span>
