@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { NotionBlockProps } from '@/composables/useNotionParser'
-import type { NotionApi } from '@/lib/notion'
+import type { NotionBlockProps } from '@/composables/useNotionParser';
+import type { NotionApi } from '@/lib/notion';
 
 const props = withDefaults(defineProps<NotionBlockProps>(), {
   contentIndex: 0,
@@ -48,7 +48,7 @@ function isHeader(columnIndex: number) {
       v-for="(cell, cellIndex) in cells"
       :key="cellIndex"
       :is="isHeader(cellIndex) ? 'th' : 'td'"
-      class="notion-simple-table-data"
+      class="notion-simple-table-data slashed-zero tabular-nums"
     >
       <BlockTextRenderer :text="cell" v-bind="pass" />
     </component>
