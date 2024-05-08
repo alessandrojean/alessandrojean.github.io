@@ -37,7 +37,7 @@ const logoSrc = computed(() => {
 <template>
   <div class="group relative flex flex-col items-start">
     <div v-if="logoSrc" class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-gray-800/5 ring-1 ring-gray-900/5 dark:border dark:border-gray-700/50 dark:bg-gray-800 dark:ring-0">
-      <NuxtImg :src="logoSrc" width="32" height="32" class="size-8 rounded-full" loading="lazy" />
+      <img :src="logoSrc" width="32" height="32" class="size-8 rounded-full" loading="lazy" />
     </div>
     <component
       :is="project.url ? 'a' : 'h3'"
