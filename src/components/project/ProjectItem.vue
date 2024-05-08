@@ -30,7 +30,7 @@ const logoSrc = computed(() => {
     return project.value.logo
   }
 
-  return `/notion-img/projects/${project.value.slug}.${fileNameFromUrl(project.value.logo)}`
+  return `/notion-img/projects/${project.value.slug}.${fileNameFromUrl(project.value.logo).extension}`
 })
 </script>
 
