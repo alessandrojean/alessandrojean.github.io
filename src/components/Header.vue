@@ -12,7 +12,7 @@ const { navLinks } = useAppConfig()
 const route = useRoute()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
-const { locale } = useI18n({ useScope: 'global' })
+const { locale, t } = useI18n({ useScope: 'global' })
 
 function isCurrentPage(link: typeof navLinks[0]) {
   return link.exact ? route.path === localePath(link.to) : route.path.includes(localePath(link.to))
@@ -37,7 +37,7 @@ const nextLocale = computed(() => ({
         alt="Meu avatar pessoal"
       />
       <span class="sr-only">
-        {{ $t('routes.home') }}
+        {{ t('routes.home') }}
       </span>
     </NuxtLink>
 
@@ -51,7 +51,7 @@ const nextLocale = computed(() => ({
               aria-current-value="page"
             >
               <span :class="isCurrentPage(link) ? 'text-primary-600 dark:text-primary-400' : ''">
-                {{ $t(link.title) }}
+                {{ t(link.title) }}
               </span>
               <div
                 v-if="isCurrentPage(link)"
@@ -91,7 +91,7 @@ const nextLocale = computed(() => ({
     <Popover class="md:hidden">
       <PopoverButton class="fixed top-6 right-4 z-30 bg-white dark:bg-gray-800 p-2 rounded-full flex items-center shadow-lg shadow-gray-800/5 ring-1 ring-gray-900/5 hover:ring-gray-900/10 dark:ring-gray-700 dark:contrast-more:ring-gray-600 dark:hover:ring-gray-600 dark:contrast-more:hover:ring-gray-500 motion-safe:transition focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 dark:focus-visible:ring-primary-600 dark:focus-visible:ring-offset-gray-900 dark:contrast-more:focus-visible:ring-offset-black">
         <span class="sr-only">
-          {{ $t('header.menu') }}
+          {{ t('header.menu') }}
         </span>
         <Bars3Icon class="size-6 text-gray-500 dark:text-gray-400 motion-safe:transition" aria-hidden="true" />
       </PopoverButton>
@@ -122,12 +122,12 @@ const nextLocale = computed(() => ({
           >
             <div class="flex items-center justify-between -mt-2">
               <h2 class="font-medium text-sm text-gray-700 dark:text-gray-400 dark:contrast-more:text-gray-300 motion-safe:transition">
-                {{ $t('header.navigation') }}
+                {{ t('header.navigation') }}
               </h2>
               <button type="button" @click="close" class="p-2 -mr-3 flex items-center justify-center">
                 <XMarkIcon class="size-6 dark:text-gray-300" aria-hidden="true" />
                 <span class="sr-only">
-                  {{ $t('actions.closeMenu') }}
+                  {{ t('actions.closeMenu') }}
                 </span>
               </button>
             </div>
@@ -142,7 +142,7 @@ const nextLocale = computed(() => ({
                       class="py-2.5 block font-normal dark:text-gray-50 motion-safe:transition"
                       @click="close"
                     >
-                      {{ $t(link.title) }}
+                      {{ t(link.title) }}
                     </NuxtLink>
                   </li>
                 </template>

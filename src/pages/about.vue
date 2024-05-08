@@ -29,7 +29,7 @@ defineOgImageComponent('Default', {
         <div class="max-w-xs px-2.5 lg:max-w-none">
           <NuxtImg
             src="/img/avatar-okabe-medium.webp"
-            :alt="$t('site.avatarAlt')"
+            :alt="t('site.avatarAlt')"
             class="size-full overflow-hidden rotate-3 rounded-2xl bg-gray-100 dark:bg-gray-800 shadow-lg shadow-gray-900/10 ring-1 ring-gray-900/5 dark:opacity-90 dark:hover:opacity-100 motion-safe:transition"
           />
         </div>
@@ -63,7 +63,7 @@ defineOgImageComponent('Default', {
             >
               <component :is="socialMedia.icon" aria-hidden="true" class="size-5 flex-none fill-gray-500 transition group-hover:fill-primary-600 group-focus-visible:fill-primary-600 dark:group-hover:fill-primary-500 dark:group-focus-visible:fill-primary-500 motion-safe:transition" />
               <span class="ml-4">
-                {{ $t('about.followMeOn', { site: socialMedia.name }) }}
+                {{ t('about.followMeOn', { site: socialMedia.name }) }}
               </span>
             </a>
           </li>

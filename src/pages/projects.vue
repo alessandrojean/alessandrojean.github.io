@@ -23,8 +23,8 @@ defineOgImageComponent('Default', {
 <template>
   <div>
     <Hero
-      :title="$t('projects.title')"
-      :description="$t('projects.description')"
+      :title="t('projects.title')"
+      :description="t('projects.description')"
       class="mb-10"
     />
 

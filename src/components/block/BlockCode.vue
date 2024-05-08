@@ -24,6 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
   textLinkTarget: '_blank'
 })
 
+const { t } = useI18n({ useScope: 'global' })
 const { block, getTextContent } = useNotionParser<CodeBlock>(toRefs(props))
 
 const lang = computed<ShikiLanguage>(() => {
@@ -140,13 +141,13 @@ function copyToClipboard() {
 <template>
   <div>
     <div v-if="fileName" class="motion-safe:transition-colors bg-[#FAFAFA] dark:bg-[#121212] flex items-center rounded-t-md p-1.5 border border-[#CFCFCF] dark:border-[#333333] gap-1.5">
-      <button @click="copyToClipboard" type="button" class="px-1.5 py-1.5 rounded-md flex items-center text-xs gap-1 hover:bg-[#EFEFEF] dark:hover:bg-[#292929] active:opacity-80" :title="$t('actions.copyToClipboard')">
+      <button @click="copyToClipboard" type="button" class="px-1.5 py-1.5 rounded-md flex items-center text-xs gap-1 hover:bg-[#EFEFEF] dark:hover:bg-[#292929] active:opacity-80" :title="t('actions.copyToClipboard')">
         <Square2StackIcon class="size-4 [stroke-width:2]" />
-        <span class="sr-only">{{ $t('actions.copyToClipboard') }}</span>
+        <span class="sr-only">{{ t('actions.copyToClipboard') }}</span>
       </button>
       <div class="motion-safe:transition-colors not-prose bg-[#EFEFEF] dark:bg-[#292929] w-fit rounded-md px-2 py-1.5 flex items-center gap-2">
         <NuxtImg v-if="fileIcon" :src="fileIcon" alt="" aria-hidden="true" class="size-4" />
-        <span class="sr-only">{{ $t('posts.fileName') }}</span>
+        <span class="sr-only">{{ t('posts.fileName') }}</span>
         <span class="text-xs select-none file-name">{{ specialFileNames[fileName] ?? fileName }}</span>
       </div>
       <div class="ml-auto flex gap-1.5 pe-1" aria-hidden="true">

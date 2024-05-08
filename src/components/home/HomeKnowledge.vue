@@ -68,7 +68,7 @@ const knowledges = computed<KnowledgeArea[]>(() => [
     <h2 class="flex items-center text-lg font-display-safe font-semibold mb-4 dark:text-gray-200 dark:contrast-more:text-gray-100 motion-safe:transition">
       <CommandLineIcon aria-hidden="true" class="size-6 text-gray-400 dark:text-gray-500 dark:contrast-more:text-gray-400 motion-safe:transition" />
       <span class="ml-3">
-        {{ $t('home.knowledges') }}
+        {{ t('home.knowledges') }}
       </span>
     </h2>
 
@@ -96,10 +96,10 @@ const knowledges = computed<KnowledgeArea[]>(() => [
               {{ knowledge.title }}
             </span>
             <span class="sr-only">
-              {{ $t('home.withLevel') }}
+              {{ t('home.withLevel') }}
             </span>
             <span class="motion-safe:transition text-xs text-gray-600 dark:text-gray-400 dark:contrast-more:text-gray-300 dark:contrast-more:font-medium shrink-0">
-              {{ $t(`home.${knowledge.level}`) }}
+              {{ t(`home.${knowledge.level}`) }}
             </span>
           </li>
         </ul>

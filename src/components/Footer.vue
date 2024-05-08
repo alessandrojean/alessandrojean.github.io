@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const { title, navLinks } = useAppConfig()
 const localePath = useLocalePath()
-const { locale } = useI18n({ useScope: 'global' })
+
+const { t } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
@@ -15,7 +16,7 @@ const { locale } = useI18n({ useScope: 'global' })
               :to="localePath(link.to)"
               class="px-2 py-1 focus:outline-none rounded dark:text-gray-300 dark:contrast-more:text-gray-200 motion-safe:transition hover:text-primary-600 focus-visible:text-primary-600 dark:hover:text-primary-400 dark:focus-visible:text-primary-400 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600 dark:focus-visible:ring-offset-gray-900 dark:contrast-more:focus-visible:ring-offset-black"
             >
-              {{ $t(link.title) }}
+              {{ t(link.title) }}
             </NuxtLink>
           </li>
         </template>
@@ -24,10 +25,10 @@ const { locale } = useI18n({ useScope: 'global' })
 
     <div class="text-center md:text-right text-gray-500 dark:text-gray-400 dark:contrast-more:text-gray-300 motion-safe:transition">
       <p>
-        {{ $t('footer.copyright', { year: 2022, name: title }) }}
+        {{ t('footer.copyright', { year: 2022, name: title }) }}
       </p>
       <p class="text-xs mt-1">
-        {{ $t('footer.notes') }}
+        {{ t('footer.notes') }}
       </p>
     </div>
   </footer>

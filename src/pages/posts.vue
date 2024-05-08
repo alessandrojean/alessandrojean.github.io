@@ -23,8 +23,8 @@ defineOgImageComponent('Default', {
     </Head>
 
     <Hero
-      :title="$t('posts.title')"
-      :description="$t('posts.description')"
+      :title="t('posts.title')"
+      :description="t('posts.description')"
     />
 
     <div class="md:border-l md:border-gray-100 md:pl-6 md:dark:border-gray-700 motion-safe:transition">
