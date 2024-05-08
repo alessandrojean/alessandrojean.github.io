@@ -68,24 +68,24 @@ export default function useNotionParser<Block extends BlockNode>(
 ) {
   const pass = computed<NotionBlockProps>(() => ({
     blockMap: props.blockMap.value,
-    contentId: props.contentId.value,
-    contentIndex: props.contentIndex.value,
-    embedAllow: props.embedAllow.value,
-    fullPage: props.fullPage.value,
-    headerAnchor: props.headerAnchor.value,
-    level: props.level.value,
-    mapImageUrl: props.mapImageUrl.value,
-    mapPageUrl: props.mapPageUrl.value,
-    mapVideoUrl: props.mapVideoUrl.value,
-    pageLinkTarget: props.pageLinkTarget.value,
-    shiki: props.shiki.value,
-    textLinkTarget: props.textLinkTarget.value
+    contentId: props.contentId?.value,
+    contentIndex: props.contentIndex?.value,
+    embedAllow: props.embedAllow?.value,
+    fullPage: props.fullPage?.value,
+    headerAnchor: props.headerAnchor?.value,
+    level: props.level?.value,
+    mapImageUrl: props.mapImageUrl?.value,
+    mapPageUrl: props.mapPageUrl?.value,
+    mapVideoUrl: props.mapVideoUrl?.value,
+    pageLinkTarget: props.pageLinkTarget?.value,
+    shiki: props.shiki?.value,
+    textLinkTarget: props.textLinkTarget?.value
   }))
 
   const block = computed<Block & { content: string[] }>(() => {
-    const id = props.contentId.value || 
+    const id = props.contentId?.value ??
       Object.values(props.blockMap.value)
-        .find((b) => b.type === 'page').id
+        .find((b) => b.type === 'page')!!.id
 
     return props.blockMap.value[id] as Block & { content: string[] }
   })
@@ -100,7 +100,8 @@ export default function useNotionParser<Block extends BlockNode>(
   const type = computed<Block['type']>(() => block.value?.type)
   
   const parent = computed(() => {
-    const id = block.value.parent[block.value.parent.type]
+    type ParentType = typeof block.value.parent
+    const id = block.value.parent[block.value.parent.type as keyof ParentType]
 
     return typeof id === 'string' ? props.blockMap.value[id] : null;
   })
