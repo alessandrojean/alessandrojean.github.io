@@ -2,6 +2,8 @@
 import { fromZonedTime } from 'date-fns-tz';
 import { formatISO } from 'date-fns/formatISO';
 import { isAfter } from 'date-fns/isAfter';
+import { parseISO } from 'date-fns/parseISO';
+import { startOfDay } from 'date-fns/startOfDay';
 
 import type { NotionBlockProps } from '@/composables/useNotionParser';
 import type { BlockPageObject, PostProperties } from '@/lib/notion';
@@ -27,14 +29,14 @@ const description = computed(() => {
 })
 
 const formatter = new Intl.DateTimeFormat('pt-BR', {
-  dateStyle: 'medium',
+  dateStyle: 'long',
   timeZone: 'America/Sao_Paulo'
 })
 
 const date = computed(() => {
   const iso = postProperties.value['Created at']?.date?.start
   const createdAt = iso ? fromZonedTime(iso, 'America/Sao_Paulo') : null
-  const updated = new Date(block.value.last_edited_time)
+  const updated = parseISO(block.value.last_edited_time)
   const updatedIso = formatISO(updated)
 
   return {
@@ -42,7 +44,8 @@ const date = computed(() => {
     formatted: createdAt ? formatter.format(createdAt) : null,
     updatedIso,
     updatedFormatted: formatter.format(updated),
-    wasUpdated: createdAt !== null && isAfter(updated, createdAt)
+    wasUpdated: createdAt !== null 
+      && isAfter(startOfDay(updated), startOfDay(createdAt))
   }
 })
 
@@ -80,7 +83,6 @@ const language = computed(() => {
         >
           <BlockTextRenderer :text="description" v-bind="pass" />
         </p>
-
 
         <span
           v-if="date.iso"
