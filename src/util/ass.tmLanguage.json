@@ -1,12 +1,13 @@
 {
   "id": "ass",
   "version": "v0.4.0",
-  "name": "Aegisub",
+  "name": "ass",
   "scopeName": "source.ass",
   "fileTypes": [
     "ass",
     "ssa"
   ],
+  "aliases": ["aegisub", "ssa"],
   "uuid": "90101069-65f0-4834-a2fa-faad3b9d1400",
   "information_for_contributors": [
     "aster: 19260817@qq.com"

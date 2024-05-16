@@ -10,23 +10,6 @@ const highlighter = ref<HighlighterCore>()
 
 export type ShikiLanguage = BuiltinLanguage | SpecialLanguage | 'ass' | 'cabal'
 
-function createAssGrammar(): LanguageRegistration {
-  return {
-    ...assGrammar as any as LanguageRegistration,
-    name: 'ass',
-    scopeName: 'source.ass',
-    aliases: ['aegisub', 'ssa'],
-  }
-}
-
-function createCabalGrammar(): LanguageRegistration {
-  return {
-    ...cabalGrammar as any as LanguageRegistration,
-    name: 'cabal',
-    scopeName: 'source.cabal',
-  }
-}
-
 export default async function useShiki(): Promise<HighlighterCore> {
   if (highlighter.value) {
     return highlighter.value
@@ -58,8 +41,8 @@ export default async function useShiki(): Promise<HighlighterCore> {
       import('shiki/langs/markdown.mjs'),
       import('shiki/langs/console.mjs'),
       import('shiki/langs/ini.mjs'),
-      createAssGrammar(),
-      createCabalGrammar()
+      assGrammar as any as LanguageRegistration,
+      cabalGrammar as any as LanguageRegistration,
     ],
     langAlias: {
       'c++': 'cpp',

@@ -2,8 +2,9 @@
   "fileTypes": [
     "cabal"
   ],
-  "name": "Cabal",
+  "name": "cabal",
   "id": "cabal",
+  "scopeName": "source.cabal",
   "patterns": [
     {
       "name": "keyword.other.cabal",
