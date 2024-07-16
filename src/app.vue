@@ -7,6 +7,7 @@ async function onBeforeEnter() {
 </script>
 
 <template>
+  <NuxtRouteAnnouncer />
   <NuxtLayout>
     <NuxtPage :transition="{ name: 'page', onBeforeEnter, mode: 'out-in' }" />
   </NuxtLayout>
