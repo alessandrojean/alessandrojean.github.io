@@ -79,6 +79,7 @@ const { t } = useI18n({ useScope: 'global' })
         name="twitter:description"
         :content="$route.meta.description ? t($route.meta.description as string) : description"
       />
+      <Meta name="fediverse:creator" :content="'@' + socialMedia.mastodon" />
       <Meta
         v-if="$route.meta.skipOgImage"
         name="twitter:image"
