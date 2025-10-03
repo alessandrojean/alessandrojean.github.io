@@ -20,6 +20,7 @@ export default defineEventHandler(async (event) => {
       date_published: new Date(m.published_at).toISOString(),
       date_modified: new Date(m.updated_at).toISOString(),
       language: 'pt-BR',
+      image: m.cover,
     })),
   };
 });

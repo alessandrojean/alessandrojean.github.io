@@ -25,6 +25,9 @@ export default defineEventHandler(async (event) => {
       url: `${url}/movie/${movie.movieId}/${movie.slug}`,
       description: '',
       date: new Date(movie.published_at),
+      enclosure: {
+        url: movie.cover,
+      },
       custom_elements: [
         { 'dc:creator': { _cdata: 'Alessandro Jean' } },
       ],
