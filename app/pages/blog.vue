@@ -88,8 +88,8 @@ const jsonLd = computed(() => ({
 useSeoMeta({ title: 'Blog' });
 useHead({
   link: [
-    { rel: 'alternate', type: 'application/rss+xml', title: 'RSS', href: '/blog/feed.rss' },
-    { rel: 'alternate', type: 'application/feed+json', title: 'RSS', href: '/blog/feed.json' },
+    { rel: 'alternate', type: 'application/rss+xml', title: 'Feed (RSS)', href: '/blog/feed.xml' },
+    { rel: 'alternate', type: 'application/feed+json', title: 'Feed (JSON)', href: '/blog/feed.json' },
   ],
   script: () => [{ type: 'application/ld+json', innerHTML: JSON.stringify(jsonLd.value) }],
 })

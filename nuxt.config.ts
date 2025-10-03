@@ -49,7 +49,12 @@ export default defineNuxtConfig({
   // nitro: {
   //   prerender: {
   //     crawlLinks: true,
-  //     routes: ['/blog/feed.xml', '/blog/feed.json'],
+  //     routes: [
+  //       '/blog/feed.xml',
+  //       '/blog/feed.json',
+  //       '/movies/feed.xml',
+  //       '/movies/feed.json',
+  //     ],
   //   }
   // }
 })

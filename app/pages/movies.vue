@@ -105,8 +105,8 @@ useSeoMeta({ title: 'Filmes' });
 
 useHead({
   link: [
-    { rel: 'alternate', type: 'application/rss+xml', title: 'RSS', href: '/movies/feed.rss' },
-    { rel: 'alternate', type: 'application/feed+json', title: 'RSS', href: '/movies/feed.json' },
+    { rel: 'alternate', type: 'application/rss+xml', title: 'Feed (RSS)', href: '/movies/feed.xml' },
+    { rel: 'alternate', type: 'application/feed+json', title: 'Feed (JSON)', href: '/movies/feed.json' },
   ],
   // script: () => [{ type: 'application/ld+json', innerHTML: JSON.stringify(jsonLd.value) }],
 });
