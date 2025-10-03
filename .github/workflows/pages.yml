@@ -29,10 +29,6 @@ jobs:
         with:
           node-version: 23
           cache: 'pnpm'
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: nuxt
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -45,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Static HTML export with Nuxt
-        run: pnpm run generate
+        run: pnpm run generate --preset github_pages
         env:
           NUXT_NOTION_API_KEY: ${{ secrets.NUXT_NOTION_API_KEY }}
           NUXT_NOTION_POSTS_DATA_SOURCE_ID: ${{ secrets.NUXT_NOTION_POSTS_DATA_SOURCE_ID }}
