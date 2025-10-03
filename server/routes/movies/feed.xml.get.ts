@@ -30,6 +30,11 @@ export default defineEventHandler(async (event) => {
       },
       custom_elements: [
         { 'dc:creator': { _cdata: 'Alessandro Jean' } },
+        { 
+          'content:encoded': { 
+            _cdata: `<p>Leia o conteúdo completo <a href="${url}/movies/${movie.movieId}/${movie.slug}">no site</a>.</p>`,
+          },
+        },
       ],
     });
   }

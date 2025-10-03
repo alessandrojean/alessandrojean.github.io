@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
       id: `${m.movieId}/${m.slug}`,
       url: `${url}/movie/${m.movieId}/${m.slug}`,
       title: `${m.title} (${m.year})`,
-      content_html: `<p>Leia o conteúdo completo <a href="${url}/movies/${m.slug}">no site</a>.</p>`,
+      content_html: `<p>Leia o conteúdo completo <a href="${url}/movies/${m.movieId}/${m.slug}">no site</a>.</p>`,
       date_published: new Date(m.published_at).toISOString(),
       date_modified: new Date(m.updated_at).toISOString(),
       language: 'pt-BR',
