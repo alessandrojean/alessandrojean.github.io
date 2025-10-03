@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/scripts',
     '@nuxt/image',
+    '@nuxtjs/robots',
   ],
 
   css: ['~/assets/css/main.css'],
@@ -39,6 +40,10 @@ export default defineNuxtConfig({
 
   icon: {
     mode: 'svg',
+  },
+
+  robots: {
+    blockAiBots: true,
   },
 
   // nitro: {

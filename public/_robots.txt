@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+Content-Usage: ai=n
+Content-Usage: train-ai=n
