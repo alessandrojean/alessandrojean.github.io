@@ -7,6 +7,7 @@
       placeholder
       format="webp"
       loading="lazy"
+      preload
     />
 
     <figcaption>
