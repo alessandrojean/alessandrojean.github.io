@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite';
+import { definePerson } from 'nuxt-schema-org/schema';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -11,7 +12,13 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/image',
     '@nuxtjs/robots',
+    'nuxt-schema-org',
   ],
+
+  site: {
+    name: 'Alessandro Jean',
+    url: 'https://alessandrojean.github.io',
+  },
 
   css: ['~/assets/css/main.css'],
 
@@ -56,5 +63,28 @@ export default defineNuxtConfig({
         '/movies/feed.json',
       ],
     }
+  },
+
+  schemaOrg: {
+    identity: definePerson({
+      name: 'Alessandro Jean',
+      image: '/avatar-okabe-small.webp',
+      url: 'alessandrojean.github.io',
+      gender: 'Male',
+      jobTitle: 'Developer',
+      sameAs: [
+        'https://github.com/alessandrojean',
+        'https://instagram.com/alessandrojean',
+        'https://threads.net/@alessandrojean',
+        'https://www.linkedin.com/in/alessandrojean',
+        'https://x.com/alessandrojean_',
+        'https://mas.to/@alessandrojean',
+        'https://myanimelist.net/profile/alessandrojean',
+        'https://trakt.tv/users/alessandrojean',
+        'https://linktr.ee/alessandrojean',
+        'https://bsky.app/profile/alessandrojean.bsky.social',
+        'https://skoob.com.br/share/user/4231289',
+      ],
+    }),
   },
 })

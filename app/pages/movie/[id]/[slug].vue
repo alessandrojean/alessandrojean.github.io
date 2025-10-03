@@ -50,7 +50,7 @@
 
 <script lang="ts" setup>
 import 'katex/dist/katex.min.css';
-import type { UserReview, WithContext } from 'schema-dts';
+import type { UserReview } from 'schema-dts';
 import type { BlockWithChildren } from '~~/shared/types/notion';
 
 const route = useRoute();
@@ -73,34 +73,34 @@ useSeoMeta({
   twitterImage: () => movie.value?.cover,
 });
 
-const jsonLdPerson = useJsonLdPerson();
-
-const jsonLd = computed(() => ({
-  '@context': 'https://schema.org',
+useSchemaOrg(() => [{
   '@type': 'UserReview',
-  '@id': `https://alessandrojean.github.io/movie/${movie.value?.movieId}/${movie.value?.slug}`,
-  'itemReviewed': {
+  itemReviewed: {
     '@type': 'Movie',
-    'name': movie.value?.title,
-    'director': movie.value?.director.map((name) => ({
+    name: movie.value?.title,
+    director: movie.value?.director.map((name) => ({
       '@type': 'Person',
       name
     })),
-    'author': movie.value?.writer.map((name) => ({
+    author: movie.value?.writer.map((name) => ({
       '@type': 'Person',
       name,
     })),
-    'sameAs': movie.value?.tmdb ? [movie.value.tmdb] : undefined,
-    'copyrightNotice': movie.value?.copyright,
+    image: movie.value?.cover,
+    sameAs: movie.value?.tmdb ? [movie.value.tmdb] : undefined,
+    copyrightNotice: movie.value?.copyright,
   },
-  'author': jsonLdPerson,
-  'datePublished': movie.value?.published_at,
-  'dateModified': movie.value?.updated_at,
-  'inLanguage': 'pt-BR',
-} satisfies WithContext<UserReview>));
+  author: { 
+    '@id': 'https://alessandrojean.github.io/#identity',
+    name: 'Alessandro Jean',
+    url: 'https://alessandrojean.github.io',
+  },
+  datePublished: movie.value?.published_at,
+  dateModified: movie.value?.updated_at,
+  inLanguage: 'pt-BR',
+} satisfies UserReview]);
 
 useHead({
   meta: [{ name: 'fediverse:creator', content: `@${socialMedia.mastodon}` }],
-  script: () => [{ type: 'application/ld+json', innerHTML: JSON.stringify(jsonLd.value) }],
 });
 </script>

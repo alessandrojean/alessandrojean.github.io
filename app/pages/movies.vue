@@ -79,27 +79,11 @@ function movieLink(slug: string, id: number) {
   return `/movie/${id}/${slug}`;
 }
 
-// const jsonLdBlog = useJsonLdBlog();
-// const jsonLdPerson = useJsonLdSimplePerson();
-
-// const jsonLd = computed(() => ({
-//   '@context': 'https://schema.org',
-//   ...jsonLdBlog,
-//   'author': jsonLdPerson,
-//   'blogPost': (posts.value ?? []).map(p => ({
-//     '@type': 'BlogPosting',
-//     '@id': `https://alessandrojean.github.io/post/${p.slug}`,
-//     'mainEntityOfPage': `https://alessandrojean.github.io/post/${p.slug}`,
-//     'url': `https://alessandrojean.github.io/post/${p.slug}`,
-//     'name': p.title,
-//     'description': p.description,
-//     'datePublished': p.published_at,
-//     'dateModified': p.updated_at,
-//     'author': jsonLdPerson,
-//     'keywords': p.tags,
-//     'inLanguage': p.language,
-//   } satisfies BlogPosting)),
-// } satisfies WithContext<Blog>));
+useSchemaOrg([
+  defineWebPage(() => ({
+    '@type': 'CollectionPage',
+  })),
+]);
 
 useSeoMeta({ title: 'Filmes' });
 
@@ -108,6 +92,5 @@ useHead({
     { rel: 'alternate', type: 'application/rss+xml', title: 'Feed (RSS)', href: '/movies/feed.xml' },
     { rel: 'alternate', type: 'application/feed+json', title: 'Feed (JSON)', href: '/movies/feed.json' },
   ],
-  // script: () => [{ type: 'application/ld+json', innerHTML: JSON.stringify(jsonLd.value) }],
 });
 </script>

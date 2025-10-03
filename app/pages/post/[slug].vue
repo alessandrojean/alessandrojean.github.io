@@ -30,7 +30,6 @@
 
 <script lang="ts" setup>
 import 'katex/dist/katex.min.css';
-import type { BlogPosting, WithContext } from 'schema-dts'
 import type { BlockWithChildren } from '~~/shared/types/notion'
 
 const route = useRoute();
@@ -53,27 +52,24 @@ useSeoMeta({
   twitterDescription: () => post.value?.description,
 });
 
-const jsonLdPerson = useJsonLdPerson();
-const jsonLdBlog = useJsonLdBlog();
-
-const jsonLd = computed(() => ({
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-  '@id': `https://alessandrojean.github.io/post/${post.value?.slug}`,
-  'mainEntityOfPage': `https://alessandrojean.github.io/post/${post.value?.slug}`,
-  'url': `https://alessandrojean.github.io/post/${post.value?.slug}`,
-  'name': post.value?.title,
-  'description': post.value?.description,
-  'datePublished': post.value?.published_at,
-  'dateModified': post.value?.updated_at,
-  'author': jsonLdPerson,
-  'isPartOf': jsonLdBlog,
-  'keywords': post.value?.tags,
-  'inLanguage': post.value?.language,
-} satisfies WithContext<BlogPosting>));
+useSchemaOrg([
+  defineArticle(() => ({
+    '@type': 'BlogPosting',
+    headline: post.value?.title,
+    description: post.value?.description,
+    datePublished: post.value?.published_at,
+    dateModified: post.value?.updated_at,
+    keywords: post.value?.tags,
+    inLanguage: post.value?.language,
+    author: [{ 
+      '@id': 'https://alessandrojean.github.io/#identity',
+      name: 'Alessandro Jean',
+      url: 'https://alessandrojean.github.io',
+    }],
+  })),
+]);
 
 useHead({
   meta: [{ name: 'fediverse:creator', content: `@${socialMedia.mastodon}` }],
-  script: () => [{ type: 'application/ld+json', innerHTML: JSON.stringify(jsonLd.value) }],
 });
 </script>

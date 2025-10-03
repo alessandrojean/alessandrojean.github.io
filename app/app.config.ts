@@ -6,7 +6,7 @@ export default defineAppConfig({
     threads: 'alessandrojean',
     linkedin: 'alessandrojean',
     twitter: 'alessandrojean_',
-    myAnimeList: 'alessandrojen',
+    myAnimeList: 'alessandrojean',
     trakt: 'alessandrojean',
     linktree: 'alessandrojean',
     bluesky: 'alessandrojean.bsky.social',

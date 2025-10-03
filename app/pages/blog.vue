@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Blog, BlogPosting, WithContext } from 'schema-dts'
+import type { Blog, BlogPosting } from 'schema-dts';
 
 const { data: posts } = await useFetch('/api/posts');
 
@@ -63,27 +63,32 @@ const postsByYear = computed(() => {
     .reverse();
 });
 
-const jsonLdBlog = useJsonLdBlog();
-const jsonLdPerson = useJsonLdSimplePerson();
-
-const jsonLd = computed(() => ({
-  '@context': 'https://schema.org',
-  ...jsonLdBlog,
-  'author': jsonLdPerson,
-  'blogPost': (posts.value ?? []).map(p => ({
+useSchemaOrg(() => [{
+  '@type': 'Blog',
+  name: 'Alessandro Jean Blog',
+  author: { 
+    '@id': 'https://alessandrojean.github.io/#identity',
+    name: 'Alessandro Jean',
+    url: 'https://alessandrojean.github.io',
+  },
+  blogPost: (posts.value ?? []).map(p => ({
     '@type': 'BlogPosting',
     '@id': `https://alessandrojean.github.io/post/${p.slug}`,
     'mainEntityOfPage': `https://alessandrojean.github.io/post/${p.slug}`,
     'url': `https://alessandrojean.github.io/post/${p.slug}`,
-    'name': p.title,
+    'headline': p.title,
     'description': p.description,
     'datePublished': p.published_at,
     'dateModified': p.updated_at,
-    'author': jsonLdPerson,
+    author: { 
+      '@id': 'https://alessandrojean.github.io/#identity',
+      name: 'Alessandro Jean',
+      url: 'https://alessandrojean.github.io',
+    },
     'keywords': p.tags,
     'inLanguage': p.language,
   } satisfies BlogPosting)),
-} satisfies WithContext<Blog>));
+} satisfies Blog]);
 
 useSeoMeta({ title: 'Blog' });
 useHead({
@@ -91,6 +96,5 @@ useHead({
     { rel: 'alternate', type: 'application/rss+xml', title: 'Feed (RSS)', href: '/blog/feed.xml' },
     { rel: 'alternate', type: 'application/feed+json', title: 'Feed (JSON)', href: '/blog/feed.json' },
   ],
-  script: () => [{ type: 'application/ld+json', innerHTML: JSON.stringify(jsonLd.value) }],
 })
 </script>

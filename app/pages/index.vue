@@ -6,17 +6,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { Person, WithContext } from 'schema-dts'
-
-const jsonLd = useJsonLdPerson();
-
-useHead({
-  script: [{
-    type: 'application/ld+json',
-    innerHTML: JSON.stringify({
-      '@context': 'https://schema.org',
-      ...jsonLd,
-    } satisfies WithContext<Person>),
-  }]
-});
+useSchemaOrg([
+  defineWebPage({
+    potentialAction: [
+      { '@type': 'ReadAction', name: 'Blog', target: 'https://alessandrojean.github.io/blog' },
+      { '@type': 'ReadAction', name: 'Movies', target: 'https://alessandrojean.github.io/movies' },
+    ],
+  }),
+]);
 </script>
