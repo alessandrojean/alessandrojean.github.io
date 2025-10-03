@@ -1,90 +1,58 @@
-# Sample workflow for building and deploying a Nuxt site to GitHub Pages
-#
-# To get started with Nuxt see: https://nuxtjs.org/docs/get-started/installation
-#
-name: Deploy Nuxt site to Pages
-
+name: Deploy to GitHub Pages
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["master"]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [$default-branch]
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
-  # Build job
   build:
     environment: github-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v5
         with:
-          node-version: '21'
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: false
-      # - name: Get pnpm store directory
-      #   id: pnpm-cache
-      #   shell: bash
-      #   run: |
-      #     echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-      # - name: Setup pnpm cache
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-      #     key: ${{ runner.os }}-docs-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-docs-pnpm-store-
+          node-version: 23
+          cache: 'pnpm'
       - name: Setup Pages
-        uses: actions/configure-pages@v2
-      # - name: Restore cache
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: |
-      #       dist
-      #       .nuxt
-      #     key: ${{ runner.os }}-nuxt-build-${{ hashFiles('dist') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-nuxt-build-
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: nuxt
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist
+            .nuxt
+          key: ${{ runner.os }}-nuxt-build-${{ hashFiles('dist') }}
+          restore-keys: |
+            ${{ runner.os }}-nuxt-build-
       - name: Install dependencies
         run: pnpm install
-      - name: Clean Nuxt cache
-        run: npx nuxi cleanup .
       - name: Static HTML export with Nuxt
-        run: pnpm generate
+        run: pnpm run generate
         env:
           NUXT_NOTION_API_KEY: ${{ secrets.NUXT_NOTION_API_KEY }}
-          NUXT_NOTION_POSTS_TABLE: ${{ secrets.NUXT_NOTION_POSTS_TABLE }}
-          NUXT_NOTION_PROJECTS_TABLE: ${{ secrets.NUXT_NOTION_PROJECTS_TABLE }}
-          NUXT_NOTION_ABOUT_PAGE: ${{ secrets.NUXT_NOTION_ABOUT_PAGE }}
-          NUXT_NOTION_ENGLISH_ABOUT_PAGE: ${{ secrets.NUXT_NOTION_ENGLISH_ABOUT_PAGE }}
-      - name: Add .nojekyll
-        run: touch ./.output/public/.nojekyll
+          NUXT_NOTION_POSTS_DATA_SOURCE_ID: ${{ secrets.NUXT_NOTION_POSTS_DATA_SOURCE_ID }}
+          NUXT_NOTION_MOVIES_DATA_SOURCE_ID: ${{ secrets.NUXT_NOTION_MOVIES_DATA_SOURCE_ID }}
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./.output/public
-
-  # Deployment job
+          path: ./dist
+  
   deploy:
     environment:
       name: github-pages
@@ -94,4 +62,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4

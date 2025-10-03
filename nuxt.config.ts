@@ -1,71 +1,50 @@
+import tailwindcss from '@tailwindcss/vite';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  site: { url: 'https://alessandrojean.github.io' },
-  ssr: true,
-  srcDir: 'src/',
   modules: [
-    '@nuxtjs/tailwindcss',
-    '@nuxtjs/color-mode',
-    '@nuxtjs/i18n',
-    './src/modules/media-extractor',
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/icon',
+    '@nuxt/scripts',
     '@nuxt/image',
-    'nuxt-og-image',
-    './src/modules/rss',
   ],
-  colorMode: { classSuffix: '' },
-  tailwindcss: { viewer: false },
-  i18n: {
-    baseUrl: 'https://alessandrojean.github.io',
-    locales: [
-      { code: 'en', iso: 'en-US', file: 'en-US.yaml' },
-      { code: 'pt', iso: 'pt-BR', file: 'pt-BR.yaml' }
-    ],
-    // detectBrowserLanguage: {
-    //   alwaysRedirect: true,
-    //   useCookie: false
-    // },
-    lazy: true,
-    langDir: 'lang/',
-    defaultLocale: 'en',
-    strategy: 'prefix_except_default',
-    skipSettingLocaleOnNavigate: true
-  },
-  ogImage: {
-    fonts: [
-      'Inter:400',
-      'Inter:500',
-      'Inter:700',
-    ],
-    defaults: {
-      width: 800,
-      height: 400,
-    }
-  },
-  image: {
-    domains: [
-      'amazonaws.com',
-      'notion-emojis.s3-us-west-2.amazonaws.com',
-      'prod-files-secure.s3.us-west-2.amazonaws.com',
-      'raw.githubusercontent.com'
-    ],
-    alias: {
-      twemoji: 'https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter'
-    }
-  },
+
+  css: ['~/assets/css/main.css'],
+
   runtimeConfig: {
-    notionApiKey: '',
-    notionPostsTable: '',
-    notionProjectsTable: '',
-    notionAboutPage: '',
-    notionEnglishAboutPage: '',
+    notion: {
+      apiKey: '',
+      postsDataSourceId: '',
+      moviesDataSourceId: '',
+    }
   },
+
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ]
+  },
+
+  fonts: {
+    provider: 'fontsource',
+    families: [
+      { name: 'Crimson Pro', weights: ['200 900'] },
+      { name: 'Source Code Pro', weights: ['200 900'] },
+      { name: 'Source Sans 3', weights: ['200 900'] },
+    ],
+  },
+
+  icon: {
+    mode: 'svg',
+  },
+
   nitro: {
     prerender: {
       crawlLinks: true,
+      routes: ['/blog/feed.xml', '/blog/feed.json'],
     }
-  },
-  experimental: {
-    payloadExtraction: true,
   }
 })

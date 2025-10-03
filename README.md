@@ -23,3 +23,4 @@ To run the site locally, follow these instructions:
 
 > You can check out the full license [here](LICENSE).
 This repository is licensed under the terms of the **MIT** license.
+
