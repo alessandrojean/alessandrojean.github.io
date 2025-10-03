@@ -44,7 +44,7 @@ export function parsePostProperties(page: PageObjectResponse) {
     updated_at: page.last_edited_time,
     is_public: properties.Public.checkbox,
     slug: properties.Slug.rich_text[0].plain_text,
-    description: properties.Description.rich_text[0].plain_text,
+    description: properties.Description.rich_text[0]?.plain_text ?? '',
     category: properties.Area.select
       ? { 
           name: properties.Area.select.name,
