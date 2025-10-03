@@ -31,9 +31,9 @@ export default defineNuxtConfig({
   fonts: {
     provider: 'fontsource',
     families: [
-      { name: 'Crimson Pro', weights: ['200 900'] },
-      { name: 'Source Code Pro', weights: ['200 900'] },
-      { name: 'Source Sans 3', weights: ['200 900'] },
+      { name: 'Crimson Pro', weights: ['200 900'], subsets: ['latin'] },
+      { name: 'Source Code Pro', weights: ['200 900'], subsets: ['latin'] },
+      { name: 'Source Sans 3', weights: ['200 900'], subsets: ['latin'] },
     ],
   },
 
@@ -41,10 +41,10 @@ export default defineNuxtConfig({
     mode: 'svg',
   },
 
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-      routes: ['/blog/feed.xml', '/blog/feed.json'],
-    }
-  }
+  // nitro: {
+  //   prerender: {
+  //     crawlLinks: true,
+  //     routes: ['/blog/feed.xml', '/blog/feed.json'],
+  //   }
+  // }
 })
