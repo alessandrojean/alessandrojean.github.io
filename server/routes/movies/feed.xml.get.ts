@@ -18,12 +18,14 @@ export default defineEventHandler(async (event) => {
     },
   });
 
+  const list = new Intl.ListFormat('pt-BR', { type: 'conjunction' });
+
   for (const movie of movies) {
     feed.item({
       title: `${movie.title} (${movie.year})`,
       guid: `${url}/movie/${movie.movieId}/${movie.slug}`,
       url: `${url}/movie/${movie.movieId}/${movie.slug}`,
-      description: '',
+      description: `Direção: ${list.format(movie.director)} / Roteiro: ${list.format(movie.writer)}`,
       date: new Date(movie.published_at),
       enclosure: {
         url: movie.cover,
