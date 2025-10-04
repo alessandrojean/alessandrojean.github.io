@@ -1,3 +1,4 @@
+import { Client } from '@notionhq/client';
 import RSS from 'rss';
 
 export default defineEventHandler(async (event) => {
@@ -22,8 +23,17 @@ export default defineEventHandler(async (event) => {
   });
 
   const list = new Intl.ListFormat('pt-BR', { type: 'conjunction' });
+  const content: BlockWithChildren[][] = [];
+
+  const config = useRuntimeConfig(event);
+  const notion = new Client({ auth: config.notion.apiKey });
 
   for (const movie of movies) {
+    const blocks = await getNotionBlocks(notion, movie.id);
+    content.push(blocks);
+  }
+
+  for (const [idx, movie] of movies.entries()) {
     feed.item({
       title: `${movie.title} (${movie.year})`,
       guid: `${url}/movie/${movie.movieId}/${movie.slug}`,
@@ -35,11 +45,7 @@ export default defineEventHandler(async (event) => {
       },
       custom_elements: [
         { 'dc:creator': { _cdata: 'Alessandro Jean' } },
-        { 
-          'content:encoded': { 
-            _cdata: `<p>Leia o conteúdo completo <a href="${url}/movies/${movie.movieId}/${movie.slug}">no site</a>.</p>`,
-          },
-        },
+        { 'content:encoded': { _cdata: parseMovieToHtml(movie, content[idx]) } },
       ],
     });
   }
