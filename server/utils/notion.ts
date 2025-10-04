@@ -312,40 +312,20 @@ export function groupNotionBlocks(blocks: BlockWithChildren[]) {
 function parseDecoratorsToHtml(decorators: RichTextItemResponse[]): string {
   let html = '';
 
-  for (const part of decorators) {
-    if (part.href) {
-      html += `<a href="${part.href}">`;
-    }
+  for (const { href, annotations, plain_text } of decorators) {
+    const { bold, code, italic } = annotations;
 
-    if (part.annotations.bold) {
-      html += `<strong>`;
-    }
+    if (href) html += `<a href="${href}">`;
+    if (bold) html += `<strong>`;
+    if (code) html += `<code>`;
+    if (italic) html += `<em>`;
 
-    if (part.annotations.code) {
-      html += `<code>`;
-    }
+    html += encode(plain_text.trim());
 
-    if (part.annotations.italic) {
-      html += `<em>`;
-    }
-
-    html += encode(part.plain_text.trim());
-
-    if (part.annotations.italic) {
-      html += `</em>`;
-    }
-
-    if (part.annotations.code) {
-      html += `</code>`;
-    }
-
-    if (part.annotations.bold) {
-      html += `</strong>`;
-    }
-
-    if (part.href) {
-      html += `</a>`;
-    }
+    if (italic) html += `</em>`;
+    if (code) html += `</code>`;
+    if (bold) html += `</strong>`;
+    if (href) html += `</a>`;
   }
   
   return html;
