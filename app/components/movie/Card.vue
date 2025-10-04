@@ -11,7 +11,7 @@
     />
 
     <figcaption>
-      Direção: {{ directors.join(', ') }}
+      Direção: {{ list.format(directors) }}
       / Roteiro: {{ writersText }}
       / <NuxtLink external :href="tmdb" target="_blank">TMDB</NuxtLink>
       <br >
@@ -30,9 +30,11 @@ const { writers } = defineProps<{
   copyright: string;
 }>();
 
+const list = new Intl.ListFormat('pt-BR', { type: 'conjunction' });
+
 const writersText = computed(() => {
   if (writers.length <= 2) {
-    return writers.join(' e ');
+    return list.format(writers);
   }
 
   return `${writers[0]} e outros`;

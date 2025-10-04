@@ -1,8 +1,11 @@
 import { Client } from '@notionhq/client';
-import type { BulletedListItemBlockObjectResponse, ImageBlockObjectResponse, NumberedListItemBlockObjectResponse, PageObjectResponse, ToDoBlockObjectResponse } from '@notionhq/client';
-import type { H3Event, EventHandlerRequest } from 'h3';
+import { encode } from 'html-entities';
+import dedent from 'dedent';
 import { join } from 'node:path';
-import { writeFile } from 'node:fs/promises'
+import { writeFile } from 'node:fs/promises';
+
+import type { H3Event, EventHandlerRequest } from 'h3';
+import type { BulletedListItemBlockObjectResponse, ImageBlockObjectResponse, NumberedListItemBlockObjectResponse, PageObjectResponse, RichTextItemResponse, ToDoBlockObjectResponse } from '@notionhq/client';
 import type { BulletedListBlock, NumberedListBlock, ToDoListBlock } from '~~/shared/types/notion';
 
 type PageProperties = PageObjectResponse['properties'][string];
@@ -304,4 +307,79 @@ export function groupNotionBlocks(blocks: BlockWithChildren[]) {
   }
 
   return grouped;
+}
+
+function parseDecoratorsToHtml(decorators: RichTextItemResponse[]): string {
+  let html = '';
+
+  for (const part of decorators) {
+    if (part.href) {
+      html += `<a href="${part.href}">`;
+    }
+
+    if (part.annotations.bold) {
+      html += `<strong>`;
+    }
+
+    if (part.annotations.code) {
+      html += `<code>`;
+    }
+
+    if (part.annotations.italic) {
+      html += `<em>`;
+    }
+
+    html += encode(part.plain_text.trim());
+
+    if (part.annotations.italic) {
+      html += `</em>`;
+    }
+
+    if (part.annotations.code) {
+      html += `</code>`;
+    }
+
+    if (part.annotations.bold) {
+      html += `</strong>`;
+    }
+
+    if (part.href) {
+      html += `</a>`;
+    }
+  }
+  
+  return html;
+}
+
+export function parseBlocksToHtml(blocks: BlockWithChildren[]): string {
+  let html = '';
+
+  for (const block of blocks) {
+    switch (block.type) {
+      case 'paragraph':
+        html += `<p>${parseDecoratorsToHtml(block.paragraph.rich_text)}</p>`;
+    }
+  }
+
+  return html;
+}
+
+type Movie = ReturnType<typeof parseMovieProperties>;
+
+export function parseMovieToHtml(movie: Movie, blocks: BlockWithChildren[]): string {
+  const list = new Intl.ListFormat('pt-BR', { type: 'conjunction' });
+  const directors = list.format(movie.director.map(d => encode(d)));
+  const writers = list.format(movie.writer.map(w => encode(w)));
+  const tmdb = `<a href="${movie.tmdb}">TMDB</a>`;
+
+  const figure = dedent`
+    <figure>
+      <img alt="${encode(movie.title)}" loading="lazy" src="${movie.cover}">
+      <figcaption>
+        Direção: ${directors} / Roteiro: ${writers} / ${tmdb}<br>Copyright ${encode(movie.copyright)}.
+      </figcaption>
+    </figure>
+  `;
+
+  return figure + parseBlocksToHtml(blocks);
 }
