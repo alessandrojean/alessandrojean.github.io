@@ -81,7 +81,11 @@ export function parseMovieProperties(page: PageObjectResponse) {
   };
 }
 
-export async function getNotionPosts(event: H3Event<EventHandlerRequest>) {
+interface GetNotionPostsOptions {
+  pageSize?: number;
+};
+
+export async function getNotionPosts(event: H3Event<EventHandlerRequest>, options?: GetNotionPostsOptions) {
   const config = useRuntimeConfig(event);
   const notion = new Client({ auth: config.notion.apiKey });
 
@@ -91,6 +95,7 @@ export async function getNotionPosts(event: H3Event<EventHandlerRequest>) {
   const response = await notion.dataSources.query({
     data_source_id: config.notion.postsDataSourceId,
     filter: publicOnly ? publicFilter : undefined,
+    page_size: options?.pageSize,
     sorts: [{
       property: 'Created at',
       direction: 'descending',
@@ -101,7 +106,11 @@ export async function getNotionPosts(event: H3Event<EventHandlerRequest>) {
     .map((page) => parsePostProperties(page));
 }
 
-export async function getNotionMovies(event: H3Event<EventHandlerRequest>) {
+interface GetNotionMoviesOptions {
+  pageSize?: number;
+};
+
+export async function getNotionMovies(event: H3Event<EventHandlerRequest>, options?: GetNotionMoviesOptions) {
   const config = useRuntimeConfig(event);
   const notion = new Client({ auth: config.notion.apiKey });
 
@@ -111,6 +120,7 @@ export async function getNotionMovies(event: H3Event<EventHandlerRequest>) {
   const args: Parameters<typeof notion.dataSources.query>[0] = {
     data_source_id: config.notion.moviesDataSourceId,
     filter: publicOnly ? publicFilter : undefined,
+    page_size: options?.pageSize,
     sorts: [
       { property: 'Created at', direction: 'descending' },
       { property: 'ID', direction: 'descending' },
@@ -121,7 +131,7 @@ export async function getNotionMovies(event: H3Event<EventHandlerRequest>) {
 
   const results = response.results;
 
-  while (response.next_cursor) {
+  while (options?.pageSize === undefined && response.next_cursor) {
     response = await notion.dataSources.query({
       ...args,
       start_cursor: response.next_cursor,

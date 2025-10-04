@@ -1,16 +1,19 @@
 import RSS from 'rss';
 
 export default defineEventHandler(async (event) => {
-  const movies = await getNotionMovies(event);
+  const movies = await getNotionMovies(event, { pageSize: 10 });
   const url = 'https://alessandrojean.github.io';
 
   const feed = new RSS({
     title: 'Alessandro Jean\'s Movie Comments',
     description: 'Just a personal movie blog.',
     site_url: url,
-    feed_url: `${url}/movies/feed.rss`,
+    feed_url: `${url}/movies/feed.xml`,
     language: 'pt-BR',
     copyright: `Alessandro Jean © 2022–${new Date().getFullYear()}`,
+    custom_elements: [
+      { 'icon': `${url}/img/apple-touch-icon.png` },
+    ],
     custom_namespaces: {
       content: 'http://purl.org/rss/1.0/modules/content/',
       dc: 'http://purl.org/dc/elements/1.1/',

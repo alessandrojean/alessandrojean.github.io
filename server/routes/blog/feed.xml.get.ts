@@ -2,16 +2,19 @@ import RSS from 'rss';
 import { getNotionPosts } from '~~/server/utils/notion';
 
 export default defineEventHandler(async (event) => {
-  const posts = await getNotionPosts(event);
+  const posts = await getNotionPosts(event, { pageSize: 10 });
   const url = 'https://alessandrojean.github.io';
 
   const feed = new RSS({
     title: 'Alessandro Jean\'s Blog',
     description: 'Just a personal blog.',
     site_url: url,
-    feed_url: `${url}/blog/feed.rss`,
+    feed_url: `${url}/blog/feed.xml`,
     language: 'pt-BR',
     copyright: `Alessandro Jean © 2022–${new Date().getFullYear()}`,
+    custom_elements: [
+      { 'icon': `${url}/img/apple-touch-icon.png` },
+    ],
     custom_namespaces: {
       content: 'http://purl.org/rss/1.0/modules/content/',
       dc: 'http://purl.org/dc/elements/1.1/',

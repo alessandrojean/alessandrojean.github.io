@@ -1,7 +1,7 @@
 import { getNotionPosts } from '~~/server/utils/notion';
 
 export default defineEventHandler(async (event) => {
-  const posts = await getNotionPosts(event);
+  const posts = await getNotionPosts(event, { pageSize: 10 });
   const url = 'https://alessandrojean.github.io';
 
   setResponseHeader(event, 'Content-Type', 'application/feed+json');
@@ -14,6 +14,7 @@ export default defineEventHandler(async (event) => {
     language: 'pt-BR',
     home_page_url: url,
     feed_url: `${url}/blog/feed.json`,
+    icon: `${url}/img/apple-touch-icon.png`,
     items: posts.map(p => ({
       id: p.slug,
       url: `${url}/post/${p.slug}`,
