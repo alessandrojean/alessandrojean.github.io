@@ -1,3 +1,24 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "tailwindCSS.classAttributes": ["class", "ui"],
+  "tailwindCSS.experimental.classRegex": [
+    ["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never",
+    "source.fixAll.eslint": "always",
+  },
+
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.format.semicolons": "insert",
+
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.format.semicolons": "insert",
 }
