@@ -10,12 +10,15 @@
       <PostHeaderTitle>{{ movie.title }}</PostHeaderTitle>
 
       <PostHeaderInfo class="-mt-2">
-        <PostHeaderInfoDate locale="pt-BR" :time="movie.published_at" />
+        <PostHeaderInfoDate
+          locale="pt-BR"
+          :time="movie.published_at"
+        />
         <PostHeaderInfoSeparator />
         <PostHeaderInfoAuthor />
       </PostHeaderInfo>
     </PostHeader>
-    
+
     <BlockRenderer
       class="mt-10"
       :blocks="blocks"
@@ -50,7 +53,9 @@
 
 <script lang="ts" setup>
 import 'katex/dist/katex.min.css';
+
 import type { UserReview } from 'schema-dts';
+
 import type { BlockWithChildren } from '~~/shared/types/notion';
 
 const route = useRoute();
@@ -75,29 +80,29 @@ useSeoMeta({
 
 useSchemaOrg(() => [{
   '@type': 'UserReview',
-  itemReviewed: {
+  'itemReviewed': {
     '@type': 'Movie',
-    name: movie.value?.title,
-    director: movie.value?.director.map((name) => ({
-      '@type': 'Person',
-      name
-    })),
-    author: movie.value?.writer.map((name) => ({
+    'name': movie.value?.title,
+    'director': movie.value?.director.map(name => ({
       '@type': 'Person',
       name,
     })),
-    image: movie.value?.cover,
-    sameAs: movie.value?.tmdb ? [movie.value.tmdb] : undefined,
-    copyrightNotice: movie.value?.copyright,
+    'author': movie.value?.writer.map(name => ({
+      '@type': 'Person',
+      name,
+    })),
+    'image': movie.value?.cover,
+    'sameAs': movie.value?.tmdb ? [movie.value.tmdb] : undefined,
+    'copyrightNotice': movie.value?.copyright,
   },
-  author: { 
+  'author': {
     '@id': 'https://alessandrojean.github.io/#identity',
-    name: 'Alessandro Jean',
-    url: 'https://alessandrojean.github.io',
+    'name': 'Alessandro Jean',
+    'url': 'https://alessandrojean.github.io',
   },
-  datePublished: movie.value?.published_at,
-  dateModified: movie.value?.updated_at,
-  inLanguage: 'pt-BR',
+  'datePublished': movie.value?.published_at,
+  'dateModified': movie.value?.updated_at,
+  'inLanguage': 'pt-BR',
 } satisfies UserReview]);
 
 useHead({

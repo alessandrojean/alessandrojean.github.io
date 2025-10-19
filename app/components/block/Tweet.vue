@@ -32,7 +32,7 @@ interface TwitterWidgetOptions {
 }
 
 interface TwitterWidgets {
-  createTweet: (id: string, container: HTMLDivElement, options: TwitterWidgetOptions) => Promise<HTMLDivElement | undefined>
+  createTweet: (id: string, container: HTMLDivElement, options: TwitterWidgetOptions) => Promise<HTMLDivElement | undefined>;
 }
 
 interface TwitterWidgetsApi {

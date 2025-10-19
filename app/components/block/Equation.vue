@@ -1,10 +1,14 @@
 <template>
-  <div data-slot="equation" class="[&_.katex-display]:!my-0" v-html="equation" />
+  <div
+    data-slot="equation"
+    class="[&_.katex-display]:!my-0"
+    v-html="equation"
+  />
 </template>
 
 <script lang="ts" setup>
-import katex from 'katex';
 import type { EquationBlockObjectResponse } from '@notionhq/client';
+import katex from 'katex';
 
 const { block } = defineProps<{ block: EquationBlockObjectResponse }>();
 const equation = computed(() => {

@@ -12,18 +12,22 @@
         :external="false"
         aria-current-value="page"
       >
-        <BlockTextRenderer :rich-text="header.heading_2.rich_text" :id-map />
+        <BlockTextRenderer
+          :rich-text="header.heading_2.rich_text"
+          :id-map
+        />
       </NuxtLink>
     </li>
   </ol>
 </template>
 
 <script lang="ts" setup>
-import type { Heading2BlockObjectResponse, TableOfContentsBlockObjectResponse } from '@notionhq/client'
-import slugify from 'slugify'
-import type { BlockWithChildren } from '~~/shared/types/notion'
+import type { Heading2BlockObjectResponse, TableOfContentsBlockObjectResponse } from '@notionhq/client';
+import slugify from 'slugify';
 
-const { post, block, idMap } = defineProps<{ 
+import type { BlockWithChildren } from '~~/shared/types/notion';
+
+const { post, block, idMap } = defineProps<{
   post: BlockWithChildren[];
   block: TableOfContentsBlockObjectResponse;
   idMap: Record<string, string>;
@@ -35,7 +39,7 @@ const headers = computed(() => {
   return post
     .slice(selfIndex)
     .filter(b => b.type === 'heading_2');
-})
+});
 
 function hash(block: Heading2BlockObjectResponse) {
   const text = getTextContent(block.heading_2.rich_text);

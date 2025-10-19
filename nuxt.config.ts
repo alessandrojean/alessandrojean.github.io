@@ -3,8 +3,6 @@ import { definePerson } from 'nuxt-schema-org/schema';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
@@ -14,26 +12,50 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     'nuxt-schema-org',
   ],
+  devtools: { enabled: true },
+
+  css: ['~/assets/css/main.css'],
 
   site: {
     name: 'Alessandro Jean',
     url: 'https://alessandrojean.github.io',
   },
 
-  css: ['~/assets/css/main.css'],
-
   runtimeConfig: {
     notion: {
       apiKey: '',
       postsDataSourceId: '',
       moviesDataSourceId: '',
-    }
+    },
+  },
+
+  compatibilityDate: '2025-07-15',
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: [
+        '/blog/feed.xml',
+        '/blog/feed.json',
+        '/movies/feed.xml',
+        '/movies/feed.json',
+      ],
+    },
   },
 
   vite: {
     plugins: [
       tailwindcss(),
-    ]
+    ],
+  },
+
+  eslint: {
+    config: {
+      stylistic: {
+        semi: true,
+        braceStyle: '1tbs',
+      },
+    },
   },
 
   fonts: {
@@ -51,18 +73,6 @@ export default defineNuxtConfig({
 
   robots: {
     blockAiBots: true,
-  },
-
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-      routes: [
-        '/blog/feed.xml',
-        '/blog/feed.json',
-        '/movies/feed.xml',
-        '/movies/feed.json',
-      ],
-    }
   },
 
   schemaOrg: {
@@ -87,4 +97,4 @@ export default defineNuxtConfig({
       ],
     }),
   },
-})
+});

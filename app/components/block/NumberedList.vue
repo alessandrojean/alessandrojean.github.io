@@ -5,7 +5,10 @@
       :key="item.id"
     >
       <li data-slot="numbered-list-item">
-        <BlockTextRenderer :rich-text="item.numbered_list_item.rich_text" :id-map />
+        <BlockTextRenderer
+          :rich-text="item.numbered_list_item.rich_text"
+          :id-map
+        />
         <BlockRenderer
           v-if="item.children?.length && item.children[0]!.type !== 'numbered_list'"
           :blocks="item.children"
@@ -24,9 +27,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { NumberedListBlock } from '~~/shared/types/notion'
+import type { NumberedListBlock } from '~~/shared/types/notion';
 
-const { block, idMap } = defineProps<{ 
+const { block, idMap } = defineProps<{
   block: NumberedListBlock;
   idMap: Record<string, string>;
 }>();

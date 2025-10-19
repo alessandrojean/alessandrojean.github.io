@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     language: 'pt-BR',
     copyright: `Alessandro Jean © 2022–${new Date().getFullYear()}`,
     custom_elements: [
-      { 'icon': `${url}/img/apple-touch-icon.png` },
+      { icon: `${url}/img/apple-touch-icon.png` },
     ],
     custom_namespaces: {
       content: 'http://purl.org/rss/1.0/modules/content/',

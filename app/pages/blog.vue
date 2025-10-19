@@ -12,7 +12,9 @@
       :key="year"
       class="mt-12 first-of-type:mt-0"
     >
-      <h2 class="text-gray-500 dark:text-gray-400 text-sm">{{ year }}</h2>
+      <h2 class="text-gray-500 dark:text-gray-400 text-sm">
+        {{ year }}
+      </h2>
 
       <ul>
         <li
@@ -26,14 +28,23 @@
             :aria-labelledby="`${post.id}-title`"
             class="opacity-80 hover:opacity-100 transition-opacity flex flex-col md:flex-row md:items-center gap-1 md:gap-2"
           >
-            <span v-if="!post.is_public" class="text-sm hidden md:inline-flex items-center justify-center rounded bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 w-12 h-5 -ml-14">
+            <span
+              v-if="!post.is_public"
+              class="text-sm hidden md:inline-flex items-center justify-center rounded bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 w-12 h-5 -ml-14"
+            >
               Private
             </span>
             <span :id="`${post.id}-title`">
               {{ post.title }}
             </span>
             <span class="text-base text-gray-500 dark:text-gray-400">
-              <NuxtTime :datetime="post.published_at" locale="en-US" day="numeric" month="short" time-zone="UTC" />
+              <NuxtTime
+                :datetime="post.published_at"
+                locale="en-US"
+                day="numeric"
+                month="short"
+                time-zone="UTC"
+              />
               <template v-if="post.category">
                 <span class="text-gray-400 dark:text-gray-500"> · </span>
                 <span>{{ post.category.name }}</span>
@@ -49,14 +60,14 @@
 <script lang="ts" setup>
 import type { Blog, BlogPosting } from 'schema-dts';
 
-const { data: posts } = await useFetch('/api/posts');
+const { data } = await useFetch('/api/posts');
 
 const postsByYear = computed(() => {
-  if (!posts.value) {
+  if (!data.value) {
     return undefined;
   }
 
-  const byYear = Object.groupBy(posts.value, (post) => post.published_at.slice(0, 4));
+  const byYear = Object.groupBy(data.value, post => post.published_at.slice(0, 4));
 
   return Object.entries(byYear)
     .map(([y, ps]) => ({ year: y, posts: ps }))
@@ -65,13 +76,13 @@ const postsByYear = computed(() => {
 
 useSchemaOrg(() => [{
   '@type': 'Blog',
-  name: 'Alessandro Jean Blog',
-  author: { 
+  'name': 'Alessandro Jean Blog',
+  'author': {
     '@id': 'https://alessandrojean.github.io/#identity',
-    name: 'Alessandro Jean',
-    url: 'https://alessandrojean.github.io',
+    'name': 'Alessandro Jean',
+    'url': 'https://alessandrojean.github.io',
   },
-  blogPost: (posts.value ?? []).map(p => ({
+  'blogPost': (data.value ?? []).map(p => ({
     '@type': 'BlogPosting',
     '@id': `https://alessandrojean.github.io/post/${p.slug}`,
     'mainEntityOfPage': `https://alessandrojean.github.io/post/${p.slug}`,
@@ -80,10 +91,10 @@ useSchemaOrg(() => [{
     'description': p.description,
     'datePublished': p.published_at,
     'dateModified': p.updated_at,
-    author: { 
+    'author': {
       '@id': 'https://alessandrojean.github.io/#identity',
-      name: 'Alessandro Jean',
-      url: 'https://alessandrojean.github.io',
+      'name': 'Alessandro Jean',
+      'url': 'https://alessandrojean.github.io',
     },
     'keywords': p.tags,
     'inLanguage': p.language,
@@ -96,5 +107,5 @@ useHead({
     { rel: 'alternate', type: 'application/rss+xml', title: 'Feed (RSS)', href: '/blog/feed.xml' },
     { rel: 'alternate', type: 'application/feed+json', title: 'Feed (JSON)', href: '/blog/feed.json' },
   ],
-})
+});
 </script>

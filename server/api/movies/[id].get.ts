@@ -1,5 +1,6 @@
-import { Client } from '@notionhq/client';
 import type { PageObjectResponse } from '@notionhq/client';
+import { Client } from '@notionhq/client';
+
 import { getNotionBlocks, groupNotionBlocks, processImages } from '~~/server/utils/notion';
 
 export default defineEventHandler(async (event) => {
@@ -39,4 +40,4 @@ export default defineEventHandler(async (event) => {
     blocks: groupNotionBlocks(blocks),
     movies: {},
   };
-})
+});

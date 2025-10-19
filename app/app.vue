@@ -1,7 +1,10 @@
 <template>
   <main class="container mx-auto max-w-3xl px-4 md:px-0">
     <NuxtRouteAnnouncer />
-    <NuxtLoadingIndicator color="#0ea4e9" :duration="3000" />
+    <NuxtLoadingIndicator
+      color="#0ea4e9"
+      :duration="3000"
+    />
     <NuxtPage />
   </main>
 </template>

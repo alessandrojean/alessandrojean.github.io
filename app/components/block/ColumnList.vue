@@ -13,20 +13,25 @@
       class="typography"
       data-slot="column"
     >
-      <BlockRenderer :blocks="children(column)" :id-map no-container />
+      <BlockRenderer
+        :blocks="children(column)"
+        :id-map
+        no-container
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { ColumnBlockObjectResponse, ColumnListBlockObjectResponse } from '@notionhq/client';
-import type { BlockWithChildren, WithChildren } from '~~/shared/types/notion'
+
+import type { BlockWithChildren, WithChildren } from '~~/shared/types/notion';
 
 type ColumnListBlock = ColumnListBlockObjectResponse & {
   children?: WithChildren<ColumnBlockObjectResponse>[];
 };
 
-const { block, idMap } = defineProps<{ 
+const { block, idMap } = defineProps<{
   block: ColumnListBlock;
   idMap: Record<string, string>;
 }>();

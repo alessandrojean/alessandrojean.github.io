@@ -1,5 +1,6 @@
-import { Client } from '@notionhq/client';
 import type { PageObjectResponse } from '@notionhq/client';
+import { Client } from '@notionhq/client';
+
 import { getNotionBlocks, groupNotionBlocks, parsePostProperties, processImages } from '~~/server/utils/notion';
 
 export default defineEventHandler(async (event) => {
@@ -45,4 +46,4 @@ export default defineEventHandler(async (event) => {
     blocks: groupNotionBlocks(blocks),
     posts: Object.fromEntries(props.map(p => [p.id.replaceAll('-', ''), p.slug])),
   };
-})
+});

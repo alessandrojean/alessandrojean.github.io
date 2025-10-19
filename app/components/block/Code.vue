@@ -1,12 +1,21 @@
 <template>
-  <div data-slot="code" :data-lang="lang" class="md:-mx-4 md:has-[.diff]:-mx-6 [&_pre,&_code]:[font-feature-settings:'calt'] [&_pre,&_code]:font-mono text-sm [&_pre]:overflow-x-auto [&_pre]:ps-2 [&_pre]:pe-2 [&_pre]:rounded-xl rounded-xl [&_pre_span]:[font-style:var(--shiki-light-font-style)] [&_pre_span]:font-(--shiki-light-font-weight) normal-nums dark:[&_pre_span]:!text-(--shiki-dark) dark:[&_.shiki]:!bg-(--shiki-dark-bg)">
+  <div
+    data-slot="code"
+    :data-lang="lang"
+    class="md:-mx-4 md:has-[.diff]:-mx-6 [&_pre,&_code]:[font-feature-settings:'calt'] [&_pre,&_code]:font-mono text-sm [&_pre]:overflow-x-auto [&_pre]:ps-2 [&_pre]:pe-2 [&_pre]:rounded-xl rounded-xl [&_pre_span]:[font-style:var(--shiki-light-font-style)] [&_pre_span]:font-(--shiki-light-font-weight) normal-nums dark:[&_pre_span]:!text-(--shiki-dark) dark:[&_.shiki]:!bg-(--shiki-dark-bg)"
+  >
     <div
       v-if="fileName && !fileName.startsWith('*')"
       class="font-sans bg-[#FAFAFA] dark:bg-[#121212] flex items-center gap-1.5 rounded-t-xl ps-4 pe-2.5 py-1.5 border border-[#CFCFCF] dark:border-[#333333]"
       data-slot="code-header"
     >
       <div class="w-fit flex items-center gap-2.5">
-        <Icon v-if="fileIcon" :name="fileIcon" class="size-4 text-gray-600" stroke-width="1.5" />
+        <Icon
+          v-if="fileIcon"
+          :name="fileIcon"
+          class="size-4 text-gray-600"
+          stroke-width="1.5"
+        />
         <span class="text-sm select-none">{{ specialFileNames[fileName] ?? fileName }}</span>
       </div>
       <button
@@ -15,34 +24,49 @@
         @click="copy()"
       >
         <template v-if="copied">
-          <Icon name="lucide:copy-check" class="size-4" />
+          <Icon
+            name="lucide:copy-check"
+            class="size-4"
+          />
           <span class="sr-only">Copied!</span>
         </template>
         <template v-else>
-          <Icon name="lucide:copy" class="size-4" />
+          <Icon
+            name="lucide:copy"
+            class="size-4"
+          />
           <span class="sr-only">Copy</span>
         </template>
       </button>
-      <div class="hidden sm:flex gap-1.5 pe-1" aria-hidden="true">
-        <span class="motion-safe:transition-colors size-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full"/>
-        <span class="motion-safe:transition-colors size-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full"/>
-        <span class="motion-safe:transition-colors size-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full"/>
+      <div
+        class="hidden sm:flex gap-1.5 pe-1"
+        aria-hidden="true"
+      >
+        <span class="motion-safe:transition-colors size-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full" />
+        <span class="motion-safe:transition-colors size-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full" />
+        <span class="motion-safe:transition-colors size-3.5 bg-[#EFEFEF] dark:bg-[#292929] rounded-full" />
       </div>
     </div>
-    <div v-if="supported" v-html="shikiHtml" />
-    <pre v-else class="font-mono"><code>{{ code }}</code></pre>
+    <div
+      v-if="supported"
+      v-html="shikiHtml"
+    />
+    <pre
+      v-else
+      class="font-mono"
+    ><code>{{ code }}</code></pre>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { CodeBlockObjectResponse } from '@notionhq/client';
-import type { HighlighterCore } from 'shiki';
 import {
   transformerNotationDiff,
   transformerNotationErrorLevel,
   transformerNotationHighlight,
 } from '@shikijs/transformers';
-import { useClipboard } from '@vueuse/core'
+import { useClipboard } from '@vueuse/core';
+import type { HighlighterCore } from 'shiki';
 
 const { block } = defineProps<{ block: CodeBlockObjectResponse }>();
 
@@ -117,7 +141,7 @@ const shikiHtml = computed(() => {
             '!px-4', 'block', 'w-fit', 'min-w-full',
             'has-[.diff]:!px-6',
           ]);
-        }
+        },
       },
       transformerNotationDiff({ matchAlgorithm: 'v1' }),
       transformerNotationHighlight(),

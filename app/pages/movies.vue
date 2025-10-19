@@ -12,7 +12,9 @@
       :key="yearMonth"
       class="mt-12 first-of-type:mt-0"
     >
-      <h2 class="text-gray-500 dark:text-gray-400 text-sm">{{ yearMonth }}</h2>
+      <h2 class="text-gray-500 dark:text-gray-400 text-sm">
+        {{ yearMonth }}
+      </h2>
 
       <ul>
         <li
@@ -25,7 +27,10 @@
             :aria-labelledby="`${movie.id}-title`"
             class="opacity-80 hover:opacity-100 transition-opacity flex flex-col md:flex-row md:items-center gap-1 md:gap-2"
           >
-            <span v-if="!movie.is_public" class="text-sm hidden md:inline-flex items-center justify-center rounded bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 w-12 h-5 -ml-14">
+            <span
+              v-if="!movie.is_public"
+              class="text-sm hidden md:inline-flex items-center justify-center rounded bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 w-12 h-5 -ml-14"
+            >
               Private
             </span>
             <span :id="`${movie.id}-title`">
@@ -54,16 +59,16 @@
 <script lang="ts" setup>
 // import type { Blog, BlogPosting, WithContext } from 'schema-dts'
 
-const { data: movies } = await useFetch('/api/movies');
+const { data } = await useFetch('/api/movies');
 
 const formatter = new Intl.DateTimeFormat('pt-BR', { month: 'short', year: 'numeric' });
 
 const moviesByMonth = computed(() => {
-  if (!movies.value) {
+  if (!data.value) {
     return undefined;
   }
 
-  const byYear = Object.groupBy(movies.value, (movie) => movie.published_at.slice(0, 7));
+  const byYear = Object.groupBy(data.value, movie => movie.published_at.slice(0, 7));
 
   return Object.entries(byYear).map(([ym, ps]) => {
     const formatted = formatter.format(new Date(`${ym}-02`))!;
@@ -71,7 +76,7 @@ const moviesByMonth = computed(() => {
     return ({
       yearMonth: formatted[0]!.toUpperCase() + formatted.substring(1),
       movies: ps,
-    })
+    });
   });
 });
 

@@ -9,12 +9,15 @@
       <PostHeaderTitle>{{ post.title }}</PostHeaderTitle>
 
       <PostHeaderInfo class="-mt-2">
-        <PostHeaderInfoDate :locale="post.language" :time="post.published_at" />
+        <PostHeaderInfoDate
+          :locale="post.language"
+          :time="post.published_at"
+        />
         <PostHeaderInfoSeparator />
         <PostHeaderInfoAuthor />
       </PostHeaderInfo>
     </PostHeader>
-    
+
     <BlockRenderer
       class="mt-10"
       :blocks="post.blocks as BlockWithChildren[]"
@@ -30,7 +33,8 @@
 
 <script lang="ts" setup>
 import 'katex/dist/katex.min.css';
-import type { BlockWithChildren } from '~~/shared/types/notion'
+
+import type { BlockWithChildren } from '~~/shared/types/notion';
 
 const route = useRoute();
 const { data: post } = await useFetch(() => `/api/posts/${route.params.slug}`);
@@ -55,16 +59,16 @@ useSeoMeta({
 useSchemaOrg([
   defineArticle(() => ({
     '@type': 'BlogPosting',
-    headline: post.value?.title,
-    description: post.value?.description,
-    datePublished: post.value?.published_at,
-    dateModified: post.value?.updated_at,
-    keywords: post.value?.tags,
-    inLanguage: post.value?.language,
-    author: [{ 
+    'headline': post.value?.title,
+    'description': post.value?.description,
+    'datePublished': post.value?.published_at,
+    'dateModified': post.value?.updated_at,
+    'keywords': post.value?.tags,
+    'inLanguage': post.value?.language,
+    'author': [{
       '@id': 'https://alessandrojean.github.io/#identity',
-      name: 'Alessandro Jean',
-      url: 'https://alessandrojean.github.io',
+      'name': 'Alessandro Jean',
+      'url': 'https://alessandrojean.github.io',
     }],
   })),
 ]);

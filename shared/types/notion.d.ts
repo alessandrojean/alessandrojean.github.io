@@ -1,13 +1,13 @@
-import type { 
+import type {
   BlockObjectResponse,
   BulletedListItemBlockObjectResponse,
   NumberedListItemBlockObjectResponse,
   ToDoBlockObjectResponse,
-} from '@notionhq/client'
+} from '@notionhq/client';
 
 export type WithChildren<T> = T & {
   children?: BlockWithChildren[];
-}
+};
 
 export interface NumberedListBlock {
   type: 'numbered_list';
@@ -32,6 +32,6 @@ export interface ToDoListBlock {
 
 export type Block = BlockObjectResponse | NumberedListBlock | BulletedListBlock | ToDoListBlock;
 
-export type BlockWithChildren = Block & { 
+export type BlockWithChildren = Block & {
   children?: BlockWithChildren[];
 };

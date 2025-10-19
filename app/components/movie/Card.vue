@@ -13,8 +13,12 @@
     <figcaption>
       Direção: {{ list.format(directors) }}
       / Roteiro: {{ writersText }}
-      / <NuxtLink external :href="tmdb" target="_blank">TMDB</NuxtLink>
-      <br >
+      / <NuxtLink
+        external
+        :href="tmdb"
+        target="_blank"
+      >TMDB</NuxtLink>
+      <br>
       Copyright {{ copyright }}.
     </figcaption>
   </figure>

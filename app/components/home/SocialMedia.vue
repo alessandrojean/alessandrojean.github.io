@@ -6,7 +6,10 @@
       target="_blank"
       external
     >
-      <Icon name="simple-icons:mastodon" class="size-4" />
+      <Icon
+        name="simple-icons:mastodon"
+        class="size-4"
+      />
       Mastodon
     </UiLinkButton>
     <UiLinkButton
@@ -15,7 +18,10 @@
       target="_blank"
       external
     >
-      <Icon name="simple-icons:threads" class="size-4" />
+      <Icon
+        name="simple-icons:threads"
+        class="size-4"
+      />
       Threads
     </UiLinkButton>
     <UiLinkButton
@@ -24,7 +30,10 @@
       target="_blank"
       external
     >
-      <Icon name="simple-icons:instagram" class="size-4" />
+      <Icon
+        name="simple-icons:instagram"
+        class="size-4"
+      />
       Instagram
     </UiLinkButton>
     <UiLinkButton
@@ -33,7 +42,10 @@
       target="_blank"
       external
     >
-      <Icon name="simple-icons:github" class="size-4" />
+      <Icon
+        name="simple-icons:github"
+        class="size-4"
+      />
       GitHub
     </UiLinkButton>
     <UiLinkButton
@@ -42,15 +54,24 @@
       target="_blank"
       external
     >
-      <Icon name="simple-icons:linkedin" class="size-4" />
+      <Icon
+        name="simple-icons:linkedin"
+        class="size-4"
+      />
       LinkedIn
     </UiLinkButton>
     <UiLinkButton to="/blog">
-      <Icon name="lucide:notebook-text" class="size-4" />
+      <Icon
+        name="lucide:notebook-text"
+        class="size-4"
+      />
       Blog
     </UiLinkButton>
     <UiLinkButton to="/movies">
-      <Icon name="lucide:clapperboard" class="size-4" />
+      <Icon
+        name="lucide:clapperboard"
+        class="size-4"
+      />
       Movies
     </UiLinkButton>
   </div>

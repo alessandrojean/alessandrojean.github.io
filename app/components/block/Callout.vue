@@ -4,7 +4,10 @@
     data-slot="callout"
     :data-color="block.callout.color.replace('_', '-')"
   >
-    <div v-if="block.callout.icon" class="shrink-0">
+    <div
+      v-if="block.callout.icon"
+      class="shrink-0"
+    >
       <div
         v-if="block.callout.icon.type === 'emoji'"
         aria-hidden="true"
@@ -19,7 +22,12 @@
       >
     </div>
     <div class="typography gap-4 text-base/relaxed sm:text-lg/relaxed font-sans">
-      <p><BlockTextRenderer :rich-text="block.callout.rich_text" :id-map /></p>
+      <p>
+        <BlockTextRenderer
+          :rich-text="block.callout.rich_text"
+          :id-map
+        />
+      </p>
       <BlockRenderer
         v-if="block.children?.length"
         :blocks="block.children"
@@ -35,7 +43,7 @@ import type { CalloutBlockObjectResponse } from '@notionhq/client';
 
 type CalloutBlock = WithChildren<CalloutBlockObjectResponse>;
 
-const { block, idMap } = defineProps<{ 
+const { block, idMap } = defineProps<{
   block: CalloutBlock;
   idMap: Record<string, string>;
 }>();

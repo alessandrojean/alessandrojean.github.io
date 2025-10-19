@@ -1,11 +1,12 @@
-import { Client } from '@notionhq/client';
-import { encode } from 'html-entities';
-import dedent from 'dedent';
-import { join } from 'node:path';
 import { writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
-import type { H3Event, EventHandlerRequest } from 'h3';
 import type { BulletedListItemBlockObjectResponse, ImageBlockObjectResponse, NumberedListItemBlockObjectResponse, PageObjectResponse, RichTextItemResponse, ToDoBlockObjectResponse } from '@notionhq/client';
+import { Client } from '@notionhq/client';
+import dedent from 'dedent';
+import type { EventHandlerRequest, H3Event } from 'h3';
+import { encode } from 'html-entities';
+
 import type { BulletedListBlock, NumberedListBlock, ToDoListBlock } from '~~/shared/types/notion';
 
 type PageProperties = PageObjectResponse['properties'][string];
@@ -49,12 +50,12 @@ export function parsePostProperties(page: PageObjectResponse) {
     slug: properties.Slug.rich_text[0].plain_text,
     description: properties.Description.rich_text[0]?.plain_text ?? '',
     category: properties.Area.select
-      ? { 
+      ? {
           name: properties.Area.select.name,
           color: properties.Area.select.color,
         }
       : undefined,
-    tags: properties.Tags.multi_select.map((tag) => tag.name),
+    tags: properties.Tags.multi_select.map(tag => tag.name),
     language: properties.Language.select?.name,
   };
 }
@@ -69,14 +70,14 @@ export function parseMovieProperties(page: PageObjectResponse) {
     movieId: properties.ID.unique_id.number ?? 0,
     title: properties.Title.title[0].plain_text,
     year: properties.Year.number,
-    director: properties.Director.multi_select.map((director) => director.name),
+    director: properties.Director.multi_select.map(director => director.name),
     published_at: properties['Created at'].date!.start,
     created_at: page.created_time,
     updated_at: page.last_edited_time,
     tmdb: properties.TMDB.url,
     slug: properties.Slug.rich_text[0].plain_text,
     is_public: properties.Public.checkbox,
-    writer: properties.Writer.multi_select.map((writer) => writer.name),
+    writer: properties.Writer.multi_select.map(writer => writer.name),
     copyright: properties.Copyright.rich_text[0].plain_text,
     cover: (properties.Cover.files[0] as ExternalFile).external.url,
     poster: (properties.Poster.files[0] as ExternalFile | undefined)?.external.url,
@@ -106,7 +107,7 @@ export async function getNotionPosts(event: H3Event<EventHandlerRequest>, option
   });
 
   return (response.results as PageObjectResponse[])
-    .map((page) => parsePostProperties(page));
+    .map(page => parsePostProperties(page));
 }
 
 interface GetNotionMoviesOptions {
@@ -144,7 +145,7 @@ export async function getNotionMovies(event: H3Event<EventHandlerRequest>, optio
   }
 
   return (results as PageObjectResponse[])
-    .map((page) => parseMovieProperties(page));
+    .map(page => parseMovieProperties(page));
 }
 
 export async function processImages(blocks: BlockWithChildren[]) {
@@ -327,7 +328,7 @@ function parseDecoratorsToHtml(decorators: RichTextItemResponse[]): string {
     if (bold) html += `</strong>`;
     if (href) html += `</a>`;
   }
-  
+
   return html;
 }
 

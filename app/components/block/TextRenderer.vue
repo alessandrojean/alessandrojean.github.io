@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { RichTextItemResponse } from '@notionhq/client'
+import type { RichTextItemResponse } from '@notionhq/client';
 
-const { richText } = defineProps<{ 
+const { richText } = defineProps<{
   richText: RichTextItemResponse[];
   idMap: Record<string, string>;
 }>();

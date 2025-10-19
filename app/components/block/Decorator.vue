@@ -15,32 +15,52 @@
     :external="!isInnerLink"
     :to="isInnerLink ? `/post/${props.idMap[props.text.href!.substring(1)]}` : props.text.href!"
   >
-    <BlockDecorator :text="props.text" :decorators="unnapliedDecorators" :id-map />
+    <BlockDecorator
+      :text="props.text"
+      :decorators="unnapliedDecorators"
+      :id-map
+    />
   </NuxtLink>
   <mark
     v-if="decorator === 'color'"
     data-slot="inline-color"
     :data-color="(decoratorValue as string).replace('_', '-')"
   >
-    <BlockDecorator :text="props.text" :decorators="unnapliedDecorators" :id-map />
+    <BlockDecorator
+      :text="props.text"
+      :decorators="unnapliedDecorators"
+      :id-map
+    />
   </mark>
   <code
     v-else-if="decorator === 'code'"
     data-slot="inline-code"
   >
-    <BlockDecorator :text="props.text" :decorators="unnapliedDecorators" :id-map />
+    <BlockDecorator
+      :text="props.text"
+      :decorators="unnapliedDecorators"
+      :id-map
+    />
   </code>
   <strong
     v-else-if="decorator === 'bold'"
     data-slot="inline-bold"
   >
-    <BlockDecorator :text="props.text" :decorators="unnapliedDecorators" :id-map />
+    <BlockDecorator
+      :text="props.text"
+      :decorators="unnapliedDecorators"
+      :id-map
+    />
   </strong>
   <em
     v-else-if="decorator === 'italic'"
     data-slot="inline-italic"
   >
-    <BlockDecorator :text="props.text" :decorators="unnapliedDecorators" :id-map />
+    <BlockDecorator
+      :text="props.text"
+      :decorators="unnapliedDecorators"
+      :id-map
+    />
   </em>
   <span
     v-else-if="decorator === 'equation'"
@@ -51,14 +71,15 @@
 </template>
 
 <script lang="ts" setup>
-import { Icon } from '#components';
 import type { RichTextItemResponse } from '@notionhq/client';
 import katex from 'katex';
+
+import { Icon } from '#components';
 
 type Annotation = keyof RichTextItemResponse['annotations'];
 type Decorator = Annotation | 'link' | 'equation';
 
-const props = defineProps<{ 
+const props = defineProps<{
   text: RichTextItemResponse;
   decorators?: Decorator[];
   idMap: Record<string, string>;

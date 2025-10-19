@@ -12,7 +12,7 @@
     controls
     controlslist="nodownload"
   >
-    <source v-bind="sourceProps" >
+    <source v-bind="sourceProps">
   </video>
 </template>
 
@@ -25,8 +25,8 @@ const { block } = defineProps<{ block: VideoBlockObjectResponse }>();
 const YOUTUBE_REGEX = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|shorts\/)|(?:(?:watch)?\?v(?:i)?=|&v(?:i)?=))([^#&?]*).*/;
 
 const src = computed(() => {
-  const videoId = block.video.type === 'external' &&
-    block.video.external.url?.match(YOUTUBE_REGEX)?.[1];
+  const videoId = block.video.type === 'external'
+    && block.video.external.url?.match(YOUTUBE_REGEX)?.[1];
 
   return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : undefined;
 });
@@ -43,5 +43,5 @@ const sourceProps = computed<SourceHTMLAttributes>(() => {
     src: videoUrl,
     type: mimeType,
   };
-})
+});
 </script>

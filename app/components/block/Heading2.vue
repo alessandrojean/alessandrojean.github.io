@@ -1,17 +1,26 @@
 <template>
   <h2 data-slot="heading-2">
-    <NuxtLink :id :to="{ hash: `#${id}` }">
-      <span aria-hidden="true" data-slot="heading-section">&sect;</span>
-      <BlockTextRenderer :rich-text="block.heading_2.rich_text" :id-map />
+    <NuxtLink
+      :id
+      :to="{ hash: `#${id}` }"
+    >
+      <span
+        aria-hidden="true"
+        data-slot="heading-section"
+      >&sect;</span>
+      <BlockTextRenderer
+        :rich-text="block.heading_2.rich_text"
+        :id-map
+      />
     </NuxtLink>
   </h2>
 </template>
 
 <script lang="ts" setup>
+import type { Heading2BlockObjectResponse } from '@notionhq/client';
 import slugify from 'slugify';
-import type { Heading2BlockObjectResponse } from '@notionhq/client'
 
-const { block, idMap } = defineProps<{ 
+const { block, idMap } = defineProps<{
   block: Heading2BlockObjectResponse;
   idMap: Record<string, string>;
 }>();

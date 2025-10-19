@@ -1,6 +1,15 @@
 // @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 
-export default withNuxt(
+import withNuxt from './.nuxt/eslint.config.mjs';
+
+export default withNuxt({
   // Your custom configs here
-)
+  plugins: {
+    'simple-import-sort': simpleImportSort,
+  },
+  rules: {
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+  },
+});

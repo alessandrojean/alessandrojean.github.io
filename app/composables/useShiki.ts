@@ -1,13 +1,13 @@
 import type { BuiltinLanguage, HighlighterCore, LanguageRegistration, SpecialLanguage } from 'shiki';
 import { createHighlighterCore } from 'shiki/core';
-import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
+import { createOnigurumaEngine } from 'shiki/engine/oniguruma';
 
 import assGrammar from '@/composables/shiki/ass.tmLanguage.json';
 import cabalGrammar from '@/composables/shiki/cabal.tmLanguage.json';
 
 const highlighter = ref<HighlighterCore>();
 
-export type ShikiLanguage = BuiltinLanguage | SpecialLanguage | 'cabal' | 'ass'
+export type ShikiLanguage = BuiltinLanguage | SpecialLanguage | 'cabal' | 'ass';
 
 export async function useShiki(): Promise<HighlighterCore> {
   if (highlighter.value) {
@@ -45,8 +45,8 @@ export async function useShiki(): Promise<HighlighterCore> {
     ],
     langAlias: {
       'c++': 'cpp',
-      h: 'c',
-      cu: 'cpp',
+      'h': 'c',
+      'cu': 'cpp',
     },
     engine: createOnigurumaEngine(() => import('shiki/wasm')),
   });
