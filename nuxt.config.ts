@@ -23,6 +23,17 @@ export default defineNuxtConfig({
     url: 'https://alessandrojean.github.io',
   },
 
+  content: {
+    preview: {
+      api: 'https://api.nuxt.studio',
+      gitInfo: {
+        name: 'alessandrojean.github.io',
+        owner: 'alessandrojean',
+        url: 'https://github.com/alessandrojean/alessandrojean.github.io',
+      },
+    },
+  },
+
   runtimeConfig: {
     notion: {
       apiKey: '',
