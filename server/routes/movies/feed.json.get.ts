@@ -2,7 +2,7 @@ import { queryCollection } from '@nuxt/content/server';
 
 export default defineEventHandler(async (event) => {
   const movies = await queryCollection(event, 'movies')
-    .order('created_at', 'DESC')
+    .order('id', 'DESC')
     .limit(10)
     .all();
   const url = 'https://alessandrojean.github.io';

@@ -52,7 +52,7 @@
 const { data } = await useAsyncData('movies', () => {
   return queryCollection('movies')
     .select('title', 'year', 'created_at', 'path', 'id')
-    .order('created_at', 'DESC')
+    .order('id', 'DESC')
     .all();
 });
 
