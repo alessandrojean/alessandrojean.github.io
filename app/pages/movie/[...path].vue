@@ -12,37 +12,28 @@
       <PostHeaderInfo class="-mt-2">
         <PostHeaderInfoDate
           locale="pt-BR"
-          :time="movie.published_at"
+          :time="movie.created_at"
         />
         <PostHeaderInfoSeparator />
         <PostHeaderInfoAuthor />
       </PostHeaderInfo>
     </PostHeader>
 
-    <BlockRenderer
-      class="mt-10"
-      :blocks="blocks"
-      :id-map="movie.movies"
-    >
-      <template #before>
-        <MovieCard
-          :title="movie.title"
-          :cover="movie.cover"
-          :directors="movie.director"
-          :writers="movie.writer"
-          :copyright="movie.copyright"
-          :tmdb="movie.tmdb!"
-        />
-      </template>
+    <div class="mt-10">
+      <MovieCard
+        :title="movie.title"
+        :cover="movie.cover"
+        :directors="movie.director"
+        :writers="movie.writer"
+        :copyright="movie.copyright"
+        :tmdb="movie.tmdb!"
+      />
 
-      <!-- <template #after>
-        <MovieGrid
-          :poster="movie.poster"
-          :grid="movie.grid"
-          :copyright="movie.copyright"
-        />
-      </template> -->
-    </BlockRenderer>
+      <ContentRenderer
+        class="typography mt-6"
+        :value="movie"
+      />
+    </div>
 
     <PostFooter class="mt-12">
       <PostFooterNotByAiBadge />
@@ -52,22 +43,21 @@
 </template>
 
 <script lang="ts" setup>
-import 'katex/dist/katex.min.css';
-
 import type { UserReview } from 'schema-dts';
 
-import type { BlockWithChildren } from '~~/shared/types/notion';
-
-const route = useRoute();
-const { data: movie } = await useFetch(() => `/api/movies/${route.params.id}`);
-const blocks = computed(() => movie.value?.blocks as BlockWithChildren[]);
+const path = useRoute().params.path as string[];
+const { data: movie } = await useAsyncData(`movie-${path.join('-')}`, () => {
+  return queryCollection('movies')
+    .path(`/movies/${path.join('/')}`)
+    .first();
+});
 
 const { socialMedia } = useAppConfig();
 
 useSeoMeta({
   title: () => movie.value?.title,
   ogTitle: () => movie.value?.title,
-  ogUrl: () => `https://alessandrojean.github.io/movie/${movie.value?.movieId}/${movie.value?.slug}`,
+  ogUrl: () => `https://alessandrojean.github.io/movie/${path.join('/')}`,
   ogType: 'article',
   ogLocale: 'pt-BR',
   ogImage: () => movie.value?.cover,
@@ -100,7 +90,7 @@ useSchemaOrg(() => [{
     'name': 'Alessandro Jean',
     'url': 'https://alessandrojean.github.io',
   },
-  'datePublished': movie.value?.published_at,
+  'datePublished': movie.value?.created_at,
   'dateModified': movie.value?.updated_at,
   'inLanguage': 'pt-BR',
 } satisfies UserReview]);

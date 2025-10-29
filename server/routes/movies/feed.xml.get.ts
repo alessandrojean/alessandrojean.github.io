@@ -1,8 +1,11 @@
-import { Client } from '@notionhq/client';
+import { queryCollection } from '@nuxt/content/server';
 import RSS from 'rss';
 
 export default defineEventHandler(async (event) => {
-  const movies = await getNotionMovies(event, { pageSize: 10 });
+  const movies = await queryCollection(event, 'movies')
+    .order('created_at', 'DESC')
+    .limit(10)
+    .all();
   const url = 'https://alessandrojean.github.io';
 
   const feed = new RSS({
@@ -23,29 +26,22 @@ export default defineEventHandler(async (event) => {
   });
 
   const list = new Intl.ListFormat('pt-BR', { type: 'conjunction' });
-  const content: BlockWithChildren[][] = [];
-
-  const config = useRuntimeConfig(event);
-  const notion = new Client({ auth: config.notion.apiKey });
 
   for (const movie of movies) {
-    const blocks = await getNotionBlocks(notion, movie.id);
-    content.push(blocks);
-  }
+    const path = movie.path.replace('/movies/', '/movie/');
 
-  for (const [idx, movie] of movies.entries()) {
     feed.item({
       title: `${movie.title} (${movie.year})`,
-      guid: `${url}/movie/${movie.movieId}/${movie.slug}`,
-      url: `${url}/movie/${movie.movieId}/${movie.slug}`,
+      guid: `${url}/${path}`,
+      url: `${url}/${path}`,
       description: `Direção: ${list.format(movie.director)} / Roteiro: ${list.format(movie.writer)}`,
-      date: new Date(movie.published_at),
+      date: new Date(movie.created_at),
       enclosure: {
         url: movie.cover,
       },
       custom_elements: [
         { 'dc:creator': { _cdata: 'Alessandro Jean' } },
-        { 'content:encoded': { _cdata: parseMovieToHtml(movie, content[idx]) } },
+        // { 'content:encoded': { _cdata: parseMovieToHtml(movie, content[idx]) } },
       ],
     });
   }

@@ -1,27 +1,29 @@
 <template>
-  <figure data-type="image">
-    <NuxtImg
-      :alt="title"
-      :src="cover"
-      densities="x1"
-      placeholder
-      format="webp"
-      loading="lazy"
-      preload
-    />
+  <div class="typography">
+    <figure data-type="image">
+      <NuxtImg
+        :alt="title"
+        :src="cover"
+        densities="x1"
+        placeholder
+        format="webp"
+        loading="lazy"
+        preload
+      />
 
-    <figcaption>
-      Direção: {{ list.format(directors) }}
-      / Roteiro: {{ writersText }}
-      / <NuxtLink
-        external
-        :href="tmdb"
-        target="_blank"
-      >TMDB</NuxtLink>
-      <br>
-      Copyright {{ copyright }}.
-    </figcaption>
-  </figure>
+      <figcaption>
+        Direção: {{ list.format(directors) }}
+        / Roteiro: {{ writersText }}
+        / <NuxtLink
+          external
+          :href="tmdb"
+          target="_blank"
+        >TMDB</NuxtLink>
+        <br>
+        Copyright {{ copyright }}.
+      </figcaption>
+    </figure>
+  </div>
 </template>
 
 <script lang="ts" setup>

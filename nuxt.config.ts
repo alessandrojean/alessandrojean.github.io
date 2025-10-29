@@ -9,9 +9,11 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/scripts',
     '@nuxt/image',
+    '@nuxt/content',
     '@nuxtjs/robots',
     'nuxt-schema-org',
   ],
+
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.css'],
@@ -27,6 +29,10 @@ export default defineNuxtConfig({
       postsDataSourceId: '',
       moviesDataSourceId: '',
     },
+  },
+
+  experimental: {
+    extractAsyncDataHandlers: true,
   },
 
   compatibilityDate: '2025-07-15',
