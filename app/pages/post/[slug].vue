@@ -50,8 +50,6 @@ useSeoMeta({
   ogDescription: () => post.value?.description,
   ogLocale: () => post.value?.language,
   twitterCard: 'summary_large_image',
-  twitterSite: `@${socialMedia.twitter}`,
-  twitterCreator: `@${socialMedia.twitter}`,
   twitterTitle: () => post.value?.title,
   twitterDescription: () => post.value?.description,
 });

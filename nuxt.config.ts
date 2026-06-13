@@ -25,7 +25,6 @@ export default defineNuxtConfig({
     notion: {
       apiKey: '',
       postsDataSourceId: '',
-      moviesDataSourceId: '',
     },
   },
 
@@ -37,8 +36,6 @@ export default defineNuxtConfig({
       routes: [
         '/blog/feed.xml',
         '/blog/feed.json',
-        '/movies/feed.xml',
-        '/movies/feed.json',
       ],
     },
   },
@@ -87,13 +84,13 @@ export default defineNuxtConfig({
         'https://instagram.com/alessandrojean',
         'https://threads.net/@alessandrojean',
         'https://www.linkedin.com/in/alessandrojean',
-        'https://x.com/alessandrojean_',
         'https://mas.to/@alessandrojean',
         'https://myanimelist.net/profile/alessandrojean',
         'https://trakt.tv/users/alessandrojean',
         'https://linktr.ee/alessandrojean',
         'https://bsky.app/profile/alessandrojean.bsky.social',
         'https://skoob.com.br/share/user/4231289',
+        'https://letterboxd.com/alessandrojean',
       ],
     }),
   },

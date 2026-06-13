@@ -10,7 +10,6 @@ useSchemaOrg([
   defineWebPage({
     potentialAction: [
       { '@type': 'ReadAction', 'name': 'Blog', 'target': 'https://alessandrojean.github.io/blog' },
-      { '@type': 'ReadAction', 'name': 'Movies', 'target': 'https://alessandrojean.github.io/movies' },
     ],
   }),
 ]);

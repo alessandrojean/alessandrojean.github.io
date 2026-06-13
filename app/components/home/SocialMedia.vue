@@ -55,13 +55,6 @@
       />
       Blog
     </UiLinkButton>
-    <UiLinkButton to="/movies">
-      <Icon
-        name="lucide:clapperboard"
-        class="size-4"
-      />
-      Movies
-    </UiLinkButton>
   </div>
 </template>
 

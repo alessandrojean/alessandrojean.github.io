@@ -5,7 +5,6 @@ export default defineAppConfig({
     mastodon: 'alessandrojean@mas.to',
     threads: 'alessandrojean',
     linkedin: 'alessandrojean',
-    twitter: 'alessandrojean_',
     myAnimeList: 'alessandrojean',
     trakt: 'alessandrojean',
     linktree: 'alessandrojean',
