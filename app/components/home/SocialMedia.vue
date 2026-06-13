@@ -14,7 +14,7 @@
     </UiLinkButton>
     <UiLinkButton
       v-if="socialMedia.letterboxd?.length"
-      :to="``"
+      :to="`https://letterboxd.com/${socialMedia.letterboxd}`"
       target="_blank"
       external
     >
@@ -23,6 +23,18 @@
         class="size-4"
       />
       Letterboxd
+    </UiLinkButton>
+    <UiLinkButton
+      v-if="socialMedia.trakt?.length"
+      :to="`https://trakt.tv/users/${socialMedia.trakt}`"
+      target="_blank"
+      external
+    >
+      <Icon
+        name="simple-icons:trakt"
+        class="size-4"
+      />
+      Trakt
     </UiLinkButton>
     <UiLinkButton
       v-if="socialMedia.gitHub?.length"
