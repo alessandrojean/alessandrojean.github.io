@@ -11,5 +11,6 @@ export default defineAppConfig({
     linktree: 'alessandrojean',
     bluesky: 'alessandrojean.bsky.social',
     skoob: '4231289',
+    letterboxd: 'alessandrojean',
   },
 });

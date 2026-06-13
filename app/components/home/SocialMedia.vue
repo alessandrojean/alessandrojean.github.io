@@ -1,30 +1,6 @@
 <template>
   <div class="flex flex-wrap gap-2">
     <UiLinkButton
-      v-if="socialMedia.mastodon?.length"
-      :to="mastodon"
-      target="_blank"
-      external
-    >
-      <Icon
-        name="simple-icons:mastodon"
-        class="size-4"
-      />
-      Mastodon
-    </UiLinkButton>
-    <UiLinkButton
-      v-if="socialMedia.threads?.length"
-      :to="`https://threads.net/@${socialMedia.threads}`"
-      target="_blank"
-      external
-    >
-      <Icon
-        name="simple-icons:threads"
-        class="size-4"
-      />
-      Threads
-    </UiLinkButton>
-    <UiLinkButton
       v-if="socialMedia.instagram?.length"
       :to="`https://instagram.com/${socialMedia.instagram}`"
       target="_blank"
@@ -35,6 +11,18 @@
         class="size-4"
       />
       Instagram
+    </UiLinkButton>
+    <UiLinkButton
+      v-if="socialMedia.letterboxd?.length"
+      :to="``"
+      target="_blank"
+      external
+    >
+      <Icon
+        name="simple-icons:letterboxd"
+        class="size-4"
+      />
+      Letterboxd
     </UiLinkButton>
     <UiLinkButton
       v-if="socialMedia.gitHub?.length"
@@ -79,9 +67,4 @@
 
 <script lang="ts" setup>
 const { socialMedia } = useAppConfig();
-
-const mastodon = computed(() => {
-  const [user, instance] = socialMedia.mastodon.split('@');
-  return `https://${instance}/@${user}`;
-});
 </script>
