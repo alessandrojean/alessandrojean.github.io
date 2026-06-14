@@ -19,7 +19,6 @@
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/robots": "^6.1.1",
     "@tailwindcss/vite": "^4.3.1",
-    "@unhead/vue": "^2.0.19",
     "@vueuse/core": "^14.3.0",
     "better-sqlite3": "^12.10.1",
     "katex": "^0.17.0",
