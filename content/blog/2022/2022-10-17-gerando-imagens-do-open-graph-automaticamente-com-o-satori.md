@@ -32,9 +32,6 @@ Um exemplo criado no [Vercel OG Image Playground](https://og-playground.vercel.a
 
 ## Conteúdo
 
-::table-of-contents
-::
-
 ## Um exemplo simples
 
 O uso da biblioteca é bem simples, mas tem algumas obrigatoriedades. Se você pretende escrever algum texto, é necessário que você providencie *Buffers* para as fontes que deseja que sejam utilizadas, portanto, você precisará fazer alguma requisição extra ou possuir os arquivos localmente. No lado do servidor, torna-se relativamente simples esta última opção.

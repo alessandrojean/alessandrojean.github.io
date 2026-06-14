@@ -22,9 +22,6 @@ Este tutorial foi escrito como um dos projetos da disciplina [*Desenvolvimento G
 
 ## Conteúdo
 
-::table-of-contents
-::
-
 ## Definição
 
 > Interoperabilidade é a capacidade de duas linguagens de programação diferentes interagirem de maneira nativa como parte de um mesmo sistema e operar com os mesmos tipos de estruturas de dados.

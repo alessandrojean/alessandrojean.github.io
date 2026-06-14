@@ -14,9 +14,6 @@ Depois de um tempo, vamos finalmente retomar a série de Estruturas de Dados. Da
 
 ## Conteúdo
 
-::table-of-contents
-::
-
 ## Definição
 
 A Fila é uma estrutura que permite operações em $O(1)$ em suas operações de inserção e remoção. Possui um comportamento FIFO, ou seja, o primeiro elemento a entrar na fila será consequentemente o primeiro a sair da fila.

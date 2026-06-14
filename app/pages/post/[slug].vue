@@ -41,8 +41,6 @@ const { data: post } = await useAsyncData(`post-${slug}`, () => {
     .first();
 });
 
-provide('toc', post.value?.body?.toc?.links);
-
 const { socialMedia } = useAppConfig();
 
 function postSlug(path: string) {

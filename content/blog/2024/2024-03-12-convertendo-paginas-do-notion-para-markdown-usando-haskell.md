@@ -31,9 +31,6 @@ Este tutorial foi escrito como um dos projetos da disciplina [*Desenvolvimento G
 
 ## Conteúdo
 
-::table-of-contents
-::
-
 ## Motivação por trás
 
 A ideia deste tutorial veio de uma necessidade própria de ter uma maneira de conseguir fazer um *backup* se necessário do conteúdo desse site. Apesar do Notion ser super versátil e aumentar bastante a produtividade na escrita, é sempre bom poder ter controle dos dados se for necessário.

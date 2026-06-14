@@ -27,6 +27,15 @@ export default defineNuxtConfig({
   content: {
     build: {
       markdown: {
+        remarkPlugins: {
+          'remark-toc': {
+            options: {
+              heading: 'conteúdo',
+              maxDepth: 2,
+              ordered: true,
+            },
+          },
+        },
         highlight: {
           theme: {
             default: 'github-light-default',

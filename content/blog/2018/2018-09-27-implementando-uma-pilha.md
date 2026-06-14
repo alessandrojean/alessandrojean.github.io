@@ -14,9 +14,6 @@ Dando continuidade a nossa série de Estruturas de Dados, agora que implementamo
 
 ## Conteúdo
 
-::table-of-contents
-::
-
 ## Definição
 
 A Pilha é uma estrutura que nos permite fazer operações em $O(1)$ em inserção e remoção. Sua principal característica é seu comportamento LIFO. Ou seja, o último elemento inserido sempre vai ficar no topo e, quando formos remover algum elemento, este será o resultado.

@@ -16,9 +16,6 @@ Minha intenção é ser o mais claro possível e, simultaneamente, conseguir abo
 
 ## Conteúdo
 
-::table-of-contents
-::
-
 ## Definição
 
 > Uma lista ligada é uma estrutura de dados na qual os objetos são organizados em ordem linear. Diferentemente de um vetor, no entanto, onde a ordem linear é determinada pelos índices do vetor, a ordem da lista ligada é determinada por um ponteiro em cada objeto.
