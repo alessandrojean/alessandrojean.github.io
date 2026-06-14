@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         remarkPlugins: {
+          'remark-smartypants': {},
           'remark-toc': {
             options: {
               heading: 'conteúdo',

@@ -435,7 +435,7 @@ data AnnotationResponse = AnnotationResponse
   }
 ```
 
-Vamos criar uma função que nos ajude a “anotar” um dado texto com as anotações nos tipos do Pandoc, ou seja, `Inline` ([referência](https://hackage.haskell.org/package/pandoc-types-1.23.1/docs/Text-Pandoc-Definition.html#t:Inline)). A ideia é ser uma função recursiva que a cada propriedade como `True` encontrada, aplique tal formatação e defina-a como `False`, chamando a função novamente até que nenhuma formatação necessite ser aplicada.
+Vamos criar uma função que nos ajude a "anotar" um dado texto com as anotações nos tipos do Pandoc, ou seja, `Inline` ([referência](https://hackage.haskell.org/package/pandoc-types-1.23.1/docs/Text-Pandoc-Definition.html#t:Inline)). A ideia é ser uma função recursiva que a cada propriedade como `True` encontrada, aplique tal formatação e defina-a como `False`, chamando a função novamente até que nenhuma formatação necessite ser aplicada.
 
 ```haskell [src/Converter.hs]
 {-# LANGUAGE OverloadedStrings #-}

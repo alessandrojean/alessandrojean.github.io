@@ -28,6 +28,7 @@
     "katex": "^0.16.25",
     "nuxt": "^4.4.8",
     "nuxt-schema-org": "^5.0.9",
+    "remark-smartypants": "^3.0.2",
     "remark-toc": "^9.0.0",
     "rss": "^1.2.2",
     "slugify": "^1.6.6",
