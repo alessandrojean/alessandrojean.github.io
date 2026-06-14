@@ -24,7 +24,7 @@
     "better-sqlite3": "^12.4.1",
     "katex": "^0.16.25",
     "nuxt": "^4.4.8",
-    "nuxt-schema-org": "^5.0.9",
+    "nuxt-schema-org": "^6.2.1",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "remark-smartypants": "^3.0.2",
@@ -44,7 +44,7 @@
     "@types/rss": "^0.0.32",
     "eslint": "^9.38.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "schema-dts": "^1.1.5",
+    "schema-dts": "^2.0.0",
     "typescript": "^5.9.3"
   }
 }

@@ -45,8 +45,8 @@ importers:
         specifier: ^4.4.8
         version: 4.4.8(@babel/plugin-syntax-jsx@7.27.1(@babel/core@7.29.7))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.7))(@parcel/watcher@2.5.6)(@types/node@24.9.1)(@vue/compiler-sfc@3.5.38)(better-sqlite3@12.4.1)(cac@6.7.14)(db0@0.3.4(better-sqlite3@12.4.1))(eslint@9.38.0(jiti@2.7.0))(ioredis@5.11.1)(lightningcss@1.32.0)(magicast@0.5.3)(optionator@0.9.4)(rollup-plugin-visualizer@7.0.1(rollup@4.62.0))(rollup@4.62.0)(terser@5.44.0)(typescript@5.9.3)(vite@7.3.5(@types/node@24.9.1)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.44.0)(yaml@2.9.0))(yaml@2.9.0)
       nuxt-schema-org:
-        specifier: ^5.0.9
-        version: 5.0.9(@unhead/vue@2.1.15(vue@3.5.38(typescript@5.9.3)))(h3@1.15.11)(magicast@0.5.3)(unhead@2.1.15)(vue@3.5.38(typescript@5.9.3))
+        specifier: ^6.2.1
+        version: 6.2.1(5789df2aa9d7356047d321c0f389afc5)
       rehype-katex:
         specifier: ^7.0.1
         version: 7.0.1
@@ -97,8 +97,8 @@ importers:
         specifier: ^12.1.1
         version: 12.1.1(eslint@9.38.0(jiti@2.7.0))
       schema-dts:
-        specifier: ^1.1.5
-        version: 1.1.5
+        specifier: ^2.0.0
+        version: 2.0.0(typescript@5.9.3)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -2524,23 +2524,6 @@ packages:
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
     deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
-  '@unhead/schema-org@2.0.17':
-    resolution: {integrity: sha512-X/9jpCEXz4GDTslnQ25x+lstkah1F02itPTYC2vgj2iXY1BarT6kSD1IrQfetBwRYT0eBIiFfGi2GbwAo5P9XA==}
-    peerDependencies:
-      '@unhead/react': 2.0.17
-      '@unhead/solid-js': 2.0.17
-      '@unhead/svelte': 2.0.17
-      '@unhead/vue': 2.0.17
-    peerDependenciesMeta:
-      '@unhead/react':
-        optional: true
-      '@unhead/solid-js':
-        optional: true
-      '@unhead/svelte':
-        optional: true
-      '@unhead/vue':
-        optional: true
-
   '@unhead/vue@2.1.15':
     resolution: {integrity: sha512-SSByXfEjhzPn8gXdEdgpYqpLMPSkLUH2HVE0GxZfOtNsJ0GgOHQs0g9T67ZZ1z0kTELLKdtOtYrzrbv9+ffF7g==}
     peerDependencies:
@@ -4814,27 +4797,22 @@ packages:
     resolution: {integrity: sha512-2/mSSqutOX8t+r8cAX1yUYwAPBqicPO5Rfum3XaHVszxKCF4tXEXBiPGfJY9Zn69x/CIeOdw+aM9wmHzQ5Q+lA==}
     hasBin: true
 
-  nuxt-schema-org@5.0.9:
-    resolution: {integrity: sha512-k0i3h9WJYz0ikLtxLky0Ip0Cbr+P98I2tV7zWu7kZNUSi47PagM/Qd7/RA2jf0sq4VC9JwQUDtjDp7r3u4S8kw==}
+  nuxt-schema-org@6.2.1:
+    resolution: {integrity: sha512-5GpTylV7usPEgCB+4QFA24j4c0vKaqr7C78GNfJ8vKHOkSN8jEwPlBslQln/izfC0Y8sJpN88+J7q30KIDUbNQ==}
     peerDependencies:
-      '@unhead/vue': ^2.0.7
-      unhead: ^2.0.7
+      '@unhead/vue': ^2.0.7 || ^3.0.0
+      unhead: ^2.0.7 || ^3.0.0
+      zod: '>=3'
     peerDependenciesMeta:
       '@unhead/vue':
         optional: true
       unhead:
         optional: true
-
-  nuxt-site-config-kit@3.2.11:
-    resolution: {integrity: sha512-Um9/JiJpskAC8H18pHs3D/c7ikKj37/OsM1rvTqDgdzShSzOAxGGN+8qBVtGaqp1V+9BuPFSXhr1+TV7+RRsRA==}
+      zod:
+        optional: true
 
   nuxt-site-config-kit@4.1.0:
     resolution: {integrity: sha512-52KPCH1Z2u4ga8uu6zAsd88tW9TShgFY8OlwyTQCcchchtGzGmIvIBG3vXO+Dp29V6bhgCE+5BX3a2oRoOiN7w==}
-
-  nuxt-site-config@3.2.11:
-    resolution: {integrity: sha512-hU78O5f0/n1LOIorDe6iKbW3xw19bao8YbQ7RCiUtVM+1XbD11JWzUXWygX7atV+KtzGhZUbTbhjxmfbnlF//A==}
-    peerDependencies:
-      h3: ^1
 
   nuxt-site-config@4.1.0:
     resolution: {integrity: sha512-qqO/qAGRpRMX+AsuYc7GAieaZqUxeNIgclfX4a6PzGlHZiQ89zwFbnqP5QEw3fUfn3roV6c+Vv0pI39YCsc5iA==}
@@ -5545,8 +5523,14 @@ packages:
     resolution: {integrity: sha512-6R3J5M4AcbtLUdZmRv2SygeVaM7IhrLXu9BmnOGmmACak8fiUtOsYNWUS4uK7upbmHIBbLBeFeI//477BKLBzA==}
     engines: {node: '>=11.0.0'}
 
-  schema-dts@1.1.5:
-    resolution: {integrity: sha512-RJr9EaCmsLzBX2NDiO5Z3ux2BVosNZN5jo0gWgsyKvxKIUL5R3swNvoorulAeL9kLB0iTSX7V6aokhla2m7xbg==}
+  schema-dts-lib@1.0.0:
+    resolution: {integrity: sha512-9MEO5vpQH9JdBioUupqluzxSYxPLjhmqRUudk15adUl/ypnRsM2/M1kN3AmVJQeG7nZqcL68H8JlGqQQT6vy9A==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      typescript: '>=4.9.5'
+
+  schema-dts@2.0.0:
+    resolution: {integrity: sha512-t7NoCy3Rn5GHGx6p7s1qIYK/AeIb8ZxJNR9WUNFkwMv2CiiGZBmqqYWc2FlZVm5ZbiHMY4OvBWhj7QtyrFO2Jw==}
 
   scslre@0.3.0:
     resolution: {integrity: sha512-3A6sD0WYP7+QrjbfNA2FN3FsOaGGFoekCVgTyypy53gPxhbkCIjtO6YWgdrfM+n/8sI8JeXZOIxsHjMTNxQ4nQ==}
@@ -5637,11 +5621,6 @@ packages:
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
-
-  site-config-stack@3.2.11:
-    resolution: {integrity: sha512-KRJ49L58VtJJo3WdB7hXv6lq3oEJNOoBpig1v+OuHSppiBp7X6xqcAByJHveeBpBE9kHwqy/sn1LEnIibQ4nOA==}
-    peerDependencies:
-      vue: ^3
 
   site-config-stack@4.1.0:
     resolution: {integrity: sha512-Mjxz/tnDVu8rQI99oKzLVe1O4tLgUG9zjrWQTwJQwUCn+MO8kguyuN5NIcVi7cghwDfyGEKwyElbSFE0G5oSLQ==}
@@ -5943,9 +5922,6 @@ packages:
 
   unenv@2.0.0-rc.24:
     resolution: {integrity: sha512-i7qRCmY42zmCwnYlh9H2SvLEypEFGye5iRmEMKjcGi7zk9UquigRjFtTLz0TYqr0ZGLZhaMHl/foy1bZR+Cwlw==}
-
-  unhead@2.0.17:
-    resolution: {integrity: sha512-xX3PCtxaE80khRZobyWCVxeFF88/Tg9eJDcJWY9us727nsTC7C449B8BUfVBmiF2+3LjPcmqeoB2iuMs0U4oJQ==}
 
   unhead@2.1.15:
     resolution: {integrity: sha512-MCt5T90mCWyr3Z6pUCdM9lVRXoMoVBlL7z7U4CYVIiaDiuzad/UCfLuMqz5MeNmpZUgoBCQnrucJimU7EZR+XA==}
@@ -9100,15 +9076,6 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@unhead/schema-org@2.0.17(@unhead/vue@2.1.15(vue@3.5.38(typescript@5.9.3)))':
-    dependencies:
-      defu: 6.1.7
-      ohash: 2.0.11
-      ufo: 1.6.4
-      unhead: 2.0.17
-    optionalDependencies:
-      '@unhead/vue': 2.1.15(vue@3.5.38(typescript@5.9.3))
-
   '@unhead/vue@2.1.15(vue@3.5.38(typescript@5.9.3))':
     dependencies:
       hookable: 6.1.1
@@ -11851,56 +11818,78 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  nuxt-schema-org@5.0.9(@unhead/vue@2.1.15(vue@3.5.38(typescript@5.9.3)))(h3@1.15.11)(magicast@0.5.3)(unhead@2.1.15)(vue@3.5.38(typescript@5.9.3)):
+  nuxt-schema-org@6.2.1(5789df2aa9d7356047d321c0f389afc5):
     dependencies:
       '@nuxt/kit': 4.4.8(magicast@0.5.3)
-      '@unhead/schema-org': 2.0.17(@unhead/vue@2.1.15(vue@3.5.38(typescript@5.9.3)))
       defu: 6.1.7
-      nuxt-site-config: 3.2.11(h3@1.15.11)(magicast@0.5.3)(vue@3.5.38(typescript@5.9.3))
-      pathe: 2.0.3
+      nuxt-site-config: 4.1.0(a447ff05ea2fc2d8e98138db315576c8)
+      nuxtseo-layer-devtools: 5.3.0(c2b79c83379abc59d6610d4d22e56aa2)
+      nuxtseo-shared: 5.3.0(@nuxt/schema@4.4.8)(magicast@0.5.3)(nuxt-site-config@4.1.0(a447ff05ea2fc2d8e98138db315576c8))(nuxt@4.4.8(@babel/plugin-syntax-jsx@7.27.1(@babel/core@7.29.7))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.7))(@parcel/watcher@2.5.6)(@types/node@24.9.1)(@vue/compiler-sfc@3.5.38)(better-sqlite3@12.4.1)(cac@6.7.14)(db0@0.3.4(better-sqlite3@12.4.1))(eslint@9.38.0(jiti@2.7.0))(ioredis@5.11.1)(lightningcss@1.32.0)(magicast@0.5.3)(optionator@0.9.4)(rollup-plugin-visualizer@7.0.1(rollup@4.62.0))(rollup@4.62.0)(terser@5.44.0)(typescript@5.9.3)(vite@7.3.5(@types/node@24.9.1)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.44.0)(yaml@2.9.0))(yaml@2.9.0))(vite@7.3.5(@types/node@24.9.1)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.44.0)(yaml@2.9.0))(vue@3.5.38(typescript@5.9.3))(zod@4.4.3)
       pkg-types: 2.3.1
-      sirv: 3.0.2
+      ufo: 1.6.4
     optionalDependencies:
       '@unhead/vue': 2.1.15(vue@3.5.38(typescript@5.9.3))
       unhead: 2.1.15
+      zod: 4.4.3
     transitivePeerDependencies:
-      - '@unhead/react'
-      - '@unhead/solid-js'
-      - '@unhead/svelte'
-      - h3
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@deno/kv'
+      - '@emotion/is-prop-valid'
+      - '@inertiajs/vue3'
+      - '@internationalized/date'
+      - '@internationalized/number'
+      - '@netlify/blobs'
+      - '@nuxt/content'
+      - '@nuxt/schema'
+      - '@planetscale/database'
+      - '@tiptap/extensions'
+      - '@tiptap/y-tiptap'
+      - '@upstash/redis'
+      - '@vercel/blob'
+      - '@vercel/functions'
+      - '@vercel/kv'
+      - '@vue/composition-api'
+      - async-validator
+      - aws4fetch
+      - axios
+      - change-case
+      - db0
+      - drauu
+      - embla-carousel
+      - focus-trap
+      - idb-keyval
+      - ioredis
+      - joi
+      - jwt-decode
       - magicast
+      - nprogress
+      - nuxt
+      - qrcode
+      - react
+      - react-dom
+      - sortablejs
+      - superstruct
+      - typescript
+      - universal-cookie
+      - uploadthing
+      - valibot
+      - vite
       - vue
-
-  nuxt-site-config-kit@3.2.11(magicast@0.5.3)(vue@3.5.38(typescript@5.9.3)):
-    dependencies:
-      '@nuxt/kit': 4.4.8(magicast@0.5.3)
-      pkg-types: 2.3.1
-      site-config-stack: 3.2.11(vue@3.5.38(typescript@5.9.3))
-      std-env: 3.10.0
-      ufo: 1.6.4
-    transitivePeerDependencies:
-      - magicast
-      - vue
+      - vue-router
+      - yjs
+      - yup
 
   nuxt-site-config-kit@4.1.0(magicast@0.5.3)(vue@3.5.38(typescript@5.9.3)):
     dependencies:
       '@nuxt/kit': 4.4.8(magicast@0.5.3)
       site-config-stack: 4.1.0(vue@3.5.38(typescript@5.9.3))
       std-env: 4.1.0
-      ufo: 1.6.4
-    transitivePeerDependencies:
-      - magicast
-      - vue
-
-  nuxt-site-config@3.2.11(h3@1.15.11)(magicast@0.5.3)(vue@3.5.38(typescript@5.9.3)):
-    dependencies:
-      '@nuxt/kit': 4.4.8(magicast@0.5.3)
-      h3: 1.15.11
-      nuxt-site-config-kit: 3.2.11(magicast@0.5.3)(vue@3.5.38(typescript@5.9.3))
-      pathe: 2.0.3
-      pkg-types: 2.3.1
-      sirv: 3.0.2
-      site-config-stack: 3.2.11(vue@3.5.38(typescript@5.9.3))
       ufo: 1.6.4
     transitivePeerDependencies:
       - magicast
@@ -13096,7 +13085,15 @@ snapshots:
 
   sax@1.6.0: {}
 
-  schema-dts@1.1.5: {}
+  schema-dts-lib@1.0.0(typescript@5.9.3):
+    dependencies:
+      typescript: 5.9.3
+
+  schema-dts@2.0.0(typescript@5.9.3):
+    dependencies:
+      schema-dts-lib: 1.0.0(typescript@5.9.3)
+    transitivePeerDependencies:
+      - typescript
 
   scslre@0.3.0:
     dependencies:
@@ -13240,11 +13237,6 @@ snapshots:
       totalist: 3.0.1
 
   sisteransi@1.0.5: {}
-
-  site-config-stack@3.2.11(vue@3.5.38(typescript@5.9.3)):
-    dependencies:
-      ufo: 1.6.4
-      vue: 3.5.38(typescript@5.9.3)
 
   site-config-stack@4.1.0(vue@3.5.38(typescript@5.9.3)):
     dependencies:
@@ -13542,10 +13534,6 @@ snapshots:
   unenv@2.0.0-rc.24:
     dependencies:
       pathe: 2.0.3
-
-  unhead@2.0.17:
-    dependencies:
-      hookable: 5.5.3
 
   unhead@2.1.15:
     dependencies:
