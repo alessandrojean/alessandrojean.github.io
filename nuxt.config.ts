@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/icon',
-    '@nuxt/scripts',
     '@nuxt/image',
     '@nuxtjs/robots',
     'nuxt-schema-org',
