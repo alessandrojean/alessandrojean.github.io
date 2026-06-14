@@ -42,7 +42,7 @@ Após as dependências e o *template* terem sido baixados, podemos abrir a pasta
 
 ## Um exemplo introdutório
 
-Começando com um exemplo simples, utilizaremos uma biblioteca própria que só vai ter uma função. Para este exemplo, vamos criar uma biblioteca de matemática que irá exportar a função exponencial (`e ^ x`) definida como `my_exp`.
+Começando com um exemplo simples, utilizaremos uma biblioteca própria que só vai ter uma função. Para este exemplo, vamos criar uma biblioteca de matemática que irá exportar a função exponencial ($e ^ x$) definida como `my_exp`.
 
 Primeiramente, precisaremos criar o arquivo de cabeçalho que irá definir todas as funções que nossa biblioteca exportará para o uso de outros programas.
 

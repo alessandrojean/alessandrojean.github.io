@@ -363,7 +363,7 @@
       font-style: italic;
     }
 
-    [data-slot=inline-equation] .katex {
+    .katex {
       font-size: 1em !important;
     }
 

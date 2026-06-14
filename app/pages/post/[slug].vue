@@ -33,6 +33,8 @@
 </template>
 
 <script lang="ts" setup>
+import 'katex/dist/katex.min.css';
+
 const slug = useRoute().params.slug as string;
 
 const { data: post } = await useAsyncData(`post-${slug}`, () => {

@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         remarkPlugins: {
+          'remark-math': {},
           'remark-smartypants': {},
           'remark-toc': {
             options: {
@@ -36,6 +37,9 @@ export default defineNuxtConfig({
               ordered: true,
             },
           },
+        },
+        rehypePlugins: {
+          'rehype-katex': {},
         },
         highlight: {
           theme: {
