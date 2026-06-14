@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+
 import tailwindcss from '@tailwindcss/vite';
 import { definePerson } from 'nuxt-schema-org/schema';
 
@@ -11,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/robots',
     'nuxt-schema-org',
+    '@nuxt/content',
   ],
   devtools: { enabled: true },
 
@@ -21,11 +24,42 @@ export default defineNuxtConfig({
     url: 'https://alessandrojean.github.io',
   },
 
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          theme: {
+            default: 'github-light-default',
+            dark: 'github-dark-default',
+          },
+          langs: [
+            'c',
+            'cpp',
+            'haskell',
+            'console',
+            'java',
+            'ini',
+            'yaml',
+            'json',
+            'markdown',
+            'tsx',
+            JSON.parse(readFileSync('./shiki/languages/ass.tmLanguage.json', 'utf-8')),
+            JSON.parse(readFileSync('./shiki/languages/cabal.tmLanguage.json', 'utf-8')),
+          ],
+        },
+      },
+    },
+  },
+
   runtimeConfig: {
     notion: {
       apiKey: '',
       postsDataSourceId: '',
     },
+  },
+
+  experimental: {
+    extractAsyncDataHandlers: true,
   },
 
   compatibilityDate: '2025-07-15',

@@ -151,7 +151,7 @@
       }
     }
 
-    blockquote {
+    blockquote:not([data-slot="tweet"]) {
       padding-inline: calc(var(--spacing) * 6);
       padding-block: calc(var(--spacing) * 8);
       font-style: italic;
@@ -184,14 +184,14 @@
         }
       }
 
-      code[data-slot=inline-code] {
+      code {
         color: currentColor;
         padding: 0;
         background-color: transparent;
         font-weight: var(--font-weight-normal);
       }
 
-      [data-slot=inline-italic] {
+      em {
         font-style: normal;
       }
 
@@ -344,7 +344,7 @@
       }
     }
 
-    code[data-slot=inline-code] {
+    code:not(pre > code) {
       white-space: nowrap;
       font-size: 0.85em;
       line-height: 1;
