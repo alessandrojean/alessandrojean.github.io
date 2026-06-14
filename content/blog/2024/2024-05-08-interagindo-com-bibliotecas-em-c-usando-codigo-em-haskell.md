@@ -12,7 +12,7 @@ tags:
 
 Uma necessidade comum em algumas aplicações específicas é poder utilizar alguma biblioteca nativa do sistema operacional diretamente, mesmo não utilizando a linguagem que ela foi escrita (normalmente C ou C++). A maioria das linguagens de programação modernas permitem que tais funções sejam utilizadas através do recurso de interoperabilidade.
 
-O objetivo deste tutorial é demonstrar como a interoperabilidade funciona no Haskell no sentido de utilizar bibliotecas existentes em C, bem como a conversão entre os tipos de ambas as linguagens. Para tal, serão mostrados alguns exemplos onde serão criadas algumas bibliotecas próprias, e outros onde serão alguns exemplos mais objetivos através da utilização do FFmpeg e VLC.
+O objetivo deste tutorial é :mark[demonstrar como a interoperabilidade funciona no Haskell] no sentido de utilizar bibliotecas existentes em C, bem como a :mark[conversão entre os tipos de ambas as linguagens]. Para tal, serão mostrados alguns exemplos onde serão criadas algumas bibliotecas próprias, e outros onde serão alguns exemplos mais objetivos através da utilização do :mark[FFmpeg e VLC].
 
 O código final deste artigo está disponível no GitHub no repositório https://github.com/alessandrojean/haskell-c-interop.
 

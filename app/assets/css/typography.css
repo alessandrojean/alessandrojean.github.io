@@ -322,25 +322,12 @@
       padding-inline: 2px;
       padding-block: calc(var(--spacing) * 0.5);
       border-radius: var(--radius-sm);
+      background-color: var(--color-sky-100);
+      color: var(--color-sky-900);
 
-      &[data-color=blue-background] {
-        background-color: var(--color-sky-100);
-        color: var(--color-sky-900);
-
-        @variant dark {
-          background-color: var(--color-sky-950);
-          color: var(--color-sky-200);
-        }
-      }
-
-      &[data-color=yellow-background] {
-        background-color: var(--color-amber-100);
-        color: var(--color-amber-900);
-
-        @variant dark {
-          background-color: color-mix(in oklab, var(--color-yellow-400) 20%, transparent);
-          color: var(--color-yellow-100);
-        }
+      @variant dark {
+        background-color: var(--color-sky-950);
+        color: var(--color-sky-200);
       }
     }
 
