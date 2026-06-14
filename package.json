@@ -23,8 +23,6 @@
     "@unhead/vue": "^2.0.19",
     "@vueuse/core": "^14.0.0",
     "better-sqlite3": "^12.4.1",
-    "dedent": "^1.7.0",
-    "html-entities": "^2.6.0",
     "katex": "^0.16.25",
     "nuxt": "^4.4.8",
     "nuxt-schema-org": "^5.0.9",
@@ -33,7 +31,6 @@
     "remark-smartypants": "^3.0.2",
     "remark-toc": "^9.0.0",
     "rss": "^1.2.2",
-    "slugify": "^1.6.6",
     "tailwindcss": "^4.1.16",
     "vue": "^3.5.22",
     "vue-router": "^4.6.3",
@@ -44,13 +41,11 @@
     "@iconify-json/catppuccin": "^1.2.17",
     "@iconify-json/lucide": "^1.2.71",
     "@iconify-json/simple-icons": "^1.2.56",
-    "@shikijs/transformers": "^3.14.0",
     "@types/node": "^24.9.1",
     "@types/rss": "^0.0.32",
     "eslint": "^9.38.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "schema-dts": "^1.1.5",
-    "shiki": "^3.14.0",
     "typescript": "^5.9.3"
   }
 }
