@@ -134,3 +134,59 @@ const fileIcon = computed(() => {
 
 const { copy, copied } = useClipboard({ source: code });
 </script>
+
+<style>
+.shiki code .diff {
+  --m: calc(-6 * var(--spacing));
+
+  margin-left: var(--m);
+  margin-right: var(--m);
+  padding-left: calc(-1 * var(--m));
+  padding-right: calc(-1 * var(--m));
+  padding-top: 0px;
+  padding-bottom: 0px;
+  width: calc(100% + 3rem);
+}
+
+.shiki code .diff::before {
+  position: absolute;
+  left: calc(2.5 * var(--spacing));
+}
+
+.shiki code .diff.add {
+  background-color: color-mix(in oklab, #10b981 14%, transparent);
+}
+
+.shiki code .diff.add::before {
+  content: '+';
+  color: #18794e;
+}
+
+.shiki code .diff.remove {
+  opacity: .7;
+  background-color: color-mix(in oklab, #f43f5e 14%, transparent);
+}
+
+.shiki code .diff.remove::before {
+  content: '-';
+  color: #b34e52;
+}
+
+@media (prefers-color-scheme: dark) {
+  .shiki code .diff.add {
+    background-color: color-mix(in oklab, #10b981 16%, transparent);
+  }
+
+  .shiki code .diff.add::before {
+    color: #3dd68c;
+  }
+
+  .shiki code .diff.remove {
+    background-color: color-mix(in oklab, #f43f5e 16%, transparent);
+  }
+
+  .shiki code .diff.remove::before {
+    color: #cb7676;
+  }
+}
+</style>
