@@ -1,9 +1,11 @@
+import { queryCollection } from '@nuxt/content/server';
 import RSS from 'rss';
 
-import { getNotionPosts } from '~~/server/utils/notion';
-
 export default defineEventHandler(async (event) => {
-  const posts = await getNotionPosts(event, { pageSize: 10 });
+  const posts = await queryCollection(event, 'blog')
+    .order('created_at', 'DESC')
+    .limit(10)
+    .all();
   const url = 'https://alessandrojean.github.io';
 
   const feed = new RSS({
@@ -24,16 +26,19 @@ export default defineEventHandler(async (event) => {
   });
 
   for (const post of posts) {
+    const [, _, fileName] = post.path.slice(1).split('/');
+    const slug = fileName!.slice(11);
+
     feed.item({
       title: post.title,
-      guid: `${url}/post/${post.slug}`,
-      url: `${url}/post/${post.slug}`,
+      guid: `${url}/post/${slug}`,
+      url: `${url}/post/${slug}`,
       description: post.description,
-      date: new Date(post.published_at),
-      categories: post.category ? [post.category.name] : undefined,
+      date: new Date(post.created_at),
+      categories: post.category ? [post.category] : undefined,
       custom_elements: [
         { 'dc:creator': { _cdata: 'Alessandro Jean' } },
-        { 'content:encoded': { _cdata: `<p>Leia o conteúdo completo <a href="${url}/post/${post.slug}">no site</a>.</p>` } },
+        { 'content:encoded': { _cdata: `<p>Leia o conteúdo completo <a href="${url}/post/${slug}">no site</a>.</p>` } },
       ],
     });
   }

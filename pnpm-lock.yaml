@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@notionhq/client':
-        specifier: 5.3.0
-        version: 5.3.0
       '@nuxt/content':
         specifier: 3.14.0
         version: 3.14.0(better-sqlite3@12.4.1)(magicast@0.5.3)
@@ -981,10 +978,6 @@ packages:
   '@nodelib/fs.walk@3.0.1':
     resolution: {integrity: sha512-nIh/M6Kh3ZtOmlY00DaUYB4xeeV6F3/ts1l29iwl3/cfyY/OuCfUx+v08zgx8TKPTifXRcjjqVQ4KB2zOYSbyw==}
     engines: {node: '>=18.18.0'}
-
-  '@notionhq/client@5.3.0':
-    resolution: {integrity: sha512-pISuJLrP6XwxnmMZ79jT2XkMHFtbQvslfs6Rqdd29ge0KAmJOuhtWZxE1WXO7h03cj/gVAL2PiAjpFuIWrWJ3w==}
-    engines: {node: '>=18'}
 
   '@nuxt/cli@3.35.2':
     resolution: {integrity: sha512-sCxNnFuYamqippdj+Cj4Nue55yaUvasaneyf2mnowK5/F1TKln/WVqTH18McxQ4baLlIlVapIFovKjJx1L8XMQ==}
@@ -6626,8 +6619,6 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 4.0.1
       fastq: 1.19.1
-
-  '@notionhq/client@5.3.0': {}
 
   '@nuxt/cli@3.35.2(@nuxt/schema@4.4.8)(cac@6.7.14)(magicast@0.5.3)':
     dependencies:

@@ -51,13 +51,6 @@ export default defineNuxtConfig({
     },
   },
 
-  runtimeConfig: {
-    notion: {
-      apiKey: '',
-      postsDataSourceId: '',
-    },
-  },
-
   experimental: {
     extractAsyncDataHandlers: true,
   },
