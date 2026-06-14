@@ -16,7 +16,7 @@
     "@nuxt/eslint": "1.9.0",
     "@nuxt/fonts": "0.14.0",
     "@nuxt/icon": "2.2.3",
-    "@nuxt/image": "^1.11.0",
+    "@nuxt/image": "^2.0.0",
     "@nuxtjs/robots": "^5.5.6",
     "@tailwindcss/vite": "^4.3.1",
     "@unhead/vue": "^2.0.19",
