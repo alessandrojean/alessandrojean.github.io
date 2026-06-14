@@ -43,6 +43,10 @@ const { data: post } = await useAsyncData(`post-${slug}`, () => {
     .first();
 });
 
+if (!post) {
+  throw createError({ status: 404 })
+}
+
 const { socialMedia } = useAppConfig();
 
 function postSlug(path: string) {
