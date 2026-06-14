@@ -4,6 +4,7 @@ category: Programação
 description: Descrição
 language: pt-BR
 created_at: 2026-06-14
+updated_at: 2026-06-14T20:34:00
 tags:
   - notion
   - nuxt
@@ -23,6 +24,6 @@ Uma mudança pequena, mas significativa que acabei fazendo na migração, foi re
 As citações de _posts_ de redes sociais agora são assim, o que também permite maior flexibilidade já que posso citar _posts_ de quaisquer sites.
 ::
 
-Removi também a seção de comentários de filmes do site. Com meu uso mais frequente do [Letterboxd](https://Letterboxd.com/alessandrojean), creio que faz mais sentido postar quaisquer comentários no diário por lá. Ainda não migrei meus comentários, mas pretendo fazer em algum momento oportuno.
+Removi também a seção de comentários de filmes do site. Com meu uso mais frequente do [Letterboxd](https://Letterboxd.com/alessandrojean), creio que faz mais sentido postar meus comentários nos [_reviews_](https://letterboxd.com/alessandrojean/reviews/) por lá.
 
 De coisas futuras a serem feitas, eu ainda quero melhorar um pouco a tipografia.
