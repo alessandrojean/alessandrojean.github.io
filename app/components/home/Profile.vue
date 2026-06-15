@@ -31,14 +31,9 @@
             target="_blank"
             class="hover:underline"
           >
-            B.Sc. in Computer Science
+            B. in Computer Science
           </NuxtLink>
-          <Icon
-            name="lucide:at-sign"
-            class="hidden sm:block text-gray-500 size-3.5"
-            aria-hidden="true"
-          />
-          <span class="sr-only"> at </span>
+          <span class="sr-only sm:not-sr-only text-gray-400 dark:text-gray-500">@</span>
           <NuxtLink
             external
             to="https://ufabc.edu.br"
