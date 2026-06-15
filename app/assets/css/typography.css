@@ -307,7 +307,7 @@
         svg {
           width: calc(var(--spacing) * 4);
           height: calc(var(--spacing) * 4);
-          align-self: center;
+          align-self: end;
           fill: currentColor;
         }
       }
