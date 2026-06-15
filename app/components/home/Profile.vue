@@ -29,7 +29,7 @@
             external
             to="https://bcc.ufabc.edu.br"
             target="_blank"
-            class="hidden sm:block hover:underline"
+            class="hover:underline"
           >
             B.Sc. in Computer Science
           </NuxtLink>
@@ -43,7 +43,7 @@
             external
             to="https://ufabc.edu.br"
             target="_blank"
-            class="hidden sm:block hover:underline"
+            class="sr-only sm:not-sr-only hover:underline"
           >
             UFABC
           </NuxtLink>
@@ -52,4 +52,3 @@
     </div>
   </div>
 </template>
-
