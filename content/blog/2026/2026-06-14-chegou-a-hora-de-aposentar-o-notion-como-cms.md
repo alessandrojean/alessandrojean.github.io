@@ -20,7 +20,12 @@ No aspecto técnico, acabei utilizando o [Nuxt Content](https://content.nuxt.com
 
 Uma mudança pequena, mas significativa que acabei fazendo na migração, foi remover os _embeds_ de _tweets_. Já não é de hoje que não me sinto mais confortável em usar o que o Twitter se tornou, então acredito que é justo também não colocar nenhum _script_ deles no meu site. Para o único post (por enquanto) que fazia uso desse tipo de conteúdo, optei por criar uma citação especial, inspirada no estilo do [Manual do Usuário](https://manualdousuario.net/).
 
-::tweet{author="Alessandro Jean" subtitle="Autor deste site" picture="https://github.com/alessandrojean.png"}
+::social-media-post
+---
+author: Alessandro Jean
+subtitle: Autor deste site
+picture: /img/avatar-okabe-small.webp
+---
 As citações de _posts_ de redes sociais agora são assim, o que também permite maior flexibilidade já que posso citar _posts_ de quaisquer sites.
 ::
 

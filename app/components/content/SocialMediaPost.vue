@@ -1,6 +1,6 @@
 <template>
   <blockquote
-    data-slot="tweet"
+    data-slot="social-media-post"
     class="py-4"
     :cite="url"
   >

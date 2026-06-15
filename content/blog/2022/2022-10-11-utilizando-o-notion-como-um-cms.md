@@ -18,22 +18,24 @@ Não me entenda mal, eu pessoalmente gosto muito da linguagem Markdown e da faci
 
 Um dia desses eu estava navegando no Twitter e me deparei com um *tweet* do [Adam Wathan](https://twitter.com/adamwathan), um dos criadores do [Tailwind CSS](https://tailwindcss.com), comentando sobre a tentativa dele de usar o Notion como o CMS do [site dele](https://adamwathan.me/), e que infelizmente ele não conseguiu seguir dado a algumas limitações e a forma com que a API oficial e pública do Notion é estruturada.
 
-::tweet
+::social-media-post
 ---
 author: Adam Wathan
 subtitle: Criador do Tailwind CSS
-picture: ./posts/2022/2022-10-11-utilizando-o-notion-como-um-cms/adam-wathan.jpg
+picture: https://github.com/adamwathan.png
+url: https://x.com/adamwathan/status/1483114773235609607
 ---
 Brincando um pouco com usar o Notion como um CMS para o meu site pessoal para reduzir a burocracia de publicação. É bem divertido, mas toda a abstração em 'blocos' e as coisas de paginação fazem ser um trabalho enorme só para extrair um conteúdo básico escrito pela API.
 ::
 
 Um dos principais problemas é não haver (até o momento) um *endpoint* que retorne todos os blocos de uma vez ou, ainda melhor, retorne toda a página como um Markdown direto que possa ser utilizado para gerar o HTML final da página no site. Eu também cheguei a cogitar utilizar a [API oficial do Notion](https://developers.notion.com/), mas esbarrei nos exatos mesmos problemas: também achei muito excessivo a quantidade de chamadas a API que eu deveria fazer para conseguir obter todos os blocos de uma determinada página.
 
-::tweet
+::social-media-post
 ---
 author: Adam Wathan
 subtitle: Criador do Tailwind CSS
-picture: ./posts/2022/2022-10-11-utilizando-o-notion-como-um-cms/adam-wathan.jpg
+picture: https://github.com/adamwathan.png
+url: https://x.com/adamwathan/status/1483174899141287940
 ---
 Certo, estou desistindo disso, é muito a se preocupar com o número de chamadas a API, *rate limiting*, transformar a estrutura de dados complexa que recebo de volta etc. Ainda gosto do Notion como Notion porém.
 ::

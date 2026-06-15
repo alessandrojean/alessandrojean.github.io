@@ -147,7 +147,7 @@
       }
     }
 
-    blockquote:not([data-slot="tweet"]) {
+    blockquote:not([data-slot="social-media-post"]) {
       padding-inline: calc(var(--spacing) * 6);
       padding-block: calc(var(--spacing) * 8);
       font-style: italic;
