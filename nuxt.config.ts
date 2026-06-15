@@ -40,6 +40,12 @@ export default defineNuxtConfig({
         },
         rehypePlugins: {
           'rehype-katex': {},
+          'rehype-external-links': {
+            options: {
+              rel: ['noopener', 'noreferrer'],
+              target: '_blank',
+            },
+          },
         },
         highlight: {
           theme: {

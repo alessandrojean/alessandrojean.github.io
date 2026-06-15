@@ -25,6 +25,7 @@
     "katex": "^0.17.0",
     "nuxt": "^4.4.8",
     "nuxt-schema-org": "^6.2.1",
+    "rehype-external-links": "^3.0.0",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "remark-smartypants": "^3.0.2",

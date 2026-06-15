@@ -47,6 +47,9 @@ importers:
       nuxt-schema-org:
         specifier: ^6.2.1
         version: 6.2.1(df9610f13d32a79342b4e73595d38bb2)
+      rehype-external-links:
+        specifier: ^3.0.0
+        version: 3.0.0
       rehype-katex:
         specifier: ^7.0.1
         version: 7.0.1
