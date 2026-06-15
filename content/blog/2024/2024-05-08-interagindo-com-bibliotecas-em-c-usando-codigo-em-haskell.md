@@ -14,7 +14,7 @@ Uma necessidade comum em algumas aplicações específicas é poder utilizar alg
 
 O objetivo deste tutorial é :mark[demonstrar como a interoperabilidade funciona no Haskell] no sentido de utilizar bibliotecas existentes em C, bem como a :mark[conversão entre os tipos de ambas as linguagens]. Para tal, serão mostrados alguns exemplos onde serão criadas algumas bibliotecas próprias, e outros onde serão alguns exemplos mais objetivos através da utilização do :mark[FFmpeg e VLC].
 
-O código final deste artigo está disponível no GitHub no repositório https://github.com/alessandrojean/haskell-c-interop.
+O código final deste artigo está disponível no GitHub no repositório :github-mention{repo="alessandrojean/haskell-c-interop"}.
 
 ::note
 Este tutorial foi escrito como um dos projetos da disciplina [*Desenvolvimento Guiado a Tipos*](https://folivetti.github.io/teaching/2024-summer-teaching-1) do Bacharelado em Ciência da Computação na UFABC em Abril de 2024.
