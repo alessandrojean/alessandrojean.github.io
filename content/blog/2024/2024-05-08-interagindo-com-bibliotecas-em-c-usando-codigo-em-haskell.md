@@ -16,7 +16,7 @@ O objetivo deste tutorial é :mark[demonstrar como a interoperabilidade funciona
 
 O código final deste artigo está disponível no GitHub no repositório https://github.com/alessandrojean/haskell-c-interop.
 
-::callout
+::note
 Este tutorial foi escrito como um dos projetos da disciplina [*Desenvolvimento Guiado a Tipos*](https://folivetti.github.io/teaching/2024-summer-teaching-1) do Bacharelado em Ciência da Computação na UFABC em Abril de 2024.
 ::
 
@@ -26,7 +26,7 @@ Este tutorial foi escrito como um dos projetos da disciplina [*Desenvolvimento G
 
 > Interoperabilidade é a capacidade de duas linguagens de programação diferentes interagirem de maneira nativa como parte de um mesmo sistema e operar com os mesmos tipos de estruturas de dados.
 > 
-> <cite>— [Wikipédia](https://en.wikipedia.org/wiki/Language_interoperability) (em inglês)</cite>
+> :cite[— [Wikipédia](https://en.wikipedia.org/wiki/Language_interoperability) (em inglês)]
 
 O Haskell oferece a interoperabilidade através do método de *interfaces de funções externas* (FFI), o que permite que nosso código em Haskell possa chamar funções escritas em C ou C++. Essas interfaces permitem que sejam construídas bibliotecas em Haskell que ofereçam funcionalidades de bibliotecas em C, facilitando o acesso e inclusive permitindo um estilo que seja mais idiomático para o Haskell, com (mas não limitado somente) a conversão para o paradigma funcional ([Wikipédia](https://en.wikipedia.org/wiki/Language_interoperability)). Tais bibliotecas são comumente conhecidas como *wrappers* ou *bindings*.
 
@@ -478,7 +478,7 @@ Para poder fazer a conversão entre as linguagens, as estruturas de dados precis
 
 Simplificando bastante e considerando uma arquitetura de 32 *bits*, o *padding* é usado em estruturas no C para alinhar seus membros internos aos limites de endereço naturais, ou seja, fazendo com que os endereços na memória de cada membro seja um múltiplo de 4. O *padding* é adicionado por padrão pelo compilador do C, mas pode ser desativado.
 
-::callout
+::note
 [Esta pergunta](https://stackoverflow.com/q/4306186) no StackOverflow possui algumas explicações interessantes sobre como o *padding* e *packing* funcionam na linguagem C.
 ::
 
@@ -535,7 +535,7 @@ instance Storable AvDictionaryEntry where
 
 As funções funcionam da exata mesma maneira da nossa implementação explicita anterior, mas será criada automaticamente em tempo de compilação, além de prevenir erros de cálculo e não mais depender do tamanho dos tipos do C.
 
-::callout
+::note
 A documentação da biblioteca pode ser encontrada no [Hackage](https://hackage.haskell.org/package/c-storable-deriving-0.1.3/docs/Foreign-CStorable.html).
 ::
 

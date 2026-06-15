@@ -11,7 +11,7 @@ tags:
   - svg
 ---
 
-::callout
+::note
 Este artigo foi escrito quando o NuxtJS v3 ainda estava no estado de *release candidate*, fazendo com que muitas etapas do processo tivessem de ser feitas de modo manual, como depender de um módulo customizado.
 
 Atualmente, há um módulo de terceiros criado justamente para este intuito, o [nuxt-og-image](https://github.com/harlan-zw/nuxt-og-image), que também usa o Satori e torna o processo muito mais simples e evita complicações desnecessárias, tais como escrever o *template* como um componente React dentro de um projeto Vue.js. Recomendo atualmente usar este módulo.

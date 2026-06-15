@@ -17,7 +17,12 @@ No novo site eu queria dar mais destaque e fazer parecer mais uma espécie de po
 
 Outra experiência que resolvi testar foi utilizar o Notion como o "banco de dados" dos posts. Tinha visto um dos criadores do Tailwind comentar sobre em um *tweet* e achei a proposta muito interessante. Infelizmente a API do Notion não retorna o corpo inteiro da página em um formato mais comum como HTML ou até mesmo Markdown, mas sim em uma espécie de AST com os nós de cada bloco. Existem alguns pacotes no NPM como o `vue-notion`, mas infelizmente ele não está atualizado ainda para o Vue.js v3 e nem para o NuxtJS 3, o que acaba causando diversos erros de compilação.
 
-::tweet{author="Adam Wathan" subtitle="Criador do Tailwind CSS" picture="./posts/2022/2022-10-11-utilizando-o-notion-como-um-cms/adam-wathan.jpg"}
+::tweet
+---
+author: Adam Wathan
+subtitle: Criador do Tailwind CSS
+picture: ./posts/2022/2022-10-11-utilizando-o-notion-como-um-cms/adam-wathan.jpg
+---
 Brincando um pouco com usar o Notion como um CMS para o meu site pessoal para reduzir a burocracia de publicação. É bem divertido, mas toda a abstração em 'blocos' e as coisas de paginação fazem ser um trabalho enorme só para extrair um conteúdo básico escrito pela API.
 ::
 

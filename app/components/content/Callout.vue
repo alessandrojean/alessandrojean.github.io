@@ -19,6 +19,6 @@
 
 <script lang="ts" setup>
 const { type = 'note' } = defineProps<{
-  type?: 'note' | 'tip' | 'important' | 'warning' | 'caution';
+  type?: 'note' | 'tip' | 'warning' | 'caution';
 }>();
 </script>

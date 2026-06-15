@@ -25,7 +25,7 @@ Apesar de um esforço existir em relação a esse problema em Haskell pelo proje
 
 Como exemplo de página para testes, será utilizada a desse próprio tutorial, que será o teste do programa em conseguir converter para Markdown no formato [*GitHub Flavored Markdown*](https://github.github.com/gfm/). O repositório com o código completo encontra-se disponível em https://github.com/alessandrojean/notion-doc.
 
-::callout
+::note
 Este tutorial foi escrito como um dos projetos da disciplina [*Desenvolvimento Guiado a Tipos*](https://folivetti.github.io/teaching/2024-summer-teaching-1) do Bacharelado em Ciência da Computação na UFABC em Março de 2024.
 ::
 
