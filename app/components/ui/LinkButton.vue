@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     v-bind="props"
-    class="inline-flex items-center justify-center gap-1.5 px-3 h-8 has-[>svg]:px-2.5 rounded-md dark:text-gray-300 dark:hover:text-white border border-gray-200 dark:border-gray-700 dark:bg-gray-900 shadow-xs text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+    class="inline-flex items-center justify-center size-8 rounded-md text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-all"
   >
     <slot />
   </NuxtLink>

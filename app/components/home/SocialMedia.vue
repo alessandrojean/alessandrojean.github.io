@@ -1,75 +1,111 @@
 <template>
-  <div class="flex flex-wrap gap-2">
+  <div class="flex flex-wrap w-full justify-center gap-0.5">
     <UiLinkButton
-      v-if="socialMedia.instagram?.length"
-      :to="`https://instagram.com/${socialMedia.instagram}`"
+      v-for="site in sitesToShow"
+      :key="site"
+      :to="sites[site].url(socialMedia[site])"
+      :title="sites[site].name"
       target="_blank"
       external
     >
       <Icon
-        name="simple-icons:instagram"
-        class="size-4"
+        :name="sites[site].icon"
+        class="size-5"
       />
-      Instagram
+      <span class="sr-only">{{ sites[site].name }}</span>
     </UiLinkButton>
+
     <UiLinkButton
-      v-if="socialMedia.letterboxd?.length"
-      :to="`https://letterboxd.com/${socialMedia.letterboxd}`"
-      target="_blank"
-      external
+      to="/blog"
+      title="Blog"
     >
-      <Icon
-        name="simple-icons:letterboxd"
-        class="size-4"
-      />
-      Letterboxd
-    </UiLinkButton>
-    <UiLinkButton
-      v-if="socialMedia.trakt?.length"
-      :to="`https://trakt.tv/users/${socialMedia.trakt}`"
-      target="_blank"
-      external
-    >
-      <Icon
-        name="simple-icons:trakt"
-        class="size-4"
-      />
-      Trakt
-    </UiLinkButton>
-    <UiLinkButton
-      v-if="socialMedia.gitHub?.length"
-      :to="`https://github.com/${socialMedia.gitHub}`"
-      target="_blank"
-      external
-    >
-      <Icon
-        name="simple-icons:github"
-        class="size-4"
-      />
-      GitHub
-    </UiLinkButton>
-    <UiLinkButton
-      v-if="socialMedia.linkedin?.length"
-      :to="`https://www.linkedin.com/in/${socialMedia.linkedin}`"
-      target="_blank"
-      external
-    >
-      <Icon
-        name="simple-icons:linkedin"
-        class="size-4"
-      />
-      LinkedIn
-    </UiLinkButton>
-    <UiLinkButton to="/blog">
       <Icon
         name="lucide:notebook-text"
-        class="size-4"
+        class="size-5.5"
       />
-      Blog
+      <span class="sr-only">Blog</span>
     </UiLinkButton>
   </div>
 </template>
 
 <script lang="ts" setup>
 const { socialMedia } = useAppConfig();
+
+type Site = keyof typeof socialMedia;
+const sitesToShow: Site[] = [
+  'instagram',
+  'bluesky',
+  'mastodon',
+  'letterboxd',
+  'trakt',
+  'gitHub',
+  'linkedin',
+];
+
+interface SiteObject {
+  name: string;
+  icon: string;
+  url: (user: string) => string;
+}
+
+const sites: Record<Site, SiteObject> = {
+  instagram: {
+    name: 'Instagram',
+    icon: 'simple-icons:instagram',
+    url: user => `https://instagram.com/${user}`,
+  },
+  letterboxd: {
+    name: 'Letterboxd',
+    icon: 'simple-icons:letterboxd',
+    url: user => `https://letterboxd.com/${user}`,
+  },
+  trakt: {
+    name: 'Trakt',
+    icon: 'simple-icons:trakt',
+    url: user => `https://trakt.tv/users/${user}`,
+  },
+  gitHub: {
+    name: 'GitHub',
+    icon: 'simple-icons:github',
+    url: user => `https://github.com/${user}`,
+  },
+  linkedin: {
+    name: 'LinkedIn',
+    icon: 'simple-icons:linkedin',
+    url: user => `https://www.linkedin.com/in/${user}`,
+  },
+  mastodon: {
+    name: 'Mastodon',
+    icon: 'simple-icons:mastodon',
+    url: (fullUser) => {
+      const [user, instance] = fullUser.split('@');
+      return `https://${instance}/@${user}`;
+    },
+  },
+  threads: {
+    name: 'Threads',
+    icon: 'simple-icons:threads',
+    url: user => `https://threads.net/@${user}`,
+  },
+  myAnimeList: {
+    name: 'MyAnimeList',
+    icon: 'simple-icons:myanimelist',
+    url: user => `https://myanimelist.net/profile/${user}`,
+  },
+  linktree: {
+    name: 'Linktree',
+    icon: 'simple-icons:linktree',
+    url: user => `https://linktr.ee/${user}`,
+  },
+  bluesky: {
+    name: 'Bluesky',
+    icon: 'simple-icons:bluesky',
+    url: user => `https://bsky.app/profile/${user}`,
+  },
+  skoob: {
+    name: 'Skoob',
+    icon: '',
+    url: user => `https://skoob.com.br/share/user/${user}`,
+  },
+};
 </script>
