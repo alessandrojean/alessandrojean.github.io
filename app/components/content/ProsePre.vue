@@ -1,9 +1,8 @@
 <template>
-  <!-- <pre :class="$props.class"><slot /></pre> -->
   <div
     data-slot="code"
     :data-lang="language"
-    class="md:-mx-4 md:has-[.diff]:-mx-6 [&_pre,&_code]:[font-feature-settings:'calt'] [&_pre,&_code]:font-mono text-sm [&_pre]:overflow-x-auto [&_pre]:ps-2 [&_pre]:pe-2 [&_pre]:rounded-xl rounded-xl [&_pre_span]:[font-style:var(--shiki-light-font-style)] [&_pre_span]:font-(--shiki-light-font-weight) normal-nums dark:[&_pre_span]:text-(--shiki-dark)! dark:[&_.shiki]:bg-(--shiki-dark-bg)!"
+    class="md:-mx-4 md:has-[.diff]:-mx-6 [&_pre,&_code]:font-features-['calt'] [&_pre,&_code]:font-mono text-sm lg:text-base [&_pre]:overflow-x-auto [&_pre]:ps-2 [&_pre]:pe-2 [&_pre]:rounded-xl rounded-xl [&_pre_span]:[font-style:var(--shiki-light-font-style)] [&_pre_span]:font-(--shiki-light-font-weight) normal-nums dark:[&_pre_span]:text-(--shiki-dark)! dark:[&_.shiki]:bg-(--shiki-dark-bg)!"
   >
     <div
       v-if="filename"
@@ -17,7 +16,7 @@
           class="size-4 text-gray-600"
           stroke-width="1.5"
         />
-        <span class="text-sm select-none">{{ filename }}</span>
+        <span class="text-base select-none">{{ filename }}</span>
       </div>
       <button
         type="button"
@@ -113,6 +112,7 @@ const languageIcon: Record<string, string> = {
   py: 'catppuccin:python',
   rs: 'catppuccin:rust',
   yml: 'catppuccin:yaml',
+  yaml: 'catppuccin:yaml',
   cu: 'catppuccin:cuda',
   console: 'lucide:terminal',
   shellsession: 'lucide:terminal',
