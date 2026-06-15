@@ -107,13 +107,9 @@
 
       figcaption {
         margin-top: calc(var(--spacing) * 2);
-        font-size: var(--text-sm);
+        font-size: var(--text-base);
         line-height: var(--leading-snug);
         color: var(--color-gray-600);
-        
-        @variant sm {
-          font-size: var(--text-base);
-        }
 
         @variant dark {
           color: var(--color-gray-400);
