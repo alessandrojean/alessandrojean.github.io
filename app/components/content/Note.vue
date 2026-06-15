@@ -1,9 +1,9 @@
 <template>
-  <Callout type="note">
+  <Admonition type="note">
     <slot />
-  </Callout>
+  </Admonition>
 </template>
 
 <script lang="ts" setup>
-import { Callout } from '#components';
+import { Admonition } from '#components';
 </script>

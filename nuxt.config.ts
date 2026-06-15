@@ -18,6 +18,12 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  vue: {
+    compilerOptions: {
+      isCustomElement: tag => tag === 'callout' || tag == 'cot',
+    },
+  },
+
   site: {
     name: 'Alessandro Jean',
     url: 'https://alessandrojean.github.io',
