@@ -466,19 +466,19 @@ data AvDictionaryEntry = AvDictionaryEntry
 
 Para poder fazer a conversão entre as linguagens, as estruturas de dados precisarão providenciar uma instância da classe `Storable`. Essa instância pode ser implementada explicitamente, mas para poder implementar, é necessário ter conhecimento nos tamanhos dos tipos e de seus *paddings*, caso existam, nas estruturas do C, que podem ser consultados na tabela abaixo.
 
-| Tipo | Arquitetura | Tamanho (*byte*) | *Padding* (*byte*) | Total (*byte*) |
-| --- | --- | --- | --- | --- |
-| `char` | - | 1 | 3 | 4 |
-| `int` | - | 16 | 0 | 16 |
-| `long` | - | 32 | 0 | 32 |
-| `float` | - | 4 | 0 | 4 |
-| `double` | - | 8 | 0 | 8 |
-| `void *` | 32 *bits* | 4 | 0 | 4 |
-| `void *` | 64 *bits* | 8 | 0 | 8 |
+| Tipo     | Arquitetura | Tamanho (*byte*) | *Padding* (*byte*) | Total (*byte*) |
+| :------- | :---------: | ---------------: | -----------------: | -------------: |
+| `char`   | -           |                1 |                  3 |              4 |
+| `int`    | -           |               16 |                  0 |             16 |
+| `long`   | -           |               32 |                  0 |             32 |
+| `float`  | -           |                4 |                  0 |              4 |
+| `double` | -           |                8 |                  0 |              8 |
+| `void *` | 32 *bits*   |                4 |                  0 |              4 |
+| `void *` | 64 *bits*   |                8 |                  0 |              8 |
 
 Simplificando bastante e considerando uma arquitetura de 32 *bits*, o *padding* é usado em estruturas no C para alinhar seus membros internos aos limites de endereço naturais, ou seja, fazendo com que os endereços na memória de cada membro seja um múltiplo de 4. O *padding* é adicionado por padrão pelo compilador do C, mas pode ser desativado.
 
-::note
+::tip
 [Esta pergunta](https://stackoverflow.com/q/4306186) no StackOverflow possui algumas explicações interessantes sobre como o *padding* e *packing* funcionam na linguagem C.
 ::
 
