@@ -1,7 +1,10 @@
 import { readFileSync } from 'node:fs';
 
 import tailwindcss from '@tailwindcss/vite';
+import { createResolver } from 'nuxt/kit';
 import { definePerson } from 'nuxt-schema-org/schema';
+
+const { resolve } = createResolver(import.meta.url);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -120,6 +123,10 @@ export default defineNuxtConfig({
 
   icon: {
     mode: 'svg',
+    customCollections: [{
+      prefix: 'custom',
+      dir: resolve('./app/assets/icons'),
+    }],
   },
 
   image: {
@@ -164,7 +171,7 @@ export default defineNuxtConfig({
         'https://trakt.tv/users/alessandrojean',
         'https://linktr.ee/alessandrojean',
         'https://bsky.app/profile/alessandrojean.bsky.social',
-        'https://skoob.com.br/share/user/4231289',
+        'https://skoob.com.br/pt/profile/67bd13f570c4abc337a02408',
         'https://letterboxd.com/alessandrojean',
       ],
     }),

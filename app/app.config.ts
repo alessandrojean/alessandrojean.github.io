@@ -9,7 +9,7 @@ export default defineAppConfig({
     trakt: 'alessandrojean',
     linktree: 'alessandrojean',
     bluesky: 'alessandrojean.bsky.social',
-    skoob: '4231289',
+    skoob: '67bd13f570c4abc337a02408',
     letterboxd: 'alessandrojean',
   },
 });

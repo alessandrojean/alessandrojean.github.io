@@ -38,6 +38,7 @@ const sitesToShow: Site[] = [
   'mastodon',
   'letterboxd',
   'trakt',
+  'skoob',
   'gitHub',
   'linkedin',
 ];
@@ -104,8 +105,8 @@ const sites: Record<Site, SiteObject> = {
   },
   skoob: {
     name: 'Skoob',
-    icon: '',
-    url: user => `https://skoob.com.br/share/user/${user}`,
+    icon: 'custom:skoob',
+    url: user => `https://skoob.com.br/pt/profile/${user}`,
   },
 };
 </script>
