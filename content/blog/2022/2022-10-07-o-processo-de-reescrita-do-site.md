@@ -21,7 +21,7 @@ Outra experiência que resolvi testar foi utilizar o Notion como o "banco de dad
 ---
 author: Adam Wathan
 subtitle: Criador do Tailwind CSS
-picture: https://github.com/adamwathan.png
+picture: /github/adamwathan.png
 url: https://x.com/adamwathan/status/1483114773235609607
 ---
 Brincando um pouco com usar o Notion como um CMS para o meu site pessoal para reduzir a burocracia de publicação. É bem divertido, mas toda a abstração em 'blocos' e as coisas de paginação fazem ser um trabalho enorme só para extrair um conteúdo básico escrito pela API.

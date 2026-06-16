@@ -1,10 +1,13 @@
 <template>
   <div class="flex gap-4 items-center">
-    <img
-      src="/img/avatar-okabe-small.webp"
+    <NuxtImg
+      src="/github/alessandrojean.png"
       alt="Avatar"
+      width="80"
+      height="80"
+      format="avif"
       class="shrink-0 size-20 rounded-3xl border border-black/10 shadow-xs"
-    >
+    />
     <div>
       <h1 class="text-lg lg:text-xl font-medium">
         Alessandro Jean

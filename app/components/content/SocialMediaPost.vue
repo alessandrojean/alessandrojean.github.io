@@ -15,7 +15,7 @@
         width="56"
         height="56"
         quality="95"
-        format="webp"
+        format="avif"
         :alt="`Foto de perfil de ${author}.`"
       />
 

@@ -10,10 +10,11 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
+    '@nuxt/content',
     '@nuxtjs/robots',
     'nuxt-schema-org',
-    '@nuxt/content',
   ],
+
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.css'],
@@ -119,6 +120,27 @@ export default defineNuxtConfig({
 
   icon: {
     mode: 'svg',
+  },
+
+  image: {
+    quality: 95,
+    format: ['avif', 'webp'],
+    domains: [
+      'github.com',
+      'images.unsplash.com',
+      'image.tmdb.org',
+      'i.imgur.com',
+      'upload.wikimedia.org',
+    ],
+    alias: {
+      unsplash: 'https://images.unsplash.com',
+      github: 'https://github.com',
+    },
+    ipx: {
+      modifiers: {
+        format: 'avif',
+      },
+    },
   },
 
   robots: {
