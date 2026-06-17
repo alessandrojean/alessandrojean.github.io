@@ -44,7 +44,7 @@ const { data: post } = await useAsyncData(`post-${slug}`, () => {
 });
 
 if (!post) {
-  throw createError({ status: 404 })
+  throw createError({ status: 404 });
 }
 
 const { socialMedia } = useAppConfig();
@@ -90,5 +90,11 @@ useSchemaOrg([
 
 useHead({
   meta: [{ name: 'fediverse:creator', content: `@${socialMedia.mastodon}` }],
+  link: () => [{
+    rel: 'alternate',
+    type: 'text/markdown',
+    title: 'Markdown',
+    href: `https://raw.githubusercontent.com/alessandrojean/alessandrojean.github.io/refs/heads/master/content${post.value?.path}.md`,
+  }],
 });
 </script>
