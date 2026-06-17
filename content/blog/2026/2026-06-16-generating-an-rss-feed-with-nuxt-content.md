@@ -1,10 +1,10 @@
 ---
 title: Generating an RSS feed with Nuxt Content
 category: Programming
-description: My process on how to do
+description: A simple walk through on how to create a feed and also provide the posts HTML.
 language: en-US
 created_at: 2026-06-16
-updated_at: 2026-06-17T00:09:00
+updated_at: 2026-06-17T18:50:00
 tags:
   - nuxt
   - nuxt content
@@ -264,7 +264,7 @@ Now the RSS feed is fully complete with your posts' content as well.
 
 The alternative idea I had to solve this issue was using one of the Nuxt hooks after the build. You can write a custom script to parse the `/blog` generated HTML to get the links, and then parse the each post generated file to get the text part.
 
-This will likely do the job, but depending on your custom components, you might get a dirty HTML than just parsing the Markdown. For example, some of the `<pre>` blocks I use here are customized to include a fancier window around it with the file name and also a button to copy the code content. If you don't handle these edge cases, the RSS headers might not render the content in a desirable way.
+This will likely do the job, but depending on your custom components, you might get a dirty HTML than just parsing the Markdown. For example, some of the `<pre>` blocks I use here are customized to include a fancier window around it with the file name and also a button to copy the code content. If you don't handle these edge cases, the RSS readers might not render the content in a desirable way.
 
 ## Conclusion
 
