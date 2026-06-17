@@ -1,10 +1,10 @@
 ---
 title: Chegou a hora de aposentar o Notion como CMS
 category: Programação
-description: Descrição
+description: Notas sobre a migração do CMS do blog de Notion para Nuxt Content.
 language: pt-BR
 created_at: 2026-06-14
-updated_at: 2026-06-14T20:34:00
+updated_at: 2026-06-16T22:48:00
 tags:
   - notion
   - nuxt
