@@ -39,10 +39,12 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "remark-smartypants": "^3.0.2",
+    "remark-stringify": "^11.0.0",
     "remark-toc": "^9.0.0",
     "rss": "^1.2.2",
     "tailwindcss": "^4.3.1",
     "unified": "^11.0.5",
+    "vfile-matter": "^5.0.1",
     "vue": "^3.5.22",
     "zod": "^4.4.3"
   },

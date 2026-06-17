@@ -47,6 +47,9 @@ if (!post) {
   throw createError({ status: 404 });
 }
 
+const language = computed(() => post.value?.language ?? 'pt-BR');
+provide('language', language);
+
 const { socialMedia } = useAppConfig();
 
 function postSlug(path: string) {
@@ -96,5 +99,8 @@ useHead({
     title: 'Markdown',
     href: `https://raw.githubusercontent.com/alessandrojean/alessandrojean.github.io/refs/heads/master/content${post.value?.path}.md`,
   }],
+  htmlAttrs: {
+    lang: () => post.value?.language,
+  },
 });
 </script>

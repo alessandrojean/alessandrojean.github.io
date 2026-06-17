@@ -10,7 +10,7 @@
       :id="`cot-${cotId}`"
       class="sr-only"
     >
-      {{ title[type] }}
+      {{ title[type][language ?? 'pt-BR'] }}
     </cot>
     <div class="shrink-0 mt-1.5">
       <Icon
@@ -36,12 +36,13 @@ const icons: Record<Type, string> = {
   caution: 'lucide:circle-alert',
 };
 
-const title: Record<Type, string> = {
-  note: 'Nota',
-  tip: 'Dica',
-  warning: 'Atenção',
-  caution: 'Cuidado',
+const title: Record<Type, Record<string, string>> = {
+  note: { 'pt-BR': 'Nota', 'en-US': 'Note' },
+  tip: { 'pt-BR': 'Dica', 'en-US': 'Tip' },
+  warning: { 'pt-BR': 'Atenção', 'en-US': 'Warning' },
+  caution: { 'pt-BR': 'Cuidado', 'en-US': 'Caution' },
 };
 
+const language = inject<Ref<string>>('language');
 const cotId = useId();
 </script>

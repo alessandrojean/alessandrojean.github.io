@@ -13,14 +13,19 @@ import remarkMdc from 'remark-mdc';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import remarkSmartypants from 'remark-smartypants';
+import remarkStringify from 'remark-stringify';
 import remarkToc from 'remark-toc';
 import { unified } from 'unified';
+import { matter } from 'vfile-matter';
 
 const BASE_URL = 'https://alessandrojean.github.io/';
 
 export async function markdownToHtml(fileName: string) {
   const filePath = join(process.cwd(), 'content', `${fileName}.md`);
   const markdown = await readFile(filePath, 'utf-8');
+
+  const frontmatter = await parseFrontmatter(markdown);
+  const language = frontmatter.language ?? 'pt-BR';
 
   const result = await unified()
     .use(remarkParse)
@@ -41,10 +46,10 @@ export async function markdownToHtml(fileName: string) {
         'social-media-post': SocialMediaPost,
         'large-figure': LargeFigure,
         'github-mention': GithubMention,
-        'note': Callout('note'),
-        'tip': Callout('tip'),
-        'warning': Callout('warning'),
-        'caution': Callout('caution'),
+        'note': Callout('note', language),
+        'tip': Callout('tip', language),
+        'warning': Callout('warning', language),
+        'caution': Callout('caution', language),
       },
     })
     .use(rehypeStringify)
@@ -56,6 +61,17 @@ export async function markdownToHtml(fileName: string) {
     .replace(/href="\//g, `href="${BASE_URL}`);
 
   return html;
+}
+
+async function parseFrontmatter(markdown: string) {
+  const file = await unified()
+    .use(remarkParse)
+    .use(remarkStringify)
+    .use(remarkFrontmatter)
+    .use(() => (_, file) => matter(file))
+    .process(markdown);
+
+  return file.data.matter as Record<string, string>;
 }
 
 const SocialMediaPost: ComponentFunction = (properties, children) => h(
@@ -78,16 +94,18 @@ const LargeFigure: ComponentFunction = (_, children) => h(
   h('figcaption', children[1]!.children[0]!.children[0]),
 );
 
-const calloutTitle: Record<string, string> = {
-  note: 'Nota',
-  tip: 'Dica',
-  warning: 'Atenção',
-  caution: 'Cuidado',
+type CalloutType = 'note' | 'tip' | 'warning' | 'caution';
+
+const calloutTitle: Record<CalloutType, Record<string, string>> = {
+  note: { 'pt-BR': 'Nota', 'en-US': 'Note' },
+  tip: { 'pt-BR': 'Dica', 'en-US': 'Tip' },
+  warning: { 'pt-BR': 'Atenção', 'en-US': 'Warning' },
+  caution: { 'pt-BR': 'Cuidado', 'en-US': 'Caution' },
 };
 
-function Callout(tag: string): ComponentFunction {
+function Callout(tag: CalloutType, language: string): ComponentFunction {
   return (_, children) => h('div', [
-    h('p', h('strong', `${calloutTitle[tag]}:`)),
+    h('p', h('strong', `${calloutTitle[tag][language]}:`)),
     ...children,
   ]);
 }

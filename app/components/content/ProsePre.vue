@@ -123,13 +123,18 @@ const fileExtension = computed(() => {
   return filename?.substring(dot! + 1);
 });
 
+// Special filenames to get custom icons.
+const iconExceptions: Record<string, string> = {
+  'nuxt.config.ts': 'catppuccin:nuxt',
+};
+
 const fileIcon = computed(() => {
   if (!filename) {
     return null;
   }
 
   const extension = fileExtension.value!;
-  return languageIcon[extension] ?? 'lucide:file-code';
+  return iconExceptions[filename] ?? languageIcon[extension] ?? 'lucide:file-code';
 });
 
 const { copy, copied } = useClipboard({ source: code });
