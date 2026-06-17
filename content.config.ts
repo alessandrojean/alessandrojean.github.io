@@ -13,6 +13,7 @@ export default defineContentConfig({
         category: z.string().nonempty(),
         tags: z.string().nonempty().array().optional(),
         language: z.string().optional(),
+        alternate: z.string().optional(),
       }),
     }),
   },

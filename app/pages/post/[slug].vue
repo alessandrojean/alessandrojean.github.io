@@ -35,6 +35,8 @@
 <script lang="ts" setup>
 import 'katex/dist/katex.min.css';
 
+import type { ResolvableLink } from '@unhead/vue';
+
 const slug = useRoute().params.slug as string;
 
 const { data: post } = await useAsyncData(`post-${slug}`, () => {
@@ -93,12 +95,29 @@ useSchemaOrg([
 
 useHead({
   meta: [{ name: 'fediverse:creator', content: `@${socialMedia.mastodon}` }],
-  link: () => [{
-    rel: 'alternate',
-    type: 'text/markdown',
-    title: 'Markdown',
-    href: `https://raw.githubusercontent.com/alessandrojean/alessandrojean.github.io/refs/heads/master/content${post.value?.path}.md`,
-  }],
+  link: () => {
+    const links: ResolvableLink[] = [
+      {
+        rel: 'alternate',
+        type: 'text/markdown',
+        title: 'Markdown',
+        href: `https://raw.githubusercontent.com/alessandrojean/alessandrojean.github.io/refs/heads/master/content${post.value?.path}.md`,
+      },
+    ];
+
+    if (post.value?.alternate) {
+      const postLanguage = post.value.language ?? 'pt-BR';
+      const hreflang = postLanguage === 'pt-BR' ? 'en-US' : 'pt-BR';
+
+      links.push({
+        rel: 'alternate',
+        hreflang,
+        href: `https://alessandrojean.github.io/post/${post.value.alternate}`,
+      });
+    }
+
+    return links;
+  },
   htmlAttrs: {
     lang: () => post.value?.language,
   },

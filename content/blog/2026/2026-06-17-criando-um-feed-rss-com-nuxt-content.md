@@ -10,6 +10,7 @@ tags:
   - remark
   - rehype
   - rss
+alternate: generating-an-rss-feed-with-nuxt-content
 ---
 
 Disponibilizar um feed RSS quando você está utilizando o Nuxt Content não é difícil, mas você pode acabar encontrando alguns obstáculos no caminho.
