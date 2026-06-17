@@ -4,6 +4,7 @@ category: Programming
 description: My process on how to do
 language: en-US
 created_at: 2026-06-16
+updated_at: 2026-06-17T00:09:00
 tags:
   - nuxt
   - nuxt content
@@ -251,7 +252,7 @@ feed.item({
   date: new Date(post.created_at),
   categories: post.category ? [post.category] : undefined,
   custom_elements: [
-    { 'dc:creator': { _cdata: 'Alessandro Jean' } },
+    { 'dc:creator': { _cdata: 'John Doe' } },
     { 'content:encoded': { _cdata: await markdownToHtml(post.path) } }, // [!CODE ++]
   ],
 });
