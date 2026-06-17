@@ -1,10 +1,12 @@
 <template>
-  <div class="pb-20">
+  <div class="pb-16">
     <PageHeader>
       <PageHeaderTitle>Blog</PageHeaderTitle>
       <PageHeaderDescription>
         All posts in cronological order.
       </PageHeaderDescription>
+
+      <PageHeaderRssLink class="mt-4" />
     </PageHeader>
 
     <section
