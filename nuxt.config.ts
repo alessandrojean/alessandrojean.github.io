@@ -93,6 +93,10 @@ export default defineNuxtConfig({
       routes: [
         '/blog/feed.xml',
         '/blog/feed.json',
+        '/blog/feed/en.xml',
+        '/blog/feed/en.json',
+        '/blog/feed/pt.xml',
+        '/blog/feed/pt.json',
       ],
     },
   },

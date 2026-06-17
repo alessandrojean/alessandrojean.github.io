@@ -116,10 +116,45 @@ useSchemaOrg(() => [{
 } satisfies Blog]);
 
 useSeoMeta({ title: 'Blog' });
+
 useHead({
   link: [
-    { rel: 'alternate', type: 'application/rss+xml', title: 'Feed (RSS)', href: '/blog/feed.xml' },
-    { rel: 'alternate', type: 'application/feed+json', title: 'Feed (JSON)', href: '/blog/feed.json' },
+    {
+      rel: 'alternate',
+      type: 'application/rss+xml',
+      title: 'Feed (RSS)',
+      href: '/blog/feed.xml',
+    },
+    {
+      rel: 'alternate',
+      type: 'application/feed+json',
+      title: 'Feed (JSON)',
+      href: '/blog/feed.json',
+    },
+    {
+      rel: 'alternate',
+      type: 'application/rss+xml',
+      title: 'English-only Feed (RSS)',
+      href: '/blog/feed/en.xml',
+    },
+    {
+      rel: 'alternate',
+      type: 'application/feed+json',
+      title: 'English-only Feed (JSON)',
+      href: '/blog/feed/en.json',
+    },
+    {
+      rel: 'alternate',
+      type: 'application/rss+xml',
+      title: 'Portuguese-only Feed (RSS)',
+      href: '/blog/feed/pt.xml',
+    },
+    {
+      rel: 'alternate',
+      type: 'application/feed+json',
+      title: 'Portuguese-only Feed (JSON)',
+      href: '/blog/feed/pt.json',
+    },
   ],
 });
 </script>
