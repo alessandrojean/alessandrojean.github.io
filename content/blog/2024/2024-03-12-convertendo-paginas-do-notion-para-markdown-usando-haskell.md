@@ -13,7 +13,7 @@ tags:
 O [Notion](https://notion.so) possui um ótimo editor WYSIWYG (*What You See Is What You Get*), mas por baixo dos panos todos os blocos são armazenados individualmente e o serviço não oferece uma API que permita recuperar o conteúdo inteiro de uma página em particular em formatos mais abertos, tais como o [Markdown](https://www.markdownguide.org/getting-started/).
 
 ::large-figure
-![Página inicial do site do Notion. Imagem por Unsplash.](/unsplash/photo-1642132652859-3ef5a1048fd1)
+![Página inicial do site do Notion. Imagem por Unsplash.](https://images.unsplash.com/photo-1642132652859-3ef5a1048fd1)
 
 #caption
 Página inicial do site do Notion. Imagem por Unsplash.

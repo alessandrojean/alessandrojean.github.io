@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
       categories: post.category ? [post.category] : undefined,
       custom_elements: [
         { 'dc:creator': { _cdata: 'Alessandro Jean' } },
-        { 'content:encoded': { _cdata: `<p>Leia o conteúdo completo <a href="${url}/post/${slug}">no site</a>.</p>` } },
+        { 'content:encoded': { _cdata: await markdownToHtml(post.path) } },
       ],
     });
   }

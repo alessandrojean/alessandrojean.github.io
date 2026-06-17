@@ -140,7 +140,6 @@ export default defineNuxtConfig({
       'upload.wikimedia.org',
     ],
     alias: {
-      unsplash: 'https://images.unsplash.com',
       github: 'https://github.com',
     },
     ipx: {
