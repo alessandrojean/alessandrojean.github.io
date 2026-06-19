@@ -4,6 +4,7 @@ category: Programação
 description: Um passo-a-passo simples em como criar um feed e também disponibilizar o HTML dos posts.
 language: pt-BR
 created_at: 2026-06-17
+updated_at: 2026-06-19T18:36:00
 tags:
   - nuxt
   - nuxt content
@@ -40,7 +41,7 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-O que queremos fazer é manipular as postagens tal que a rota na verdade retorne um feed RSS válido. Podemos usar o pacote [rss](https://www.npmjs.com/package/rss) para nos ajudar, já que ele contém um construtor de RSS que facilita as coisas.
+O que queremos fazer é manipular as postagens tal que a rota na verdade retorne um feed RSS válido. Podemos usar o pacote :npm-mention{pkg="rss"} para nos ajudar, já que ele contém um construtor de RSS que facilita as coisas.
 
 Nós iremos usar a classe `RSS`.
 
@@ -145,9 +146,9 @@ O feed atual irá funcionar corretamente para todos os usuários, mas nós estam
 
 Esta é a parte mais difícil de ser feita com Nuxt Content. No momento que escrevo este artigo, o Nuxt Content não parece ter um método que retorna sua postagem renderizada em HTML no contexto do servidor. Precisamos fazer isso **manualmente**.
 
-O Nuxt Content usa o :github-mention{repo="nuxt-content/mdc"} por baixo dos panos, que por sua vez usa o :github-mention{repo="remarkjs/remark"} e o :github-mention{repo="rehypejs/rehype"}.
+O Nuxt Content usa o :npm-mention{pkg="@nuxtjs/mdc"} por baixo dos panos, que por sua vez usa os projetos :npm-mention{pkg="remark"} e o :npm-mention{pkg="rehype"} do ecossistema do Unified.
 
-Se você der uma olhada na propriedade `post.body`, pode notar que é uma Árvore Sintática Abstrata (ASA) do Minimark. Poderíamos usar o pacote `minimark` para obter a _string_ do Markdown, mas eu encontrei alguns problemas de conversão quando tentei. É mais fácil obter o código-fonte do arquivo Markdown diretamente.
+Se você der uma olhada na propriedade `post.body`, pode notar que é uma Árvore Sintática Abstrata (ASA) do Minimark. Poderíamos usar o pacote :npm-mention{pkg="minimark"} para obter a _string_ do Markdown, mas eu encontrei alguns problemas de conversão quando tentei. É mais fácil obter o código-fonte do arquivo Markdown diretamente.
 
 Para deixar as coisas reutilizáveis, iremos criar uma função utilitária no servidor chamada `markdownToHtml`.
 
@@ -196,7 +197,7 @@ Para a maioria dos casos, isso irá funcionar, mas o MDC suporta componentes Vue
 
 Se você tem algum componente no seu Markdown, o _pipeline_ existente irá colocá-lo no HTML como se ele fosse um elemento personalizado. Por exemplo, o `Note.vue`, chamado por `::note` no Markdown, irá ser transformado em `<note></note>`, que não é um elemento existente do HTML.
 
-Podemos contornar isso usando o _plugin_ :github-mention{repo="marekweb/rehype-components"}. Também iremos precisar instalar o pacote `hastscript`.
+Podemos contornar isso usando o _plugin_ :npm-mention{pkg="rehype-components"}. Também iremos precisar instalar o pacote :npm-mention{pkg="hastscript"}.
 
 O que esse _plugin_ faz é converter elementos personalizados em outros que você especifica. Podemos colocar ele no _pipeline_ com o seguinte código.
 

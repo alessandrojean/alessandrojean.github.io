@@ -46,6 +46,7 @@ export async function markdownToHtml(fileName: string) {
         'social-media-post': SocialMediaPost,
         'large-figure': LargeFigure,
         'github-mention': GithubMention,
+        'npm-mention': NpmMention,
         'note': Callout('note', language),
         'tip': Callout('tip', language),
         'warning': Callout('warning', language),
@@ -114,4 +115,10 @@ const GithubMention: ComponentFunction = (properties, _) => h(
   'a',
   { href: `https://github.com/${properties.repo}` },
   properties.repo as string,
+);
+
+const NpmMention: ComponentFunction = (properties, _) => h(
+  'a',
+  { href: `https://npmjs.com/package/${properties.pkg}` },
+  properties.pkg as string,
 );

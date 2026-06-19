@@ -4,7 +4,7 @@ category: Programming
 description: A simple walk through on how to create a feed and also provide the posts HTML.
 language: en-US
 created_at: 2026-06-16
-updated_at: 2026-06-17T18:50:00
+updated_at: 2026-06-19T18:36:00
 tags:
   - nuxt
   - nuxt content
@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-What we want to do is manipulate the posts in such a way that the route actually returns a readable RSS feed. We can use the package [rss](https://www.npmjs.com/package/rss) to help us, as it contains an RSS builder which will make things easier.
+What we want to do is manipulate the posts in such a way that the route actually returns a readable RSS feed. We can use the package :npm-mention{pkg="rss"} to help us, as it contains an RSS builder which will make things easier.
 
 We will need to use the `RSS` class.
 
@@ -146,9 +146,9 @@ The current feed will work fine for all readers, but we're just providing the li
 
 This is the most tricky part to do with Nuxt Content. As in the moment of writing this article, Nuxt Content doesn't seem to have a method to return your post rendered HTML in the server context. You need to do this **manually**.
 
-Nuxt Content uses :github-mention{repo="nuxt-content/mdc"} under the hoods, which then uses :github-mention{repo="remarkjs/remark"} and :github-mention{repo="rehypejs/rehype"}.
+Nuxt Content uses :npm-mention{pkg="@nuxtjs/mdc"} under the hoods, which then uses Unified's :npm-mention{pkg="remark"} and :npm-mention{pkg="rehype"}.
 
-If you take a look into the `post.body` property, it is a Minimark AST. We could use the `minimark` package to get the Markdown string, but I faced some converting issues when doing that. It is easier if you get the Markdown source file content directly instead.
+If you take a look into the `post.body` property, it is a Minimark AST. We could use the :npm-mention{pkg="minimark"} package to get the Markdown string, but I faced some converting issues when doing that. It is easier if you get the Markdown source file content directly instead.
 
 To make things reusable, we will create a server util function `markdownToHtml`.
 
@@ -197,7 +197,7 @@ For most cases, this may do the job, but MDC supports Vue components, which is a
 
 If you have any component into your Markdown, this existing pipeline will put it in the HTML as if it is a custom element. For example, `Note.vue`, called by `::note` in your Markdown, will be outputted as `<note></note>`, which is not an existing HTML element.
 
-We can circumvent this by using the :github-mention{repo="marekweb/rehype-components"} plugin. We will also need to install the `hastscript` package.
+We can circumvent this by using the :npm{pkg="rehype-components"} plugin. We will also need to install the :npm-mention{pkg="hastscript"} package.
 
 What this plugin does is converting custom elements into other you specify. We can put in the pipeline with the following code.
 
