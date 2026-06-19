@@ -6,7 +6,10 @@
         All posts in cronological order.
       </PageHeaderDescription>
 
-      <PageHeaderRssLink class="mt-4" />
+      <div class="flex items-center gap-1 -ml-2.5 mt-4">
+        <PageHeaderHomeLink />
+        <PageHeaderRssLink />
+      </div>
     </PageHeader>
 
     <section
