@@ -8,15 +8,14 @@
 <script lang="ts" setup>
 const { url } = useSiteConfig();
 
-useSchemaOrg([
-  defineWebPage({
-    potentialAction: [
-      {
-        '@type': 'ReadAction',
-        'name': 'Blog',
-        'target': `${url}blog`,
-      },
-    ],
-  }),
-]);
+useSeoMeta({
+  title: 'Alessandro Jean',
+  description: 'Developer and open-source enthusiast.',
+  ogTitle: 'Alessandro Jean',
+  ogDescription: 'Developer and open-source enthusiast.',
+  twitterTitle: 'Alessandro Jean',
+  twitterDescription: 'Developer and open-source enthusiast.',
+});
+
+defineOgImage('Home.takumi');
 </script>

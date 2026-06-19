@@ -86,6 +86,14 @@ function postLink(path: string) {
 
 const { url } = useSiteConfig();
 
+defineOgImage('Page.takumi', {
+  title: 'Blog',
+  subtitle: 'All posts in cronological order.',
+  author: 'Alessandro Jean',
+  avatar: url + '/img/avatar-okabe-small.webp',
+  role: url,
+});
+
 useSchemaOrg(() => [{
   '@type': 'Blog',
   'name': 'Alessandro Jean Blog',
@@ -117,7 +125,17 @@ useSchemaOrg(() => [{
   }),
 } satisfies Blog]);
 
-useSeoMeta({ title: 'Blog' });
+useSeoMeta({
+  title: 'Blog',
+  description: 'All posts in chronological order.',
+  ogTitle: 'Blog',
+  ogDescription: 'All posts in chronological order.',
+  ogType: 'article',
+  ogLocale: 'pt-BR',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Blog',
+  twitterDescription: 'All posts in chronological order.',
+});
 
 useHead({
   link: [

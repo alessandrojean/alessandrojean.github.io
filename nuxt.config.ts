@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxtjs/robots',
     'nuxt-schema-org',
+    'nuxt-og-image',
   ],
 
   devtools: { enabled: true },
@@ -119,9 +120,9 @@ export default defineNuxtConfig({
   fonts: {
     provider: 'fontsource',
     families: [
-      { name: 'Crimson Pro', weights: ['200 900'], subsets: ['latin'] },
-      { name: 'Source Code Pro', weights: ['200 900'], subsets: ['latin'] },
-      { name: 'Source Sans 3', weights: ['200 900'], subsets: ['latin'] },
+      { name: 'Crimson Pro', weights: ['200 900'], subsets: ['latin'], global: true },
+      { name: 'Source Code Pro', weights: ['200 900'], subsets: ['latin'], global: true },
+      { name: 'Source Sans 3', weights: ['200 900'], subsets: ['latin'], global: true },
     ],
   },
 
@@ -151,6 +152,10 @@ export default defineNuxtConfig({
         format: 'avif',
       },
     },
+  },
+
+  ogImage: {
+    zeroRuntime: true,
   },
 
   robots: {
