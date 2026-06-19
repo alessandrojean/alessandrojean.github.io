@@ -21,20 +21,21 @@ export async function listPosts(event: H3Event, language?: Language) {
 type JsonFeed = {
   version: 'https://jsonfeed.org/version/1.1';
   title: string;
-  description: string;
-  authors: { name: string }[];
+  description?: string;
+  authors: { name?: string; avatar?: string }[];
   language: string;
-  home_page_url: string;
-  feed_url: string;
-  icon: string;
+  home_page_url?: string;
+  feed_url?: string;
+  icon?: string;
   items: JsonFeedItem[];
 };
 
 type JsonFeedItem = {
   id: string;
-  url: string;
-  title: string;
+  url?: string;
+  title?: string;
   content_html: string;
+  summary?: string;
   date_published: string;
   date_modified: string;
   tags: string[];
@@ -53,6 +54,7 @@ export async function buildJsonFeed(event: H3Event, posts: BlogCollectionItem[],
       id: slug,
       url: `${url}/post/${slug}`,
       title: post.title,
+      summary: post.description,
       content_html: await markdownToHtml(post.path),
       date_published: new Date(post.created_at).toISOString(),
       date_modified: post.updated_at
@@ -67,7 +69,10 @@ export async function buildJsonFeed(event: H3Event, posts: BlogCollectionItem[],
     version: 'https://jsonfeed.org/version/1.1',
     title: 'Alessandro Jean\'s Blog',
     description: 'Just a personal blog.',
-    authors: [{ name: 'Alessandro Jean' }],
+    authors: [{
+      name: 'Alessandro Jean',
+      avatar: `${url}/img/avatar-okabe-small.webp`,
+    }],
     language: language ?? 'pt-BR',
     home_page_url: `${url}/blog`,
     feed_url: `${url}/blog/feed.json`,
