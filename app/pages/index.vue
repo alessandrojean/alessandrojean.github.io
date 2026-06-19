@@ -6,8 +6,6 @@
 </template>
 
 <script lang="ts" setup>
-const { url } = useSiteConfig();
-
 useSeoMeta({
   title: 'Alessandro Jean',
   description: 'Developer and open-source enthusiast.',
