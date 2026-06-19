@@ -6,10 +6,16 @@
 </template>
 
 <script lang="ts" setup>
+const { url } = useSiteConfig();
+
 useSchemaOrg([
   defineWebPage({
     potentialAction: [
-      { '@type': 'ReadAction', 'name': 'Blog', 'target': 'https://alessandrojean.github.io/blog' },
+      {
+        '@type': 'ReadAction',
+        'name': 'Blog',
+        'target': `${url}blog`,
+      },
     ],
   }),
 ]);

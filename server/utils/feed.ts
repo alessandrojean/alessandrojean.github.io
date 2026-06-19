@@ -18,8 +18,6 @@ export async function listPosts(event: H3Event, language?: Language) {
     .all();
 }
 
-const BASE_URL = 'https://alessandrojean.github.io';
-
 type JsonFeed = {
   version: 'https://jsonfeed.org/version/1.1';
   title: string;
@@ -43,8 +41,9 @@ type JsonFeedItem = {
   language: string;
 };
 
-export async function buildJsonFeed(posts: BlogCollectionItem[], language?: Language): Promise<JsonFeed> {
+export async function buildJsonFeed(event: H3Event, posts: BlogCollectionItem[], language?: Language): Promise<JsonFeed> {
   const items: JsonFeedItem[] = [];
+  const { url } = getSiteConfig(event);
 
   for (const post of posts) {
     const [, _, fileName] = post.path.slice(1).split('/');
@@ -52,7 +51,7 @@ export async function buildJsonFeed(posts: BlogCollectionItem[], language?: Lang
 
     items.push({
       id: slug,
-      url: `${BASE_URL}/post/${slug}`,
+      url: `${url}/post/${slug}`,
       title: post.title,
       content_html: await markdownToHtml(post.path),
       date_published: new Date(post.created_at).toISOString(),
@@ -70,23 +69,25 @@ export async function buildJsonFeed(posts: BlogCollectionItem[], language?: Lang
     description: 'Just a personal blog.',
     authors: [{ name: 'Alessandro Jean' }],
     language: language ?? 'pt-BR',
-    home_page_url: `${BASE_URL}/blog`,
-    feed_url: `${BASE_URL}/blog/feed.json`,
-    icon: `${BASE_URL}/img/apple-touch-icon.png`,
+    home_page_url: `${url}/blog`,
+    feed_url: `${url}/blog/feed.json`,
+    icon: `${url}/img/apple-touch-icon.png`,
     items,
   };
 }
 
-export async function buildXmlFeed(posts: BlogCollectionItem[], language?: Language): Promise<string> {
+export async function buildXmlFeed(event: H3Event, posts: BlogCollectionItem[], language?: Language): Promise<string> {
+  const { url } = getSiteConfig(event);
+
   const feed = new RSS({
     title: 'Alessandro Jean\'s Blog',
     description: 'Just a personal blog.',
-    site_url: BASE_URL,
-    feed_url: `${BASE_URL}/blog/feed.xml`,
+    site_url: url,
+    feed_url: `${url}/blog/feed.xml`,
     language: language ?? 'pt-BR',
     copyright: `Alessandro Jean © 2022–${new Date().getFullYear()}`,
     custom_elements: [
-      { icon: `${BASE_URL}/img/apple-touch-icon.png` },
+      { icon: `${url}/img/apple-touch-icon.png` },
     ],
     custom_namespaces: {
       content: 'http://purl.org/rss/1.0/modules/content/',
@@ -101,8 +102,8 @@ export async function buildXmlFeed(posts: BlogCollectionItem[], language?: Langu
 
     feed.item({
       title: post.title,
-      guid: `${BASE_URL}/post/${slug}`,
-      url: `${BASE_URL}/post/${slug}`,
+      guid: `${url}/post/${slug}`,
+      url: `${url}/post/${slug}`,
       description: post.description,
       date: new Date(post.created_at),
       categories: post.category ? [post.category] : undefined,

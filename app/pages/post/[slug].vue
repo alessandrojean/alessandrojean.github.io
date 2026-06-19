@@ -63,11 +63,13 @@ function postLink(path?: string) {
   return path ? `/post/${postSlug(path)}` : '';
 }
 
+const { url } = useSiteConfig();
+
 useSeoMeta({
   title: () => post.value?.title,
   description: () => post.value?.description,
   ogTitle: () => post.value?.title,
-  ogUrl: () => `https://alessandrojean.github.io/${postLink(post.value?.path)}`,
+  ogUrl: () => url + postLink(post.value?.path).slice(1),
   ogType: 'article',
   ogDescription: () => post.value?.description,
   ogLocale: () => post.value?.language,
@@ -86,9 +88,9 @@ useSchemaOrg([
     'keywords': post.value?.tags,
     'inLanguage': post.value?.language,
     'author': [{
-      '@id': 'https://alessandrojean.github.io/#identity',
+      '@id': `${url}#identity`,
       'name': 'Alessandro Jean',
-      'url': 'https://alessandrojean.github.io',
+      'url': url,
     }],
   })),
 ]);
@@ -112,7 +114,7 @@ useHead({
       links.push({
         rel: 'alternate',
         hreflang,
-        href: `https://alessandrojean.github.io/post/${post.value.alternate}`,
+        href: `${url}post/${post.value.alternate}`,
       });
     }
 

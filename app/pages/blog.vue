@@ -84,30 +84,32 @@ function postLink(path: string) {
   return `/post/${postSlug(path)}`;
 }
 
+const { url } = useSiteConfig();
+
 useSchemaOrg(() => [{
   '@type': 'Blog',
   'name': 'Alessandro Jean Blog',
   'author': {
-    '@id': 'https://alessandrojean.github.io/#identity',
+    '@id': `${url}#identity`,
     'name': 'Alessandro Jean',
-    'url': 'https://alessandrojean.github.io',
+    'url': url,
   },
   'blogPost': (data.value ?? []).map((p) => {
-    const link = postLink(p.path);
+    const link = postLink(p.path).slice(1);
 
     return ({
       '@type': 'BlogPosting',
-      '@id': `https://alessandrojean.github.io/${link}`,
-      'mainEntityOfPage': `https://alessandrojean.github.io/${link}`,
-      'url': `https://alessandrojean.github.io/${link}`,
+      '@id': `${url}${link}`,
+      'mainEntityOfPage': `${url}/${link}`,
+      'url': `${url}/${link}`,
       'headline': p.title,
       'description': p.description,
       'datePublished': p.created_at,
       'dateModified': p.updated_at,
       'author': {
-        '@id': 'https://alessandrojean.github.io/#identity',
+        '@id': `${url}/#identity`,
         'name': 'Alessandro Jean',
-        'url': 'https://alessandrojean.github.io',
+        'url': url,
       },
       'keywords': p.tags,
       'inLanguage': p.language,
