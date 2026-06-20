@@ -12,7 +12,7 @@ export default defineContentConfig({
         description: z.string().nonempty(),
         category: z.string().nonempty(),
         tags: z.string().nonempty().array().optional(),
-        language: z.string().optional(),
+        language: z.enum(['pt-BR', 'en-US']).optional().default('pt-BR'),
         alternate: z.string().optional(),
       }),
     }),
