@@ -14,6 +14,13 @@ export default defineContentConfig({
         tags: z.string().nonempty().array().optional(),
         language: z.enum(['pt-BR', 'en-US']).optional().default('pt-BR'),
         alternate: z.string().optional(),
+        ogImage: z
+          .object({
+            url: z.string(),
+            width: z.int(),
+            height: z.int(),
+          })
+          .optional(),
       }),
     }),
   },

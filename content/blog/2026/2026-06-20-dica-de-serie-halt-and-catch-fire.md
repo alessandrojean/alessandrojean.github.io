@@ -6,12 +6,16 @@ created_at: 2026-06-20
 tags:
   - série
   - halt and catch fire
+ogImage:
+  url: https://image.tmdb.org/t/p/w1280/3ObqsNzAOOZoK0K98KKtTeYP1uV.jpg
+  width: 1280
+  height: 720
 ---
 
 Descobri por acaso a série [Halt and Catch Fire]{lang=en} navegando pelo Reddit, e comecei a assistir por conta do trama ser relacionado a tecnologia. Não esperava que ia me deparar com uma série tão boa, me surpreende que não seja tão comentada.
 
 ::large-figure
-![Foto promocional da segunda temporada da série. Nela, há quatro pessoas, onde três estão sentadas em um sofá, e uma delas está em pé em cima do sofá. No fundo na parede, há uma pichação em inglês escrito "Welcome to Mutiny".](https://image.tmdb.org/t/p/original/3ObqsNzAOOZoK0K98KKtTeYP1uV.jpg){width=1920 height=1080}
+![Foto promocional da segunda temporada da série. Nela, há quatro pessoas, onde três estão sentadas em um sofá, e uma delas está em pé em cima do sofá. No fundo na parede, há uma pichação em inglês escrito "Welcome to Mutiny".](https://image.tmdb.org/t/p/w1920/3ObqsNzAOOZoK0K98KKtTeYP1uV.jpg)
 
 #caption
 &copy; 2014 AMC. Todos os direitos reservados.
