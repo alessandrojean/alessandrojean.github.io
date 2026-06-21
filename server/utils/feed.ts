@@ -1,5 +1,6 @@
 import type { BlogCollectionItem } from '@nuxt/content';
-import RSS from 'rss';
+import { generateJsonFeed, generateRssFeed } from 'feedsmith';
+import type { Json, Rss } from 'feedsmith/types';
 
 import type { H3Event } from '#imports';
 
@@ -18,32 +19,8 @@ export async function listPosts(event: H3Event, language?: Language) {
     .all();
 }
 
-type JsonFeed = {
-  version: 'https://jsonfeed.org/version/1.1';
-  title: string;
-  description?: string;
-  authors: { name?: string; avatar?: string }[];
-  language: string;
-  home_page_url?: string;
-  feed_url?: string;
-  icon?: string;
-  items: JsonFeedItem[];
-};
-
-type JsonFeedItem = {
-  id: string;
-  url?: string;
-  title?: string;
-  content_html: string;
-  summary?: string;
-  date_published: string;
-  date_modified: string;
-  tags: string[];
-  language: string;
-};
-
-export async function buildJsonFeed(event: H3Event, posts: BlogCollectionItem[], language?: Language): Promise<JsonFeed> {
-  const items: JsonFeedItem[] = [];
+export async function buildJsonFeed(event: H3Event, posts: BlogCollectionItem[], language?: Language): Promise<Json.Feed<Date>> {
+  const items: Json.Item<Date>[] = [];
   const { url } = getSiteConfig(event);
 
   for (const post of posts) {
@@ -56,17 +33,14 @@ export async function buildJsonFeed(event: H3Event, posts: BlogCollectionItem[],
       title: post.title,
       summary: post.description,
       content_html: await markdownToHtml(post.path),
-      date_published: new Date(post.created_at).toISOString(),
-      date_modified: post.updated_at
-        ? new Date(post.updated_at).toISOString()
-        : new Date(post.created_at).toISOString(),
+      date_published: new Date(post.created_at),
+      date_modified: new Date(post.updated_at ?? post.created_at),
       tags: [post.category],
       language: post.language ?? 'pt-BR',
     });
   }
 
-  return {
-    version: 'https://jsonfeed.org/version/1.1',
+  return generateJsonFeed({
     title: 'Alessandro Jean\'s Blog',
     description: 'Just a personal blog.',
     authors: [{
@@ -78,46 +52,38 @@ export async function buildJsonFeed(event: H3Event, posts: BlogCollectionItem[],
     feed_url: `${url}/blog/feed.json`,
     icon: `${url}/img/apple-touch-icon.png`,
     items,
-  };
+  }) as Json.Feed<Date>;
 }
 
 export async function buildXmlFeed(event: H3Event, posts: BlogCollectionItem[], language?: Language): Promise<string> {
   const { url } = getSiteConfig(event);
-
-  const feed = new RSS({
-    title: 'Alessandro Jean\'s Blog',
-    description: 'Just a personal blog.',
-    site_url: url,
-    feed_url: `${url}/blog/feed.xml`,
-    language: language ?? 'pt-BR',
-    copyright: `Alessandro Jean © 2022–${new Date().getFullYear()}`,
-    custom_elements: [
-      { icon: `${url}/img/apple-touch-icon.png` },
-    ],
-    custom_namespaces: {
-      content: 'http://purl.org/rss/1.0/modules/content/',
-      dc: 'http://purl.org/dc/elements/1.1/',
-      sy: 'http://purl.org/rss/1.0/modules/syndication/',
-    },
-  });
+  const items: Rss.Item<Date>[] = [];
 
   for (const post of posts) {
     const [, _, fileName] = post.path.slice(1).split('/');
     const slug = fileName!.slice(11);
 
-    feed.item({
+    items.push({
       title: post.title,
-      guid: `${url}/post/${slug}`,
-      url: `${url}/post/${slug}`,
+      guid: { value: `${url}/post/${slug}` },
+      link: `${url}/post/${slug}`,
       description: post.description,
-      date: new Date(post.created_at),
-      categories: post.category ? [post.category] : undefined,
-      custom_elements: [
-        { 'dc:creator': { _cdata: 'Alessandro Jean' } },
-        { 'content:encoded': { _cdata: await markdownToHtml(post.path) } },
-      ],
+      pubDate: new Date(post.created_at),
+      categories: post.category ? [{ name: post.category }] : undefined,
+      dc: { creators: ['Alessandro Jean'] },
+      content: {
+        encoded: await markdownToHtml(post.path),
+      },
     });
   }
 
-  return feed.xml();
+  return generateRssFeed({
+    title: 'Alessandro Jean\'s Blog',
+    description: 'Just a personal blog.',
+    link: url,
+    language: language ?? 'pt-BR',
+    copyright: `Alessandro Jean © 2022–${new Date().getFullYear()}`,
+    atom: { icon: `${url}/img/apple-touch-icon.png` },
+    items,
+  });
 }
