@@ -3,6 +3,7 @@ title: 'Dica de série: Halt and Catch Fire'
 category: Televisão
 description: Recomendação de uma ótima série sobre tecnologia.
 created_at: 2026-06-20
+updated_at: 2026-06-21T11:29:00
 tags:
   - série
   - halt and catch fire
@@ -18,7 +19,7 @@ Descobri por acaso a série [Halt and Catch Fire]{lang=en} navegando pelo Reddit
 ![Foto promocional da segunda temporada da série. Nela, há quatro pessoas, onde três estão sentadas em um sofá, e uma delas está em pé em cima do sofá. No fundo na parede, há uma pichação em inglês escrito "Welcome to Mutiny".](https://image.tmdb.org/t/p/w1920/3ObqsNzAOOZoK0K98KKtTeYP1uV.jpg)
 
 #caption
-&copy; 2014 AMC. Todos os direitos reservados.
+&copy; 2015 AMC Film Holdings LLC. Todos os direitos reservados.
 ::
 
 Pode-se dizer que essa série é a "irmã" dramática da série de comédia da HBO [Silicon Valley](https://www.imdb.com/pt/title/tt2575988/){lang=en}, que também é ótima, por sinal. HaCF é bem mais direta ao ponto e mais "pé no chão" se você comparar com a outra série famosa da área: [Mr. Robot](https://www.imdb.com/pt/title/tt4158110){lang=en}.
