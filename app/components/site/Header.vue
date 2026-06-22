@@ -5,7 +5,7 @@
       to="/"
     >
       <NuxtImg
-        class="size-6 rounded-full"
+        class="size-6 rounded-full ring-1 ring-black/10"
         src="/img/avatar-okabe-small.webp"
         alt="Avatar pessoal"
         width="32"
@@ -15,7 +15,7 @@
       <span class="sr-only sm:not-sr-only">Alessandro Jean</span>
     </NuxtLink>
 
-    <div class="flex items-center gap-6 text-gray-500 dark:text-gray-400 *:hover:text-black dark:*:hover:text-gray-200 *:transition-colors *:data-[site=mastodon]:hidden sm:*:data-[site=mastodon]:block *:data-[site=bluesky]:hidden sm:*:data-[site=bluesky]:block">
+    <div class="flex items-center gap-6 text-gray-500 dark:text-gray-400 *:hover:text-black dark:*:hover:text-gray-200 *:data-[site=bluesky]:hidden sm:*:data-[site=bluesky]:block">
       <NuxtLink
         class="hidden sm:block"
         to="/blog"
@@ -77,7 +77,6 @@ type Site = keyof AppConfig['socialMedia'];
 const sitesToShow: Site[] = [
   'instagram',
   'bluesky',
-  'mastodon',
   'gitHub',
 ];
 </script>
