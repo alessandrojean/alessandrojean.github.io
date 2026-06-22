@@ -1,5 +1,5 @@
 <template>
-  <main class="container mx-auto max-w-3xl px-4 md:px-0">
+  <main class="container mx-auto max-w-2xl px-4 md:px-0">
     <NuxtRouteAnnouncer />
     <NuxtLoadingIndicator
       color="#0ea4e9"

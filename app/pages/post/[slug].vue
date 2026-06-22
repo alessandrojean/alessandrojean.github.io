@@ -4,7 +4,7 @@
 
     <article
       v-if="post"
-      class="w-full max-w-2xl mx-auto py-20"
+      class="py-20"
       :lang="post.language"
     >
       <PostHeader>
