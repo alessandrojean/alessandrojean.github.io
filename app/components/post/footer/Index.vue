@@ -1,5 +1,5 @@
 <template>
-  <footer class="flex flex-col gap-2 font-serif">
+  <footer class="flex flex-col">
     <slot />
   </footer>
 </template>

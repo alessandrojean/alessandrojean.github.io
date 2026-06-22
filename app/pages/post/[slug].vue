@@ -28,7 +28,8 @@
       </div>
 
       <PostFooter class="mt-12">
-        <PostFooterNotByAiBadge />
+        <PostFooterDisclaimerNotByAi />
+        <PostFooterCdPreviousDirectory />
         <PostFooterCopyright />
       </PostFooter>
     </article>

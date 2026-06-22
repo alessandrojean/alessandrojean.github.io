@@ -82,7 +82,7 @@ export async function buildXmlFeed(event: H3Event, posts: BlogCollectionItem[], 
     description: 'Just a personal blog.',
     link: url,
     language: language ?? 'pt-BR',
-    copyright: `Alessandro Jean © 2022–${new Date().getFullYear()}`,
+    copyright: `Copyright © 2018–${new Date().getFullYear()} Alessandro Jean`,
     atom: { icon: `${url}/img/apple-touch-icon.png` },
     items,
   });
