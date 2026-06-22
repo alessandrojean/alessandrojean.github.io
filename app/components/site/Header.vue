@@ -5,7 +5,7 @@
       to="/"
     >
       <NuxtImg
-        class="size-6 rounded-full ring-1 ring-black/10"
+        class="size-5 rounded-full ring-1 ring-black/10"
         src="/img/avatar-okabe-small.webp"
         alt="Avatar pessoal"
         width="32"
