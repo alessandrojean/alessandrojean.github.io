@@ -18,9 +18,28 @@
     <div class="flex items-center gap-6 text-gray-500 dark:text-gray-400 *:hover:text-black dark:*:hover:text-gray-200 *:data-[site=bluesky]:hidden sm:*:data-[site=bluesky]:block">
       <NuxtLink
         class="hidden sm:block"
+        to="/about"
+      >
+        About
+      </NuxtLink>
+
+      <NuxtLink
+        class="hidden sm:block"
         to="/blog"
       >
         Blog
+      </NuxtLink>
+
+      <NuxtLink
+        class="sm:hidden"
+        to="/about"
+        title="About"
+      >
+        <Icon
+          name="lucide:info"
+          class="size-4.5"
+        />
+        <span class="sr-only">About</span>
       </NuxtLink>
 
       <NuxtLink
