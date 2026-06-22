@@ -2,11 +2,11 @@
   <div
     data-slot="code"
     :data-lang="language"
-    class="md:-mx-4 md:has-[.diff]:-mx-6 [&_pre,&_code]:font-features-['calt'] [&_pre,&_code]:font-mono text-sm lg:text-base [&_pre]:overflow-x-auto [&_pre]:ps-2 [&_pre]:pe-2 [&_pre]:rounded-xl rounded-xl [&_pre_span]:[font-style:var(--shiki-light-font-style)] [&_pre_span]:font-(--shiki-light-font-weight) normal-nums dark:[&_pre_span]:text-(--shiki-dark)! dark:[&_.shiki]:bg-(--shiki-dark-bg)!"
+    class="md:-mx-4 md:has-[.diff]:-mx-6 [&_pre,&_code]:font-features-['calt'] [&_pre,&_code]:font-mono text-sm lg:text-base [&_pre]:overflow-x-auto [&_pre]:ps-2 [&_pre]:pe-2 [&_pre]:rounded-lg rounded-lg [&_pre_span]:[font-style:var(--shiki-light-font-style)] [&_pre_span]:font-(--shiki-light-font-weight) normal-nums dark:[&_pre_span]:text-(--shiki-dark)! dark:[&_.shiki]:bg-(--shiki-dark-bg)!"
   >
     <div
       v-if="filename"
-      class="font-sans bg-[#FAFAFA] dark:bg-[#121212] flex items-center gap-1.5 rounded-t-xl ps-4 pe-2.5 py-1.5 border border-[#CFCFCF] dark:border-[#333333]"
+      class="font-sans bg-[#FAFAFA] dark:bg-[#121212] flex items-center gap-1.5 rounded-t-lg ps-4 pe-2.5 py-1.5 border border-[#CFCFCF] dark:border-[#333333]"
       data-slot="code-header"
     >
       <div class="w-fit flex items-center gap-2.5">

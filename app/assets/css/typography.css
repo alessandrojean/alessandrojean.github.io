@@ -127,7 +127,7 @@
 
       img, video {
         @variant md {
-          border-radius: var(--radius-xl);
+          border-radius: var(--radius-lg);
         }
       }
 
