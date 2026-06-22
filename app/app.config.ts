@@ -11,5 +11,6 @@ export default defineAppConfig({
     bluesky: 'alessandrojean.bsky.social',
     skoob: '67bd13f570c4abc337a02408',
     letterboxd: 'alessandrojean',
+    twitter: 'alessandrojean_',
   },
 });
