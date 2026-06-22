@@ -5,7 +5,7 @@
     <PageHeader>
       <PageHeaderTitle>Blog</PageHeaderTitle>
       <PageHeaderDescription>
-        All posts in cronological order.
+        All posts in chronological order.
       </PageHeaderDescription>
 
       <!-- <div class="flex items-center gap-1 -ml-2.5 mt-4">
@@ -46,10 +46,10 @@
                 month="short"
                 time-zone="UTC"
               />
-              <template v-if="post.category">
+              <!-- <template v-if="post.category">
                 <span class="text-gray-400 dark:text-gray-500"> · </span>
                 <span>{{ post.category }}</span>
-              </template>
+              </template> -->
             </span>
           </NuxtLink>
         </li>
@@ -93,7 +93,7 @@ const { url } = useSiteConfig();
 
 defineOgImage('Page.takumi', {
   title: 'Blog',
-  subtitle: 'All posts in cronological order.',
+  subtitle: 'All posts in chronological order.',
   author: 'Alessandro Jean',
   avatar: url + '/img/avatar-okabe-small.webp',
   role: url,
