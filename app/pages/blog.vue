@@ -55,6 +55,11 @@
         </li>
       </ul>
     </section>
+
+    <PostFooter class="mt-12">
+      <PostFooterCdPreviousDirectory to="/" />
+      <PostFooterCopyright />
+    </PostFooter>
   </div>
 </template>
 
