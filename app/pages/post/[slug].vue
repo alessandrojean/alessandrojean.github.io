@@ -80,6 +80,11 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   twitterTitle: () => post.value?.title,
   twitterDescription: () => post.value?.description,
+  articleSection: () => post.value?.category,
+  articleTag: () => post.value?.tags,
+  articlePublishedTime: () => post.value?.created_at,
+  articleModifiedTime: () => post.value?.updated_at,
+  articleAuthor: [url],
 });
 
 defineOgImage(

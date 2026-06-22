@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
 useHead({
+  htmlAttrs: { lang: 'en-US' },
   bodyAttrs: {
     class: 'dark:bg-gray-950 dark:text-white scheme-light-dark',
   },

@@ -4,26 +4,25 @@
       v-for="site in sitesToShow"
       :key="site"
       :to="socialMedias[site].url(socialMedia[site])"
-      :title="socialMedias[site].name"
+      :aria-label="socialMedias[site].name"
       target="_blank"
+      rel="noopener noreferrer external"
       external
     >
       <Icon
         :name="socialMedias[site].icon"
         class="size-5"
       />
-      <span class="sr-only">{{ socialMedias[site].name }}</span>
     </UiLinkButton>
 
     <UiLinkButton
       to="/blog"
-      title="Blog"
+      aria-label="Blog"
     >
       <Icon
         name="lucide:notebook-text"
         class="size-5.5"
       />
-      <span class="sr-only">Blog</span>
     </UiLinkButton>
   </div>
 </template>

@@ -9,10 +9,14 @@
 useSeoMeta({
   title: 'Alessandro Jean',
   description: 'Developer and open-source enthusiast.',
+  ogType: 'profile',
   ogTitle: 'Alessandro Jean',
   ogDescription: 'Developer and open-source enthusiast.',
   twitterTitle: 'Alessandro Jean',
   twitterDescription: 'Developer and open-source enthusiast.',
+  profileFirstName: 'Alessandro',
+  profileLastName: 'Jean',
+  profileUsername: 'alessandrojean',
 });
 
 defineOgImage('Home.takumi');

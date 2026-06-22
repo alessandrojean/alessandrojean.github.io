@@ -3,6 +3,7 @@
     <NuxtLink
       class="flex items-center gap-2.5 font-medium shrink-0"
       to="/"
+      aria-label="Home"
     >
       <NuxtImg
         class="size-5 rounded-full ring-1 ring-black/10"
@@ -18,7 +19,7 @@
     <div class="flex items-center gap-6 text-gray-500 dark:text-gray-400 *:hover:text-black dark:*:hover:text-gray-200 *:data-[site=bluesky]:hidden sm:*:data-[site=bluesky]:block">
       <NuxtLink
         to="/about"
-        title="About"
+        aria-label="About"
       >
         <Icon
           name="lucide:info"
@@ -29,7 +30,7 @@
 
       <NuxtLink
         to="/blog"
-        title="Blog"
+        aria-label="Blog"
       >
         <Icon
           name="lucide:notebook-text"
@@ -44,8 +45,9 @@
         :href="socialMedias[site].url(socialMedia[site])"
         external
         target="_blank"
-        :title="socialMedias[site].name"
+        :aria-label="socialMedias[site].name"
         :data-site="site"
+        rel="noopener noreferrer external"
       >
         <Icon
           :name="socialMedias[site].icon"
@@ -58,13 +60,12 @@
         href="/blog/feed.xml"
         external
         target="_blank"
-        title="RSS"
+        aria-label="RSS"
       >
         <Icon
           name="lucide:rss"
           class="size-4.5"
         />
-        <span class="sr-only">RSS</span>
       </NuxtLink>
     </div>
   </nav>

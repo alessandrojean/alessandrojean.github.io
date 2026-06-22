@@ -53,7 +53,7 @@ export default defineNuxtConfig({
           'rehype-katex': {},
           'rehype-external-links': {
             options: {
-              rel: ['noopener', 'noreferrer'],
+              rel: ['noopener', 'noreferrer', 'external'],
               target: '_blank',
             },
           },

@@ -140,7 +140,7 @@ useSeoMeta({
   description: 'All posts in chronological order.',
   ogTitle: 'Blog',
   ogDescription: 'All posts in chronological order.',
-  ogType: 'article',
+  ogType: 'website',
   ogLocale: 'pt-BR',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Blog',

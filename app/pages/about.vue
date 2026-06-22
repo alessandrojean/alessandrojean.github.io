@@ -12,6 +12,7 @@
       <p>
         I am playing with computer stuff since my childhood, encouraged by family and friends. I realized how fascinating computers are and how many cool stuff they can do since I had my first PC with <a
           href="https://en.wikipedia.org/wiki/Windows_98"
+          rel="noopener noreferrer external"
           target="_blank"
         >Windows 98</a>. Since then, I've never stopped.
       </p>
@@ -19,6 +20,7 @@
       <p>
         Later, I completed a technical IT course alongside high school. It was there I discovered about the world of <em>programming</em> and wrote my very first programs. Currently, I am a candidate for a Bachelor's degree in Computer Science at <a
           href="https://ufabc.edu.br/en"
+          rel="noopener noreferrer external"
           target="_blank"
         >UFABC</a>.
       </p>
@@ -53,10 +55,13 @@ useSeoMeta({
   description: 'A few words about myself.',
   ogTitle: 'About me',
   ogDescription: 'A few words about myself.',
-  ogType: 'article',
+  ogType: 'profile',
   ogLocale: 'pt-BR',
   twitterCard: 'summary_large_image',
   twitterTitle: 'About me',
   twitterDescription: 'A few words about myself.',
+  profileFirstName: 'Alessandro',
+  profileLastName: 'Jean',
+  profileUsername: 'alessandrojean',
 });
 </script>

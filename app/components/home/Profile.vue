@@ -32,6 +32,7 @@
             external
             to="https://bcc.ufabc.edu.br"
             target="_blank"
+            rel="noopener noreferrer external"
             class="hover:underline"
           >
             B. in Computer Science
@@ -41,6 +42,7 @@
             external
             to="https://ufabc.edu.br"
             target="_blank"
+            rel="noopener noreferrer external"
             class="sr-only sm:not-sr-only hover:underline"
           >
             UFABC
