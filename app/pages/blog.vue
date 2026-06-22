@@ -1,15 +1,17 @@
 <template>
   <div class="pb-16">
+    <SiteHeader />
+
     <PageHeader>
       <PageHeaderTitle>Blog</PageHeaderTitle>
       <PageHeaderDescription>
         All posts in cronological order.
       </PageHeaderDescription>
 
-      <div class="flex items-center gap-1 -ml-2.5 mt-4">
+      <!-- <div class="flex items-center gap-1 -ml-2.5 mt-4">
         <PageHeaderHomeLink />
         <PageHeaderRssLink />
-      </div>
+      </div> -->
     </PageHeader>
 
     <section

@@ -1,35 +1,38 @@
 <template>
-  <article
-    v-if="post"
-    class="w-full max-w-2xl mx-auto py-20"
-    :lang="post.language"
-  >
-    <PostHeader>
-      <PostHeaderBlogLink />
-      <PostHeaderTitle>{{ post.title }}</PostHeaderTitle>
+  <div>
+    <SiteHeader />
 
-      <PostHeaderInfo class="-mt-2">
-        <PostHeaderInfoDate
-          :locale="post.language"
-          :time="post.created_at"
+    <article
+      v-if="post"
+      class="w-full max-w-2xl mx-auto py-20"
+      :lang="post.language"
+    >
+      <PostHeader>
+        <PostHeaderTitle>{{ post.title }}</PostHeaderTitle>
+
+        <PostHeaderInfo class="-mt-2">
+          <PostHeaderInfoDate
+            :locale="post.language"
+            :time="post.created_at"
+          />
+          <PostHeaderInfoSeparator />
+          <PostHeaderInfoAuthor />
+        </PostHeaderInfo>
+      </PostHeader>
+
+      <div class="mt-10">
+        <ContentRenderer
+          class="typography"
+          :value="post"
         />
-        <PostHeaderInfoSeparator />
-        <PostHeaderInfoAuthor />
-      </PostHeaderInfo>
-    </PostHeader>
+      </div>
 
-    <div class="mt-10">
-      <ContentRenderer
-        class="typography"
-        :value="post"
-      />
-    </div>
-
-    <PostFooter class="mt-12">
-      <PostFooterNotByAiBadge />
-      <PostFooterCopyright />
-    </PostFooter>
-  </article>
+      <PostFooter class="mt-12">
+        <PostFooterNotByAiBadge />
+        <PostFooterCopyright />
+      </PostFooter>
+    </article>
+  </div>
 </template>
 
 <script lang="ts" setup>
