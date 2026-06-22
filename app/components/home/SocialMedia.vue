@@ -40,7 +40,7 @@ const sitesToShow: Site[] = [
   'mastodon',
   'letterboxd',
   'trakt',
-  'skoob',
+  // 'skoob',
   'gitHub',
   'linkedin',
 ];
