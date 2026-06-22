@@ -45,6 +45,7 @@ export async function markdownToHtml(fileName: string) {
       components: {
         'social-media-post': SocialMediaPost,
         'large-figure': LargeFigure,
+        'mention': Mention,
         'github-mention': GithubMention,
         'npm-mention': NpmMention,
         'note': Callout('note', language),
@@ -111,14 +112,32 @@ function Callout(tag: CalloutType, language: string): ComponentFunction {
   ]);
 }
 
+const Mention: ComponentFunction = (properties, children) => h(
+  'a',
+  {
+    href: properties.href,
+    target: '_blank',
+    rel: 'noopener noreferrer external',
+  },
+  ...children,
+);
+
 const GithubMention: ComponentFunction = (properties, _) => h(
   'a',
-  { href: `https://github.com/${properties.repo}` },
+  {
+    href: `https://github.com/${properties.repo}`,
+    target: '_blank',
+    rel: 'noopener noreferrer external',
+  },
   properties.repo as string,
 );
 
 const NpmMention: ComponentFunction = (properties, _) => h(
   'a',
-  { href: `https://npmjs.com/package/${properties.pkg}` },
+  {
+    href: `https://npmjs.com/package/${properties.pkg}`,
+    target: '_blank',
+    rel: 'noopener noreferrer external',
+  },
   properties.pkg as string,
 );

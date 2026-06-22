@@ -1,15 +1,15 @@
 <template>
-  <a
+  <ContentMention
     :href="href"
-    target="_blank"
-    data-slot="inline-mention"
+    icon="simple-icons:npm"
   >
-    <Icon name="simple-icons:npm" />
-    <span class="leading-none">{{ pkg }}</span>
-  </a>
+    {{ pkg }}
+  </ContentMention>
 </template>
 
 <script lang="ts" setup>
+import ContentMention from './Mention.vue';
+
 const { pkg } = defineProps<{
   pkg: string;
 }>();

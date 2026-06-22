@@ -1,15 +1,15 @@
 <template>
-  <a
+  <ContentMention
     :href="href"
-    target="_blank"
-    data-slot="inline-mention"
+    icon="simple-icons:github"
   >
-    <Icon name="simple-icons:github" />
-    <span class="leading-none">{{ text }}</span>
-  </a>
+    {{ text }}
+  </ContentMention>
 </template>
 
 <script lang="ts" setup>
+import ContentMention from './Mention.vue';
+
 const { repo } = defineProps<{
   repo: string;
 }>();
