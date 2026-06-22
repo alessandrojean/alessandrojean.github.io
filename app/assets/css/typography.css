@@ -227,6 +227,8 @@
     }
 
     h2 {
+      font-family: var(--font-sans);
+      font-feature-settings: var(--font-serif--font-feature-settings);
       font-size: var(--text-2xl);
       line-height: var(--text-2xl--line-height);
       font-weight: var(--font-weight-semibold);
@@ -239,6 +241,8 @@
     }
 
     h3 {
+      font-family: var(--font-sans);
+      font-feature-settings: var(--font-serif--font-feature-settings);
       font-size: var(--text-xl);
       line-height: var(--text-xl--line-height);
       font-weight: var(--font-weight-semibold);
@@ -271,7 +275,7 @@
         top: 50%;
         transform: translateY(-50%);
         font-size: 1em;
-        font-weight: var(--font-weight-extralight);
+        font-weight: var(--font-weight-light);
         color: var(--color-gray-400);
         opacity: 0;
         transition: opacity var(--default-transition-duration) var(--default-transition-timing-function);
