@@ -49,8 +49,12 @@ const { data: post } = await useAsyncData(`post-${slug}`, () => {
     .first();
 });
 
-if (!post) {
-  throw createError({ status: 404 });
+if (!post.value) {
+  throw createError({
+    status: 404,
+    statusText: 'Page Not Found',
+    message: `Page not found: /post/${slug}`,
+  });
 }
 
 const language = computed(() => post.value?.language ?? 'pt-BR');
