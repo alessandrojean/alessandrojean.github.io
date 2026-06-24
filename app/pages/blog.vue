@@ -32,10 +32,19 @@
           <NuxtLink
             :to="postLink(post.path)"
             :lang="post.language"
-            :aria-labelledby="`${post.id}-title`"
-            class="opacity-80 hover:opacity-100 transition-opacity flex flex-col md:flex-row md:items-center gap-1 md:gap-2"
+            :aria-labelledby="`${postSlug(post.path)}-title`"
+            class="relative opacity-80 hover:opacity-100 transition-opacity flex flex-col md:flex-row md:items-center gap-1 md:gap-2"
           >
-            <span :id="`${post.id}-title`">
+            <span
+              v-if="post.language === 'pt-BR'"
+              class="hidden md:block absolute -left-2 -translate-x-full top-1/2 -translate-y-1/2 text-xs/none bg-gray-100 dark:bg-gray-900 text-gray-500 dark:text-gray-400 px-1.5 py-1 rounded-sm"
+            >
+              <span class="sr-only">[</span>
+              Português
+              <span class="sr-only">]</span>
+            </span>
+
+            <span :id="`${postSlug(post.path)}-title`">
               {{ post.title }}
             </span>
             <span class="text-base text-gray-500 dark:text-gray-400">
