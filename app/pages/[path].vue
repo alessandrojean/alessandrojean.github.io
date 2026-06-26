@@ -3,13 +3,13 @@
     <SiteHeader />
 
     <PageHeader>
-      <PageHeaderTitle>About me</PageHeaderTitle>
+      <PageHeaderTitle>{{ page?.title }}</PageHeaderTitle>
     </PageHeader>
 
     <ContentRenderer
-      v-if="about"
+      v-if="page"
       class="typography -mt-10"
-      :value="about"
+      :value="page"
     />
 
     <PostFooter class="mt-12">
@@ -20,32 +20,42 @@
 </template>
 
 <script lang="ts" setup>
-const { data: about } = await useAsyncData('about-me', () => {
+const path = useRoute().params.path as string;
+
+const { data: page } = await useAsyncData(() => `page-${path}`, () => {
   return queryCollection('pages')
-    .path('/pages/about')
+    .path(`/pages/${path}`)
     .first();
 });
+
+if (!page.value) {
+  throw createError({
+    status: 404,
+    statusText: 'Page Not Found',
+    message: `Page not found: /${path}`,
+  });
+}
 
 const { url } = useSiteConfig();
 
 defineOgImage('Page.takumi', {
-  title: () => about.value?.title,
-  subtitle: () => about.value?.description,
+  title: () => page.value?.title,
+  subtitle: () => page.value?.description,
   author: 'Alessandro Jean',
   avatar: url + '/img/avatar-okabe-small.webp',
   role: url,
 });
 
 useSeoMeta({
-  title: () => about.value?.title,
-  description: () => about.value?.description,
-  ogTitle: () => about.value?.title,
-  ogDescription: () => about.value?.description,
+  title: () => page.value?.title,
+  description: () => page.value?.description,
+  ogTitle: () => page.value?.title,
+  ogDescription: () => page.value?.description,
   ogType: 'profile',
   ogLocale: 'pt-BR',
   twitterCard: 'summary_large_image',
-  twitterTitle: () => about.value?.title,
-  twitterDescription: () => about.value?.description,
+  twitterTitle: () => page.value?.title,
+  twitterDescription: () => page.value?.description,
   profileFirstName: 'Alessandro',
   profileLastName: 'Jean',
   profileUsername: 'alessandrojean',
