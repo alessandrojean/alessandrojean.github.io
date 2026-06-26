@@ -47,7 +47,6 @@
         target="_blank"
         :aria-label="socialMedias[site].name"
         :data-site="site"
-        rel="noopener noreferrer external"
       >
         <Icon
           :name="socialMedias[site].icon"

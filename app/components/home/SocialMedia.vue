@@ -6,7 +6,6 @@
       :to="socialMedias[site].url(socialMedia[site])"
       :aria-label="socialMedias[site].name"
       target="_blank"
-      rel="noopener noreferrer external"
       external
     >
       <Icon

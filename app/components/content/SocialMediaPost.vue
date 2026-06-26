@@ -33,7 +33,6 @@
         v-if="site"
         class="hidden sm:block ms-auto text-gray-400 dark:text-gray-600 hover:text-gray-500 transition-colors"
         external
-        rel="noopener noreferrer external"
         target="_blank"
         :href="url"
         :aria-label="site.name"
