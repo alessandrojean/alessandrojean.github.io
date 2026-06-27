@@ -3,6 +3,7 @@ import type { AppConfig } from 'nuxt/schema';
 interface SiteObject {
   name: string;
   icon: string;
+  altIcon?: string;
   domains: string[];
   url: (user: string) => string;
 }
@@ -13,6 +14,7 @@ export const socialMedias: Record<Site, SiteObject> = {
   instagram: {
     name: 'Instagram',
     icon: 'simple-icons:instagram',
+    altIcon: 'ri:instagram-line',
     domains: ['instagram.com'],
     url: user => `https://instagram.com/${user}`,
   },
@@ -31,6 +33,7 @@ export const socialMedias: Record<Site, SiteObject> = {
   gitHub: {
     name: 'GitHub',
     icon: 'simple-icons:github',
+    altIcon: 'ri:github-line',
     domains: ['github.com'],
     url: user => `https://github.com/${user}`,
   },
@@ -70,6 +73,7 @@ export const socialMedias: Record<Site, SiteObject> = {
   bluesky: {
     name: 'Bluesky',
     icon: 'simple-icons:bluesky',
+    altIcon: 'ri:bluesky-line',
     domains: ['bsky.app'],
     url: user => `https://bsky.app/profile/${user}`,
   },

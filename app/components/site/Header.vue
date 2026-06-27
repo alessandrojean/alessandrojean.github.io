@@ -16,7 +16,7 @@
       <span class="sr-only sm:not-sr-only">Alessandro Jean</span>
     </NuxtLink>
 
-    <div class="flex items-center gap-6 text-gray-500 dark:text-gray-400 *:hover:text-black dark:*:hover:text-gray-200 *:data-[site=bluesky]:hidden sm:*:data-[site=bluesky]:block">
+    <div class="flex items-center gap-5 text-gray-500 dark:text-gray-400 *:hover:text-black dark:*:hover:text-gray-200 *:data-[site=bluesky]:hidden sm:*:data-[site=bluesky]:block">
       <NuxtLink
         to="/about"
         aria-label="About"
@@ -49,8 +49,8 @@
         :data-site="site"
       >
         <Icon
-          :name="socialMedias[site].icon"
-          class="size-4"
+          :name="socialMedias[site].altIcon ?? socialMedias[site].icon"
+          class="size-5"
         />
         <span class="sr-only">{{ socialMedias[site].name }}</span>
       </NuxtLink>
