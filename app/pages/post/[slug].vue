@@ -27,11 +27,11 @@
         />
       </div>
 
-      <PostFooter class="mt-12">
-        <PostFooterDisclaimerNotByAi />
-        <PostFooterCdPreviousDirectory />
-        <PostFooterCopyright />
-      </PostFooter>
+      <PageFooter class="mt-12">
+        <PageFooterDisclaimerNotByAi />
+        <PageFooterCdPreviousDirectory />
+        <PageFooterCopyright />
+      </PageFooter>
     </article>
   </div>
 </template>

@@ -10,10 +10,10 @@
         </PageHeaderDescription>
       </PageHeader>
 
-      <PostFooter>
-        <PostFooterCdPreviousDirectory to="/" />
-        <PostFooterCopyright />
-      </PostFooter>
+      <PageFooter>
+        <PageFooterCdPreviousDirectory to="/" />
+        <PageFooterCopyright />
+      </PageFooter>
     </div>
   </NuxtLayout>
 </template>

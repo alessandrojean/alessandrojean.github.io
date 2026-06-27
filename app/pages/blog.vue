@@ -65,10 +65,10 @@
       </ul>
     </section>
 
-    <PostFooter class="mt-12">
-      <PostFooterCdPreviousDirectory to="/" />
-      <PostFooterCopyright />
-    </PostFooter>
+    <PageFooter class="mt-12">
+      <PageFooterCdPreviousDirectory to="/" />
+      <PageFooterCopyright />
+    </PageFooter>
   </div>
 </template>
 
