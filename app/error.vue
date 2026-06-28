@@ -1,21 +1,9 @@
 <template>
-  <NuxtLayout>
-    <div class="pb-16">
-      <SiteHeader />
-
-      <PageHeader>
-        <PageHeaderTitle>{{ error?.status }}</PageHeaderTitle>
-        <PageHeaderDescription>
-          {{ error?.message ?? error?.statusText }}
-        </PageHeaderDescription>
-      </PageHeader>
-
-      <PageFooter>
-        <PageFooterCdPreviousDirectory to="/" />
-        <PageFooterCopyright />
-      </PageFooter>
-    </div>
-  </NuxtLayout>
+  <NuxtLayout
+    name="page"
+    :title="error?.status?.toString(10) ?? '500'"
+    :description="error?.message ?? error?.statusText"
+  />
 </template>
 
 <script setup lang="ts">
