@@ -16,7 +16,7 @@ definePageMeta({ layout: false });
 
 const path = useRoute().params.path as string;
 
-const { data: page } = await useAsyncData(() => `page-${path}`, () => {
+const { data: page } = await useAsyncData(`page-${path}`, () => {
   return queryCollection('pages')
     .path(`/pages/${path}`)
     .first();
