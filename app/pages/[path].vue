@@ -1,25 +1,19 @@
 <template>
-  <div class="pb-16">
-    <SiteHeader />
-
-    <PageHeader>
-      <PageHeaderTitle>{{ page?.title }}</PageHeaderTitle>
-    </PageHeader>
-
+  <NuxtLayout
+    name="page"
+    :title="page?.title"
+  >
     <ContentRenderer
       v-if="page"
       class="typography -mt-10"
       :value="page"
     />
-
-    <PageFooter class="mt-12">
-      <PageFooterCdPreviousDirectory to="/" />
-      <PageFooterCopyright />
-    </PageFooter>
-  </div>
+  </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
+definePageMeta({ layout: false });
+
 const path = useRoute().params.path as string;
 
 const { data: page } = await useAsyncData(() => `page-${path}`, () => {

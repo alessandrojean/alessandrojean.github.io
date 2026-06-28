@@ -1,19 +1,5 @@
 <template>
-  <div class="pb-16">
-    <SiteHeader />
-
-    <PageHeader>
-      <PageHeaderTitle>Blog</PageHeaderTitle>
-      <PageHeaderDescription>
-        All posts in chronological order.
-      </PageHeaderDescription>
-
-      <!-- <div class="flex items-center gap-1 -ml-2.5 mt-4">
-        <PageHeaderHomeLink />
-        <PageHeaderRssLink />
-      </div> -->
-    </PageHeader>
-
+  <div>
     <section
       v-for="({ posts, year }) in postsByYear"
       :key="year"
@@ -64,16 +50,21 @@
         </li>
       </ul>
     </section>
-
-    <PageFooter class="mt-12">
-      <PageFooterCdPreviousDirectory to="/" />
-      <PageFooterCopyright />
-    </PageFooter>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { Blog, BlogPosting } from 'schema-dts';
+
+const title = 'Blog';
+const description = 'All posts in chronological order.';
+
+definePageMeta({
+  layout: {
+    name: 'page',
+    props: { title, description },
+  },
+});
 
 const { data } = await useAsyncData('posts', () => {
   return queryCollection('blog')
@@ -87,7 +78,9 @@ const postsByYear = computed(() => {
     return undefined;
   }
 
-  const byYear = Object.groupBy(data.value, post => post.created_at.slice(0, 4));
+  const byYear = Object.groupBy(data.value, (post) => {
+    return post.created_at.slice(0, 4);
+  });
 
   return Object.entries(byYear)
     .map(([y, ps]) => ({ year: y, posts: ps }))
@@ -106,8 +99,8 @@ function postLink(path: string) {
 const { url } = useSiteConfig();
 
 defineOgImage('Page.takumi', {
-  title: 'Blog',
-  subtitle: 'All posts in chronological order.',
+  title,
+  subtitle: description,
   author: 'Alessandro Jean',
   avatar: url + '/img/avatar-okabe-small.webp',
   role: url,
@@ -145,15 +138,15 @@ useSchemaOrg(() => [{
 } satisfies Blog]);
 
 useSeoMeta({
-  title: 'Blog',
-  description: 'All posts in chronological order.',
-  ogTitle: 'Blog',
-  ogDescription: 'All posts in chronological order.',
+  title,
+  description,
+  ogTitle: title,
+  ogDescription: description,
   ogType: 'website',
   ogLocale: 'pt-BR',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Blog',
-  twitterDescription: 'All posts in chronological order.',
+  twitterTitle: title,
+  twitterDescription: description,
 });
 
 useHead({

@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <SiteHeader />
-
+  <NuxtLayout
+    name="page"
+    cd="/blog"
+    not-by-ai
+  >
     <article
       v-if="post"
-      class="py-20"
+      class="pt-20"
       :lang="post.language"
     >
       <PostHeader>
@@ -26,20 +28,16 @@
           :value="post"
         />
       </div>
-
-      <PageFooter class="mt-12">
-        <PageFooterDisclaimerNotByAi />
-        <PageFooterCdPreviousDirectory />
-        <PageFooterCopyright />
-      </PageFooter>
     </article>
-  </div>
+  </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
 import 'katex/dist/katex.min.css';
 
 import type { ResolvableLink } from '@unhead/vue';
+
+definePageMeta({ layout: false });
 
 const slug = useRoute().params.slug as string;
 
