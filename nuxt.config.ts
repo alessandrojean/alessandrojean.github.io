@@ -82,6 +82,10 @@ export default defineNuxtConfig({
     },
   },
 
+  future: {
+    compatibilityVersion: 5,
+  },
+
   experimental: {
     extractAsyncDataHandlers: true,
 

@@ -26,7 +26,7 @@
     "feedsmith": "^2.9.4",
     "hastscript": "^9.0.1",
     "katex": "^0.17.0",
-    "nuxt": "^4.4.8",
+    "nuxt": "^4.6.1",
     "nuxt-schema-org": "^6.2.3",
     "rehype-components": "^0.3.0",
     "rehype-external-links": "^3.0.0",
