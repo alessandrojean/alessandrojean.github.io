@@ -15,7 +15,7 @@
   "dependencies": {
     "@nuxt/content": "3.16.2",
     "@nuxt/eslint": "1.17.0",
-    "@nuxt/fonts": "0.14.0",
+    "@nuxt/fonts": "1.0.1",
     "@nuxt/icon": "2.5.1",
     "@nuxt/image": "^2.1.0",
     "@nuxtjs/robots": "^7.0.2",
@@ -27,7 +27,7 @@
     "hastscript": "^9.0.1",
     "katex": "^0.19.0",
     "nuxt": "^4.6.1",
-    "nuxt-schema-org": "^6.2.3",
+    "nuxt-schema-org": "^7.0.1",
     "rehype-components": "^0.3.0",
     "rehype-external-links": "^3.0.0",
     "rehype-katex": "^7.0.1",
@@ -55,12 +55,12 @@
     "@iconify-json/lucide": "^1.2.144",
     "@iconify-json/ri": "^1.2.10",
     "@iconify-json/simple-icons": "^1.2.100",
-    "@takumi-rs/core": "^1.8.7",
+    "@takumi-rs/core": "^2.16.2",
     "@types/node": "^26.6.5",
     "@types/rss": "^0.0.32",
     "eslint": "^10.12.0",
     "eslint-plugin-simple-import-sort": "^14.0.0",
-    "nuxt-og-image": "^6.7.0",
+    "nuxt-og-image": "^7.0.7",
     "schema-dts": "^2.1.0",
     "typescript": "^6.0.3"
   }
