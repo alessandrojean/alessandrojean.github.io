@@ -88,6 +88,7 @@ export default defineNuxtConfig({
 
   experimental: {
     extractAsyncDataHandlers: true,
+    nitroAutoImports: true,
 
     defaults: {
       nuxtLink: {

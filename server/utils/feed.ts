@@ -1,8 +1,7 @@
 import type { BlogCollectionItem } from '@nuxt/content';
 import type { JsonFeed, RssFeed } from 'feedsmith';
 import { generateJsonFeed, generateRssFeed } from 'feedsmith';
-
-import type { H3Event } from '#imports';
+import type { H3Event } from 'h3';
 
 type Language = 'pt-BR' | 'en-US';
 
