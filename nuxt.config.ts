@@ -97,7 +97,7 @@ export default defineNuxtConfig({
     },
   },
 
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: '2026-06-30',
 
   nitro: {
     prerender: {
@@ -154,9 +154,10 @@ export default defineNuxtConfig({
       'image.tmdb.org',
       'i.imgur.com',
       'upload.wikimedia.org',
+      'unavatar.io',
     ],
     alias: {
-      github: 'https://github.com',
+      github: 'https://unavatar.io/github',
     },
     ipx: {
       modifiers: {

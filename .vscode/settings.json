@@ -21,4 +21,5 @@
 
   "javascript.preferences.quoteStyle": "single",
   "javascript.format.semicolons": "insert",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
 }
