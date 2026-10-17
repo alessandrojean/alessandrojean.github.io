@@ -14,7 +14,7 @@
 <script lang="ts" setup>
 definePageMeta({ layout: false });
 
-const path = useRoute().params.path as string;
+const path = (useRoute().params as { path: string }).path;
 
 const { data: page } = await useAsyncData(`page-${path}`, () => {
   return queryCollection('pages')

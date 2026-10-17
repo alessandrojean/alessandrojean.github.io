@@ -39,7 +39,7 @@ import type { ResolvableLink } from '@unhead/vue';
 
 definePageMeta({ layout: false });
 
-const slug = useRoute().params.slug as string;
+const slug = (useRoute().params as { slug: string }).slug;
 
 const { data: post } = await useAsyncData(`post-${slug}`, () => {
   return queryCollection('blog')
@@ -103,20 +103,19 @@ defineOgImage(
 );
 
 useSchemaOrg([
-  defineArticle(() => ({
+  defineArticle({
     '@type': 'BlogPosting',
-    'headline': post.value?.title,
-    'description': post.value?.description,
-    'datePublished': post.value?.created_at,
-    'dateModified': post.value?.updated_at,
-    'keywords': post.value?.tags,
-    'inLanguage': post.value?.language,
+    'headline': () => post.value?.title,
+    'description': () => post.value?.description,
+    'datePublished': () => post.value?.created_at,
+    'dateModified': () => post.value?.updated_at,
+    'inLanguage': () => post.value?.language,
     'author': [{
       '@id': `${url}#identity`,
       'name': 'Alessandro Jean',
       'url': url,
     }],
-  })),
+  }),
 ]);
 
 useHead({
