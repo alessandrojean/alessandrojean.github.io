@@ -1,7 +1,8 @@
 import type { BlogCollectionItem } from '@nuxt/content';
-import type { JsonFeed, RssFeed } from 'feedsmith';
 import { generateJsonFeed, generateRssFeed } from 'feedsmith';
-import type { H3Event } from 'h3';
+import type { Json, Rss } from 'feedsmith/types';
+
+import type { H3Event } from '#imports';
 
 type Language = 'pt-BR' | 'en-US';
 
@@ -18,8 +19,8 @@ export async function listPosts(event: H3Event, language?: Language) {
     .all();
 }
 
-export async function buildJsonFeed(event: H3Event, posts: BlogCollectionItem[], language?: Language): Promise<JsonFeed.Feed<Date>> {
-  const items: JsonFeed.Item<Date>[] = [];
+export async function buildJsonFeed(event: H3Event, posts: BlogCollectionItem[], language?: Language): Promise<Json.Feed<Date>> {
+  const items: Json.Item<Date>[] = [];
   const { url } = getSiteConfig(event);
 
   for (const post of posts) {
@@ -51,12 +52,12 @@ export async function buildJsonFeed(event: H3Event, posts: BlogCollectionItem[],
     feed_url: `${url}/blog/feed.json`,
     icon: `${url}/img/apple-touch-icon.png`,
     items,
-  }) as JsonFeed.Feed<Date>;
+  }) as Json.Feed<Date>;
 }
 
 export async function buildXmlFeed(event: H3Event, posts: BlogCollectionItem[], language?: Language): Promise<string> {
   const { url } = getSiteConfig(event);
-  const items: RssFeed.Item<Date>[] = [];
+  const items: Rss.Item<Date>[] = [];
 
   for (const post of posts) {
     const [, _, fileName] = post.path.slice(1).split('/');

@@ -14,7 +14,7 @@
 <script lang="ts" setup>
 definePageMeta({ layout: false });
 
-const path = (useRoute().params as { path: string }).path;
+const path = useRoute().params.path as string;
 
 const { data: page } = await useAsyncData(`page-${path}`, () => {
   return queryCollection('pages')
@@ -36,7 +36,7 @@ defineOgImage('Page.takumi', {
   title: () => page.value?.title,
   subtitle: () => page.value?.description,
   author: 'Alessandro Jean',
-  avatar: '/img/avatar-okabe-small.webp',
+  avatar: url + '/img/avatar-okabe-small.webp',
   role: url,
 });
 

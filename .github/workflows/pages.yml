@@ -4,35 +4,60 @@ on:
     branches: ['master']
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
 jobs:
   build:
     environment: github-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
-      - name: Setup pnpm
-        uses: pnpm/setup@v3
+        uses: actions/checkout@v5
         with:
-          cache: true
-          runtime: node@latest
+          fetch-depth: 0
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 23
+          cache: 'pnpm'
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist
+            .nuxt
+          key: ${{ runner.os }}-nuxt-build-${{ hashFiles('dist') }}
+          restore-keys: |
+            ${{ runner.os }}-nuxt-build-
+      - name: Install dependencies
+        run: pnpm install
       - name: Static HTML export with Nuxt
         run: pnpm run generate --preset github_pages
+        env:
+          NUXT_NOTION_API_KEY: ${{ secrets.NUXT_NOTION_API_KEY }}
+          NUXT_NOTION_POSTS_DATA_SOURCE_ID: ${{ secrets.NUXT_NOTION_POSTS_DATA_SOURCE_ID }}
+          NUXT_NOTION_MOVIES_DATA_SOURCE_ID: ${{ secrets.NUXT_NOTION_MOVIES_DATA_SOURCE_ID }}
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./.output/public
+          path: ./dist
   
   deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4

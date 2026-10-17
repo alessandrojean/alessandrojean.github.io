@@ -106,7 +106,7 @@ defineOgImage('Page.takumi', {
   role: url,
 });
 
-useSchemaOrg([{
+useSchemaOrg(() => [{
   '@type': 'Blog',
   'name': 'Alessandro Jean Blog',
   'author': {
@@ -131,6 +131,7 @@ useSchemaOrg([{
         'name': 'Alessandro Jean',
         'url': url,
       },
+      'keywords': p.tags,
       'inLanguage': p.language,
     } satisfies BlogPosting);
   }),

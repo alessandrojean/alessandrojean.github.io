@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-4 items-center">
     <NuxtImg
-      src="/img/avatar-okabe-small.webp"
+      src="/github/alessandrojean.png"
       alt="Avatar"
       width="80"
       height="80"
