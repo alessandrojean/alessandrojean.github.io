@@ -95,7 +95,7 @@ defineOgImage(
     title: () => post.value?.title,
     category: () => post.value?.category,
     author: 'Alessandro Jean',
-    avatar: url + '/img/avatar-okabe-small.webp',
+    avatar: '/img/avatar-okabe-small.webp',
     date: () => post.value?.created_at,
     language: () => post.value?.language,
   },

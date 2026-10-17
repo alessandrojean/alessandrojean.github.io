@@ -36,7 +36,7 @@ defineOgImage('Page.takumi', {
   title: () => page.value?.title,
   subtitle: () => page.value?.description,
   author: 'Alessandro Jean',
-  avatar: url + '/img/avatar-okabe-small.webp',
+  avatar: '/img/avatar-okabe-small.webp',
   role: url,
 });
 
